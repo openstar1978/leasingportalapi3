@@ -1,0 +1,588 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>
+        HTML to PDF - techumber
+    </title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.0/semantic.min.css" />
+</head>
+<body>
+    <div class="ui button aligned center teal" id="create_pdf" onclick="getpdf1()">Create PDF</div>
+    <button onclick="getPDF()" id="downloadbtn"><b>Click to Download HTML as PDF</b></button>
+    <iframe id="sample-pdf"></iframe>
+    <form class="ui form canvas_div_pdf" style="width:800px;">
+        <div id="grid">
+            
+
+            <div id="page_1_1" class="print-wrap">
+                <STYLE type="text/css">
+                    body {
+                        margin-top: 0px;
+                        margin-left: 0px;
+                    }
+
+                    #page_1_1 {
+                        position: relative;
+                        overflow: hidden;
+                        margin: 15px 0px 12px 8px;
+                        padding: 0px;
+                        border: none;
+                        width: 785px;
+                    }
+
+                        #page_1_1 .infotable .td1 {
+                            height: 27px;
+                            border: #333333 1px solid;
+                            padding: 0px;
+                            margin: 0px;
+                            width: 179px;
+                            vertical-align: bottom;
+                            background: #adadad;
+                        }
+
+                        #page_1_1 .infotable .td0 {
+                            width: 165px;
+                        }
+
+                    .smalltable {
+                        width: 50%;
+                        min-height: 100px;
+                        margin-top: 15px;
+                        border-left: #333333 1px solid;
+                        border-right: #333333 1px solid;
+                        border-bottom: #333333 1px solid;
+                    }
+
+                        .smalltable .h1 {
+                            text-align: left;
+                            padding: 5px;
+                            margin-top: 16px;
+                            color: #fff;
+                        }
+
+                        .smalltable .content {
+                            padding-left: 5px;
+                        }
+
+                        .smalltable .tr0 {
+                            background: #082044;
+                        }
+
+                    .termp {
+                        width: 100%;
+                        text-align: center;
+                        background: #085bdf;
+                        color: #fff;
+                        padding: 10px 0px;
+                        font: 16px 'Times New Roman';
+                    }
+
+                    .prodtable {
+                        width: 100%;
+                        border: #333333 1px solid;
+                    }
+
+                        .prodtable thead tr {
+                            background: #082044;
+                        }
+
+                        .prodtable thead th {
+                            padding: 5px;
+                            color: #fff;
+                            text-align: center;
+                        }
+
+                        .prodtable tbody tr td {
+                            border-left: #333333 1px solid;
+                            border-right: #333333 1px solid;
+                            border-bottom: #333333 1px solid;
+                        }
+
+                    .footertable1 {
+                        border-top: #333333 1px solid;
+                        border-left: #333333 1px solid;
+                        border-right: #333333 1px solid;
+                        border-bottom: #333333 1px solid;
+                    }
+
+                    .title {
+                        background: #082044;
+                        color: #fff;
+                    }
+
+                    .footertable1 td {
+                        padding: 5px;
+                        border-bottom: 1px solid #333;
+                    }
+
+                    .footertable2 td {
+                        padding: 5px;
+                    }
+                </STYLE>
+                <style>
+                    @media print {
+                        #grid {
+                            height: 842px;
+                            margin-left: 30px;
+                        }
+
+                        .footer {
+                            display: block;
+                            position: fixed;
+                            bottom: 30px;
+                            left: 20px;
+                        }
+                    }
+
+                    #quoteModal .modal-footer {
+                        border-top: 0px;
+                    }
+
+                    #maindiv {
+                        width: 100%;
+                    }
+
+                    .commontable {
+                        color: #000 !important;
+                        width: 99%;
+                    }
+
+                        .commontable td, .commontable th {
+                            padding: 5px;
+                        }
+
+                        .commontable tr td {
+                            border-top: 0px;
+                        }
+
+                        .commontable p {
+                            margin-bottom: 0px !important;
+                            color: inherit !important;
+                        }
+
+                    .textright {
+                        text-align: right;
+                    }
+
+                    .table2 p.emptytd {
+                        border: 0px solid #333;
+                        padding: 2px;
+                        max-width: 50px;
+                        background: transparent;
+                    }
+
+                    .labeltd {
+                        width: 150px;
+                    }
+
+                    .table2 p {
+                        border: 1px solid #333;
+                        padding: 2px;
+                        width: 175px;
+                        background: #adadad;
+                    }
+
+                    .bgblue {
+                        background: #082044;
+                    }
+
+                    .padding5 {
+                        padding: 5px;
+                    }
+
+                    .colorwhite {
+                        color: #fff !important;
+                    }
+
+                    .borderbox {
+                        border: 1px solid #333;
+                    }
+
+                    .table3, .table6-1, .table6-2 {
+                        width: 50%;
+                    }
+
+                    .textcenter {
+                        text-align: center;
+                    }
+
+                    .table6-1, .table6-2 {
+                        display: inline;
+                    }
+
+                    .table6 tr table tr td {
+                        color: #333;
+                    }
+                </style>
+                <table class="commontable table1">
+                    <tbody>
+                        <tr>
+                            <td><strong>LEASE QUOTATION</strong></td>
+                            <td class="textright">
+                                <img src="/supplier/Content/SupplierLogo/684000252.png" style="height:100px;width:auto">
+                                <span style="font-weight:bold" id="supname">Openstar</span><br>
+                                Pearl Harbour<br>London
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <table class="commontable table2">
+                    <tbody>
+                        <tr>
+                            <td class="labeltd">Date</td>
+                            <td><p class="colorwhite">27-12-2020</p></td>
+                            <td><p class="emptytd">&nbsp;</p></td>
+                            <td><p class="emptytd">&nbsp;</p></td>
+                            <td class="labeltd">Quote Number</td>
+                            <td><p class="colorwhite">8</p></td>
+                        </tr>
+                        <tr>
+                            <td class="labeltd">Valid Till</td>
+                            <td><p class="colorwhite">17-01-2021</p></td>
+                            <td><p class="emptytd">&nbsp;</p></td>
+                            <td><p class="emptytd">&nbsp;</p></td>
+                            <td class="labeltd">Customer ID</td>
+                            <td><p class="colorwhite">22</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="commontable table3">
+
+                    <tbody>
+                        <tr class="bgblue padding5 colorwhite">
+                            <td><p class="padding5"><span style="font-weight:bold" id="compname">Bethany School</span></p></td>
+                        </tr>
+                        <tr style="margin-top: 10px;">
+                            <td class="borderbox"><p class="padding5">470 Lucy Forks<br>London - 87878 Phone : 07600723467</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="commontable table4" style="margin-bottom:10px;">
+                    <tbody>
+                        <tr class="colorwhite" style="background: #085bd9;">
+                            <td>
+                                <p class="padding5" style="text-align: center;">
+                                    LEASE TERM : Monthly payment for 5 years
+                                </p>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <table class="commontable table5" border="1" style="border-collapse:unset;" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr class="bgblue">
+                            <td class="padding5 textcenter colorwhite">Image</td>
+                            <td class="padding5 textcenter colorwhite">Product</td>
+                            <td class="padding5 textcenter colorwhite">Unit Rental</td>
+                            <td class="padding5 textcenter colorwhite">Qty</td>
+                            <td class="padding5 textcenter colorwhite">VAT</td>
+                            <td class="padding5 textcenter colorwhite">Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td class="product-thumbnail textcenter" style="word-wrap: break-word;white-space:normal;width:100px;" data-title="Product">
+                                <a href="/Leasing/ProductDetail?productname=Apple iPad mini&amp;getproduct=3TM9aMnATcu043Fr0C%2fM7g%3d%3d" target="_blank">
+                                    <img src="/LeaseAdmin/Content/images/product/637205425936640788.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:auto;height:100px;max-width:inherit;" width="300" height="300">
+                                </a>
+                            </td>
+
+                            <td class="product-name" style="word-wrap: break-word;white-space:normal;width:400px;" data-title="Product">
+                                <a href="/Leasing/ProductDetail?productname=Apple iPad mini&amp;getproduct=3TM9aMnATcu043Fr0C%2fM7g%3d%3d" style="font-size:16px;text-decoration:none;line-height: 24px;" target="_blank">Apple iPad mini</a>
+                                <ul class="font-size-12 p-0 text-gray-110  d-none d-md-block">
+                                    <li class="line-clamp-1 mb-1 list-bullet" style="border-bottom:0px!important;">300.5 grams Weight</li>
+                                    <li class="line-clamp-1 mb-1 list-bullet" style="border-bottom:0px!important;">7.9 Inches Display Size</li>
+                                    <li class="line-clamp-1 mb-1 list-bullet" style="border-bottom:0px!important;">Retina display  Display Technology</li>
+                                    <li class="line-clamp-1 mb-1 list-bullet" style="border-bottom:0px!important;">5.3 * 8 * 0.24  Product Dimensions</li>
+
+                                </ul>
+                                <strong>Offer Applied </strong>:Buy 5 and Save £500
+                            </td>
+
+                            <td class="prodcut-price" align="center" valign="top">
+                                £45.00
+                            </td>
+
+
+                            <td align="center" class="prodcut-price" valign="top" style="">
+                                1
+                            </td>
+
+                            <td style="text-align:center" class="prodcut-price" valign="top">
+                                £9.00
+                            </td>
+                            <td style="text-align:right" class="prodcut-price" valign="top">
+                                £54.00
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                <table class="commontable table6" style="margin-top:10px;" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td rowspan="3" style="width:60%;">
+                                <table border="1" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr class="bgblue">
+                                            <td class="padding5 colorwhite">Additional Notes</td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="padding5" style="font-size:12px;">
+                                                Installation Charges applicable on certain products.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="padding5" style="font-size:12px;">
+                                                Additional delivery charges apply for UK off-shore deliveries
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="padding5" style="font-size:12px;">
+                                                Terms and condition of Lease apply
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+
+                            <td class="text-right"><strong>Sub total Rental</strong></td>
+                            <td class="textright" style="font-size:1.25038rem">£45.00</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right"> <strong>VAT</strong></td>
+                            <td class="textright" style="font-size:1.25038rem">
+                                £9.00
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right"><strong>Total Rental</strong></td>
+                            <td class="textright" style="font-size:1.25038rem">£54.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+               
+                <div class="footer">
+                    Prepared By: equipyourschool.co.uk  <!--<img src="~/Content/images/logo.png" style="width:100px;padding-top:50px;" />-->
+                </div>
+            </div>
+
+           
+
+           
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <!--<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>-->
+    <!--<script src="../../Content/js/pdf/jspdf.debug.js"></script>
+    <script src='../../dist/jspdf.debug.js'></script>-->
+    <!--<script>
+
+        var pdf = new jsPDF("p", "mm", "a4");
+		pdf.html(document.body, {
+			callback: function (pdf) {
+				var iframe = document.createElement('iframe');
+				iframe.setAttribute('style', 'position:absolute;right:0; top:0; bottom:0; height:100%; width:767px');
+				document.body.appendChild(iframe);
+				iframe.src = pdf.output('datauristring');
+			}
+		});
+    </script>-->
+    <script>
+       
+	var pdf,page_section,HTML_Width,HTML_Height,top_left_margin,PDF_Width,PDF_Height,canvas_image_width,canvas_image_height;
+
+//	pdf = new jsPDF('p', 'pt', [794, 1123]);
+
+
+	function calculatePDF_height_width(selector,index){
+	    page_section = $(selector).eq(index);
+	    HTML_Width = page_section.width();
+		HTML_Height = page_section.height();
+		top_left_margin = 15;
+		PDF_Width = HTML_Width + (top_left_margin * 2);
+		PDF_Height = (PDF_Width * 1.2) + (top_left_margin * 2);
+		canvas_image_width = HTML_Width;
+		canvas_image_height = HTML_Height;
+        
+	}
+
+
+
+
+    //Generate PDF
+    function getPDF() {
+        pdf = "";
+		$("#downloadbtn").hide();
+		$("#genmsg").show();
+		html2canvas($(".print-wrap:eq(0)")[0], {
+		    imageTimeout: 2000,
+		    scale: 2,
+		    removeContainer: true,
+		}).then(function (canvas) {
+		    canvas.getContext('2d').scale(2, 2);
+            calculatePDF_height_width(".print-wrap",0);
+            pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+
+            var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, HTML_Width, HTML_Height);
+		    
+
+
+			    //console.log((page_section.length-1)+"==="+index);
+			    setTimeout(function () {
+
+			        //Save PDF Doc
+			        //pdf.save("HTML-Document.pdf");
+
+			        //Generate BLOB object
+			        var blob = pdf.output("blob");
+
+                    //Getting URL of blob object
+                    var blobURL = URL.createObjectURL(blob);
+
+                    //Showing PDF generated in iFrame element
+                    var iframe = document.getElementById('sample-pdf');
+                    iframe.src = blobURL;
+
+                    //Setting download link
+                    var downloadLink = document.getElementById('pdf-download-link');
+                    downloadLink.href = blobURL;
+
+					$("#sample-pdf").slideDown();
+                    
+
+			        $("#downloadbtn").show();
+			        $("#genmsg").hide();
+			    }, 0);
+			});
+
+        
+		
+    };
+
+    
+	function getPDFold(){
+		$("#downloadbtn").hide();
+		$("#genmsg").show();
+		var HTML_Width = $(".canvas_div_pdf").width();
+		var HTML_Height = $(".canvas_div_pdf").height();
+		var top_left_margin = 2;
+		var PDF_Width = HTML_Width+(top_left_margin*2);
+		var PDF_Height = (PDF_Width * 1.2) + (top_left_margin * 2);
+		
+		var canvas_image_width = HTML_Width;
+		var canvas_image_height = HTML_Height;
+
+		var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
+		
+		html2canvas($(".canvas_div_pdf")[0], {
+		    imageTimeout: 2000,
+            scale:2,
+		    removeContainer: true,
+		}).then(function (canvas) {
+			canvas.getContext('2d').scale(2, 2);
+			
+
+			var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+		    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
+
+
+			for (var i = 1; i <= totalPDFPages; i++) {
+			    pdf.addPage(PDF_Width, PDF_Height);
+				pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+			}
+
+		    pdf.save("HTML-Documentnew.pdf");
+
+			setTimeout(function(){
+				$("#downloadbtn").show();
+				$("#genmsg").hide();
+			}, 0);
+
+        });
+	};
+
+
+    </script>
+    <script>
+            var form = $('.form'),
+      cache_width = form.width(),
+      a4 = [770, 990.89]; // for a4 size paper width and height
+
+            var canvasImage,
+              winHeight = a4[1],
+              formHeight = form.height(),
+              formWidth = form.width();
+
+            var imagePieces = [];
+
+            // on create pdf button click
+            $('#create_pdf').on('click', function () {
+                $('body').scrollTop(0);
+                imagePieces = [];
+                imagePieces.length = 0;
+                main();
+            });
+
+            // main code
+            function main() {
+                getCanvas().then(function (canvas) {
+                    canvasImage = new Image();
+                    canvasImage.src = canvas.toDataURL('image/png');
+                    canvasImage.onload = splitImage;
+                });
+            }
+
+            // create canvas object
+            function getCanvas() {
+                form.width(a4[0]).css('max-width', 'none');
+                return html2canvas(form, {
+                    imageTimeout: 2000,
+                    removeContainer: true,
+                });
+            }
+
+            // chop image horizontally
+            function splitImage(e) {
+                var totalImgs = Math.round(formHeight / winHeight);
+                for (var i = 0; i < totalImgs; i++) {
+                    var canvas = document.createElement('canvas'),
+                      ctx = canvas.getContext('2d');
+                    canvas.width = formWidth;
+                    canvas.height = winHeight;
+                    ctx.drawImage(canvasImage, 0, i * winHeight, formWidth, winHeight, 0, 0, canvas.width, canvas.height);
+
+                    imagePieces.push(canvas.toDataURL('image/png'));
+                }
+                console.log(imagePieces.length);
+                createPDF();
+            }
+
+            // crete pdf using chopped images
+            function createPDF() {
+                var totalPieces = imagePieces.length - 1;
+                var doc = new jsPDF({
+                    unit: 'px',
+                    format: 'a4',
+                });
+                imagePieces.forEach(function (img) {
+                    doc.addImage(img, 'JPEG', 10, 0);
+                    if (totalPieces) doc.addPage();
+                    totalPieces--;
+                });
+                doc.save('techumber-html-to-pdf.pdf');
+                form.width(cache_width);
+            }
+        </script>
+</body>
+</html>

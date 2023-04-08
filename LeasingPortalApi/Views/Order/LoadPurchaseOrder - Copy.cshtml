@@ -1,0 +1,432 @@
+﻿@using LeasingPortalApi.Models;
+@{
+    var db = new LeasingDbEntities();
+    var suname = "";
+    var schoolname = "";
+    var saddress = "";
+    var supaddress = "";
+    var contacperson = "";
+    var telno = "";
+    var contactemail = "";
+    var mleaseid = ViewBag.mleaseno;
+    var listdata = (List<int>)(ViewBag.subquoteid);
+    var muserid = ViewBag.muserid;
+    var msorderref = ViewBag.msorderref;
+    var msorderdate = ViewBag.msorderdate;
+    var ffee = ViewBag.ffee;
+    var sfee = ViewBag.sfee;
+    var productdetail = QuotationDAO.LoadNewSubQuotationDetails(listdata);
+    double? total = 0;
+    double? vattotal = 0;
+    var path = AppDomain.CurrentDomain.BaseDirectory;
+}
+@{
+    var suppliers = SupplierDao.GetSupplierById(muserid);
+    if (suppliers != null)
+    {
+        suname = suppliers.morgname;
+        supaddress = suppliers.maddress1;
+        if (suppliers.maddress2 != null)
+        {
+            supaddress += ", " + suppliers.maddress1;
+        }
+        supaddress += ", " + (suppliers.mcity != null ? " " + suppliers.mcity : "") + (suppliers.mpostcode != null ? " - " + suppliers.mpostcode : "");
+
+        supaddress += (suppliers.mphone != null ? ", Phone : " + suppliers.mphone : "");
+
+    }
+    suppliers = UsersDao.GetByOrgId(muserid);
+    if (suppliers != null)
+    {
+        contacperson = suppliers.mname;
+        contactemail = suppliers.museridemail;
+        telno = suppliers.mphone;
+        schoolname = suppliers.morgname;
+        saddress = suppliers.maddress1;
+        if (suppliers.maddress2 != null)
+        {
+            saddress += ", " + suppliers.maddress1;
+        }
+        saddress += ", " + (suppliers.mcity != null ? " " + suppliers.mcity : "") + (suppliers.mpostcode != null ? " - " + suppliers.mpostcode : "");
+
+        saddress += (suppliers.mphone != null ? ", Phone : " + suppliers.mphone : "");
+
+    }
+}
+<HTML>
+<HEAD>
+    <style>
+        .border {
+            border: 1px solid #6e7171;
+        }
+
+        .border-r {
+            border-right: 1px solid #6e7171;
+        }
+
+        .border-l {
+            border-left: 1px solid #6e7171;
+        }
+
+        .border-t {
+            border-top: 1px solid #6e7171;
+        }
+
+        .border-b {
+            border-bottom: 1px solid #6e7171;
+        }
+       #page_1,#page_2,#page_3 {
+            page-break-after: always;
+        }
+
+        #page_1 {
+            /* position: relative; */
+            position: relative;
+            overflow: hidden;
+            margin: 31px 0px 21px 28px;
+            padding: 0px;
+            border: none;
+            width: 766px;
+            height: auto;
+        }
+--
+            #page_1 #p1dimg1 {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                z-index: -1;
+                width: 738px;
+                height: 1071px;
+            }
+
+        .dclr {
+            clear: both;
+            float: none;
+            height: 1px;
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+
+        #page_1 #id1_1 {
+            border: none;
+            /* margin: 22px 0px 0px 2px; */
+            padding: 0px;
+            border: none;
+            width: 733px;
+            overflow: hidden;
+        }
+
+        p {
+            font: 9px 'Arial';
+            line-height: 12px;
+            text-align: left;
+            padding: 4px 7px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            white-space: nowrap;
+        }
+
+        .table1 p {
+            padding: 5px 7px;
+        }
+
+        .table3 p {
+            font: 8px 'Arial';
+            text-align: center;
+        }
+
+        .table3 tr td p {
+            line-height: 12px;
+        }
+
+        .table-title tr td {
+            border-right: #6e7171 1px solid #6e7171;
+            border-bottom: #6e7171 1px solid #6e7171;
+            padding: 0px;
+            margin: 0px;
+            width: 433px;
+            vertical-align: bottom;
+            background: #6e7171;
+        }
+
+            .table-title tr td p {
+                font: 11px 'Arial';
+                color: #ffffff;
+                line-height: 14px;
+                text-align: center;
+                padding: 0px 0px 0px 0px;
+            }
+
+        .table-agree tr td p {
+            font: 11px 'Arial';
+        }
+
+        #page_1 #id1_2 #id1_2_1 {
+            float: left;
+            border: none;
+            margin: 2px 0px 0px 0px;
+            padding: 0px;
+            border: none;
+            width: 165px;
+            overflow: hidden;
+        }
+
+        #page_1 #id1_2 #id1_2_2 {
+            float: left;
+            border: none;
+            margin: 0px 0px 0px 4px;
+            padding: 0px;
+            border: none;
+            width: 559px;
+            overflow: hidden;
+        }
+
+       
+        @@media print {
+            #page_1, #page_2 {
+                width: 21cm;
+                height: 29.7cm;
+                /* change the margins as you want them to be. */
+            }
+        }
+        td{
+            font-size:12px;
+            color:#000;
+        }
+        .mb-10 tr{
+            
+        }
+        .table1 .trl,.table1 .trr{
+width:45%;
+height:100px;
+border:1px solid #333;
+padding-left:5px;
+}
+.table1 .trm{
+width:10%;
+min-height:150px;
+}
+.table3 td{
+font-size:12px;
+}
+.brleft{
+border-left:1px solid #333;
+}
+.brright{
+border-right:1px solid #333;
+}
+.brbottom{
+border-bottom:1px solid #333;
+}
+.brtop{
+border-top:1px solid #333;
+}
+table td,table th{
+    border-top:inherit;
+}
+table thead th{
+    color:#333;
+    vertical-align:top;
+}
+table{
+    margin-bottom:5px;
+}
+    </style>
+
+</HEAD>
+
+<BODY>
+    <div id="grid" style="opacity:1;">
+
+        <input type="hidden" id="pgcount" value="" />
+
+
+
+        <div id="page_1" class="print-wrap">
+
+
+            <div id="id1_1">
+                <table class="table0" style="width:100%;margin-bottom:5px;margin-top:5px;" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="width:80%"><p style="font-size:30px;font-weight:700;padding-left:0px;">Purchase Order</p></td>
+                    </tr>
+                </table>
+                <table class="table1" style="width:100%;margin-bottom:5px;" cellpadding="3" cellspacing="0">
+                    <tr>
+                        <td class="trl" valign="top" ><strong>To:</strong><br/>
+Technology Rentals Ltd<br/>
+PO Box 244<br/>
+Wilmslow, Cheshire SK9 5WX<br/>
+United Kingdom<br/>
+Email: info@technologyrentals.co.uk</td>
+                        <td class="trm"></td>
+                        <td class="trr" valign="top"><strong>From:</strong><br/>
+@schoolname <br/>
+@Html.Raw(saddress)</td>
+                    </tr>
+                    <!--<tr>
+                        <td class="trl" valign="top"><strong>Supplier:</strong><br/>
+@suname <br/>
+@Html.Raw(supaddress)</td>
+                        <td class="trm"></td>
+                        <td class="trr" valign="top"><strong>Goods Delivered to:</strong><br/>Delivery Address</td>
+                    </tr>-->
+                </table>
+                <table class="table2" cellpadding="0" cellspacing="3" style="width:100%;border:1px solid #333;background:#b3b3b3;">
+                    <tr style="padding:10px;text-align:center;">
+                        <td style="padding:5px 5px 20px;margin-bottom:10px;height:50px;">Official Purchase Order</td>
+                    </tr>
+                </table>
+                <table class="table3" cellpadding="0" cellspacing="3" style="width:100%;border:1px solid #333;">
+                    <tr>
+                        <td valign="top" style="width:20%;text-align:center;">
+                            <strong>Purchase Order Number</strong><br />@msorderref
+                        </td>
+                        <td valign="top" style="width:60%;text-align:center;border-left:1px solid #333;border-right:1px solid #333;"><strong>For Enquiries Relating to Goods or Services please call</strong><br /></td>
+
+                        <td style="width:20%;text-align:center;"><strong>Date</strong><br />@msorderdate</td>
+                    </tr>
+                </table>
+                <table class="table4" style="width:100%;margin-top:5px;font-size:12px;border:1px solid #333;border-bottom:0px;" cellpadding="2" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="brright brbottom">EYS Item Code</th>
+                            <th class="brright brbottom" valign="top" align="left">Description</th>
+                            <th class="brright brbottom" align="center">Lease Term</th>
+                            <th class="brright brbottom" align="center">Quantity</th>
+                            <th class="brright brbottom" align="center">Unit Rental</th>
+                            <th class="brright brbottom" align="center">Total Amount<br />(Excl. VAT)</th>
+                            <th class="brbottom" align="center">VAT</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var i = 1;
+                            var rent = "";
+                            switch (productdetail.First().mtermf)
+                            {
+                                case 1:
+                                    rent = "month";
+                                    break;
+                                case 3:
+                                    rent = "quater";
+                                    break;
+                                case 4:
+                                    rent = "term";
+                                    break;
+                                case 6:
+                                    rent = "half year";
+                                    break;
+                                case 12:
+                                    rent = "annual";
+                                    break;
+                                default:
+                                    rent = "month";
+                                    break;
+                            }
+                            int? termp = 0;
+                            var vat = productdetail.First().mvat * 100 / productdetail.First().mprice;
+                            foreach (var ab in productdetail)
+                            {
+                                var addr = "";
+                                if (ab.DifferentAddress != null && ab.DifferentAddress != "")
+                                {
+                                    var dadd = int.Parse(ab.DifferentAddress);
+                                    var maddress = db.user_registration_addr.FirstOrDefault(x => x.museraddrid == dadd);
+                                    if (maddress != null)
+                                    {
+                                        addr = maddress.maddress1;
+                                        if (maddress.maddress2 != null)
+                                        {
+                                            addr = addr + "<br/>" + maddress.maddress2;
+                                        }
+                                        if (maddress.mlandmark != null)
+                                        {
+                                            addr = addr + "<br/>" + maddress.mlandmark;
+
+                                        }
+                                        addr = addr + "<br/>" + maddress.mcity + (maddress.mpostcode != null ? " - " + maddress.mpostcode : "");
+                                    }
+
+                                }
+                                termp = ab.mtermp / 12;
+                                total = total + ((ab.mprice.HasValue ? ab.mprice.Value : 0) * ab.mtermp * ab.quantity);
+                                vattotal=vattotal+ ((ab.mvat.HasValue ? ab.mvat.Value : 0))* ab.mtermp;
+                                                                <tr>
+                                    <td class="brright brbottom">@ab.itemcode</td>
+                                    <td class="brright brbottom">@ab.mproductname<br/>
+
+                                    <span style="font-size:10px">@ab.suppliername</span>
+                                    </td>
+                                    <td class="brright brbottom" align="center">@(ab.mtermp / 12) years</td>
+                                    <td class="brright brbottom" align="center">@ab.quantity</td>
+                                    <td class="brright brbottom" align="center">@ab.mprice per <br/> @rent</td>
+                                    <td class="brright brbottom" align="center">@(Math.Round((ab.mprice*ab.mtermp*ab.quantity).HasValue?(ab.mprice * ab.mtermp * ab.quantity).Value:0, 2))</td>
+                                    <td class="brbottom" align="center">@(Math.Round((ab.mvat * ab.mtermp).HasValue? (ab.mvat * ab.mtermp).Value:0,2))</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td class="brright brbottom"></td>
+                                <td class="brright brbottom">Facility Fee</td>
+                                <td class="brright brbottom" align="center"></td>
+<td class="brright brbottom" align="center">1</td>
+                                <!--<td class="brright brbottom" align="center">£@ffee fee on the<br/> agreement</td>-->
+                                <td class="brright brbottom" align="center"></td>
+<td class="brright brbottom" align="center">£@(ffee * 1) </td>
+                                <td class="brbottom" align="center">@((ffee * vat) / 100)</td>
+                                @{ 
+                                    vattotal = vattotal + ((ffee * vat) / 100);
+                                }
+                            </tr>
+                            <tr>
+                                <td class="brright brbottom"></td>
+                                <td class="brright brbottom">Agreement Service Fee </td>
+                                <td class="brright brbottom" align="center"></td>
+<td class="brright brbottom" align="center">1</td>
+                                <!--<td class="brright brbottom" align="center">£@sfee per @rent<br />@(productdetail.First().mtermp / 12) years</td>-->
+                                <td class="brright brbottom" align="center"></td>
+                                <td class="brright brbottom" align="center">£@(sfee * ((productdetail.First().mtermp / 12) - 1)) </td>
+                                <td class="brbottom" align="center"> @(((sfee * ((productdetail.First().mtermp / 12) - 1)) * vat) / 100)</td>
+                                @{
+                                    
+                                    vattotal = vattotal + (((sfee * ((productdetail.First().mtermp / 12) - 1)) * vat) / 100);
+                                }
+                            </tr>
+                        }
+                        
+                    </tbody>
+                    <!--<tfoot>
+                        <tr>
+                            <td colspan="3" class="brright"></td>
+                            <td class="brright brbottom">
+                                Total
+                            </td>
+                            <td class="brright brbottom">£@(Math.Round(total.HasValue?total.Value:0,2))</td>
+                            <td class=""></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="brright"></td>
+                            <td class="brright brbottom">VAT</td>
+                            <td class="brright brbottom">£@(Math.Round(vattotal.HasValue?vattotal.Value:0,2))</td>
+                            <td class=""></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="brright brbottom"></td>
+                            <td class="brright brbottom">Grand Total</td>
+                            <td class="brright brbottom">£@(Math.Round((total+vattotal).HasValue?(total+vattotal).Value:0,2))</td>
+                            <td class="brbottom"></td>
+                        </tr>
+                    </tfoot>-->
+                </table>
+               
+            </div>
+
+            
+        </div>
+        
+        
+    </div>
+</BODY>
+</HTML>

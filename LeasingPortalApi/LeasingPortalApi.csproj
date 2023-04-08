@@ -1,0 +1,1165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B4F4C587-1A1C-47A2-B751-E0B655A7F336}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LeasingPortalApi</RootNamespace>
+    <AssemblyName>LeasingPortalApi</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocuSign.eSign, Version=4.0.4.0, Culture=neutral, PublicKeyToken=7fca6fcbbc219ede, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocuSign.eSign.dll.4.0.4\lib\net45\DocuSign.eSign.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hangfire.Core, Version=1.7.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Core.1.7.11\lib\net45\Hangfire.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hangfire.Dashboard.Authorization, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Dashboard.Authorization.3.0.0\lib\net45\Hangfire.Dashboard.Authorization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer, Version=1.7.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.SqlServer.1.7.11\lib\net45\Hangfire.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.24.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.24\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.1, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.13.1\lib\itextsharp.xmlworker.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.4\lib\net45\Microsoft.IdentityModel.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.4\lib\net45\Microsoft.IdentityModel.Tokens.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=100.0.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharpSigned.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.4\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.8\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\angular-animate.js" />
+    <Content Include="Content\angular-animate.min.js" />
+    <Content Include="Content\angular-cookies.min.js" />
+    <Content Include="Content\angular-file-upload.js" />
+    <Content Include="Content\angular-route.min.js" />
+    <Content Include="Content\angular-sanitize.js" />
+    <Content Include="Content\angular.min.js" />
+    <Content Include="Content\App.js" />
+    <Content Include="Content\assets\css\theme.css" />
+    <Content Include="Content\assets\images\blank.gif" />
+    <Content Include="Content\assets\loader.gif" />
+    <Content Include="Content\assets\vendor\hs-megamenu\src\hs.megamenu.css" />
+    <Content Include="Content\assets\vendor\hs-megamenu\src\hs.megamenu.js" />
+    <Content Include="Content\assets\vendor\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Content\assets\vendor\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\assets\vendor\malihu-custom-scrollbar-plugin\mCSB_buttons.png" />
+    <Content Include="Content\bootstrap\bootstrap-datepicker.js" />
+    <Content Include="Content\bootstrap\datepicker.css" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\animate.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\colorbox.css" />
+    <Content Include="Content\css\custom.css" />
+    <Content Include="Content\css\datatables.min.css" />
+    <Content Include="Content\css\default-skin.css" />
+    <Content Include="Content\css\font-awesome.min%281%29.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\font-electro.css" />
+    <Content Include="Content\css\iecustom.css" />
+    <Content Include="Content\css\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\css\jquery.selectBox.css" />
+    <Content Include="Content\css\js_composer.min.css" />
+    <Content Include="Content\css\photoswipe.css" />
+    <Content Include="Content\css\settings.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\style.min%281%29.css" />
+    <Content Include="Content\css\style.min.css" />
+    <Content Include="Content\css\style.min.css ver=5.1.3.css" />
+    <Content Include="Content\css\styles.css" />
+    <Content Include="Content\css\theme.css" />
+    <Content Include="Content\css\toastr.css" />
+    <Content Include="Content\css\v2.min.css" />
+    <Content Include="Content\css\yellow.min.css" />
+    <Content Include="Content\fonts\font-electro.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\1.png" />
+    <Content Include="Content\images\2.png" />
+    <Content Include="Content\images\3.png" />
+    <Content Include="Content\images\3docean.png" />
+    <Content Include="Content\images\4.png" />
+    <Content Include="Content\images\5.png" />
+    <Content Include="Content\images\activeden.png" />
+    <Content Include="Content\images\ad-banner-sidebar.jpg" />
+    <Content Include="Content\images\ad-banner-sidebar.png" />
+    <Content Include="Content\images\ad-block\1.jpg" />
+    <Content Include="Content\images\ad-block\2.jpg" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\audiojungle.png" />
+    <Content Include="Content\images\avatar.jpg" />
+    <Content Include="Content\images\Banner1-Img.jpg" />
+    <Content Include="Content\images\banner1.png" />
+    <Content Include="Content\images\banner2.png" />
+    <Content Include="Content\images\blank.gif" />
+    <Content Include="Content\images\blog\blog-1.jpg" />
+    <Content Include="Content\images\blog\blog-2.jpg" />
+    <Content Include="Content\images\blog\blog-3.jpg" />
+    <Content Include="Content\images\brands\1.png" />
+    <Content Include="Content\images\brands\2.png" />
+    <Content Include="Content\images\brands\3.png" />
+    <Content Include="Content\images\brands\4.png" />
+    <Content Include="Content\images\brands\5.png" />
+    <Content Include="Content\images\brands\6.png" />
+    <Content Include="Content\images\cameras.jpg" />
+    <Content Include="Content\images\category\Accesories-300x300.jpg" />
+    <Content Include="Content\images\category\AllinOne-300x300.jpg" />
+    <Content Include="Content\images\category\DesktopPc-300x300.jpg" />
+    <Content Include="Content\images\category\GameConsoles-300x300.jpg" />
+    <Content Include="Content\images\category\Gaming-300x300.jpg" />
+    <Content Include="Content\images\category\Laptops-300x300.jpg" />
+    <Content Include="Content\images\category\MacComputers-300x300.jpg" />
+    <Content Include="Content\images\category\Ultrabooks-300x300.jpg" />
+    <Content Include="Content\images\deals\1-1.jpg" />
+    <Content Include="Content\images\deals\1-2.jpg" />
+    <Content Include="Content\images\deals\1-3.jpg" />
+    <Content Include="Content\images\deals\1.jpg" />
+    <Content Include="Content\images\deals\2-1.jpg" />
+    <Content Include="Content\images\deals\2-2.jpg" />
+    <Content Include="Content\images\deals\2-3.jpg" />
+    <Content Include="Content\images\deals\2-4.jpg" />
+    <Content Include="Content\images\deals\2.jpg" />
+    <Content Include="Content\images\DesktopPC-e1523629711911.jpg" />
+    <Content Include="Content\images\footer\1.jpg" />
+    <Content Include="Content\images\footer\2.jpg" />
+    <Content Include="Content\images\footer\3.jpg" />
+    <Content Include="Content\images\footer\4.jpg" />
+    <Content Include="Content\images\footer\5.jpg" />
+    <Content Include="Content\images\footer\6.jpg" />
+    <Content Include="Content\images\footer\7.jpg" />
+    <Content Include="Content\images\footer\payment-icon\1.png" />
+    <Content Include="Content\images\footer\payment-icon\2.png" />
+    <Content Include="Content\images\footer\payment-icon\3.png" />
+    <Content Include="Content\images\footer\payment-icon\4.png" />
+    <Content Include="Content\images\footer\payment-icon\5.png" />
+    <Content Include="Content\images\headerback2.jpg" />
+    <Content Include="Content\images\headerback2_1.jpg" />
+    <Content Include="Content\images\headerback2_2.jpg" />
+    <Content Include="Content\images\HOW.jpg" />
+    <Content Include="Content\images\hownew.jpg" />
+    <Content Include="Content\images\loading2.gif" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo2.png" />
+    <Content Include="Content\images\logoo.jpg" />
+    <Content Include="Content\images\logo\openstar-school-leasing-log-dark.png" />
+    <Content Include="Content\images\logo\openstar-school-leasing-log.png" />
+    <Content Include="Content\images\logo\openstar-school-leasing-logo_footer2.png" />
+    <Content Include="Content\images\logo\openstar-school-leasing-logo_footer2o.png" />
+    <Content Include="Content\images\patment-icon.png" />
+    <Content Include="Content\images\preloader2.gif" />
+    <Content Include="Content\images\Preloader_11.gif" />
+    <Content Include="Content\images\print quote icon.png" />
+    <Content Include="Content\images\product-cards\1.jpg" />
+    <Content Include="Content\images\product-cards\2.jpg" />
+    <Content Include="Content\images\product-cards\3.jpg" />
+    <Content Include="Content\images\product-cards\5.jpg" />
+    <Content Include="Content\images\product-cards\6.jpg" />
+    <Content Include="Content\images\product-category\1.jpg" />
+    <Content Include="Content\images\product-category\2.jpg" />
+    <Content Include="Content\images\product-category\3.jpg" />
+    <Content Include="Content\images\product-category\4.jpg" />
+    <Content Include="Content\images\product-category\5.jpg" />
+    <Content Include="Content\images\products\1.jpg" />
+    <Content Include="Content\images\products\2.jpg" />
+    <Content Include="Content\images\products\3.jpg" />
+    <Content Include="Content\images\products\4.jpg" />
+    <Content Include="Content\images\products\5.jpg" />
+    <Content Include="Content\images\products\6.jpg" />
+    <Content Include="Content\images\products\GoldPhone-300x300.jpg" />
+    <Content Include="Content\images\products\gym.png" />
+    <Content Include="Content\images\products\kitchen.png" />
+    <Content Include="Content\images\products\mini-cart1.jpg" />
+    <Content Include="Content\images\products\mini-cart3.jpg" />
+    <Content Include="Content\images\products\s1-1.jpg" />
+    <Content Include="Content\images\products\safety1.png" />
+    <Content Include="Content\images\products\safety2.png" />
+    <Content Include="Content\images\products\Smartphone2-300x300.jpg" />
+    <Content Include="Content\images\products\Smartphone4-300x300.jpg" />
+    <Content Include="Content\images\products\Smartphone5-300x300.jpg" />
+    <Content Include="Content\images\products\Smartphone6-300x300.jpg" />
+    <Content Include="Content\images\products\Smartphone7-300x300.jpg" />
+    <Content Include="Content\images\products\Smartphone8-300x300.jpg" />
+    <Content Include="Content\images\products\Tablet-300x300.jpg" />
+    <Content Include="Content\images\products\Tablet2-300x300.jpg" />
+    <Content Include="Content\images\quote.png" />
+    <Content Include="Content\images\shop-sidebar-ad-banner.jpg" />
+    <Content Include="Content\images\single-product\1-300x300.jpg" />
+    <Content Include="Content\images\single-product\1-600x550.jpg" />
+    <Content Include="Content\images\single-product\1.jpg" />
+    <Content Include="Content\images\single-product\2-600x550.jpg" />
+    <Content Include="Content\images\single-product\2.jpg" />
+    <Content Include="Content\images\single-product\3-600x550.jpg" />
+    <Content Include="Content\images\single-product\3.jpg" />
+    <Content Include="Content\images\single-product\4-600x550.jpg" />
+    <Content Include="Content\images\single-product\4.jpg" />
+    <Content Include="Content\images\single-product\5-600x550.jpg" />
+    <Content Include="Content\images\single-product\5.jpg" />
+    <Content Include="Content\images\single-product\ForDescription-1.png" />
+    <Content Include="Content\images\single-product\ForDescription-2.png" />
+    <Content Include="Content\images\single-product\ForDescription.jpg" />
+    <Content Include="Content\images\single-product\headphone-case-300x300.jpg" />
+    <Content Include="Content\images\single-product\headphone-usb-wires-300x300.jpg" />
+    <Content Include="Content\images\slide3.jpg" />
+    <Content Include="Content\images\slider-img-1.png" />
+    <Content Include="Content\images\slider-img-2.png" />
+    <Content Include="Content\images\slider-img-3.png" />
+    <Content Include="Content\images\slider-v4-background.jpg" />
+    <Content Include="Content\images\slider2.jpg" />
+    <Content Include="Content\images\slidera.jpg" />
+    <Content Include="Content\images\slider\banner-1.jpg" />
+    <Content Include="Content\images\slider\banner-2.jpg" />
+    <Content Include="Content\images\slider\banner-3.jpg" />
+    <Content Include="Content\images\warranty.png" />
+    <Content Include="Content\images\wpspin_light.gif" />
+    <Content Include="Content\js\add-to-cart.min.js" />
+    <Content Include="Content\js\address\getaddress.js" />
+    <Content Include="Content\js\angular-filter.min.js" />
+    <Content Include="Content\js\bootstrap-hover-dropdown.min.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\bootstrap3-typeahead.min.js" />
+    <Content Include="Content\js\cart-fragments.min.js" />
+    <Content Include="Content\js\customjs\login.js" />
+    <Content Include="Content\js\datatables.min.js" />
+    <Content Include="Content\js\electro.min.js" />
+    <Content Include="Content\js\extensions\revolution.extension.actions.min.js" />
+    <Content Include="Content\js\extensions\revolution.extension.layeranimation.min.js" />
+    <Content Include="Content\js\extensions\revolution.extension.navigation.min.js" />
+    <Content Include="Content\js\extensions\revolution.extension.slideanims.min.js" />
+    <Content Include="Content\js\hs.core.js" />
+    <Content Include="Content\js\hs.unfold.js" />
+    <Content Include="Content\js\html2canvas.js" />
+    <Content Include="Content\js\jquery-migrate.min.js" />
+    <Content Include="Content\js\jquery.blockUI.min.js" />
+    <Content Include="Content\js\jquery.colorbox-min.js" />
+    <Content Include="Content\js\jquery.easing.min.js" />
+    <Content Include="Content\js\jquery.flexslider-min.js" />
+    <Content Include="Content\js\jquery.js" />
+    <Content Include="Content\js\jquery.mCustomScrollbar.js" />
+    <Content Include="Content\js\jquery.mousewheel.min.js" />
+    <Content Include="Content\js\jquery.prettyPhoto.min.js" />
+    <Content Include="Content\js\jquery.selectBox.min.js" />
+    <Content Include="Content\js\jquery.themepunch.revolution.min2.js" />
+    <Content Include="Content\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="Content\js\jquery.themepunch.tools.min.js" />
+    <Content Include="Content\js\jquery.waypoints.min.js" />
+    <Content Include="Content\js\jquery.yith-wcwl.js" />
+    <Content Include="Content\js\jquery.zoom.min.js" />
+    <Content Include="Content\js\js.cookie.min.js" />
+    <Content Include="Content\js\jspdf.min.js" />
+    <Content Include="Content\js\js_composer_front.min.js" />
+    <Content Include="Content\js\moment.min.js" />
+    <Content Include="Content\js\owl.carousel.min.js" />
+    <Content Include="Content\js\pace.min.js" />
+    <Content Include="Content\js\pdf\jspdf.customfonts.min.js" />
+    <Content Include="Content\js\pdf\jspdf.debug.js" />
+    <Content Include="Content\js\pdf\jspdf.plugin.autotable.min.js" />
+    <Content Include="Content\js\pdf\poscript.js" />
+    <Content Include="Content\js\pdf\poscript2.js" />
+    <Content Include="Content\js\photoswipe-ui-default.min.js" />
+    <Content Include="Content\js\photoswipe.min.js" />
+    <Content Include="Content\js\scripts.js" />
+    <Content Include="Content\js\scrollup.min.js" />
+    <Content Include="Content\js\single-product.min.js" />
+    <Content Include="Content\js\tether.min.js" />
+    <Content Include="Content\js\theme\accounting.min.js" />
+    <Content Include="Content\js\theme\hidemaxlistitem.min.js" />
+    <Content Include="Content\js\theme\mouse.min.js" />
+    <Content Include="Content\js\theme\slider.min.js" />
+    <Content Include="Content\js\theme\widget.min.js" />
+    <Content Include="Content\js\toastr.js" />
+    <Content Include="Content\js\ui-bootstrap-tpls-0.3.0.min.js" />
+    <Content Include="Content\js\ui-bootstrap-tpls-2.5.0.min.js" />
+    <Content Include="Content\js\validation\additional-methods.min.js" />
+    <Content Include="Content\js\validation\jquery.validate.min.js" />
+    <Content Include="Content\js\validation\site-demos.css" />
+    <Content Include="Content\js\woocommerce-add-to-cart.js" />
+    <Content Include="Content\js\woocommerce.min.js" />
+    <Content Include="Content\js\woocompare.min.js" />
+    <Content Include="Content\js\wow.min.js" />
+    <Content Include="Content\js\wp-embed.min.js" />
+    <Content Include="Content\lease-term.js" />
+    <Content Include="Content\magnific\jquery.magnific-popup.min.js" />
+    <Content Include="Content\magnific\magnific-popup.css" />
+    <Content Include="Content\angularcontroller\Shopping.js" />
+    <Content Include="Content\ng-infinite-scrolle.min.js" />
+    <Content Include="Content\offline\offline-language-english.css" />
+    <Content Include="Content\offline\offline-theme-default-indicator.css" />
+    <Content Include="Content\offline\offline-theme-default.css" />
+    <Content Include="Content\offline\offline.min.js" />
+    <Content Include="Content\pagination.js" />
+    <Content Include="Content\test.css" />
+    <Content Include="Content\tickcookie.js" />
+    <Content Include="Content\underscore-min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="js\extensions\revolution.extension.actions.min.js" />
+    <Content Include="js\extensions\revolution.extension.layeranimation.min.js" />
+    <Content Include="js\extensions\revolution.extension.navigation.min.js" />
+    <Content Include="js\extensions\revolution.extension.slideanims.min.js" />
+    <Content Include="LeasingModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LeasingModel.edmx</DependentUpon>
+      <LastGenOutput>LeasingModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="LeasingModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LeasingModel.edmx</DependentUpon>
+      <LastGenOutput>LeasingModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="scripts\ai.0.22.9-build00167.js" />
+    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="templates\blank.html" />
+    <Content Include="templates\CanvasPdfforquote.html" />
+    <Content Include="templates\CanvasPdf.html" />
+    <Content Include="templates\checkoutSuccess.html" />
+    <Content Include="templates\pagination.html" />
+    <Content Include="templates\offermodal.html" />
+    <Content Include="templates\printorder.html" />
+    <Content Include="templates\productgallery.html" />
+    <Content Include="templates\top.html" />
+    <Content Include="Views\TestDoc\response.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AggregatedCounter.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AgreementAddress.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="agreementbank.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AgreementUserDetail.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AllProductsView.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Supplier\Controllers\RegistrationController.cs" />
+    <Compile Include="Areas\Supplier\SupplierAreaRegistration.cs" />
+    <Compile Include="CityMaster.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CommonField.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AboutUsController.cs" />
+    <Compile Include="Controllers\Api\AccountApiController.cs" />
+    <Compile Include="Controllers\Api\AggreementApiController.cs" />
+    <Compile Include="Controllers\Api\CookieCartController.cs" />
+    <Compile Include="Controllers\Api\ExtraPagesController.cs" />
+    <Compile Include="Controllers\Api\HomeDisplayController.cs" />
+    <Compile Include="Controllers\Api\LeaseBankApiController.cs" />
+    <Compile Include="Controllers\Api\OrderApiController.cs" />
+    <Compile Include="Controllers\Api\ProductApiController.cs" />
+    <Compile Include="Controllers\Api\QuotationApiController.cs" />
+    <Compile Include="Controllers\Api\RatingApiController.cs" />
+    <Compile Include="Controllers\Api\SingleProductApiController.cs" />
+    <Compile Include="Controllers\Api\UserApiController.cs" />
+    <Compile Include="Controllers\Api\WarrantyApiController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\DisclaimerController.cs" />
+    <Compile Include="Controllers\FeedBackController.cs" />
+    <Compile Include="Controllers\HelpCenterController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeasingController.cs" />
+    <Compile Include="Controllers\MyAccountController.cs" />
+    <Compile Include="Controllers\OrderOldController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PrivacyPolicyController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\QuotationController.cs" />
+    <Compile Include="Controllers\ReturnRefundPolicyController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\SchoolFAQController.cs" />
+    <Compile Include="Controllers\SupplierFAQController.cs" />
+    <Compile Include="Controllers\TermsConditionsController.cs" />
+    <Compile Include="Controllers\TestDocController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Counter.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CountryMaster.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="deliverystatu.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="faq_school.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="faq_supplier.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="featuremaster.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetAgreementView.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetsUser_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hash.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Job.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobParameter.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobQueue.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="leasedispatchdate.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="leasesupplierpayment.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="leaseuserbank.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeasingModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeasingModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeasingModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeasingModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeasingModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="lessoractivity.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="List.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="login_master.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mailsetting.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AgreementDAO.cs" />
+    <Compile Include="Models\AgreementsViewModel.cs" />
+    <Compile Include="Models\CountryStateCityViewModel.cs" />
+    <Compile Include="Models\Encryption.cs" />
+    <Compile Include="Models\ESignViewModel.cs" />
+    <Compile Include="Models\FeedbackViewModel.cs" />
+    <Compile Include="Models\Items.cs" />
+    <Compile Include="Models\LeaseBankViewModel.cs" />
+    <Compile Include="Models\MailDao.cs" />
+    <Compile Include="Models\MyCredentialViewModel.cs" />
+    <Compile Include="Models\ProductCategoryViewModel.cs" />
+    <Compile Include="Models\ProductDao.cs" />
+    <Compile Include="Models\ProductRatingViewModel.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\ProductWarrantyViewModel.cs" />
+    <Compile Include="Models\QuotationDAO.cs" />
+    <Compile Include="Models\RatingDao.cs" />
+    <Compile Include="Models\Recipient.cs" />
+    <Compile Include="Models\SaveCartViewModel.cs" />
+    <Compile Include="Models\SessionWrapper.cs" />
+    <Compile Include="Models\SupplierViewModel.cs" />
+    <Compile Include="Models\SupplierDao.cs" />
+    <Compile Include="Models\TicketDao.cs" />
+    <Compile Include="Models\TicketReplyDao.cs" />
+    <Compile Include="Models\TicketReplyViewModel.cs" />
+    <Compile Include="Models\TicketViewModel.cs" />
+    <Compile Include="Models\UserOrderViewModel.cs" />
+    <Compile Include="Models\UserQuotationViewModel.cs" />
+    <Compile Include="Models\UsersDao.cs" />
+    <Compile Include="Models\UsersViewModel.cs" />
+    <Compile Include="newsletter.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="printquotelog.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prodrecent.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prodsubvariationtwo.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="product.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productaddondetail.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productblock.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productbrand.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productcat.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productcomparativefield.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productdealimage.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productdetailmaster.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productdetailsub.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productfaq.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productincorrectrept.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productlease.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productquestion.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productratepercentage.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productregid.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productreview.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productreviewbysupplier.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productreviewpic.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productsaledeal.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productseo.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productshiping.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productsub.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productsubpic.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductSubSupplier.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productsubtwo.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productsubwarrantybysupplier.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductSupplierSpecialOffer.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productunit.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productvariationmaster.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productwarrantybysupplier.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productweekdeal.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveCart.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaveSubCart.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Schema.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Set.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetFeatureProducts_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetFilters_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetNewArrivalProducts_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetOnSaleProducts_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetProducts_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetSearchProductsInCategory_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetSearchProducts_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetSpecialOfferProducts_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetWeekDealProducts_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="State.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StateMaster.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubCartAddress.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="subsupplierstatu.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="suppliercancelorder.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="supplierpurchaseorder.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="supplierstatu.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="supplieruploadpermit.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="supplier_bank.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="supplier_contacts.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="supplier_equipment.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="supplier_more.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="supplier_registration.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="supplier_registration_detail.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="supplier_users_rights.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblschoolarea.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_aboutus.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_banner.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_disclaimer.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_privacy_policy.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_return_refund_policy.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_school_department.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_terms_conditions.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketDetail.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TicketReply.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UKSchool.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UKSchoolType.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usercomparesubquotation.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userleaseagreement.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userleasedocument.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userordermaster.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userquotationmaster.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usersubquotation.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usersubquotationwarranty.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_contact_more.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_registration.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_registration_addr.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_registration_more.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_subscriptions.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\assets\fonts\star %281%29.woff" />
+    <Content Include="Content\assets\fonts\star.ttf" />
+    <Content Include="Content\assets\fonts\star.woff" />
+    <Content Include="Content\css\css" />
+    <Content Include="Content\fonts\fa\fa-brands-400.woff" />
+    <Content Include="Content\fonts\fa\fa-brands-400.woff2" />
+    <Content Include="Content\fonts\fa\fa-regular-400.woff2" />
+    <Content Include="Content\fonts\fa\fa-solid-900.woff2" />
+    <Content Include="Content\fonts\font-electro.eot" />
+    <Content Include="Content\fonts\font-electro.ttf" />
+    <Content Include="Content\fonts\font-electro.woff" />
+    <Content Include="Content\fonts\font-electro_old.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\star.ttf" />
+    <Content Include="Content\fonts\star.woff" />
+    <Content Include="plugins\woocommerce\assets\fonts\star %281%29.woff" />
+    <Content Include="plugins\woocommerce\assets\fonts\star.eot" />
+    <Content Include="plugins\woocommerce\assets\fonts\star.ttf" />
+    <Content Include="plugins\woocommerce\assets\fonts\star.woff" />
+    <Content Include="Views\Shared\_FrontLayout.cshtml" />
+    <Content Include="Views\Home\Indexold.cshtml" />
+    <Content Include="Areas\Supplier\Views\web.config" />
+    <Content Include="Areas\Supplier\Views\Registration\Index.cshtml" />
+    <Content Include="Content\fonts\fa\fa-brands-400.eot" />
+    <Content Include="Content\fonts\fa\fa-brands-400.ttf" />
+    <Content Include="Content\fonts\fa\fa-regular-400.eot" />
+    <Content Include="Content\fonts\fa\fa-regular-400.ttf" />
+    <Content Include="Content\fonts\fa\fa-regular-400.woff" />
+    <Content Include="Content\fonts\fa\fa-solid-900.eot" />
+    <Content Include="Content\fonts\fa\fa-solid-900.ttf" />
+    <Content Include="Content\fonts\fa\fa-solid-900.woff" />
+    <Content Include="fonts\CENTAUR.TTF" />
+    <Content Include="Areas\Supplier\Views\Registration\Index - Copy.cshtml" />
+    <Content Include="Areas\Supplier\Views\Registration\TermsandConditions.cshtml" />
+    <Content Include="Areas\Supplier\Views\Registration\Index-19102021.cshtml" />
+    <EntityDeploy Include="LeasingModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LeasingModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="LeasingModel.edmx.diagram">
+      <DependentUpon>LeasingModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\LeasePortalApi.pubxml" />
+    <Content Include="Views\Leasing\Index.cshtml" />
+    <Content Include="Views\Leasing\TestProduct.cshtml" />
+    <Content Include="Views\Leasing\Productsold.cshtml" />
+    <Content Include="Views\Leasing\AllProduct.cshtml" />
+    <Content Include="Views\Leasing\Products.cshtml" />
+    <Content Include="Views\Leasing\ViewCart.cshtml" />
+    <Content Include="Views\Leasing\ProductDetail.cshtml" />
+    <Content Include="Views\Shared\_FrontLayout2.cshtml" />
+    <Content Include="Views\Shared\_SellerLayout.cshtml" />
+    <Content Include="Views\Leasing\MoreSupplier.cshtml" />
+    <Content Include="Views\Leasing\Products - BeforeCookie.cshtml" />
+    <Content Include="Views\Leasing\ViewCart - Copy.cshtml" />
+    <Content Include="Views\Leasing\Checkout.cshtml" />
+    <Content Include="Views\Leasing\Extra Code.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Leasing\YourQuotation.cshtml" />
+    <Content Include="Views\Quotation\LoadQuotation.cshtml" />
+    <Content Include="Views\Leasing\Registration.cshtml" />
+    <Content Include="Views\Leasing\QuoteApprovement.cshtml" />
+    <Content Include="Views\Leasing\YourOrders.cshtml" />
+    <Content Include="Views\Leasing\OrderDetail.cshtml" />
+    <Content Include="Views\Home\Index - Copy.cshtml" />
+    <Content Include="Views\Leasing\SearchProducts.cshtml" />
+    <Content Include="Views\Leasing\Indexold.cshtml" />
+    <Content Include="Views\Leasing\ProductOption.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Leasing\ProductDetail2.cshtml" />
+    <Content Include="Views\Leasing\QuoteDetail.cshtml" />
+    <Content Include="Views\Leasing\QuoteApprovementold.cshtml" />
+    <Content Include="Views\Leasing\ProductNew.cshtml" />
+    <Content Include="Views\Quotation\LoadQuotation - Copy.cshtml" />
+    <Content Include="Views\Shared\_FrontLayout3.cshtml" />
+    <Content Include="Views\Shared\_FrontLayout4.cshtml" />
+    <Content Include="Views\Leasing\ViewProduct.cshtml" />
+    <Content Include="Views\Order\LoadOrder.cshtml" />
+    <Content Include="Views\Quotation\LoadReferenceQuotation.cshtml" />
+    <Content Include="Views\Leasing\QuoteDetail - Copy.cshtml" />
+    <Content Include="Views\Quotation\LoadSingleItemQuotation.cshtml" />
+    <Content Include="Views\Leasing\faqs.cshtml" />
+    <Content Include="Views\Leasing\FeatureProducts.cshtml" />
+    <Content Include="Views\Leasing\NewArrivalProducts.cshtml" />
+    <Content Include="Views\Leasing\SpecialOfferProducts.cshtml" />
+    <Content Include="Views\Leasing\SchoolFaqs.cshtml" />
+    <Content Include="Views\Leasing\SupplierFaqs.cshtml" />
+    <Content Include="Views\Leasing\TermsConditions.cshtml" />
+    <Content Include="Views\Order\LoadOrders.cshtml" />
+    <Content Include="Views\Leasing\ConfirmOrder.cshtml" />
+    <Content Include="Views\Leasing\VirtualTour.cshtml" />
+    <Content Include="Views\Leasing\myaccount.cshtml" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginModal.cshtml" />
+    <Content Include="Views\Leasing\ReviewandRating.cshtml" />
+    <Content Include="Views\Home\oldIndex.cshtml" />
+    <Content Include="Views\Home\IEIndex.cshtml" />
+    <Content Include="Views\Shared\_IELayout.cshtml" />
+    <Content Include="Views\Leasing\ProductByCategory.cshtml" />
+    <Content Include="Views\Home\Index3.cshtml" />
+    <Content Include="Views\Home\Index4.cshtml" />
+    <Content Include="Views\Leasing\Index040120.cshtml" />
+    <Content Include="Views\Shared\_FrontLayout04012020.cshtml" />
+    <Content Include="Views\Home\SamplePdf.cshtml" />
+    <Content Include="Views\Order\LoadPurchaseOrder.cshtml" />
+    <Content Include="Views\Home\Indexblue.cshtml" />
+    <Content Include="Views\Home\Indexpurple.cshtml" />
+    <Content Include="Views\Leasing\myaccount - Copy.cshtml" />
+    <Content Include="Views\Order\LoadPurchaseOrder - Copy.cshtml" />
+    <Content Include="Views\TestDoc\Index.cshtml" />
+    <Content Include="Views\TestDoc\GetEnvelopeInformationTest.cshtml" />
+    <Content Include="Views\TestDoc\ResponseData.cshtml" />
+    <Content Include="Views\Order\ResponseData.cshtml" />
+    <Content Include="Views\Leasing\myaccount23062021.cshtml" />
+    <Content Include="Views\Leasing\PartialWarrantyModal.cshtml" />
+    <Content Include="Views\Leasing\ShopByArea.cshtml" />
+    <Content Include="Views\Leasing\PrivacyPolicy.cshtml" />
+    <Content Include="Views\Leasing\Disclaimer.cshtml" />
+    <Content Include="Views\Leasing\ReturnRefundPolicy.cshtml" />
+    <Content Include="Views\Leasing\PP.cshtml" />
+    <Content Include="Views\ReturnRefundPolicy\Index.cshtml" />
+    <Content Include="Views\PrivacyPolicy\Index.cshtml" />
+    <Content Include="Views\Disclaimer\Index.cshtml" />
+    <Content Include="Views\TermsConditions\Index.cshtml" />
+    <Content Include="Views\Leasing\YourBag.cshtml" />
+    <Content Include="Views\Leasing\ViewCart2.cshtml" />
+    <Content Include="Views\Leasing\ProductCategory.cshtml" />
+    <Content Include="Views\Leasing\CategoryDetails.cshtml" />
+    <Content Include="Views\Leasing\PartialAddOn.cshtml" />
+    <Content Include="Views\SchoolFAQ\Index.cshtml" />
+    <Content Include="Views\SupplierFAQ\Index.cshtml" />
+    <Content Include="Views\MyAccount\Index.cshtml" />
+    <Content Include="Views\Home\Indexblue1.cshtml" />
+    <Content Include="Views\Home\Indexblue2.cshtml" />
+    <Content Include="Views\Home\Indexblue4.cshtml" />
+    <Content Include="Views\Home\Indexblue3.cshtml" />
+    <Content Include="Views\Home\Indexblue5.cshtml" />
+    <Content Include="Views\AboutUs\Index.cshtml" />
+    <Content Include="templates\Deferred Agreemento.pdf" />
+    <Content Include="templates\Deferred Agreement.pdf" />
+    <Content Include="templates\page3.pdf" />
+    <Content Include="templates\page3withoutsign.pdf" />
+    <Content Include="Views\Order\ConfirmOrderWithAgreement.cshtml" />
+    <Content Include="templates\EYS Standard Agreement.pdf" />
+    <Content Include="Views\HelpCenter\Index.cshtml" />
+    <Content Include="Views\HelpCenter\RequestCallback.cshtml" />
+    <Content Include="Views\HelpCenter\WriteUs.cshtml" />
+    <Content Include="Views\Ticket\Index.cshtml" />
+    <Content Include="Views\Ticket\ViewTicket.cshtml" />
+    <Content Include="Views\Ticket\_PartialHistory.cshtml" />
+    <Content Include="Views\Ticket\_ViewDetails.cshtml" />
+    <Content Include="Views\Ticket\OldIndex.cshtml" />
+    <Content Include="Views\HelpCenter\Ticket.cshtml" />
+    <Content Include="Views\MyAccount\ViewAgreement.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Supplier\Models\" />
+    <Folder Include="Areas\Supplier\Views\Shared\" />
+    <Folder Include="Content\assets\img\" />
+    <Folder Include="Content\assets\js\" />
+    <Folder Include="Content\images\product\" />
+    <Folder Include="Content\temp\" />
+    <Folder Include="templates\pagination\" />
+    <Folder Include="temp\" />
+    <Folder Include="Views\CookieCart\" />
+    <Folder Include="Views\FeedBack\" />
+    <Folder Include="Views\Information\" />
+    <Folder Include="Views\Product\" />
+    <Folder Include="Views\Review\" />
+    <Folder Include="Views\User\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>14052</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:15000/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

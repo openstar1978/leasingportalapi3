@@ -1,0 +1,509 @@
+﻿@using LeasingPortalApi.Models
+@using System.Web;
+@{
+    Layout = null;
+    var dbdata = new LeasingDbEntities();
+    var vatdb = dbdata.featuremasters.FirstOrDefault(x => x.featurename == "Vat");
+
+    double? mcarttotal = 0;
+    double? mVAT = 0;
+    double mVATval = 0;
+    if (vatdb != null)
+    {
+        mVATval = vatdb.featureval.HasValue ? vatdb.featureval.Value : 0;
+    }
+
+
+}
+@model LeasingPortalApi.Models.SingleQuotationViewModel
+<!--<script src="~/Content/js/pdf/jspdf.debug.js"></script>
+<script src="~/Content/js/pdf/jspdf.plugin.autotable.min.js"></script>
+    -->
+@{
+    var imgStr = "";
+    imgStr = QuotationDAO.ImageToBase64(1);
+}
+<style>
+    .footer {
+        display: none;
+        position: absolute;
+        bottom: 30px;
+        left: 20px;
+    }
+</style>
+<iframe id="sample-pdf" name="sample-pdf" style="display:none;width:800px;top:30px;left:30px;right:30px;"></iframe>
+<iframe id="printf" name="printf" style="display:none;width:800px;top:30px;left:30px;right:30px;"></iframe>
+<div id="grid" class="print-wrap" style="">
+    <style>
+        @@media print {
+            #grid {
+                height: 842px;
+                margin-left: 30px;
+            }
+
+            .footer {
+                display: block;
+                position: fixed;
+                bottom: 30px;
+                left: 20px;
+            }
+        }
+
+        #quoteModal .modal-footer {
+            border-top: 0px;
+        }
+
+        #maindiv {
+            width: 100%;
+        }
+
+        .commontable {
+            color: #000 !important;
+            width: 99%;
+        }
+
+            .commontable td, .commontable th {
+                padding: 5px;
+            }
+
+            .commontable tr td {
+                border-top: 0px;
+            }
+
+            .commontable p {
+                margin-bottom: 0px !important;
+                color: inherit !important;
+            }
+
+        .textright {
+            text-align: right;
+        }
+
+        .table2 p.emptytd {
+            border: 0px solid #333;
+            padding: 2px;
+            max-width: 50px;
+            background: transparent;
+        }
+
+        .labeltd {
+            width: 150px;
+        }
+
+        .table2 p {
+            border: 1px solid #333;
+            padding: 2px;
+            width: 200px;
+            background: transparent;
+        }
+
+        .bgblue {
+            background: #54006b;
+        }
+
+        .padding5 {
+            padding: 5px;
+        }
+
+        .colorwhite {
+            color: #fff !important;
+        }
+
+        .borderbox {
+            border: 1px solid #333;
+        }
+
+        .table3, .table6-1, .table6-2 {
+            width: 50%;
+        }
+
+        .textcenter {
+            text-align: center;
+        }
+
+        .table6-1, .table6-2 {
+            display: inline;
+        }
+
+        .table6 tr table tr td {
+            color: #333;
+        }
+    </style>
+    @{
+        if (ViewBag.subquoteid != null)
+        {
+            //var listdata = (List<int>)(ViewBag.subquoteid);
+            //var relatedproduct = new List<SubCartDisplayViewModel>();
+            var productdetail = (SaveCartViewModel)(ViewBag.subquoteid);
+            var totalcnt = 0;
+            ///productdata = ab.Product.Where(x => listdata.Contains(x.msubquoteid)).ToList();
+            if (productdetail != null)
+            {
+                var suppliers = SupplierDao.GetSupplierById(productdetail.msupplierid.HasValue ? productdetail.msupplierid.Value : 0);
+                var suname = "";
+                var saddress = "";
+                var slogo = "";
+                if (suppliers != null)
+                {
+                    slogo = suppliers.com_logo;
+                    suname = suppliers.morgname;
+                    saddress = suppliers.maddress1;
+                    if (suppliers.maddress2 != null)
+                    {
+                        saddress += "<br/>" + suppliers.maddress1;
+                    }
+                    saddress += (suppliers.mcity != null ? "<br/>" + suppliers.mcity : "");
+
+                    //saddress += (suppliers.mphone != null ? "<br/> Phone : " + suppliers.mphone : "");
+
+                }
+                var today = DateTime.Now;
+                var tilldate = today.AddDays(21);
+                mcarttotal = 0;
+                totalcnt++;
+
+
+                <table style="width:100%" cellpadding="0" cellspacing="0" class="commontable table1">
+                    <tbody>
+                        <tr>
+                            <td style="font-size:30px;"><strong>LEASE QUOTATION</strong></td>
+                            <td class="textright" align="right">
+                                    <div style="width:100%;float:right;">
+                                        <img src="~/Content/images/logo/openstar-school-leasing-log-dark.png" style="height:120px;width:auto;float:right;" />
+                                        @*{
+                                            if (slogo != "" && slogo != null && System.IO.File.Exists(HttpContext.Current.Server.MapPath("/supplier/Content/SupplierLogo/" + slogo)))
+                                            {
+                                                <img src="/supplier/Content/SupplierLogo/@slogo" style="height:120px;width:auto;float:right;" />
+                                            }
+
+                                        }*@
+
+                                    </div>
+                                @*<span style="font-weight:bold@(slogo!=""?";font-size:20px":"")" id="supname">@suname</span><br>
+                                @Html.Raw(saddress)*@
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <table class="commontable table2">
+                    <tbody>
+                        <tr>
+                            <td class="labeltd">Date of Quotation</td>
+                            <td><p class="colorwhite">@(today.ToString("dd/MM/yyyy"))</p></td>
+                            <td><p class="emptytd">&nbsp;</p></td>
+                            <td><p class="emptytd">&nbsp;</p></td>
+                            <td class="labeltd">Quote Reference</td>
+                            <td><p class="colorwhite">@ViewBag.quoteid</p></td>
+                        </tr>
+                        <tr>
+                            <td class="labeltd">Quotation Valid Till</td>
+                            <td><p class="colorwhite">@(tilldate.ToString("dd/MM/yyyy"))</p></td>
+                            <td><p class="emptytd">&nbsp;</p></td>
+                            <td><p class="emptytd">&nbsp;</p></td>
+                            <td class="labeltd">EYS Customer ID</td>
+                            <td><p class="colorwhite">@ViewBag.userid</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="commontable table3">
+                    @{
+                        var userid = int.Parse(ViewBag.userid.ToString());
+                        var user = UsersDao.GetUserById(userid);
+                        var uname = "";
+                        var uaddress = "";
+                        if (user != null)
+                        {
+                            uname = user.morgname;
+                            uaddress = user.maddress1;
+                            if (user.maddress2 != null)
+                            {
+                                uaddress += "<br/>" + user.maddress1;
+                            }
+                            uaddress += (user.mcity != null ? "<br/>" + user.mcity : "");
+                            uaddress += (user.mlandmark != null ? "<br/>" + user.mlandmark : "") + (user.mpostcode != null ? " - " + user.mpostcode : "");
+                            uaddress += (user.mphone != null ? " Phone : " + user.mphone : "");
+
+                        }
+                    }
+                    <tbody>
+
+                        <tr style="border-bottom:1px solid #333;">
+                            <td style="padding-left:0px;"><p class="padding5">Quotation generated for:</p></td>
+                        </tr>
+                        <tr style="margin-top: 10px;">
+                            <td class="borderbox">
+                                <span class="padding5" style="font-weight:bold" id="compname">@uname</span>
+                                <p class="padding5">@Html.Raw(uaddress)</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="commontable table4" style="margin-bottom:10px;">
+                    <tbody>
+                        <tr class="colorwhite" style="background: #5f497a;">
+                            <td>
+                                @{
+                                    var msg = "";
+                                    var m2 = "";
+                                    var m3 = "";
+                                    var p = productdetail.mtermp / 12;
+                                    m3 = p + " years";
+                                    switch (productdetail.mtermf)
+                                    {
+                                        case 1:
+                                            msg = "Monthly payment for " + p + " years";
+                                            m2 = "Monthly";
+                                            break;
+                                        case 3:
+                                            msg = "Quaterly payment for " + p + " years";
+                                            m2 = "Quaterly";
+                                            break;
+                                        case 4:
+                                            msg = "Termly payment for " + p + " years";
+                                            m2 = "Termly";
+                                            break;
+                                        case 6:
+                                            msg = "Bi-annually payment for " + p + " years";
+                                            m2 = "Bi-annually";
+                                            break;
+                                        case 12:
+                                            msg = "Yearly payment for " + p + " years";
+                                            m2 = "Yearly";
+                                            break;
+                                        default:
+                                            msg = "";
+                                            break;
+
+                                    }
+
+                                }
+                                <p class="padding5" style="text-align: center;">
+                                    <span style="font-size:13px;">Lease Period : </span><span style="font-size:22px;">@m3</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span style="font-size:13px;">Payment Frequency : </span><span style="font-size:22px;">@m2</span>
+                                </p>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <table class="commontable table5" border=1 style="border-collapse:unset;" cellspacing=0 cellpadding=0>
+                    <thead>
+                        <tr class="bgblue">
+                            <td class="padding5 textcenter colorwhite">Image</td>
+                            <td class="padding5 textcenter colorwhite">Product</td>
+                            <td class="padding5 textcenter colorwhite">Unit Rental</td>
+                            <td class="padding5 textcenter colorwhite">Qty</td>
+                            <!--<td class="padding5 textcenter colorwhite">VAT</td>-->
+                            <td class="padding5 textcenter colorwhite">Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var j = 0;
+
+                            <tr>
+
+                                <td class="product-thumbnail textcenter" style="word-wrap: break-word;white-space:normal;width:100px;" data-title="Product">
+                                    <a href="/Leasing/ProductDetail?@productdetail.mproducturl" target="_blank">
+                                        <img src="/LeaseAdmin/Content/images/product/@(productdetail.msubpicname != null ? productdetail.msubpicname : "leasenoimage.png")" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:auto;height:100px;max-width:inherit;" width="300" height="300">
+                                    </a>
+                                </td>
+
+                                <td class="product-name" style="word-wrap: break-word;white-space:normal;width:400px;" data-title="Product">
+                                    <a href="/Leasing/ProductDetail?@productdetail.mproducturl" style="font-size:16px;text-decoration:none;line-height: 24px;" target="_blank">@productdetail.mprodname</a>
+                                    @{
+                                        var productsec = ProductDao.GetSpecs(productdetail.mprodvarid.HasValue ? productdetail.mprodvarid.Value : 0);
+                                        if (productsec.Any())
+                                        {
+                                            <table style="width:100%" cellpadding="0" cellspacing="0">
+                                                <tbody>
+
+
+
+                                                    @foreach (var ab in productsec)
+                                                    {
+                                                        <tr>
+                                                            <td style="border-bottom:0px!important;color:#333;line-height:1;font-size:12px;">• @ab.mdetailvalue @ab.muname @ab.mdetailhead</td>
+                                                        </tr>
+                                                    }
+
+
+
+                                                </tbody>
+                                            </table>
+                                        }
+                                        if (productdetail.offer != null && productdetail.offer != "")
+                                        {
+                                            var s = "<span style='background:#ffed28;color:#051876;padding:2px'><strong>Offer </strong>:" + productdetail.offer + "</span>";
+                                            @Html.Raw(s);
+                                        }
+
+                                    }
+                                </td>
+
+                                <td class="prodcut-price" align="center" valign="top">
+                                    £@(Math.Round(productdetail.mprice.HasValue ? +productdetail.mprice.Value : 0, 2).ToString("0.00"))
+                                </td>
+
+
+                                <td align="center" class="prodcut-price" valign="top" style="">
+                                    @productdetail.mqty
+                                </td>
+                                @{
+                                    var subtotal2 = productdetail.mprice * productdetail.mqty;
+
+                                    mVAT = Math.Round((subtotal2.HasValue ? subtotal2.Value : 0) * mVATval / 100, 2);
+                                    ///subtotal2 = subtotal2 + mVAT;
+                                    //mcarttotal = mcarttotal +  subtotal2+mVAT;
+                                    mcarttotal = mcarttotal + subtotal2;
+
+                                }
+                                @*<td style="text-align:center" class="prodcut-price" valign="top">
+                                        £@(mVAT.HasValue ? mVAT.Value.ToString("0.00") : "0.00");
+                                    </td>*@
+                                <td style="text-align:right" class="prodcut-price" valign="top">
+                                    £@{
+                                        @(Math.Round(mcarttotal.HasValue ? mcarttotal.Value : 0, 2).ToString("0.00"))
+                                    }
+                                </td>
+
+                            </tr>
+
+                            j++;
+
+
+                        }
+
+                    </tbody>
+                </table>
+                <table class="commontable table6" style="margin-top:10px;border-color:#333;" cellspacing=0 cellpadding=0>
+                    <tbody>
+                        <tr>
+                            <td rowspan="3" style="width:60%;">
+                                <table border="1" cellspacing=0 cellpadding=0>
+                                    <tbody>
+                                        <tr class="bgblue">
+                                            <td class="padding5 colorwhite">Additional Notes</td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="padding5" style="font-size:12px;">
+                                                Installation Charges applicable on certain products.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="padding5" style="font-size:12px;">
+                                                Additional delivery charges apply for UK off-shore deliveries
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="padding5" style="font-size:12px;">
+                                                Terms and condition of Lease apply
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="padding5" style="font-size:12px;color:#052d69;">
+                                                All prices exclude VAT
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="text-right"><strong>Total Rental</strong></td>
+                            <td class="textright" style="font-size:1.25038rem">
+                                £@(Math.Round(mcarttotal.HasValue ? mcarttotal.Value : 0, 2).ToString("0.00"))<br />
+                                <!--<span class="textright" style="font-size:0.75rem;color:#ff0000;">Price excluding VAT</span>-->
+                            </td>
+                            @*<td class="text-right"><strong>Sub total Rental</strong></td>
+                                <td class="textright" style="font-size:1.25038rem">£@(Math.Round(subtotal2.HasValue ? subtotal2.Value : 0, 2).ToString("0.00"))</td>*@
+                        </tr>
+                        <tr>
+
+                            @*<td class="text-right"> <strong>VAT</strong></td>
+                                <td class="textright" style="font-size:1.25038rem">
+                                    £@{
+                                        //mVAT = Math.Round((mcarttotal.HasValue ? mcarttotal.Value : 0) * mVATval / 100, 2);
+                                        @(mVAT.HasValue?mVAT.Value.ToString("0.00"):"0.00");
+                                    }
+                                </td>*@
+                        </tr>
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+            }
+        }
+    }
+    <div id="quotefooter" class="footer">
+        Prepared By: equipyourschool.co.uk  <!--<img src="~/Content/images/logo.png" style="width:100px;padding-top:50px;" />-->
+    </div>
+
+
+
+
+
+    <span id="imgstr" style="display:none">@imgStr</span>
+    <input type="hidden" id="pdfname" value="Quotation" />
+
+</div>
+<div style="display:none">
+
+    <form method="post" action="/Admin/Sales/Export" id="exportfrm">
+        <input type="hidden" name="GridHtml" />
+
+        <input type="hidden" id="invoiceno" value="" />
+        <input type="hidden" name="pageheaderHtml" />
+        <input type="submit" id="btnSubmit" value="Export" />
+    </form>
+</div>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js">
+    </script>
+    <script>
+        var btn = document.getElementById("btn");
+        var createpdf = document.getElementById("div");
+        var opt = {
+            margin: 1,
+            filename: 'pdfcreated.pdf',
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'portrait'
+            }
+        };
+        btn.addEventListener("click", function () {
+            html2pdf().set(opt).from(createpdf).save();
+        });
+    </script>*@
+<script type="text/javascript">
+    jQuery(".exportpdfnew1").click(function () {
+        //mApp.block("#m_blockui_2_portlet");
+        var DocumentContainer = jQuery("#grid").html();
+        var height = jQuery("#grid").height();
+        var data = jQuery("#grid").html();
+        var myFrame = jQuery("#printf").contents().find('body');
+        var textareaValue = data;
+        myFrame.html(textareaValue);
+        //var WindowObject = window.open("", "PrintWindow", "width=750,height=" + height + ",top=50,left=50,right=50,toolbars=no,scrollbars=yes,status=no,resizable=yes");
+        //WindowObject.document.writeln(html);
+
+        //WindowObject.document.close();
+        // WindowObject.focus();
+        // WindowObject.print();
+        window.frames["printf"].focus();
+        window.frames["printf"].print();
+
+        //jQuery("input[name='html']").val(jQuery("#grid").html());
+        setTimeout(function () {
+            //mApp.unblock("#m_blockui_2_portlet");
+        }, 50);
+    });
+</script>
+

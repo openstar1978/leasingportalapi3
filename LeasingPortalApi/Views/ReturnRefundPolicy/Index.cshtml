@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+
+<style>
+    .clrbody {
+        color: black;
+    }
+</style>
+<div class="se-pre-con" ng-show="loader">
+
+</div>
+<div id="content" class="site-content" tabindex="-1" ng-controller="ReturnController">
+    <div class="container">
+
+
+        <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Leasing")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Return & Refund Policy</nav>
+        <div class="site-content-inner">
+            <main id="content" role="main">
+                <div class="container clrbody">
+                    <div class="mb-6 text-center">
+                        <h1>Return & Refund Policy</h1>
+                    </div>
+                    <div class="mb-6">
+                        <div ng-repeat="d in Disclaimer">
+                            <p ng-bind-html="d.return_refund_policy"></p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        app.controller('ReturnController', ['$scope', '$http', '$rootScope', '$location', '$sce', '$cookies', function ($scope, $http, $rootScope, $location, $sce, $cookies) {
+            $scope.loader = true;
+            $scope.Disclaimer = [];
+            $http.get('/api/ExtraPageApi/GetReturnPolicy').success(function (data) {
+                $scope.Disclaimer = data;
+                $scope.loader = false;
+            });
+        }]);
+
+    </script>
+}
+

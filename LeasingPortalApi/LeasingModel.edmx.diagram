@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="15114ee1ed9c41358b9d58f5674520e9" Name="Diagram1">
+        <EntityTypeShape EntityType="LeasingDbModel.AgreementAddress" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.agreementbank" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.AgreementUserDetail" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.CityMaster" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.CommonField" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.CountryMaster" Width="1.5" PointX="5.75" PointY="0.875" />
+        <EntityTypeShape EntityType="LeasingDbModel.deliverystatu" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.faq_school" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.faq_supplier" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.featuremaster" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.leasedispatchdate" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.leasesupplierpayment" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.leaseuserbank" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.lessoractivity" Width="1.5" PointX="6.75" PointY="11.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.login_master" Width="1.5" PointX="8.75" PointY="11.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.mailsetting" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.newsletter" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.printquotelog" Width="1.5" PointX="12.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.prodrecent" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.prodsubvariationtwo" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.product" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productaddondetail" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productblock" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productbrand" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productcat" Width="1.5" PointX="14.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productcomparativefield" Width="1.5" PointX="14.75" PointY="10.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productdealimage" Width="1.5" PointX="10.75" PointY="14.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productdetailmaster" Width="1.5" PointX="12.75" PointY="14.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productdetailsub" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productfaq" Width="1.5" PointX="6.75" PointY="15.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productincorrectrept" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productlease" Width="1.5" PointX="16.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productquestion" Width="1.5" PointX="16.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productratepercentage" Width="1.5" PointX="16.75" PointY="10.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productregid" Width="1.5" PointX="16.75" PointY="14.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productreview" Width="1.5" PointX="8.75" PointY="17.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productreviewbysupplier" Width="1.5" PointX="10.75" PointY="17.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productreviewpic" Width="1.5" PointX="12.75" PointY="17.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productsaledeal" Width="1.5" PointX="14.75" PointY="17.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productseo" Width="1.5" PointX="16.75" PointY="17.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productshiping" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productsub" Width="1.5" PointX="18.75" PointY="4.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productsubpic" Width="1.5" PointX="18.75" PointY="8.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.ProductSubSupplier" Width="1.5" PointX="18.75" PointY="11.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productsubtwo" Width="1.5" PointX="18.75" PointY="17.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productsubwarrantybysupplier" Width="1.5" PointX="4.75" PointY="19.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.ProductSupplierSpecialOffer" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productunit" Width="1.5" PointX="20.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productvariationmaster" Width="1.5" PointX="20.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productwarrantybysupplier" Width="1.5" PointX="20.75" PointY="9.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.productweekdeal" Width="1.5" PointX="10.75" PointY="20.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.SaveCart" Width="1.5" PointX="20.75" PointY="15.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.SaveSubCart" Width="1.5" PointX="6.75" PointY="21.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.StateMaster" Width="1.5" PointX="8" PointY="0.875" />
+        <EntityTypeShape EntityType="LeasingDbModel.SubCartAddress" Width="1.5" PointX="12.75" PointY="21.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.subsupplierstatu" Width="1.5" PointX="14.75" PointY="21.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.supplier_bank" Width="1.5" PointX="16.75" PointY="21.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.supplier_contacts" Width="1.5" PointX="18.75" PointY="21.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.supplier_equipment" Width="1.5" PointX="20.75" PointY="21.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.supplier_more" Width="1.5" PointX="22.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.supplier_registration" Width="1.5" PointX="22.75" PointY="4.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.supplier_registration_detail" Width="1.5" PointX="22.75" PointY="11.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.supplier_users_rights" Width="1.5" PointX="22.75" PointY="16.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.suppliercancelorder" Width="1.5" PointX="22.75" PointY="19.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.supplierpurchaseorder" Width="1.5" PointX="24.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.supplierstatu" Width="1.5" PointX="0.75" PointY="24.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.supplieruploadpermit" Width="1.5" PointX="2.75" PointY="24.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.tbl_aboutus" Width="1.5" PointX="24.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.tbl_banner" Width="1.5" PointX="4.75" PointY="24.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.tbl_disclaimer" Width="1.5" PointX="24.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.tbl_privacy_policy" Width="1.5" PointX="6.75" PointY="24.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.tbl_return_refund_policy" Width="1.5" PointX="24.75" PointY="9.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.tbl_school_department" Width="1.5" PointX="24.75" PointY="12.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.tbl_terms_conditions" Width="1.5" PointX="24.75" PointY="15.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.tblschoolarea" Width="1.5" PointX="24.75" PointY="18.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.TicketDetail" Width="1.5" PointX="18.75" PointY="24.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.TicketReply" Width="1.5" PointX="20.75" PointY="24.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.user_contact_more" Width="1.5" PointX="24.75" PointY="21.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.user_registration" Width="1.5" PointX="8.75" PointY="25.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.user_registration_addr" Width="1.5" PointX="10.75" PointY="25.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.user_registration_more" Width="1.5" PointX="12.75" PointY="25.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.user_subscriptions" Width="1.5" PointX="14.75" PointY="25.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.usercomparesubquotation" Width="1.5" PointX="22.75" PointY="25.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.userleaseagreement" Width="1.5" PointX="24.75" PointY="25.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.userleasedocument" Width="1.5" PointX="26.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.userordermaster" Width="1.5" PointX="26.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.userquotationmaster" Width="1.5" PointX="26.75" PointY="7.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.usersubquotation" Width="1.5" PointX="26.75" PointY="10.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.usersubquotationwarranty" Width="1.5" PointX="26.75" PointY="17.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.AggregatedCounter" Width="1.5" PointX="26.75" PointY="21.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.Hash" Width="1.5" PointX="26.75" PointY="24.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.Job" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="LeasingDbModel.JobParameter" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="LeasingDbModel.JobQueue" Width="1.5" PointX="26.75" PointY="27.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.List" Width="1.5" PointX="28.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.Schema" Width="1.5" PointX="0.75" PointY="28.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.Server" Width="1.5" PointX="2.75" PointY="28.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.Set" Width="1.5" PointX="28.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.State" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="LeasingDbModel.Counter" Width="1.5" PointX="4.75" PointY="28.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.AllProductsView" Width="1.5" PointX="28.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.GetAgreementView" Width="1.5" PointX="28.75" PointY="13.75" />
+        <AssociationConnector Association="LeasingDbModel.FK_StateMaster_CountryMaster" />
+        <AssociationConnector Association="LeasingDbModel.FK_HangFire_JobParameter_Job" />
+        <AssociationConnector Association="LeasingDbModel.FK_HangFire_State_Job" />
+        <EntityTypeShape EntityType="LeasingDbModel.UKSchool" Width="1.5" PointX="15.375" PointY="28.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.UKSchoolType" Width="1.5" PointX="21.375" PointY="28.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

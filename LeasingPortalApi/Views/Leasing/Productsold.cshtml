@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "AllProducts";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    Page.Title = "AllProduct";
+}
+<div id="content" class="site-content"  tabindex="-1" >
+    <div class="container" ng-view>
+        
+        </div>
+</div>
+        @section scripts{
+            <script>
+                app.config(['$routeProvider', '$locationProvider',  function ($routeProvider, $locationProvider) {
+                    $routeProvider.
+                        when('/index', {
+                            templateUrl: '/templates/blank.html',
+                            controller: 'indexController'
+                        }).
+                        when('/checkoutsuccess', {
+                        templateUrl: '/templates/checkoutSuccess.html',
+                        controller: 'ProductController'
+                    }).
+                    when('/allproduct/:id', {
+                        templateUrl: '/Leasing/AllProduct',
+                        controller: 'AllProductController'
+                    }).otherwise({
+                        redirectTo: '/index'
+                    });
+                    
+      
+                    //$locationProvider.html5Mode(true);
+                }]);
+            </script>
+            <script type="text/javascript">
+                app.controller('indexController', ['$scope', '$http', '$location','$window',
+                function ($scope, $http,$location, $window) {
+                   //alert("Hello");
+                    $scope.loader = true;
+                    window.location.pathname = 'Leasing/Index';
+                    //$location.path('../Leasing/Index');
+                    //$window.location.reload();
+                    //$window.open('/Leasing/Index', '_blank');
+                }
+                ]);
+                app.controller('ProductController', ['$scope', '$http', '$rootScope',
+                function ($scope, $http, $rootScope) {
+                    $rootScope.shoppingcart = [];
+                    $scope.listOrder = 'mprodname'
+                    $scope.Products = [];
+                    $scope.count = "";
+                    $scope.loader = true;
+                    $scope.search = '';
+                    $http.get('/Api/ProductApi/GetAllProduct').success(function (data) {
+                        $scope.Products = data;
+                        $scope.loader = false;
+                        $scope.count = "showing " + data.length + " results";
+                    });
+                    $scope.$watch('Products', function () {
+                        $scope.$emit('Products', $scope.Products);
+                    });
+                    $scope.addToCart = function (item, no) {
+                        console.log(item);
+                        $rootScope.shoppingCart.push({ item, no });
+                        console.log($rootScope.shoppingCart);
+                    };
+                }
+                ]);
+                app.controller('AllProductController', ['$scope', '$http', '$routeParams', '$rootScope',
+                function ($scope, $http, $routeParams,$rootScope) {
+                    $scope.loader = true;
+                    $http({
+                        url: "/Api/ProductApi/GetAllProduct",
+                        params: { id: $routeParams.id },
+                        method:"get"
+                    }).success(function (data) {
+                        $scope.Products = data;
+                        $scope.loader = false;
+                        $scope.count = "showing " + data.length + " results";
+                    });
+                    $scope.$watch('Products', function () {
+                        $scope.$emit('Products', $scope.Products);
+                    });
+                    $scope.addToCart = function (item, no) {
+                        console.log(item);
+                        $rootScope.shoppingCart.push({ item, no });
+                        console.log($rootScope.shoppingCart);
+                    };
+                }
+                ]);
+                app.controller('FilterController', ['$scope', '$http',
+                function ($scope, $http) {
+                    $scope.FilterMenu = [];
+                    $http.get('/api/HomeApi/GelAllMainCategories').success(function (data) {
+                        $scope.FilterMenu = data;
+                    });
+                }
+                ]);
+
+                app.controller('ShoppingCartController', ['$scope', '$http', '$rootScope', '$location', '$sce', function ($scope, $http, $rootScope, $location, $sce) {
+                    $scope.isCheckoutPage = false;
+                    $rootScope.shoppingCart = $rootScope.shoppingCart || [];
+                    $rootScope.shoppingCart.totalPrice = 0;
+                    $rootScope.$on('validUser', function (event, user) {
+                        $scope.validUser = user;
+                        console.log(user);
+                    });
+
+                    $rootScope.$on('itemList', function (event, itemList) {
+                        $scope.itemList = itemList;
+                    });
+
+                    $scope.$watch('shoppingCart', function () {
+                        $rootScope.shoppingCart.totalPrice = 0;
+                        $rootScope.shoppingCart.totalItems = 0;
+                        $scope.getTotalPrice();
+                        $scope.getTotalNoOfItems();
+                        console.log('changed');
+                    }, true);
+
+                    $scope.checkout = function () {
+                        $location.path('/checkout');
+                        $scope.isCheckoutPage = true;
+                    };
+
+                    $scope.deleteFromCart = function (index) {
+                        $rootScope.shoppingCart.splice(index, 1);
+                    };
+
+                    $scope.clearShoppingCart = function (index) {
+                        $rootScope.shoppingCart = [];
+                    };
+
+                    $scope.backToList = function () {
+                        $location.path('/list');
+                        $scope.isCheckoutPage = false;
+                    };
+
+                    $scope.getTotalPrice = function () {
+                        $rootScope.shoppingCart.forEach(function (itemObj) {
+                            $rootScope.shoppingCart.totalPrice += $scope.getItemPrice(itemObj);
+                        });
+                    };
+
+                    $scope.getTotalNoOfItems = function () {
+                        $rootScope.shoppingCart.forEach(function (itemObj) {
+                            $rootScope.shoppingCart.totalItems += $scope.getItemNo(itemObj);
+                        });
+                    };
+
+                    $scope.getItemPrice = function (itemObj) {
+                        var itemPrice = 0;
+                        itemPrice = Number(itemObj.item.mprice) * Number(itemObj.no);
+                        return itemPrice;
+                    };
+
+                    $scope.getItemNo = function (itemObj) {
+                        return itemObj.no;
+                    };
+
+                    $scope.confirmCheckout = function () {
+                        $location.path('/checkoutsuccess');
+                        $scope.message = $sce.trustAsHtml($rootScope.shoppingCart.length + ' Items' + ' @@ $' + $rootScope.shoppingCart.totalPrice);
+                        console.log($scope.successMsg);
+                        $rootScope.shoppingCart = [];
+                    };
+                }]);
+            </script>
+        }

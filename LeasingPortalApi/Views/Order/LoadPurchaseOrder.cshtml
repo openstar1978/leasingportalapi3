@@ -1,0 +1,333 @@
+﻿@using LeasingPortalApi.Models;
+@{
+    var db = new LeasingDbEntities();
+    var suname = "";
+    var schoolname = "";
+    var saddress = "";
+    var supaddress = "";
+    var contacperson = "";
+    var telno = "";
+    var contactemail = "";
+    int mleaseid = ViewBag.mleaseno;
+    var listdata = (List<int>)(ViewBag.subquoteid);
+    var muserid = ViewBag.muserid;
+    var msorderref = ViewBag.msorderref;
+    var msorderdate = ViewBag.msorderdate;
+    var ffee = ViewBag.ffee;
+    var sfee = ViewBag.sfee;
+    int mcontactid = ViewBag.mcontactid;
+    var productdetail = QuotationDAO.LoadNewSubQuotationDetails(listdata);
+    double? total = 0;
+    double? vattotal = 0;
+    var path = AppDomain.CurrentDomain.BaseDirectory;
+}
+@{
+    var suppliers = SupplierDao.GetSupplierById(muserid);
+    if (suppliers != null)
+    {
+        suname = suppliers.morgname;
+        supaddress = suppliers.maddress1;
+        if (suppliers.maddress2 != null)
+        {
+            supaddress += ", " + suppliers.maddress1;
+        }
+        supaddress += ", " + (suppliers.mcity != null ? " " + suppliers.mcity : "") + (suppliers.mpostcode != null ? " - " + suppliers.mpostcode : "");
+
+        supaddress += (suppliers.mphone != null ? ",<br/> Phone : " + suppliers.mphone : "");
+
+    }
+    suppliers = UsersDao.GetByOrgId(muserid);
+    if (suppliers != null)
+    {
+        contacperson = suppliers.mname;
+        contactemail = suppliers.museridemail;
+        telno = suppliers.mphone;
+        schoolname = suppliers.morgname;
+        saddress = suppliers.maddress1;
+        if (suppliers.maddress2 != null)
+        {
+            saddress += ", " + suppliers.maddress1;
+        }
+        saddress += ", " + (suppliers.mcity != null ? " " + suppliers.mcity : "") + (suppliers.mpostcode != null ? " - " + suppliers.mpostcode : "");
+
+        
+
+    }
+    if (mcontactid != 0)
+    {
+        var dadd = db.userleaseagreements.FirstOrDefault(x => x.mleaseno == mleaseid);
+        var getcontactdatas = db.user_contact_more.FirstOrDefault(x => x.Id == mcontactid);
+        if (getcontactdatas != null)
+        {
+            contacperson = getcontactdatas.cusername+ " "+getcontactdatas.csurname;
+            contactemail = getcontactdatas.cemailaddress;
+            telno = getcontactdatas.cphone;
+            
+        }
+        if (dadd != null)
+        {
+            var daddress = db.user_registration_addr.FirstOrDefault(x => x.museraddrid == dadd.mdefaultadd);
+            if (daddress != null)
+            {
+                saddress = daddress.maddress1;
+                if (suppliers.maddress2 != null)
+                {
+                    saddress += ", " + daddress.maddress1;
+                }
+                saddress += ", " + (daddress.mcity != null ? " " + daddress.mcity : "") + (daddress.mpostcode != null ? " - " + daddress.mpostcode : "");
+
+                
+            }
+        }
+    }
+
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Purchase Order</title>
+</head>
+<body style="font-size:9px;">
+    <style>
+        td, th {
+            font-size: 15px !important;
+        }
+    </style>
+    <div id="maindiv" style="display: block; font-family: Calibri;">
+        <table class="t1" style="width: 100%; margin-bottom: 20px;" cellspacing=0>
+            <tbody>
+                <tr>
+                    <td colspan="2" style="float: right; text-align: right; padding: 10px 0 10px;"><span>Page 1 of 1</span></td>
+                </tr>
+                <tr>
+                    <td style="width:45%; float: left; padding: 10px;">
+                        <span style="font-size: 55px; font-weight: 600; display: block;">Purchase Order</span>
+                        <span>EYS Order reference: <strong>@mleaseid</strong></span>
+                    </td>
+                    <td style="width:45%; text-align: left; border: 1px solid #000000; padding: 10px;">
+                        <div style="display:block;"><strong>PO from:</strong></div>
+                        <div>@schoolname</div>
+                        <div>@Html.Raw(saddress)</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="t2" style="width: 100%;" cellspacing=0>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #000000; padding: 10px; border-bottom: none;">
+                        <div style="display:block;width:100%;"><strong>PO addressed to:</strong></div>
+                        <div style="display:block;width:100%;">Technology Rentals Limited</div>
+                        <div style="display:block;width:100%;">Merlin House, 8 Gove Avenue,</div>
+                        <div style="display:block;width:100%;">Wilmslow, Cheshire SK9 5EG</div>
+                        <div style="display:block;width:100%;">United Kingdom</div>
+                        <div style="display:block;width:100%;">Email: <a href="mailto:info@technologyrentals.co.uk">info@technologyrentals.co.uk</a></div>
+                        <div style="display:block;width:100%;">&nbsp;</div>
+                    </td>
+                    <td style="border: 1px solid #000000; padding: 10px; border-bottom: none;">
+                        <div style="display:block;width:100%;"><strong>Invoices addressed to:</strong></div>
+                        <div style="display:block;width:100%;">@schoolname</div>
+                        <div style="display:block;width:100%;">@(contacperson)</div>
+                        <div style="display:block;width:100%;">@Html.Raw(saddress)</div>
+                        <div style="display:block;width:100%;">@Html.Raw("Phone :" + telno)</div>
+                        <div style="display:@(contactemail!=""?"block":"none");width:100%;">@Html.Raw("Email :" + contactemail)</div>
+                        <div style="display:block;width:100%;">&nbsp;</div>
+                        <div style="display:block;width:100%;"><strong>Goods Delivered to:</strong></div>
+                        <div style="display:block;width:100%;">As above or Delivery address</div>
+                    </td>
+                </tr>
+                <tr style="background-color: #bebcbc;">
+                    <td colspan="2" style="border:1px solid #000000; padding: 15px; text-align: center;"><strong>This purchase order has been generated in accordance with the terms and condition of equipyourschool.com</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="t3" style="width: 100%; margin-bottom: 20px;" cellspacing=0>
+            <tbody>
+                <tr>
+                    <td style="border:1px solid #000000; padding: 10px; text-align: center; border-top: none;">
+                        <span><strong>Purchase Order Number</strong></span><br />
+                        <span style="display: block; margin-top: 5px;">@msorderref</span>
+                    </td>
+                    <td style="border:1px solid #000000; border-left: none; padding: 10px; text-align: center; border-top: none;">
+                        <span style="display:block;width:100%;"><strong>For Enquiries relating to this order, please call:</strong></span><br />
+                        <span style="display: block; margin-top: 5px;">@contacperson - @telno </span>
+                    </td>
+                    <td style="border:1px solid #000000; border-left: none; padding: 10px; text-align: center; border-top: none;">
+                        <span><strong>Date</strong></span><br />
+                        <span style="display: block; margin-top: 5px;">@msorderdate</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="t4" style="width: 100%;" cellspacing=0>
+            <thead>
+                <tr>
+                    <th colspan="7"><span style="font-size: small;">All prices and amounts on this order as expressed in GBP</span></th>
+                </tr>
+                <tr style="font-weight: bold;">
+                    <th style="width: 7%; border:1px solid #000000; padding: 10px;font-size:14px;">No</th>
+                    <th style="width: 10%; border:1px solid #000000; padding: 10px; border-left: none;font-size:14px;">EYS item code</th>
+                    <th style="width: 50%; border:1px solid #000000; padding: 10px; border-left: none;font-size:14px;">Description</th>
+                    <th style="width: 10%; border:1px solid #000000; padding: 10px; border-left: none;font-size:14px;">Qty</th>
+                    <th style="width: 15%; border:1px solid #000000; padding: 10px; border-left: none;font-size:14px;">Rental<br />(Excluding VAT)</th>
+                    <!--<th style="width: 15%; border:1px solid #000000; padding: 10px; border-left: none;font-size:14px;">Total Amount<br />(Excluding VAT)</th>-->
+                    <!--<th style="width: 5%; border:1px solid #000000; padding: 10px; border-left: none;font-size:14px;">VAT</th>-->
+                </tr>
+
+            </thead>
+            <tbody>
+
+                @{
+                    var i = 1;
+                    var rent = "";
+                    switch (productdetail.First().mtermf)
+                    {
+                        case 1:
+                            rent = "month";
+                            break;
+                        case 3:
+                            rent = "quater";
+                            break;
+                        case 4:
+                            rent = "term";
+                            break;
+                        case 6:
+                            rent = "half year";
+                            break;
+                        case 12:
+                            rent = "annual";
+                            break;
+                        default:
+                            rent = "month";
+                            break;
+                    }
+                    int? termp = 0;
+                    var j = 1;
+                    var vat = productdetail.First().mvat * 100 / productdetail.First().mprice;
+                    foreach (var ab in productdetail)
+                    {
+                        var addr = "";
+                        if (ab.DifferentAddress != null && ab.DifferentAddress != "" && ab.DifferentAddress != "0")
+                        {
+                            var dadd = int.Parse(ab.DifferentAddress);
+                            var maddress = db.user_registration_addr.FirstOrDefault(x => x.museraddrid == dadd);
+                            if (maddress != null)
+                            {
+                                addr = maddress.maddress1;
+                                if (maddress.maddress2 != null)
+                                {
+                                    addr = addr + "<br/>" + maddress.maddress2;
+                                }
+                                if (maddress.mlandmark != null)
+                                {
+                                    addr = addr + "<br/>" + maddress.mlandmark;
+
+                                }
+                                addr = addr + "<br/>" + maddress.mcity + (maddress.mpostcode != null ? " - " + maddress.mpostcode : "");
+                            }
+
+                        }
+                        termp = ab.mtermp / 12;
+                        total = total + ((ab.mprice.HasValue ? ab.mprice.Value : 0) * ab.mtermp * ab.quantity);
+                        //total = total + ((ab.mprice.HasValue ? ab.mprice.Value : 0)*ab.quantity);
+                        vattotal = vattotal + ((ab.mvat.HasValue ? ab.mvat.Value : 0)) * ab.mtermp;
+                        //vattotal = 0;
+                        <tr>
+                            <td style="font-size:14px;width: 5%; border:1px solid #000000; padding: 10px; border-top: none; border-bottom: none;">@j</td>
+                            <td style="font-size:14px;width: 10%; border:1px solid #000000; padding: 10px; border-left: none; border-top: none; border-bottom: none;">@ab.itemcode</td>
+                            <td style="font-size:14px;width: 40%; border:1px solid #000000; padding: 10px; border-left: none; border-top: none; border-bottom: none;">@ab.mproductname  <br /> <span style="display: block; font-size: small;">Supplier: @ab.suppliername *</span>  @Html.Raw(addr != "" ? "<br/>Deliver To: " + addr : "")</td>
+                            <td style="font-size:14px;width: 5%; border:1px solid #000000; padding: 10px; border-left: none; border-top: none; border-bottom: none;">@ab.quantity</td>
+                            <td style="font-size:14px;width: 15%; border:1px solid #000000; padding: 10px; border-left: none; border-top: none; border-top: none; border-bottom: none;">£@ab.mprice per @rent @(ab.mtermp / 12) years</td>
+                            <!--<td style="font-size:14px;width: 15%; border:1px solid #000000; padding: 10px; border-left: none; border-top: none; border-bottom: none;">£@(Math.Round((ab.mprice * ab.mtermp * ab.quantity).HasValue ? (ab.mprice * ab.mtermp * ab.quantity).Value : 0, 2))</td>-->
+                            <!--<td style="font-size:14px;width: 5%; border:1px solid #000000; padding: 10px; border-left: none; border-top: none; border-bottom: none;">20%</td>-->
+                        </tr>
+                        j++;
+                    }
+                }
+                <tr>
+                    <td colspan="3" style="border-right:1px solid #000000; padding: 10px;"><span style="font-size: small;">*Supplier subject to change as per terms and conditions</span></td>
+                    <!--<td style="border:1px solid #000000; padding: 10px; border-top: none; border-left: none;"><strong>Total</strong></td>-->
+                    <!--<td style="border:1px solid #000000; padding: 10px; border-top: none; border-left: none;">£@(Math.Round(total.HasValue ? total.Value : 0, 2))</td>-->
+                    <!--<td style="border:1px solid #000000; padding: 10px; border-top: none; border-left: none;">&nbsp;</td>-->
+                </tr>
+                <!--<tr>
+                    <td colspan="4" style="border-right:1px solid #000000;"></td>
+                    <td style="border:1px solid #000000; padding: 10px; border-top: none; border-left: none;"><strong>VAT</strong></td>
+                    <td style="border:1px solid #000000; padding: 10px; border-top: none; border-left: none;">£67.88</td>
+                    <td style="border:1px solid #000000; padding: 10px; border-top: none; border-left: none;">&nbsp;</td>
+                </tr>-->
+                <tr>
+                    <td colspan="3" style="border-right:1px solid #000000;"></td>
+                    <!--<td style="border:1px solid #000000; padding: 10px; border-top: none; border-left: none;"><strong>Grand Total</strong></td>-->
+                    <!--<td style="border:1px solid #000000; padding: 10px; border-top: none; border-left: none;">£@(Math.Round((total + vattotal).HasValue ? (total + vattotal).Value : 0, 2))</td>-->
+                    <!--<td style="border:1px solid #000000; padding: 10px; border-top: none; border-left: none;">&nbsp;</td>-->
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <!--<div id="ourcontent" style="display: block; font-family: Calibri;">
+
+    </div>-->
+    <!--<script src="~/Content/js/jquery.js"></script>-->
+    <!--<script type="text/javascript">
+            var h=jQuery(".t1").height()+jQuery(".t2").height()+jQuery(".t3").height()+jQuery(".t4").height();
+            var ph=700;
+            var totalpage=Math.ceil(h/ph);
+            if(h%700<10 && h%700>0){
+                totalpage=totalpage-1;
+                ph=ph+((h%700)/totalpage);
+            }
+            var thead=jQuery(".t4 thead").clone();
+            var theader=jQuery(".t1").clone();
+            var rheight=0;
+            var lastindex=-1;
+            for (let j = 0; j < totalpage; j++) {
+                var d="div"+j;
+                rheight=0;
+                jQuery("#ourcontent").append("<div class='div"+j+"' style='display:block;'>");
+                if(j==0){
+
+                  jQuery(".t1").clone().appendTo("."+d);
+                  jQuery(".t2").clone().appendTo("."+d);
+                  jQuery(".t3").clone().appendTo("."+d);
+                  rheight=ph-jQuery("."+d).height();
+              }
+              else{
+                theader.appendTo("."+d);
+              }
+              jQuery("."+d).find(".paging span").html("Page "+(j+1)+" of "+totalpage);
+              jQuery("."+d).append("<table class='t4"+j+"' style='width:100%;border-bottom:1px solid #333;' cellspacing=0></table>");
+              rheight=ph-jQuery("."+d).height();
+              var tb=".t4"+j;
+              thead.clone().appendTo(tb);
+              jQuery("<tbody class='t4b"+j+"'>").appendTo(tb);
+                var tbb=".t4b"+j;
+              jQuery(".t4 tbody tr").each(function(){
+                  var index=jQuery(this).index();
+                  if(index>lastindex){
+                    jQuery(this).clone().appendTo(tbb);
+                     rheight=ph-jQuery("."+d).height();
+                    if(rheight<=0){
+
+                        jQuery("</tbody>").appendTo(tb);
+                        lastindex=index;
+                        return false;
+                    }
+                  }
+              });
+              jQuery("</tbody>").appendTo(tb);
+              jQuery("#maindiv").remove();
+              //$("#ourcontent").append(thead);
+              //$("#ourcontent").append("</table>");
+              //$("#ourcontent").html($("#ourcontent").html()+"</div>");
+            }
+
+    </script>-->
+
+</body>
+</html>

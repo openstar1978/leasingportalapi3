@@ -1,0 +1,116 @@
+﻿
+@model IEnumerable<LeasingPortalApi.Models.ProductDisplayViewModel>
+@if (Model.Any()) { 
+<div class="row mr-0 ml-0 mt-3 warranty">
+    <div class="col-lg-12">
+        <div class="col-lg-12 pl-0">
+            <h3 style="margin-bottom:5px;"><span>People also buy this</span></h3>
+
+        </div>
+        <div class="col-lg-12">
+            <div class="deal-products" style="max-width:100%;flex:0 0 100%">
+                <section class="section-products-carousel">
+                    <div id="products-carousel-5de0dc90b21d9" data-replace-active-class="true" data-carousel-selector=".products-carousel">
+                        <div class="woocommerce columns-5 ">
+
+
+                            <data-owl-carousel id="addonowl" data-view="grid" data-toggle="regular-products" class="products owl-carousel products-carousel columns-5 columns__wide--5" data-options="owlOptionsTestimonials">
+                               @foreach(var ab in Model) { 
+                               }
+                                <div owl-carousel-item="" ng-cloak ng-repeat="product in Related" class="post-2440 product type-product status-publish has-post-thumbnail product_cat-headphone-cases first instock shipping-taxable purchasable product-type-simple">
+                                    <div class="product-outer product-item__outer">
+                                        <div class="product-inner product-item__inner">
+                                            <div class="product-loop-header product-item__header">
+                                                <a href="/Leasing/ProductDetail?{{product.mproducturl}}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                    <h2 ng-cloak class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
+                                                    <div class="product-thumbnail product-item__thumbnail">
+                                                        <img width="300" height="300" ng-src="/LeaseAdmin/Content/images/product/{{product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
+                                                    </div>
+                                                    <div class="product-rating">
+                                                        <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                                                        (3)
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="product-loop-body product-item__body">
+                                                <div class="col-xs-12">
+                                                    <!--<span class="loop-product-categories"><a href="/Leasing/ProductDetail?{{product.mproducturl}}" rel="tag">{{product.mprodcatname}}</a></span>-->
+                                                    <a href="/Leasing/ProductDetail?{{product.mproducturl}}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                        <h2 class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
+
+                                                        <div class="product-short-description" ng-show="product.msuppliername!=null">
+                                                            Manufacturer: {{product.msuppliername}}
+                                                            <span class="est" style="font-size: 0.875em;color:#7d7d7d;" ng-if="product.msuppliername!=null && product.mleadtime>0">Estimated Delivery: {{product.mleadtime}} days</span>
+                                                        </div>
+                                                        <div class="product-sku"></div>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="product-loop-footer product-item__footer">
+                                                <div class="term-add-to-cart" style="display:block;width:100%;">
+                                                    <div class="col-xs-12">
+                                                        <!--<label>Unit Rental <span class="excVAT">(exc. VAT)</span></label>-->
+
+                                                    </div>
+
+                                                    <div class="col-xl-6 col-xs-6 term-freq">
+                                                        <label>Frequency</label>
+                                                        <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                        <select ng-init="termdata = sizes[0]" ng-options="size as size.name for size in sizes track by size.code" class="form-control termselect termf{{product.mprodvarid}}" ng-model="termdata" ng-change="updateterm(termdata,product,termperiod)"></select>
+
+                                                    </div>
+                                                    <div class="col-xl-6 col-xs-6 term-period">
+                                                        <label>Period</label>
+                                                        <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                        <select ng-init="termperiod = periods[0]" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect termp{{product.mprodvarid}}" ng-model="termperiod" ng-change="updateterm(termdata,product,termperiod)"></select>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="price-add-to-cart mainprice dpriceblock" style="margin-bottom:0px;">
+                                                    <span class="price" style="">
+                                                        <span class="electro-price" ng-init="noOfItem[$index]=1">
+                                                            <span class="quantity">
+                                                                <input type="number" id="quantity_5e0706480ca03" ng-change="UpdateCart(item.Product,noOfItem[$index])" ng-model="noOfItem[$index]" class="input-text qty text" step="1" min="1" max="500" name="cart[8e68c3c7bf14ad0bcaba52babfa470bd][qty]" value="{{noOfItem[$index]}}" title="Qty" size="4" inputmode="numeric" aria-labelledby="" style=""><br />
+                                                                <span class="pm">Qty</span>
+                                                                <!--<button class="button" type="button" ng-click="UpdateCart(item.Product,noOfItem[$index])" ng-disabled="noOfItem[$index]==undefined" style="padding:0px;width:1em;background:transparent;color:#000000"><i class="fa fa-refresh"></i></button>-->
+                                                            </span>
+
+                                                        </span>
+                                                    </span>
+                                                    <span class="price">
+                                                        <span class="electro-price">
+                                                            <span ng-cloak class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{product.mprice*noOfItem[$index] | number:2 }}</span><br /><span class="pm"><span class="pmVAT">+VAT </span><span class="pmper">{{ getNewTerms(product.mtermf,product.mtermp) }}</span></span>
+
+                                                        </span>
+                                                    </span>
+                                                    <div class="add-to-cart-wrap" data-toggle="tooltip" data-title="Add to Your Basket" data-original-title="Add to Your Basket" title="">
+                                                        <a href="" class="btn btn-brand rounded-circle pull-right prnbtn prnbtn1" title="Print Quotations" style="margin-left:3px;background-color:#4c4a4a;" ng-click="PrintSingleItem(product,noOfItem[$index])"><i class="fa fa-print" style="display:block;"></i> <span class="quotehead" style="font-size:10px;">Quote</span></a>
+                                                        <a href="" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" title="Add to Your Basket" data-product_id="2706" data-product_sku="5487FB8/35" aria-label="Add to Your Basket" data-original-title="Add to Your Basket" rel="nofollow" ng-click="addToCart($event,product,noOfItem[$index])"> Add to Basket</a>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.product-outer -->
+                                </div>
+
+
+                            </data-owl-carousel>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!--ng-class="classcnt==1?'col-lg-12':classcnt==2?'col-lg-6':classcnt==3?'col-lg-4':'col-lg-12'"-->
+
+    </div>
+</div>
+}

@@ -1,0 +1,667 @@
+﻿
+<html lang="en">
+
+<!-- begin::Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>Leasing Supplier | Register</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+
+    <!--begin::Web font -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!--end::Web font -->
+
+    <link href="~/supplier/Content/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/supplier/Content/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/js/validation/site-demos.css">
+    <style>
+        #customer_login::before {
+            border-right: none;
+        }
+
+        .customize-form1, .thankyou-form1 .m-portlet__body {
+            margin: 0 auto;
+            width: 100%;
+            /* background: border-box; */
+            border: 1px solid #c9c9c9;
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 20px;
+            -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.35);
+            -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.35);
+            box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.35);
+        }
+
+        .thankyou-form .m-portlet__body {
+            min-height: 360px;
+        }
+
+        .woocommerce-form-row {
+            text-align: left;
+        }
+
+        .customize-form label {
+            margin-bottom: 0.5em;
+        }
+
+        .customize-form .input-text, input[type=email], input[type=password], input[type=search], input[type=text], input[type=url], textarea {
+            padding: .5em 1.214em;
+        }
+
+        .form-footer {
+            border-top: 2px solid rgba(0,0,0,0.05);
+            padding-top: 20px;
+        }
+
+        .form-control, .navbar-search .form-control, table.cart .coupon .input-text {
+            border-width: 1px;
+            padding: .5em 1.214em;
+        }
+
+        .form-row {
+            margin-bottom: 0.714em;
+        }
+    </style>
+
+    <style type="text/css">
+        #loader2 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.75) url(/Content/images/loading2.gif) no-repeat center center;
+            z-index: 10000;
+        }
+    </style>
+    <link rel="stylesheet" href="~/Content/bootstrap/datepicker.css" />
+
+    <style>
+        #m_login {
+            margin: 100px auto 60px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            position: relative;
+            overflow: hidden;
+            width: 70%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__form {
+            margin: 2em auto;
+        }
+
+        .m-login.m-login--2 .m-login__wrapper {
+            padding-top: 1%;
+        }
+
+            .m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__logo {
+                margin-bottom: 2rem;
+            }
+
+        .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__head .m-login__title, .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__account .m-login__account-msg, .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__form .m-login__form-sub .m-link {
+            color: #fff;
+        }
+
+        .bordero {
+            border: 1px solid #333 !important;
+        }
+
+        .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__account .m-login__account-link {
+            color: #e4e4e4;
+        }
+
+            .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__account .m-login__account-link:hover {
+                color: #f4e439;
+            }
+
+        body {
+            /*background-color:#666;*/
+            background: #f6f5f7;
+        }
+
+        .m-login__wrapper-1-1 {
+            background-color: #fff;
+        }
+
+        .m-login__wrapper-1-1 {
+            background: #7947c2;
+            /*background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+        background: linear-gradient(to right, #FF4B2B, #FF416C);*/
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 0 0;
+            color: #FFFFFF;
+        }
+
+
+
+        .m-login.m-login--5 .m-login__wrapper-2 {
+            width: 100%;
+            display: block;
+        }
+
+            .m-login.m-login--5 .m-login__wrapper-1 .m-login__wrapper-1-1, .m-login.m-login--5 .m-login__wrapper-2 .m-login__wrapper-1-2 {
+                display: block;
+                height: 100%;
+            }
+
+                .m-login.m-login--5 .m-login__wrapper-1 .m-login__wrapper-1-1 .m-login__contanier .m-login__content, .m-login.m-login--5 .m-login__wrapper-2 .m-login__wrapper-1-2 .m-login__contanier .m-login__content, .m-login.m-login--5 .m-login__wrapper-2 .m-login__contanier {
+                    width: 100%;
+                }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            position: relative;
+            overflow: hidden;
+            width: 768px;
+            max-width: 100%;
+        }
+
+        .m-login.m-login--5 .m-login__wrapper-2 {
+            padding-top: 0px;
+        }
+
+        .m-form .m-form__group {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        input {
+            background-color: #eee !important;
+            border: none;
+            width: 100%;
+        }
+
+        .m-header .m-header__top, .m-footer {
+            background: #360874;
+        }
+
+        .m-footer {
+            color: #fff;
+        }
+
+        .btn-outline-yellow {
+            background-color: #f4e439;
+            background-image: none;
+            border-color: #f4e439;
+            color: #000;
+            font-weight: 500;
+        }
+
+        .m-separator.m-separator--lg {
+            border-bottom: 1px dashed #333;
+            margin: 5px 0;
+        }
+
+        .m-form .m-form__section {
+            margin: 10px 0;
+        }
+
+        .m-portlet .m-portlet__body {
+            padding: 10px;
+        }
+
+        select.form-control:not([size]):not([multiple]) {
+            height: auto;
+        }
+
+        @@media(max-width:900px) {
+            #m_login {
+                width: 100%;
+            }
+        }
+
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            background: url('http://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif')center no-repeat #fff;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            margin: 100px auto;
+        }
+
+        .double-bounce1, .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #333;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+            animation: sk-bounce 2.0s infinite ease-in-out;
+        }
+
+        .double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+
+        @@-webkit-keyframes sk-bounce {
+            0%, 100% {
+                -webkit-transform: scale(0.0);
+            }
+
+            50% {
+                -webkit-transform: scale(1.0);
+            }
+        }
+
+        @@keyframes sk-bounce {
+            0%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            }
+
+            50% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+        }
+    </style>
+
+</head>
+
+<!-- end::Head -->
+<!-- begin::Body -->
+<body class="m-page--wide m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default" ng-app="MyApp">
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <header id="m_header" class="m-grid__item m-header " m-minimize="minimize" m-minimize-offset="200" m-minimize-mobile-offset="200">
+            <div class="m-header__top">
+                <div class="m-container m-container--responsive m-container--xxl m-container--full-height m-page__container">
+                    <div class="m-stack m-stack--ver m-stack--desktop">
+                        <!-- begin::Brand -->
+                        <div class="m-stack__item m-brand">
+                            <div class="m-stack m-stack--ver m-stack--general m-stack--inline">
+                                <div class="m-stack__item m-stack__item--middle m-brand__logo">
+                                    <a href="index.html" class="m-brand__logo-wrapper">
+                                        <img src="~/Content/images/logo/openstar-school-leasing-logo_footer2.png" style="width:100%;">
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end::Brand -->
+                        <!-- begin::Topbar -->
+                        <div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
+                            <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
+                                <div class="m-stack__item m-topbar__nav-wrapper">
+                                    <ul class="m-topbar__nav m-nav m-nav--inline">
+                                        <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
+                                            <a href="/beta" class="m-nav__link">
+                                                <span class="m-topbar__username">Back to equipyourschool.com</span>
+                                            </a>
+
+                                        </li>
+
+
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end::Topbar -->
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <div class="m-grid__item m-grid__item--fluid  m-grid m-grid--ver-desktop m-grid--desktop 	m-container m-container--responsive m-container--xxl m-page__container m-body">
+
+
+            <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                <div class="m-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p ng-bind-html="d.terms_conditions" class="ng-binding">
+                            <p><strong>User Terms and Conditions for Supplier for EYS Website </strong></p>
+
+                            <ul>
+                                <li>These Terms and Conditions (User Terms) shall apply to the use by the Supplier of the EYS Website at www.equipyourschool.com for the supply of school equipment and related products and items (Products) to schools or other educational establishments (Customer) through the EYS Website.</li>
+                            </ul>
+
+                            <ul>
+                                <li>The Supplier shall have the right to use the EYS Website upon completion of a Form of Registration and shall ensure that any changes in the Supplier details (including company name, contact details, address, VAT and/or bank account details) are updated.</li>
+                            </ul>
+
+                            <p><strong>EYS Website</strong></p>
+
+                            <ul>
+                                <li>The EYS Website is operated and owned by [full company details/ company number address/ VAT no.] In the event of any issues or complaints arising out of the use of the EYS Website contact should be made to  [                                   ].</li>
+                            </ul>
+                            <ul>
+                                <li>The EYS Website shall be used to facilitate the sale of Products by the Supplier to Customers through a third party leasing company (Lessor).</li>
+                            </ul>
+
+                            <ul>
+                                <li>EYS shall not be involved in the transactions between the Supplier, the Customer and the Lessor. The transactions shall be as between (1) the Supplier and the Lessor (Trading Agreement); and (2) the Lessor and the Customer (Rental Agreement).</li>
+                            </ul>
+
+                            <ul>
+                                <li>EYS shall facilitate the completion of the Trading Agreement and the Rental Agreement (together referred to as the Contracts) and shall produce the appropriate purchase/confirmation orders and documentation for signature by the parties, but shall not, unless otherwise agreed in advance in writing with the Supplier/Customer/Lessor be a party to such Contracts and shall not save as otherwise set out in these User Terms have any responsibility for the performance of the Contracts.</li>
+                            </ul>
+
+                            <ul>
+                                <li>EYS shall have responsibility for ensuring the appropriate orders, documentation and Contracts are generated through the EYS Website and shall provide relevant information for the tracking of each order placed by a Customer for the purchase of the Products.</li>
+                            </ul>
+
+                            <p><strong>Use of the EYS Website</strong></p>
+
+                            <ul>
+                                <li>
+                                    The Supplier should, at all times whilst using the EYS Website, be required to comply with the following obligations:-
+                                    <ul>
+                                        <li>To ensure all information uploaded through the supplier portal onto the EYS Website in respect to any Products is correct and accurate in all respects and is updated regularly, i.e.every 7 days (this should include, but not be limited to the price of the Products).</li>
+                                        <li>To ensure all Products are genuine and not counterfeit or otherwise infringe the copyright, trademark or the rights of any third party.</li>
+                                        <li>All equipment promoted for sale through the EYS Website should be available for immediate delivery to the Customer or otherwise the availability of the Products for delivery must be clearly shown in the detail included.</li>
+                                        <li>To ensure that the Supplier does not, through its use of the EYS Website, distribute any viruses or otherwise knowingly cause any interference with the operation of the EYS Website whilst uploading onto or using the EYS Website.</li>
+                                        <li>Not to infringe the copyright, trademark, patent, moral, database or other intellectual property rights (together the “IPR”) that belong to or are licensed to EYS which shall include but not be restricted to reproducing, performing, displaying, distributing, copying, reverse engineering, decompiling, disassembling or preparing any derivative works from the EYS Website.</li>
+
+
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <p><strong>Operation of Website</strong></p>
+
+                            <ul>
+                                <li>EYS shall use all reasonable endeavours to operate the EYS Website 24/7 over 365 days per year subject to downtime for the maintenance and updating of the EYS Website.</li>
+                            </ul>
+
+                            <ul>
+                                <li>EYS shall not be responsible in the event that the EYS Website is non-operational for any period of time but shall use all reasonable commercial efforts to ensure such downtime is minimised.&nbsp;&nbsp;</li>
+                            </ul>
+
+                            <p><strong>Contracts and Fees</strong></p>
+
+                            <ul>
+                                <li>The Supplier shall be entitled to use the EYS Website for the first 12 months free of charge and thereafter will be required to pay a subscription fee in accordance with the fees as set out at [ insert hyperlink].</li>
+                            </ul>
+
+                            <ul>
+                                <li>All sales of any Products by the Supplier through the EYS Website to the Customer shall be through an agreed Lessor. </li>
+                            </ul>
+
+                            <ul>
+                                <li>Any Contract between the Supplier and the Lessor for the purchase of the Products on behalf of a Customer shall be under the Lessor’s standard terms and conditions of trading (a standard form of Trading Agreement can be found at [insert hyperlink])</li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    The Supplier shall not save as otherwise permitted under these User Terms sell any Products offered for sale through the EYS Website direct to the Customer.  Breach of this provision by the Supplier shall be treated by EYS as a fundamental breach of the User Terms and use of the EYS Website by the Supplier may be terminated by EYS with immediate effect. Such breach shall also trigger payment by the Supplier of an additional fee as set out under the section headed Liability of the Supplier.
+                                </li>
+                            </ul>
+
+                            <ul>
+                                <li>
+                                    In respect to each sale through the EYS Website the Supplier will pay a fee to EYS. Such fee will be [ how is this calculated i.e. a fixed percentage or does it depend on value of goods] and will be deducted from the invoice price upon payment by the Lessor.
+                                </li>
+                            </ul>
+
+                            <ul>
+                                <li>
+                                    All transactions through the EYS Website shall follow the following process:-
+                                    <ul>
+                                        <li>Supplier shall complete a Registration Form and shall agree to operate use the EYS Website in accordance with these User Terms.</li>
+                                        <li>Supplier to be approved by EYS.</li>
+                                        <li>Supplier portal set up for use by the Supplier.</li>
+                                        <li>Details of all Products available for sale from Supplier to be uploaded on to the EYS Website which shall include as a minimum but not be restricted to make, model, specification, manufacturer part number, warranty extension (once if any) images, stock level and sale price (including delivery). Details to be updated as per the User Terms and Conditions.</li>
+                                        <li>Following an order of the Products the Lessor will confirm with Supplier that the Products are available before a Purchase Order is generated.</li>
+                                        <li>Supplier will allocate the stock to satisfy the Purchase Order as soon as the Purchase Order is received.</li>
+                                        <li>Notification shall be given to the Lessor that the stock has been allocated and Supplier will be authorised to deliver the Products and shall confirm the date of delivery (Confirmation Order).</li>
+                                        <li>Once the order is approved/ accepted by the Lessor Supplier will arrange a courier for delivery of the Products to the Customer’s address. The Supplier shall update through the portal the details of the courier, the tracking number and the confirmed delivery date.</li>
+                                        <li>Upon delivery the Customer shall be requested by the Lessor to sign off a Certificate of Acceptance to confirm receipt of the Products and/or that the Products have been properly installed. Any issues raised by the Customer shall be dealt with immediately by Supplier.</li>
+                                        <li>For all computer hardware sales Supplier must provide all serial numbers of the Products to the Lessor.</li>
+                                        <li>Upon signature of the Certificate of Acceptance by the Lessor Supplier shall invoice the Lessor for the amount of the Purchase Order less the fee/ commission payable to EYS for the sale.</li>
+                                        <li>Subject to all matters being in order having been dealt with in accordance with the process as above the Lessor will arrange for payment of Supplier through the EYS Website within 2 working days of receipt of the invoice.</li>
+
+
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <p>Any change to the processes as set out above will be notified to the Supplier through the EYS Website prior to any material changes being made.</p>
+
+                            <p><strong>Quality of Products</strong></p>
+
+                            <p>&nbsp;</p>
+
+                            <ul>
+                                <li>The Supplier shall ensure that the Products which are sold through the EYS Website are of merchantable quality and fit for the Customer’s purpose subject to such purpose being the normal use for the Products supplied.</li>
+                                <li>The Supplier shall provide a guarantee/warranty for the Products supplied through the Lessor which shall be for the benefit of the Customer.</li>
+                                <li>The Supplier shall indemnify EYS against any claims made by a Customer relating to the Products provided by the Supplier save where it can be shown that such claim arises out of any negligent act or omission on the part of EYS.</li>
+                            </ul>
+
+                            <p><strong>Liability of the Supplier&nbsp;&nbsp; </strong></p>
+
+                            <ul>
+                                <li>The Supplier shall be responsible for the delivery and installation (if required) of any Products purchased by the Customer.  All delivery costs shall be included in the price of the Products. Any installation costs may be an additional charge to the Customer.</li>
+                            </ul>
+
+                            <ul>
+                                <li>If the Supplier is unable to deliver the Products to the Customer in accordance with the terms of the Confirmation Order or otherwise on such alternative day as agreed by the Customer, EYS or the Customer may terminate the order at no cost to the Customer, EYS or the Lessor.</li>
+                            </ul>
+
+                            <ul>
+                                <li>The Supplier shall be responsible for any damage or shortages subject to the Customer notifying EYS or such shortages or damage within 7 days of delivery of the Products and the Supplier shall make good any damage or shortages within [	] days or otherwise provide a refund for the Products if these are not covered under the warranty/guarantee.</li>
+                            </ul>
+                            <ul>
+                                <li>The liability of the Supplier under these User Terms shall be in addition to such liability of the Supplier under the Trading Agreement.</li>
+                            </ul>
+                            <ul>
+                                <li>In the event the Supplier sells any Products directly to a Customer who has placed an order through the EYS Website in breach of these User Terms the Supplier will pay to EYS by way of an additional fee [     ] % of the price the Products sold to the Customer. The Supplier acknowledges and accepts this is a fair estimate of loss and that such amount will be paid to EYS within 14 days of the Products being delivered to the Customer.</li>
+                            </ul>
+                            <p><strong>Liability of EYS</strong></p>
+
+                            <ul>
+                                <li>EYS accepts no liability to the Customer for any business losses, such as loss of data, profits, revenue, business, opportunity, goodwill, reputation or business interruption or for any losses arising out of the use of the EYS Website save where such loss arises out of fraudulent misrepresentation , for death or personal injury resulting from the negligence of EYS or any other liability that cannot be excluded by law.</li>
+                            </ul>
+
+                            <p><strong>Termination of Use of EYS Website</strong></p>
+
+                            <ul>
+                                <li>EYS reserve the right to terminate the continued use of the EYS Website by the Customer if the Customer fails to adhere to these User Terms and that it is in the best interests of EYS to terminate the Customer’s continued use of the EYS Website.&nbsp; Such decision to terminate the Supplier’s use of the EYS Website shall be at the sole discretion of EYS but shall be exercised in a fair and reasonable manner and shall not be subject to challenge by the Customer save through the process set out in section headed <strong>Disputes</strong>.</li>
+                            </ul>
+
+                            <p><strong>Data Protection</strong></p>
+
+                            <ul>
+                                <li>The Supplier and EYS shall process personal data received under or in connection with use of the EYS Website as separate and independent controllers.  In no circumstances will EYS and the Supplier process personal data under and/or in connection these User Terms as joint controllers or in a controller-to-processor relationship.  In the capacity of independent controllers each party shall be separately responsible for complying with its obligations that apply under applicable Data Protection laws and shall indemnify each other in the event of any claim arising out of any breach by either party of the Data Protection laws</li>
+                            </ul>
+
+                            <ul>
+                                <li>EYS and the Supplier comply with respective obligations under applicable Data Protection laws (including but not limited to Regulation (EU) 2016/679 (EU General Data Protection Regulation) (GDPR)) and supplementing any EU and local data protection laws.  This shall include but shall not be limited to the obligation to provide appropriate safeguards for the transfer of any personal data to anywhere outside the UK.</li>
+                            </ul>
+
+                            <ul>
+                                <li>The Supplier shall receive information through the EYS Website which is necessary for the processing of transactions (in particular the contract information of the Customer involved in any transaction) and such information may only be used for the purpose of facilitating the completion of Contracts through the EYS Website.</li>
+                            </ul>
+
+                            <ul>
+                                <li>EYS will only share information about the Customer with third parties if this is necessary for the purpose of facilitating the Contracts or otherwise if EYS is legally or contractually entitled to do so.</li>
+                            </ul>
+
+                            <ul>
+                                <li>For any information regarding the processing of any personal data by EYS including the sharing of data with third parties, please see EYS Privacy Notice [<em>Insert hyperlink</em>].</li>
+                            </ul>
+
+                            <p><strong>Disputes</strong></p>
+                            <ul>
+                                <li>
+                                    If any dispute arises between EYS and the Supplier or with the Lessor and/or Customer (involving the Supplier) the parties shall seek to resolve any dispute by way of submitting a formal written complaint through the EYS Website which will be dealt with within 14 days.  All relevant parties will be invited to reach an amicable resolution of the dispute if possible.
+                                </li>
+                            </ul>
+
+                            <ul>
+                                <li>
+                                    If the dispute cannot be resolved within 28 days, the parties will seek to resolve the dispute by way of alternative dispute resolution procedure such as mediation or arbitration in advance of the issue of legal proceedings. Such ADR should be dealt with as quickly as practicably possible but in any event not later than 3 months from the date of the dispute arising or if later as agreed by the parties.
+                                </li>
+                            </ul>
+
+                            <ul>
+                                <li>
+                                    If the dispute relates to the termination of use of the EYS Website the Supplier should submit its reasons for reinstatement of use within 14 days and EYS will give consideration to the reasons that have been given and such decision as to whether to reinstate the Supplier’s use of the EYS Website shall be at EYS’s sole discretion and shall not be subject to legal challenge save where such discretion can be shown by the Supplier to have been exercised capriciously.
+                                </li>
+                            </ul>
+
+                            <ul>
+                                <li>
+                                    Any claim, dispute or matter arising under or in connection with the use of the EYS Website by the Supplier shall be governed and construed in all respects by the laws of England and Wales and the parties involved in such dispute will submit to the exclusive jurisdiction of the English courts.
+                                </li>
+                            </ul>
+
+                            <p><strong>General</strong></p>
+                            <ul>
+                                <li>
+                                    If any provision of these terms and conditions is held to be invalid, void or for any reason unenforceable, such provision shall be deleted and shall not affect the validity and enforceability of the remaining provisions.  EYS may, at any time, assign its rights and obligations under these terms and conditions subject to such assignment being on the same terms as set out herein.
+
+                                    <ul>
+                                        <li>
+                                            The Supplier agrees that EYS may, at any time, on notice, set-off any monies held in a Supplier account set up for the purpose of using the EYS Website against any fees, charges or other amounts owed to EYS.
+                                        </li>
+                                    </ul>
+
+                                    <ul>
+                                        <li>
+                                            EYS may amend these User Terms at any time by email by posting the amended terms on [insert email address].  All amended terms shall automatically be effective 30 days after they are initially posted.  The continued use of the EYS Website by the Supplier after the effective date of the amended terms constitutes the Supplier’s acceptance of such changes.  These User Terms may not otherwise be amended.
+                                        </li>
+                                    </ul>
+
+                                    <ul>
+                                        <li>
+                                            No agency, partnership, joint venture, employee/employer or franchiser/franchisee relationship is intended or created by these terms and conditions.  Any person who is not a party to these terms and conditions has no rights under the Contracts (Rights of Third Parties) Act 1999 to enforce any terms of these terms and conditions save for the Customer and/or the Lessor.  These User Terms together with the Purchasing Agreement and any policies posted on the EYS Website shall be the entire agreement as between EYS and the Supplier and supersede all prior understandings and agreements between the parties. In the event of any ambiguity between the User Terms and the Trading Agreement the latter will prevail.
+                                        </li>
+                                    </ul>
+
+                                    <ul>
+                                        <li>
+                                            Any notice which is sent to either party pursuant to this agreement shall be sent by email.  Notice will be deemed to be effective 24 hours after the email is sent unless the sending party is notified that the email address is invalid.  In the case of service of any legal notice, this should be served by way of post to the party’s registered address and will be deemed to have been received by that party 2 days after the date of mailing.
+                                        </li>
+                                    </ul>
+
+
+
+                                    <p>&nbsp;</p>
+
+</div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <footer class="m-grid__item		m-footer ">
+            <div class="m-container m-container--fluid m-container--full-height m-page__container">
+                <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
+                    <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
+                        <span class="m-footer__copyright" style="color:#fff">
+                            © 2021
+                        </span>
+                    </div>
+                    <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
+                        <ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
+                            <li class="m-nav__item">
+                                <a href="~/Home/Index" class="m-nav__link">
+                                    <span class="m-nav__link-text" style="color:#fff">EYS - Equip Your School</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- end:: Page -->
+    <!--begin::Base Scripts -->
+    <script src="~/supplier/Content/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+    <script src="~/supplier/Content/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <script data-require="angular.js@1.0.x" src="~/Content/angular.min.js" data-semver="1.7.9"></script>
+    <script data-require="angular.js@1.0.x" src="~/Content/angular-route.min.js" data-semver="1.7.9"></script>
+    <script data-require="angular.js@1.0.x" src="~/Content/angular-animate.min.js" data-semver="1.7.9"></script>
+    <script data-require="underscore.js@@*" data-semver="1.8.3" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="~/Content/js/validation/additional-methods.min.js"></script>
+    <script src="~/Content/js/validation/jquery.validate.min.js"></script>
+    <script src="~/Content/bootstrap/bootstrap-datepicker.js"></script>
+    <script>
+        var app = angular.module('MyApp', ['ngRoute'])
+        app.factory('ShoppingFactory', ['AccountsService', 'ItemsService', '$rootscope', function (AccountsService, ItemsService, $rootscope) {
+            return {
+                createCurrentUser: function () {
+                    this.username = '';
+                    this.password = '';
+                    this.shoppingcart = [];
+                    $rootscope.currentUser = this;
+                },
+                createShoppingCart: function () {
+                    $rootscope.shoppingcart = [];
+
+                    $rootscope.min = 0;
+                    $rootscope.max = 1000;
+                }
+            };
+        }]);
+        app.config(function ($locationProvider) {
+            //$locationProvider.html5Mode(true);
+        });
+    </script>
+    <script src="~/Content/js/customjs/login.js?v=1.0.3"></script>
+    <script>
+        jQuery(function () {
+
+        });
+    </script>
+
+    <!--end::Base Scripts -->
+    <!--begin::Page Snippets -->
+    <!--<script src="~/Content/assets/snippets/custom/pages/user/login.js" type="text/javascript"></script>-->
+    <!--end::Page Snippets -->
+
+</body>
+
+<!-- end::Body -->
+</html>
+
+

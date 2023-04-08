@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "YourOrders";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+
+
+<div class="se-pre-con ng-hide" ng-show="loader">
+
+</div>
+<div id="content" class="site-content" tabindex="-1" ng-controller="OrderController">
+    <div class="container">
+        <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Leasing")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>My Account</nav><div class="site-content-inner">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+
+
+                    <article id="post-3134" class="post-3134 page type-page status-publish hentry">
+
+                        <header class="entry-header" g-show="Quotes.length>0">
+                            <h1 class="entry-title">Your Lease Orders</h1>
+                        </header><!-- .entry-header -->
+                        <div class="entry-content" ng-if="!loader">
+                            <div class="woocommerce" g-show="Quotes.length>0">
+                                <div class="woocommerce-notices-wrapper"></div>
+
+                                <table class="shop_table table table-bordered table-hover table-dark shop_table_responsive" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:150px;" class="product-name">Order No</th>
+                                            <th class="product-name" style="text-align:center">Order Date</th>
+                                            <th class="">Action</th>
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+
+                                        <tr ng-repeat="items in Quotes track by $index" class="woocommerce-cart-form__cart-item cart_item">
+
+
+                                            <td class="product-name" style="word-wrap: break-word;white-space:normal;width:300px;" data-title="Product">
+                                                {{items.mquoteref}}
+                                            </td>
+                                            <td class="product-name" align="center">
+                                                {{items.ccreatedate}}
+                                            </td>
+                                            
+
+                                            <td class="product-subtotal" data-title="Total">
+                                                <form method="post" action="/Leasing/OrderDetail">
+                                                    <input type="hidden" name="quoteid" value="{{items.encmquoteid}}" />
+                                                    <button type="submit" class="btn btn-primary">More Detail</button>
+                                                </form>
+                                            </td>
+
+
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </article>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        app.controller('OrderController', ['$scope', '$http', '$rootScope', '$location', '$sce', '$cookies','$window', function ($scope, $http, $rootScope, $location, $sce, $cookies,$window) {
+            $rootScope.Quotations = [];
+            $scope.Quotes = [];
+            $scope.IsLogedIn = false;
+            $scope.loader = true;
+            if ($rootScope.muserid > 0 ) {
+               
+
+                    $scope.IsLogedIn = true;
+                
+            }
+            else {
+                $window.location.href = "/Leasing/";
+            }
+            $http.get('/Api/OrderApi/GetOrders').success(function (data) {
+                console.log(data);
+                $scope.Quotes = data;
+
+                $scope.loader = false;
+
+
+            });
+        }]);
+        app.controller('ShoppingCartController', ['$scope', '$http', '$rootScope', '$location', '$sce', '$cookies', function ($scope, $http, $rootScope, $location, $sce, $cookies) {
+            $scope.isCheckoutPage = false;
+            $scope.loader = true;
+            $scope.cartdisable = true;
+            $rootScope.shoppingCart = [];
+            $scope.sizes = [{ code: 1, name: 'Monthly' }, { code: 3, name: 'Quaterly' }, { code: 4, name: 'Termly' }, { code: 6, name: 'Bi-annually' }, { code: 12, name: 'Annually' }]
+            $scope.periods = [{ code: 60, name: '5' }, { code: 48, name: '4' }, { code: 36, name: '3' }, { code: 24, name: '2' }, { code: 12, name: '1' }]
+            $scope.cartbutton = function () {
+                $scope.cartdisable = false;
+            }
+            if (!angular.isUndefined($cookies.get('leasebasket'))) {
+                $rootScope.shoppingCart = $cookies.getObject('leasebasket');
+                //    $scope.shoppingCart = $cookies.getObject('leasebasket');
+                $scope.loader = false;
+            }
+        }]);
+
+    </script>
+}

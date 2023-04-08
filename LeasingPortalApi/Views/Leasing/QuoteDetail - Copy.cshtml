@@ -1,0 +1,2922 @@
+﻿
+@{
+    ViewBag.Title = "QuoteDetail";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    //var id = ViewBag.Id;
+}
+
+<style>
+    .approvedtd td {
+        background: #ffd89c;
+        border: 1px solid #bba7a7;
+    }
+
+    .lapprovedtd td {
+        background: #d4edda;
+        border: 1px solid #bba7a7;
+    }
+
+    .lpendingtd td {
+        background: #fff3cd;
+        border: 1px solid #bba7a7;
+    }
+
+    .lrejectedtd td {
+        background: #f8d7da;
+        border: 1px solid #bba7a7;
+    }
+
+    table.cart .actions {
+        padding-top: 0 !important;
+    }
+
+    .tab-pane {
+        padding: 1rem;
+    }
+
+    .md-tabs {
+        position: relative;
+        z-index: 1;
+        padding: .7rem;
+        margin-right: 1rem;
+        margin-bottom: -20px;
+        margin-left: 1rem;
+        background-color: #fff;
+        border: 0;
+        border-radius: .25rem;
+        -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+    }
+
+    .indigo1 {
+        background-color: #3f51b5 !important;
+    }
+
+    .md-tabs .nav-link {
+        color: #082044;
+        border: 0;
+        -webkit-transition: all .4s;
+        transition: all .4s;
+    }
+
+    .nav-tabs .nav-link {
+        border: 1px solid transparent;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+    }
+
+    .nav-link {
+        display: block;
+        padding: .5rem 1rem;
+    }
+
+    .nav-tabs .nav-link:hover, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover {
+        border-color: #3f51b5;
+    }
+
+    .nav-tabs .nav-item {
+        background: rgba(0,0,0,0.05);
+        display: block;
+        position: relative;
+    }
+
+        .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+            color: #fff !important;
+            background-color: #082044 !important;
+            border-color: #e7eaf3 #e7eaf3 #fff;
+        }
+
+    .entry-content .card {
+        font-weight: 400;
+        border: 0;
+        -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    }
+
+    table.cart .actions {
+        padding-top: 0 !important;
+    }
+
+    .btndropdown .btn, .open > .btn.dropdown-toggle, .open > .button.dropdown-toggle, .open > .dropdown-toggle.hero-action-btn, .open > button.dropdown-toggle {
+        background-color: #4d44bd;
+        border-color: #4940b4;
+        border-radius: 0px;
+        color: #fff;
+    }
+
+    
+    .btndropdown .dropdown-menu {
+        margin-top: 0px;
+    }
+
+    .btndropdown .dropdown-item {
+        cursor: pointer;
+    }
+
+    #datepicker .input-group-addon, #datepicker .input-group-btn {
+        width: 9% !important;
+        padding: 0.67rem .75rem !important;
+    }
+
+    
+    .quoteh6 {
+        text-align: left;
+        color: #8a0808 !important;
+        padding-bottom: 15px;
+        font-size: 0.8rem;
+    }
+    .col-xs-3.quoteh6.border,.col-xs-9.border.quoteh6{
+        padding-top:15px;
+    }{
+        padding-top:15px;
+    }
+
+   
+
+    .agreementform {
+        color: #333;
+    }
+
+    .agreementtable {
+        background-color: #082044;
+    }
+
+    .panel-group .panel {
+        border-radius: 0;
+        box-shadow: none;
+        border: 1px solid #EEEEEE;
+        margin-top: 10px;
+    }
+    
+    .panel-default > .panel-heading {
+        padding: 0;
+        border-radius: 0;
+        color: #212121;
+        /*background-color: #FAFAFA;*/
+        /*border-color: #EEEEEE;*/
+    }
+
+    .panel-title {
+        font-size: 14px;
+    }
+
+        .panel-title > a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+        }
+
+    .more-less {
+        float: right;
+        color: #212121;
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #EEEEEE;
+    }
+
+    .nav-tabs .nav-link .tab-items-count {
+        border: 1px solid #fe5300;
+        background:#fe5300;
+        border-radius:50%;
+        position: absolute;
+        top: -8px;
+        right: 0px;
+        color: #fff;
+        
+    }
+
+    .nav-tabs .nav-link.active1 .tab-items-count {
+        background: #fff;
+        color: #333;
+    }
+   #leaseterm1-dialog table.cart tbody > tr > td{
+       border-top-color:#a7a7a7;
+   }
+   #agreementmodal p{
+       margin-bottom:0px;
+   }
+   .price-color-gold{
+       color:#000!important;
+   }
+   .maintable{
+        border-collapse: separate;
+    border-spacing: 0 0.5em;
+    }
+   .nav-item1 a{
+       font-size:1.35em;
+   }
+   .sidebar-navbar.view-all .dropdown-toggle::after{
+       content: "\f105";
+   }
+   .nav-item1 {
+       margin:0px!important;
+   }
+  .nav-item1.active{
+       
+       background:#082044;
+   }
+  .nav-item1 a:before{
+      content: "\f105";
+    font-size: 1.00012rem;
+    line-height: 1;
+    order: -1;
+    margin-left: 0;
+    margin-right: .5rem;
+    display: inline-block;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+  }
+ .nav-item1.active a{
+       color:#fff;
+   }
+ .nav-item1:hover{
+     background:#082044;
+     color:#fff;
+ }
+ .nav-item1:hover a{
+     color:#fff;
+ }
+       @@media(min-width:1100px) {
+        #reviewModal .modal-lg {
+            width: 600px;
+        }
+        #agreementmodal .modal-lg{
+            width:90%;
+            max-width:100%;
+        }
+
+    }
+</style>
+<link rel="stylesheet" href="~/Content/bootstrap/datepicker.css" />
+<div class="se-pre-con" ng-show="loader">
+
+</div>
+<div id="content" class="site-content" tabindex="-1" ng-controller="QuotationController">
+
+    <div class="container">
+        <div id="leaseaddress-dialog">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title ng-binding">Alternative Address</h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="span5"><textarea id="alternative_address"></textarea></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-repeat="button in leaseaddress.buttons" ng-click="executeleaseAction(button.action,button.item,button.qty,button.event)" class="btn btn-primary ng-binding ng-scope">Update Address</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="agreementmodal">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title ng-binding">Lease Agreement</h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="exportpdf2">Export Aggreement</button>
+                            <button type="button" data-dismiss="modal" class="btn" style="background:#000;">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog modal-lg" role="dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        </div>
+                        <div class="modal-body" style="padding:22px;">
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="leaseterm1-dialog">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{leaseTerms1.title}}</h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label>You are going to approve below : </label>
+                                    <table class="shop_table  shop_table_responsive table-bordered table-hover cart woocommerce-cart-form__contents">
+                                        <tr>
+                                            <td>
+                                                <input type="radio" class="" ng-model="replaceProduct" ng-click="updateReplaceProduct(0)" name="selectedProduct" ng-value="0" checked>
+                                            </td>
+                                           <td><img ng-src="http://saicomputer.com/LeaseAdmin/Content/images/product/{{leaseTerms1.oproduct.subpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:auto;height:50px;"></td>
+                                          <td>{{leaseTerms1.oproduct.mproductname}}
+<span ng-if="leaseTerms1.oproduct.suppliername!=null"><br />Supplier: {{leaseTerms1.oproduct.suppliername}}</span></td>
+                                            <td>{{leaseTerms1.oproduct.mprice * leaseTerms1.oproduct.quantity | number:2}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div ng-show="leaseTerms1.moreoption.length>0" class="col-lg-12 form-group">
+                                    <label>You have other different options, you can replace above product by selecting any of below products</label>
+                                    <div class="form-inline col-lg-6" ng-repeat="item in leaseTerms1.moreoption">
+                                        <table class="shop_table  shop_table_responsive table-bordered table-hover cart woocommerce-cart-form__contents">
+                                            <tr>
+                                                <td>
+                                                    <input type="radio" class="" ng-model="replaceProduct" ng-click="updateReplaceProduct(item.Id)" name="selectedProduct" ng-value="item.Id" >
+                                                </td>
+                                                <td><img ng-src="http://saicomputer.com/LeaseAdmin/Content/images/product/{{item.subpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:auto;height:50px;"></td>
+                                                <td>
+                                                    {{item.mprodname}}
+                                                    <span ng-if="item.suppliername!=null"><br />Supplier: {{item.suppliername}}</span>
+                                                </td>
+                                                <td>{{item.mprice * leaseTerms1.oproduct.quantity | number:2}}</td>
+                                            </tr>
+                                        </table>
+                                        
+                                    </div>
+                                    
+                                    
+                                </div>
+                               
+                            </div>
+                            <div class="span5" ng-bind-html="leaseTerms1.message"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-repeat="button in leaseTerms1.buttons" ng-click="executeleaseAction(button.action,button.item,button.qty,button.event)" style="margin-right:5px;" ng-class="btn">{{button.label}}</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="leaseterm-dialog">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{leaseTerms.title}}</h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="span5" ng-bind-html="leaseTerms.message"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-repeat="button in leaseTerms.buttons track by $index" ng-click="executeleaseAction(button.action,button.item,button.qty,button.event)" style="margin-right:5px;" ng-class="btn {{$index==0?'btn-primary':'btn-default'}}">{{button.label}}</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="leaseconfirmation-dialog">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{leaseModal.title}}</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="span5" ng-bind-html="leaseModal.message"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-repeat="button in leaseModal.buttons" ng-click="executeleaseAction(button.action,button.item,button.qty,button.event)" class="btn btn-primary">{{button.label}}</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="quoteModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Quotation Info</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a id="exportpdf" class="btn btn-primary-dark" style="cursor:pointer">Export</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="rquoteModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Quotation Info</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a id="exportpdf" class="btn btn-primary-dark" style="cursor:pointer">Export</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="msgModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">{{bootmsg}}</h4>
+                            <p>{{bootdetailmsg}}</p>
+                            <hr>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a ng-click="setActiveTab(boottab)" class="btn btn-primary-dark" style="cursor:pointer">Go to Next Step</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="reviewModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">User Review</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Whether goods receive in good condition?(Please tick) : </label>
+                                <input type="radio" ng-model="condition" name="rdoResult" ng-value="1" checked> Yes
+                                <input type="radio" ng-model="condition" name="rdoResult" ng-value="0"> No
+                            </div>
+                            <div class="col-xs-12">
+                                <label>Select Date: </label>
+                                <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
+                                    <input class="form-control" type="text" readonly />
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+
+                                <!--<label>Confim Delivery Notes</label>
+                                <textarea class="form-control p-5" rows="4" name="text" ng-model="reviewnote" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a ng-click="SaveReview()" class="btn btn-primary-dark" style="cursor:pointer">Save Delivery Review</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="confirmation-dialog">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{confirmationDialogConfig.title}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="span5">{{confirmationDialogConfig.message}}</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" style="background:#333;" data-dismiss="modal">Cancel</button>
+                            <button type="button" ng-repeat="button in confirmationDialogConfig.buttons" ng-click="executeDialogAction(button.action,button.index,button.step)" class="btn btn-primary">{{button.label}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Home")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span><span ng-bind="breadcum"></span></nav><div class="site-content-inner">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+
+
+                    <article id="post-3134" class="post-3134 page type-page status-publish hentry">
+
+                        <header class="entry-header">
+                            <h1 class="entry-title" ng-bind="pagetitle">Your Lease Basket</h1>
+                        </header><!-- .entry-header -->
+                        <div class="entry-content" ng-if="!loader">
+                            <div id="dataloading" class="se-pre-con" ng-show="dataloading" style="z-index:1111109;">
+
+                            </div>
+                            <div class="row">
+                                <div class="d-none d-xl-block col-xl-3 col-wd-2gdot5">
+                                    <div class="mb-6 border border-width-2 border-color-3 borders-radius-6 box-shadow-1">
+                                        <!-- List -->
+                                        <ul id="sidebarNav" class="list-unstyled mb-0 sidebar-navbar view-all">
+                                            <li><div class="dropdown-title">Browse Lease Menu</div></li>
+                                            <li class="nav-item1" ng-class="getTabClass(1)">
+                                                <a ng-class="getTabClass(1)" ng-click="setActiveTab(1)" id="print-tab-md" data-toggle="tab" href="#print-md" role="tab" aria-controls="home-md"
+                                                   aria-selected="true">
+                                                    Lease Basket
+                                                </a>
+
+                                                
+                                            </li>
+                                            <li class="nav-item1" ng-class="getTabClass(2)">
+                                                <a ng-class="getTabClass(2)" ng-click="setActiveTab(2)" id="lessor-tab-md" data-toggle="tab" href="#order-md" role="tab" aria-controls="order-md"
+                                                   aria-selected="false">
+                                                    Orders
+                                                </a>
+
+
+                                            </li>
+                                            <li class="nav-item1" ng-class="getTabClass(3)">
+                                                <a ng-class="getTabClass(3)" ng-click="setActiveTab(3)" id="lessor-tab-md" data-toggle="tab" href="#order-md" role="tab" aria-controls="order-md"
+                                                   aria-selected="false">
+                                                    Active Lease
+                                                </a>
+
+
+                                            </li>
+                                            <li class="nav-item1" ng-class="getTabClass(4)">
+                                                <a ng-class="getTabClass(4)" ng-click="setActiveTab(4)" id="lessor-tab-md" data-toggle="tab" href="#order-md" role="tab" aria-controls="order-md"
+                                                   aria-selected="false">
+                                                    Wishlist
+                                                </a>
+
+
+                                            </li>
+                                            <li class="nav-item1" ng-class="getTabClass(5)">
+                                                <a ng-class="getTabClass(5)" ng-click="setActiveTab(5)" id="lessor-tab-md" data-toggle="tab" href="#order-md" role="tab" aria-controls="order-md"
+                                                   aria-selected="false">
+                                                    Settings
+                                                </a>
+
+
+                                            </li>
+                                        </ul>
+                                        <!-- End List -->
+                                    </div>
+                                </div>
+                                <div class="tab-content col-xl-9 col-wd-9gdot5">
+                                    <div id="tabloading" class="se-pre-con" style="left: 16px;top: 41px;width: 98%;height: 98%;z-index:111;" ng-show="tabloading">
+                                    </div>
+                         
+                                    <div ng-class="getTabPaneClass(1)" id="print-md" role="tabpanel" aria-labelledby="home-tab-md" class="border box-shadow-1">
+                                        <div class="row">
+                                            <div ng-show="emptyquote" class="col-xs-12">
+                                                <div class="alert alert-warning" role="alert">
+                                                    <h4 class="alert-heading">No Item!</h4>
+                                                    <p>There is no data in your quotations.Please add some data in your lease basket.</p>
+                                                    <hr>
+                                                    <p class="mb-0">Go to <a href="/Leasing/" class="btn btn-secondary">Shop</a></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="woocommerce" ng-show="Quotes.length>0">
+                                                    <div class="woocommerce-notices-wrapper" style="border-bottom:1px solid #a7a7a7;">
+                                                        <h6 class="quoteh6">*  Please select items and click below "Send to Lessor" button</h6>
+                                                    </div>
+                                                    <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents maintable" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="product-remove"></th>
+                                                                <th class="product-name" style="width:80px;display:none;">Quotation Date</th>
+                                                                <th class="product-thumbnail">&nbsp;</th>
+                                                                <th style="width:150px;" class="product-name">Product Detail</th>
+                                                                <th class="product-name">Unit Rental</th>
+                                                                <!--<th class="product-price">Price</th>-->
+                                                                <th class="product-quantity">Quantity</th>
+                                                                <th class="product-subtotal">Total</th>
+                                                                <th class="Reference">Competition Offerings for smiliar product</th>
+                                                                <th class="">Action</th>
+
+                                                                <th class="product-remove">&nbsp;</th>
+
+
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody ng-repeat="item in Quotes |  orderBy:item.type:false track by $index ">
+
+                                                            <tr  class="woocommerce-cart-form__cart-item cart_item border box-shadow-1">
+
+                                                                <td class="product-remove">
+                                                                    <input type="checkbox" ng-checked="leaseexists(item.msubquoteid, leaseselected,item)" ng-click="leasetoggle(item.msubquoteid, leaseselected,item)">
+                                                                </td>
+                                                                <td class="product-date" style="display:none;" data-title="Quotation Date">
+                                                                    {{item.ccreatedate}}
+                                                                </td>
+                                                                <td class="product-thumbnail">
+                                                                    <a href="#">
+                                                                        <img ng-src="http://saicomputer.com/LeaseAdmin/Content/images/product/{{item.subpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" width="300" height="300">
+                                                                    </a>
+                                                                </td>
+
+                                                                <td class="product-name" style="word-wrap: break-word;white-space:normal;width:350px;" data-title="Product">
+                                                                    {{item.mproductname}}
+                                                                    <span style="font-size: 0.675em;" ng-if="item.suppliername!=null"><br /><br />Supplier: {{item.suppliername}}</span>
+                                                                </td>
+                                                                <td class="product-name" align="center" style="width:190px;">
+                                                                    <div class="term-add-to-cart" style="display:block;width:100%;">
+                                                                        <div class="col-xs-6 term-freq" style="padding:0px;">
+                                                                            <label>Frequency</label>
+
+                                                                            <select ng-options="size.code as size.name for size in sizes" ng-init="item.mtermf!=null && 'item.mtermf=item.mtermf' || 'item.mtermf=6';oldterm=item.mtermf;oldp=item.mtermp;" class="form-control termselect" ng-model="item.mtermf" ng-change="updatenwterm(item.mtermf,item,oldterm,oldp,item.mtermp,item.quantity)"></select>
+                                                                            <!--<select ng-init="termdata = {code:item.mtermf}" ng-options="size as size.name for size in sizes track by size.code" class="form-control termselect termf1{{item.mprodvarid}}" ng-model="termdata" ng-change="updateterm(termdata,item,termperiod,item.quantity,1)"></select>-->
+                                                                        </div>
+                                                                        <div class="col-xs-6 term-period" style="padding:0;">
+                                                                            <label>Period</label>
+                                                                            <select ng-options="period.code as period.name for period in periods" ng-init="item.mtermp!=null && 'item.mtermp=item.mtermp' || 'item.mtermp=1';oldterm=item.mtermf;oldp=item.mtermp;" class="form-control termselect" ng-model="item.mtermp" ng-change="updatenwterm(item.mtermf,item,oldterm,oldp,item.mtermp,item.quantity)"></select>
+                                                                            <!--<select ng-init="termperiod = {code: item.mtermp}" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect" ng-model="termperiod" ng-change="updateterm(termdata,item,termperiod,item.quantity)"></select>-->
+
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    <div class="terms">
+                                                                        <span class="woocommerce-Price-amount amount"><span class="price-color-gold" style="color: #eac603;"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice | number:2}}</span><span class="" style="font-size:10px;">{{ getNewTerms(item.mtermf,item.mtermp) }}</span> </span>
+                                                                    </div>
+                                                                </td>
+                                                                <!--<td class="product-price" data-title="Price">
+                                    <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice | number:2}}</span>
+
+                                </td>-->
+
+                                                                <td class="product-quantity" data-title="Quantity">
+                                                                    <div class="quantity" style="margin:0 auto;">
+                                                                        <label for="quantity_5e0706480ca03">Quantity</label>
+                                                                        <input type="number" id="quantity_5e0706480ca03" ng-model="noOfItem[$index]" class="input-text qty text" step="1" min="1" max="500" name="cart[8e68c3c7bf14ad0bcaba52babfa470bd][qty]" value="{{item.quantity}}" ng-change="UpdateCart(item,noOfItem[$index],1)" title="Qty" size="4" inputmode="numeric" aria-labelledby="White NX Mini F1  SMART NX quantity" style="width:4em">
+                                                                    </div>
+                                                                </td>
+
+                                                                <td class="product-subtotal" data-title="Total" style="width:80px;">
+                                                                    <span class="woocommerce-Price-amount amount"><span class="price-color-gold" style="color: #eac603;"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice*item.quantity | number:2}}</span><br /><span class="pm" style="font-size:10px">{{ getNewTerms(item.mtermf,item.mtermp) }}</span></span>
+                                                                </td>
+                                                                <td>
+                                                                    <button type="button" ng-show="(getSubProducts | filter: {mprodid:item.msubquoteid}:true).length>0" ng-click="PrintReferenceSingleQuotes(item.msubquoteid)" style="margin-top:3px;background-color:#082044;" class="btn btn-brand rounded-circle" title="View Reference"><i class="fa fa-eye"></i> </button>
+                                                                    
+                                                                </td>
+                                                                <td data-title="Action">
+                                                                    <button class="btn btn-link" style="border-radius:0;cursor:pointer" ng-click="PrintSingleQuote($index)" title="Print / Email"><i class="fa fa-print"></i></button>
+                                                                </td>
+
+                                                                <td class="product-remove">
+                                                                    <a style="cursor:pointer;" ng-click="deleteFromCart($index,1)" class="remove" aria-label="Remove this item" data-product_id="2623" data-product_sku="5487FB8/08">×</a>
+                                                                </td>
+
+                                                            </tr>
+                                          
+                                                        </tbody>
+                                                        <tbody >
+                                                            <tr>
+                                                                <td colspan="10">
+                                                                    <div class="col-md-12" style="color:#333;">
+                                                                        <p>
+                                                                            <span class="invalid-feedback" style="display:block;" ng-show="IsClicked">Please select item first</span>
+                                                                        </p>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col-md-12" style="margin-left: 0px;display:block;">
+                                                                            <div class="actions wc-proceed-to-checkout" style="margin-bottom:10px;">
+                                                                                <button ng-disabled="EnableBtn()" ng-click="SaveOrder()" class="checkout-button button alt wc-forward">
+                                                                                    Send Order to lessor
+                                                                                </button>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="wc-proceed-to-checkout col-6" style="display:none;">
+                                                                            <a href="" ng-click="PrintQuote()" class="checkout-button button alt wc-forward">
+                                                                                Print / Email Selected
+                                                                            </a>
+                                                                            <a href="" ng-click="PrintAllQuote()" class="checkout-button button alt wc-forward">
+                                                                                Print / Email All
+                                                                            </a>
+
+                                                                        </div>
+                                          
+
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+
+
+                                                </div>
+                                                <div id="successmsg" class="row" ng-show="showmsg">
+                                                    <div class="col-xs-12">
+                                                        <div class="alert alert-success" role="alert">
+                                                            <h4 class="alert-heading">Well done!</h4>
+                                                            <p>Your leasing order successfully saved! Now you can check your order status from your order page.<br />Now,you can view your orders from Go to My Account -> Your order or click below</p>
+                                                            <hr>
+                                                            <p class="mb-0">Go to <a ng-click="setActiveTab(4)" class="btn btn-primary" style="cursor:pointer;">Your Orders</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-class="getTabPaneClass(2)" id="order-md" role="tabpanel" aria-labelledby="order-tab-md" class="border box-shadow-1">
+                                        <div class="row">
+
+                                            <div style="display:none;" class="col-xs-12">
+                                                <div class="alert alert-warning" role="alert">
+                                                    <h4 class="alert-heading">No Item!</h4>
+                                                    <p>Please complete previous steps</p>
+                                                    <hr>
+                                                    <!--<p class="mb-0">For approval,Go to Quotation Approved or <a ng-click="setActiveTab(2)" class="btn btn-primary" style="cursor:pointer;">Click Here</a></p>-->
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12" ng-show="Orders.length>0 && !emptyorder">
+                                                <div class="woocommerce">
+                                                    <div class="woocommerce-notices-wrapper">
+                                                        <h3 style="text-align:center;">Your Orders</h3>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div ng-show="Orders.length>0 && !emptyorder" ng-init="total=0;period=0;freq=0" ng-repeat="ord in Orders">
+                                                    <div class="panel-group col-xs-12" id="oaccordion{{$index}}" style="padding:0px;">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading alert alert-primary mb-0">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" ng-click="toggleIcon($event)" data-parent="#oaccordion{{index}}" href="#ocollapse{{$index}}">
+                                                                        <i class="more-less fa fa-minus"></i>
+                                                                        Order Ref - {{ord.morderref}} Order Date - {{ord.createdate}}
+
+                                                                    </a>
+                                                                    <button type="button" ng-show="ord.agreement=='generate'" class="btn btn-danger rounded pull-right" style="position: absolute;right: 33px;top: 8px;z-index:100" ng-click="getLeasePdf(ord.mleaseid)"> <i class="fa fa-file-pdf"></i></button>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="ocollapse{{$index}}" class="panel-collapse collapse in">
+                                                                <div class="panel-body">
+                                                                    <div class="table-responsive-lg">
+                                                                        <table class="shop_table shop_table_responsive table-bordered table-hover cart woocommerce-cart-form__contents">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th class="product-thumbnail">&nbsp;</th>
+
+                                                                                    <th style="width:150px;" class="product-name">Product Detail</th>
+                                                                                    <th class="product-name">Term Period</th>
+                                                                                    <th class="product-price">Price</th>
+                                                                                    <th class="product-quantity">Quantity</th>
+                                                                                    <th class="product-subtotal">Total</th>
+                                                                                    <th class="product-name">Status</th>
+                                                                                    <th class="product-notes">Notes</th>
+                                                                                    <th class="product-notes"></th>
+                                                                                </tr>
+
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr ng-repeat="item in ord.Product |  orderBy:item.mquotestatus:false track by $index" ng-class="item.mquotestatus=='lpending'?'product-price lpendingtd':item.mquotestatus=='lapproved'?'product-price lapprovedtd':item.mquotestatus=='confirmed' || item.mquotestatus=='ldelivered'?'product-price lapprovedtd':item.mquotestatus=='lreject'?'product-price lrejectedtd':'produuct-price'" class="woocommerce-cart-form__cart-item cart_item">
+
+
+                                                                                    <td class="product-thumbnail">
+                                                                                        <a href="#">
+                                                                                            <img ng-src="http://saicomputer.com/LeaseAdmin/Content/images/product/{{item.subpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" width="300" height="300">
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    <td class="product-name" style="word-wrap: break-word;white-space:normal;width:350px;" data-title="Product">
+                                                                                        {{item.mproductname}}
+                                                                                        <span ng-if="item.suppliername!=null"><br /><br />Supplier: {{item.suppliername}}</span>
+                                                                                    </td>
+                                                                                    <td class="product-name" align="center" style="width:200px;">
+                                                                                        <div class="terms">
+                                                                                            <span class="woocommerce-Price-amount amount">{{ getTerms(item.mtermf,item.mtermp) }}</span>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="product-price" data-title="Price">
+                                                                                        <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice | number:2}}</span>
+
+                                                                                    </td>
+
+                                                                                    <td class="product-quantity" data-title="Quantity" style="width:50px;">
+                                                                                        <div class="quantity" style="margin:0 auto;">
+                                                                                            <span class="woocommerce-Price-amount amount">{{item.quantity}}</span>
+                                                                                            <!--<button class="button" type="button" ng-click="UpdateCart(item,noOfItem[$index])" ng-disabled="noOfItem[$index]==undefined" style="padding:0px;width:1em;background:transparent;color:#000000"><i class="fa fa-refresh"></i></button>-->
+                                                                                        </div>
+                                                                                    </td>
+
+                                                                                    <td class="product-subtotal" data-title="Total">
+                                                                                        <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice*item.quantity | number:2}}</span>
+                                                                                    </td>
+                                                                                    <td data-title="Status">
+                                                                                        <span class="woocommerce-Price-amount amount" ng-show="item.mquotestatus=='lpending'">Pending</span>
+                                                                                        <!--<span class="woocommerce-Price-amount amount" ng-show="item.mquotestatus=='lapproved'">Approved By Lease Company</span>-->
+                                                                                        <span class="woocommerce-Price-amount amount" ng-show="item.mquotestatus=='lreject'">Rejected</span>
+                                                                                        <span class="woocommerce-Price-amount amount" ng-show="item.mquotestatus=='lapproved'">Delivered</span>
+
+                                                                                    </td>
+                                                                                    <td data-title="Notes">
+                                                                                        {{item.mnotes}}
+                                                                                    </td>
+                                                                                    <td data-title="Action">
+                                                                                        <div class="btndropdown dropdown" ng-show="item.mquotestatus=='lapproved' || item.mquotestatus=='confirmed'">
+                                                                                            <button class="btn btn-brand dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                                Action
+                                                                                            </button>
+                                                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                                                <a ng-click="confirmDeliveryModal(item.msubquoteid,$index)" ng-show="item.mquotestatus!='confirmed'" class="dropdown-item">Mark Shipped</a>
+                                                                                                <a ng-show="item.mquotestatus=='confirmed'" class="dropdown-item" href="javascript:;">Request to Return</a>
+                                                                                                <a class="dropdown-item" href="javascript:;">Product Review</a>
+                                                                                                <a class="dropdown-item" href="javascript:;">Supplier Review</a>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+
+                                                                        </table>
+
+
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div ng-class="getTabPaneClass(3)" id="order-md" role="tabpanel" aria-labelledby="order-tab-md" class="border box-shadow-1">
+                                       <div class="row">
+                                           <div class="col-xl-12">
+                                               <p> Data available soon</p>
+                                           </div>
+                                       </div>
+                                    </div>
+                                    <div ng-class="getTabPaneClass(4)" id="order-md" role="tabpanel" aria-labelledby="order-tab-md" class="border box-shadow-1">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <p> Data available soon</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-class="getTabPaneClass(5)" id="order-md" role="tabpanel" aria-labelledby="order-tab-md" class="border box-shadow-1">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <p> Data available soon</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="nav nav-tabs nav-justified md-tabs indigo" id="myTabMD" role="tablist" style="display:none;">
+                                <li class="nav-item">
+                                    <a ng-class="getTabClass(1)" ng-click="setActiveTab(1)" id="print-tab-md" data-toggle="tab" href="#print-md" role="tab" aria-controls="home-md"
+                                       aria-selected="true">1. Print / Email Quotation<span class="tab-items-count count header-icon-counter">{{tabCount[0]}}</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a ng-class="getTabClass(2)" ng-click="setActiveTab(2)" id="quotation-tab-md" data-toggle="tab" href="#quotation-md" role="tab" aria-controls="profile-md"
+                                       aria-selected="false">2. Awaiting Approval<span class="tab-items-count count header-icon-counter">{{tabCount[1]}}</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a ng-class="getTabClass(3)" ng-click="setActiveTab(3)" id="lessor-tab-md" data-toggle="tab" href="#lessor-md" role="tab" aria-controls="lessor-md"
+                                       aria-selected="false">3. Send to lessor<span class="tab-items-count count header-icon-counter">{{tabCount[2]}}</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a ng-class="getTabClass(4)" ng-click="setActiveTab(4)" id="lessor-tab-md" data-toggle="tab" href="#order-md" role="tab" aria-controls="order-md"
+                                       aria-selected="false">4.Orders<span class="tab-items-count count header-icon-counter">{{tabCount[3]}}</span></a>
+                                </li>
+                                <li style="display:none;" class="nav-item">
+                                    <a ng-class="getTabClass(5)" ng-click="setActiveTab(5)" id="lease-tab-md" data-toggle="tab" href="#lease-md" role="tab" aria-controls="lease-md"
+                                       aria-selected="false">5.Lease Aggreement<span class="tab-items-count count header-icon-counter">{{tabCount[4]}}</span></a>
+                                </li>
+                            </ul>
+                            <div class="tab-content card pt-5" id="myTabContentMD" style="display:none;">
+
+                                <div id="tabloading" class="se-pre-con" style="left: 16px;top: 41px;width: 98%;height: 98%;z-index:111;" ng-show="tabloading">
+                                </div>
+                                <div class="row" style="margin-left:0px;margin-right:0px;">
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-success alert-dismissible" ng-show="showmodel">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <strong>{{bootmsg}}</strong> <p>{{bootdetailmsg}}</p>
+                                            <hr />
+                                            <a ng-show="nextstep" ng-click="setActiveTab(boottab)" class="btn btn-primary-dark" style="cursor:pointer">Go to Next Step</a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div ng-class="getTabPaneClass(1)" id="print-md" role="tabpanel" aria-labelledby="home-tab-md">
+                                    <div class="row">
+                                        <div ng-show="emptyquote" class="col-xs-12">
+                                            <div class="alert alert-warning" role="alert">
+                                                <h4 class="alert-heading">No Item!</h4>
+                                                <p>There is no data in your quotations.Please add some data in your lease basket.</p>
+                                                <hr>
+                                                <p class="mb-0">Go to <a href="/Leasing/" class="btn btn-secondary">Shop</a></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <div class="woocommerce" ng-show="Quotes.length>0">
+                                                <div class="woocommerce-notices-wrapper">
+                                                    <h6 class="quoteh6">* Items for which quotations are printed/emailed shall be moved to "Awaiting Approval" basket</h6>
+                                                </div>
+                                                <table class="shop_table shop_table_responsive table-bordered table-hover cart woocommerce-cart-form__contents" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="product-remove"></th>
+                                                            <th class="product-name" style="width:80px;display:none;">Quotation Date</th>
+                                                            <th class="product-thumbnail">&nbsp;</th>
+                                                            <th style="width:150px;" class="product-name">Product Detail</th>
+                                                            <th class="product-name">Unit Rental</th>
+                                                            <!--<th class="product-price">Price</th>-->
+                                                            <th class="product-quantity">Quantity</th>
+                                                            <th class="product-subtotal">Total</th>
+                                                            <th class="Reference">Competition Offerings for smiliar product</th>
+                                                            <th class="">Action</th>
+
+                                                            <th class="product-remove">&nbsp;</th>
+
+
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody ng-repeat="item in Quotes |  orderBy:item.type:false track by $index " >
+
+                                                        <tr ng-class="item.mquotestatus=='pending'?'product-price':'product-price approvedtd'" class="woocommerce-cart-form__cart-item cart_item">
+                                                            
+                                                            <td class="product-remove">
+                                                                <input type="checkbox" ng-checked="exists(item.msubquoteid, selected,item)" ng-click="toggle(item.msubquoteid, selected,item)">
+                                                            </td>
+                                                            <td class="product-date" style="display:none;" data-title="Quotation Date">
+                                                                {{item.ccreatedate}}
+                                                            </td>
+                                                            <td class="product-thumbnail">
+                                                                <a href="#">
+                                                                    <img ng-src="http://saicomputer.com/LeaseAdmin/Content/images/product/{{item.subpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" width="300" height="300">
+                                                                </a>
+                                                            </td>
+
+                                                            <td class="product-name" style="word-wrap: break-word;white-space:normal;width:350px;" data-title="Product">
+                                                                {{item.mproductname}}
+                                                                <span style="font-size: 0.675em;" ng-if="item.suppliername!=null"><br /><br />Supplier: {{item.suppliername}}</span>
+                                                            </td>
+                                                            <td class="product-name" align="center" style="width:190px;">
+                                                                <div class="term-add-to-cart" style="display:block;width:100%;">
+                                                                    <div class="col-xs-6 term-freq" style="padding:0px;">
+                                                                        <label>Frequency</label>
+
+                                                                        <select ng-options="size.code as size.name for size in sizes" ng-init="item.mtermf!=null && 'item.mtermf=item.mtermf' || 'item.mtermf=6';oldterm=item.mtermf;oldp=item.mtermp;" class="form-control termselect" ng-model="item.mtermf" ng-change="updatenwterm(item.mtermf,item,oldterm,oldp,item.mtermp,item.quantity)"></select>
+                                                                        <!--<select ng-init="termdata = {code:item.mtermf}" ng-options="size as size.name for size in sizes track by size.code" class="form-control termselect termf1{{item.mprodvarid}}" ng-model="termdata" ng-change="updateterm(termdata,item,termperiod,item.quantity,1)"></select>-->
+                                                                    </div>
+                                                                    <div class="col-xs-6 term-period" style="padding:0;">
+                                                                        <label>Period</label>
+                                                                        <select ng-options="period.code as period.name for period in periods" ng-init="item.mtermp!=null && 'item.mtermp=item.mtermp' || 'item.mtermp=1';oldterm=item.mtermf;oldp=item.mtermp;" class="form-control termselect" ng-model="item.mtermp" ng-change="updatenwterm(item.mtermf,item,oldterm,oldp,item.mtermp,item.quantity)"></select>
+                                                                        <!--<select ng-init="termperiod = {code: item.mtermp}" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect" ng-model="termperiod" ng-change="updateterm(termdata,item,termperiod,item.quantity)"></select>-->
+
+                                                                    </div>
+                                                                    
+                                                                    
+                                                                </div>
+                                                                <div class="terms">
+                                                                    <span class="woocommerce-Price-amount amount"><span class="price-color-gold" style="color: #eac603;"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice | number:2}}</span><span class="" style="font-size:10px;">{{ getNewTerms(item.mtermf,item.mtermp) }}</span> </span>
+                                                                </div>
+                                                            </td>
+                                                            <!--<td class="product-price" data-title="Price">
+                                                                <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice | number:2}}</span>
+
+                                                            </td>-->
+
+                                                            <td class="product-quantity" data-title="Quantity">
+                                                                <div class="quantity" style="margin:0 auto;">
+                                                                    <label for="quantity_5e0706480ca03">Quantity</label>
+                                                                    <input type="number" id="quantity_5e0706480ca03" ng-model="noOfItem[$index]" class="input-text qty text" step="1" min="1" max="500" name="cart[8e68c3c7bf14ad0bcaba52babfa470bd][qty]" value="{{item.quantity}}" ng-change="UpdateCart(item,noOfItem[$index],1)" title="Qty" size="4" inputmode="numeric" aria-labelledby="White NX Mini F1  SMART NX quantity" style="width:4em">
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="product-subtotal" data-title="Total" style="width:80px;">
+                                                                <span class="woocommerce-Price-amount amount"><span class="price-color-gold" style="color: #eac603;"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice*item.quantity | number:2}}</span><br /><span class="pm" style="font-size:10px">{{ getNewTerms(item.mtermf,item.mtermp) }}</span></span>
+                                                            </td>
+                                                            <td>
+                                                                <table class="referencetable shop_table shop_table_responsive cart woocommerce-cart-form__contents">
+                                                                    <tbody ng-show="(getSubProducts | filter: {mprodid:item.msubquoteid}:true).length>0">
+                                                                        <tr class="insidetd" ng-repeat="data in getSubProducts | filter: {mprodid:item.msubquoteid}:true">
+                                                                            <td >
+                                                                                <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents">
+                                                                                    <tr>
+                                                                                        <td><img ng-src="http://www.saicomputer.com/LeaseAdmin/Content/images/product/{{data.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:auto;height:25px;"></td>
+                                                                                        <td style="font-size: 0.775em;">{{data.mprodname}}<br /><span style="font-size: 0.675em;" ng-if="data.suppliername!=null">Supplier: {{data.suppliername}}</span>
+                                                                                        <td style="white-space:nowrap;padding-bottom:5px;">
+                                                                                         Total: <span class="woocommerce-Price-currencySymbol">£</span>{{data.mprice * item.quantity | number:2}}<br />
+                                                                                            <button style="cursor:pointer;margin-left:5px;margin-top:3px;background-color:#a7a7a7;" ng-click="deleteFromSubCart(data.Id)" class="btn btn-brand rounded-circle pull-right" aria-label="Remove this item" title="Remove Reference"><i class="ec ec-close-remove"></i></button>
+                                                                                            <button type="button" style="margin-top:3px;background-color:#a7a7a7;" class="btn btn-brand rounded-circle pull-right" title="Replace Reference"><i class="fa fa-edit"></i></button>
+
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                        
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="insidetd" ng-show="(getSubProducts | filter: {mprodid:item.msubquoteid}:true).length==1">
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-success rounded-circle" title="Add Reference"><i class="fa fa-plus"></i></button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                    <tbody ng-show="(getSubProducts | filter: {mprodid:item.msubquoteid}:true).length<=0">
+                                                                        <tr class="insidetd">
+                                                                            <td >
+                                                                                <button type="button" class="btn btn-success rounded-circle" title="Add Reference"><i class="fa fa-plus"></i></button>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="insidetd">
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-success rounded-circle" title="Add Reference"><i class="fa fa-plus"></i></button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                            <td data-title="Action">
+                                                                <button class="btn btn-link" style="border-radius:0;cursor:pointer" ng-click="PrintSingleQuote($index)" title="Print / Email"><i class="fa fa-print"></i></button>
+                                                            </td>
+
+                                                            <td class="product-remove">
+                                                                <a style="cursor:pointer;" ng-click="deleteFromCart($index,1)" class="remove" aria-label="Remove this item" data-product_id="2623" data-product_sku="5487FB8/08">×</a>
+                                                            </td>
+
+                                                        </tr>
+                                                        @*<tr ng-if="getSubProducts.length>0">
+                                                            <td colspan="10">
+                                                                <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="insidetd" ng-repeat="data in getSubProducts | filter: {mprodid:item.msubquoteid}:true">
+                                                                                <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents">
+                                                                                    <tr>
+                                                                                        <td class="product-remove">
+                                                                                            <a style="cursor:pointer;" ng-click="deleteFromSubCart($index)" class="remove" aria-label="Remove this item" data-product_id="2623" data-product_sku="5487FB8/08">×</a>
+                                                                                        </td>
+                                                                                        <td><img ng-src="http://www.saicomputer.com/LeaseAdmin/Content/images/product/{{data.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:50px;height:50px;"></td>
+                                                                                        <td>{{data.mprodname}}<br /><span style="font-size:12px;">Supplier: {{data.suppliername}}</span></td>
+                                                                                        <td style="white-space:nowrap">
+                                                                                            <span class="woocommerce-Price-currencySymbol">£</span> {{data.mprice | number:2}}<br />
+
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                            <td class="insidetd" ng-show="(getSubProducts | filter: {mprodid:item.msubquoteid}:true).length==1">
+                                                                                <button type="button" class="btn btn-success"> Add Product</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr ng-if="getSubProducts.length<=0">
+                                                            <td colspan="10">
+                                                                <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="insidetd">
+                                                                                <button type="button" class="btn btn-success"> Add Product</button>
+                                                                            </td>
+                                                                            <td class="insidetd">
+                                                                                <button type="button" class="btn btn-success"> Add Product</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        *@
+
+                                                    </tbody>
+                                                    <tbody style="display:none;">
+                                                        <tr>
+                                                            <td colspan="10">
+
+                                                                <div class="row">
+                                                                    <div class="wc-proceed-to-checkout col-6">
+                                                                        <a href="" ng-click="PrintQuote()" class="checkout-button button alt wc-forward">
+                                                                            Print / Email Selected
+                                                                        </a>
+                                                                        <a href="" ng-click="PrintAllQuote()" class="checkout-button button alt wc-forward">
+                                                                            Print / Email All
+                                                                        </a>
+
+                                                                    </div>
+                                                                    <!--<div class="actions wc-proceed-to-checkout col-6">
+                    <form method="get" action="/Leasing/QuoteApprovement">
+                        <button ng-disabled="(Quotes | filter:{mquotestatus : 'approved'}:true). length <= 0" class="checkout-button button alt wc-forward">Next Process</button>
+                    </form>
+                    <p>Next Step: Approve Product and Generate Order for Leasing company approval</p>
+                </div>-->
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+
+                                                    </tbody>
+                                                </table>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-class="getTabPaneClass(2)" id="quotation-md" role="tabpanel" aria-labelledby="profile-tab-md">
+                                    
+                                    <div class="row">
+
+                                        <div ng-show="emptyprintedquote" class="col-xs-12">
+                                            <div class="alert alert-warning" role="alert">
+                                                <h4 class="alert-heading">No Item!</h4>
+                                                <p>Please, complete step-1 of print / email quotations.</p>
+                                                <hr>
+                                                <p class="mb-0"><a ng-click="setActiveTab(1)" class="btn btn-primary" style="cursor:pointer;">Click Here</a> for move to step 1</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+
+                                            <div class="woocommerce" ng-show="PrintedQuotes.length>0">
+                                                <div class="woocommerce-notices-wrapper">
+                                                    <!--<h3 style="text-align:center;">Approve Quotation</h3>-->
+                                                    <h6 class="quoteh6">* Items for which quotations are approved shall be moved to "Lease Agreement" basket</h6>
+                                                </div>
+                                                <table class="shop_table shop_table_responsive table-bordered table-hover cart woocommerce-cart-form__contents" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="product-name" style="width:80px">Quotation Date</th>
+                                                            <th class="product-thumbnail">&nbsp;</th>
+                                                            <th style="width:150px;" class="product-name">Product Detail</th>
+                                                            <th class="product-name">Unit Rental</th>
+                                                            <!--<th class="product-price">Price</th>-->
+                                                            <th class="product-quantity">Quantity</th>
+                                                            <th class="product-subtotal">Total</th>
+                                                            <th style="white-space:nowrap" class="">Action</th>
+                                                            <th class="product-remove">&nbsp;</th>
+
+
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody ng-repeat="item in PrintedQuotes |  orderBy:item.type:false track by $index ">
+
+                                                        <tr  class="woocommerce-cart-form__cart-item cart_item">
+                                                                               
+                                                            <td class="product-date" data-title="Quotation Date">
+                                                                {{item.ccreatedate}}
+                                                            </td>
+                                                            <td class="product-thumbnail">
+                                                                <a href="#">
+                                                                    <img ng-src="http://saicomputer.com/LeaseAdmin/Content/images/product/{{item.subpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" width="300" height="300">
+                                                                </a>
+                                                            </td>
+
+                                                            <td class="product-name" style="word-wrap: break-word;white-space:normal;width:350px;" data-title="Product">
+                                                                {{item.mproductname}}
+                                                                <span style="font-size: 0.675em;" ng-if="item.suppliername!=null"><br /><br />Supplier: {{item.suppliername}}</span>
+                                                            </td>
+                                                            <td class="product-name" align="center" style="width:200px;">
+                                                                <div class="term-add-to-cart"  style="display:block;width:100%;">
+                                                                    <div class="col-xs-6 term-freq" style="padding:0px;">
+                                                                        <label>Frequency</label>
+
+                                                                        <select  ng-options="size.code as size.name for size in sizes" ng-init="item.mtermf!=null && 'item.mtermf=item.mtermf' || 'item.mtermf=6';oldterm=item.mtermf;oldp=item.mtermp;" class="form-control termselect" ng-model="item.mtermf"  ng-change="updatenwterm(item.mtermf,item,oldterm,oldp,item.mtermp,item.quantity)"></select>
+
+                                                                    </div>
+                                                                    <div class="col-xs-6 term-period" style="padding:0;">
+                                                                        <label>Period</label>
+                                                                        <select ng-options="period.code as period.name for period in periods" ng-init="item.mtermp!=null && 'item.mtermp=item.mtermp' || 'item.mtermp=1';oldterm=item.mtermf;oldp=item.mtermp;" class="form-control termselect" ng-model="item.mtermp" ng-change="updatenwterm(item.mtermf,item,oldterm,oldp,item.mtermp,item.quantity)"></select>
+                                                                        <!--<select ng-init="termperiod = {code: item.mtermp}" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect" ng-model="termperiod" ng-change="updateterm(termdata,item,termperiod,item.quantity)"></select>-->
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="terms">
+                                                                    <span class="woocommerce-Price-amount amount"><span class="price-color-gold" style="color: #eac603;"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice | number:2}}</span><span class="" style="font-size:10px;">{{ getNewTerms(item.mtermf,item.mtermp) }}</span></span>
+                                                                </div>
+                                                            </td>
+                                                            <!--<td class="product-price" data-title="Price">
+                                                                <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice | number:2}}</span>
+
+                                                            </td>-->
+
+                                                            <td class="product-quantity" data-title="Quantity">
+                                                                <div class="quantity" style="margin:0 auto;">
+                                                                    <label for="quantity_5e0706480ca03">Quantity</label>
+                                                                    <span class="woocommerce-Price-amount amount">{{item.quantity}}</span>
+                                                                    <!--<input re type="number" id="quantity_5e0706480ca03" ng-model="noOfItem[$index]" class="input-text qty text" step="1" min="1" max="500" name="cart[8e68c3c7bf14ad0bcaba52babfa470bd][qty]" value="{{item.quantity}}" ng-change="UpdateCart(item,noOfItem[$index])" title="Qty" size="4" inputmode="numeric" aria-labelledby="White NX Mini F1  SMART NX quantity" style="width:4em">-->
+                                                                    <!--<button class="button" type="button" ng-click="UpdateCart(item,noOfItem[$index])" ng-disabled="noOfItem[$index]==undefined" style="padding:0px;width:1em;background:transparent;color:#000000"><i class="fa fa-refresh"></i></button>-->
+                                                                </div>
+                                                            </td>
+
+                                                            <td class="product-subtotal" data-title="Total">
+                                                                <span class="woocommerce-Price-amount amount"><span class="price-color-gold" style="color: #eac603;"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice*item.quantity | number:2}}</span> {{ getNewTerms(item.mtermf,item.mtermp) }}</span>
+                                                            </td>
+                                                            <td data-title="Action" style="white-space:nowrap">
+
+                                                                <button class="btn btn-primary" ng-show="musertype=='Approver'" style="border-radius:0;cursor:pointer;display:inline;" ng-click="updateTermCondition($index,'approved')" title="Approve">Approve</button>
+                                                                <button class="btn btn-link" style="border-radius:0;cursor:pointer;display:inline;" ng-click="PrintSingleItem($index,2)" title="Print / Email"><i class="fa fa-print"></i></button>
+                                                                <!--<button class="btn btn-secondary" style="border-radius:0;cursor:pointer" ng-click="updateStatus($index,'pending')" ng-show="item.mquotestatus=='approved'">Un Approve</button>-->
+                                                            </td>
+                                                            <td class="product-remove">
+                                                                <a style="cursor:pointer;" ng-click="deleteFromCart($index,2)" class="remove" aria-label="Remove this item" data-product_id="2623" data-product_sku="5487FB8/08">×</a>
+                                                            </td>
+
+                                                        </tr>
+                                                      
+
+                                                    </tbody>
+                                                </table>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-class="getTabPaneClass(3)" id="lessor-md" role="tabpanel" aria-labelledby="lessor-tab-md">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+
+                                        </div>
+                                        <div ng-show="emptyquoteapprove" class="col-xs-12">
+                                            <div class="alert alert-warning" role="alert">
+                                                <h4 class="alert-heading">No Item!</h4>
+                                                <p>Please complete previous steps</p>
+                                                <hr>
+                                                <!--<p class="mb-0">For approval,Go to Quotation Approved or <a ng-click="setActiveTab(2)" class="btn btn-primary" style="cursor:pointer;">Click Here</a></p>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12" ng-show="QuotesApprove.length>0 && !showmsg && !generateagreement">
+                                            <div class="woocommerce">
+                                                <div class="woocommerce-notices-wrapper">
+                                                    <!--<h3 style="text-align:center;">Sent To Lessor</h3>-->
+                                                    <h6 class="quoteh6">
+                                                        From this list,  mark check box of each items you wish to include in your lease plan then click "Send item to lessor" for processing.<br />
+                                                        "Send item list to lessor" will send the selected list of items to the lessor for processing and approval.
+                                                    </h6>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-xs-12">
+
+                                            </div>
+                                            <div class="col-xs-3 quoteh6 border">
+                                                <strong>Hirer's Name</strong>
+
+                                            </div>
+
+                                            <div class="col-xs-9 border quoteh6" style="color:#333">
+                                                <strong>{{UserData.morgname}}</strong>
+
+                                            </div>
+                                            <div class="col-xs-3 quoteh6 border">
+                                                <strong>Hirer's Address</strong>
+
+                                            </div>
+
+                                            <div class="col-xs-9 border quoteh6" style="color:#333">
+                                                <strong>{{UserData.maddress1}}, {{UserData.maddress2}}, {{UserData.mcity}}, {{UserData.mpostcode}}</strong>
+
+                                            </div>
+                                            <div ng-show="QuotesApprove.length>0 && !showmsg" ng-init="total=0;period=0;freq=0" ng-repeat="(key,value) in QuotesApprove |  groupBy: '[mtermf,mtermp]'">
+                                                <div class="panel-group col-xs-12" id="accordion{{$index}}" style="padding:0px;">
+                                                    <div class="panel panel-default" >
+                                                        <div class="panel-heading alert alert-primary mb-0">
+                                                            <h4 class="panel-title">
+                                                                <a data-toggle="collapse" ng-click="toggleIcon($event)" data-parent="#accordion{{index}}" href="#collapse{{$index}}">
+                                                                    <i class="more-less fa fa-minus"></i>
+                                                                    Lease Order - {{$index+1}} ({{getTermData(key)}}) - Total {{getTermDataOnly(key)}} payment £xx.xx
+
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="collapse{{$index}}" class="panel-collapse collapse in">
+                                                            <div class="panel-body">
+                                                                <div class="table-responsive-lg">
+                                                                    <table class="shop_table shop_table_responsive table-bordered table-hover cart woocommerce-cart-form__contents">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="product-remove"></th>
+                                                                                <th class="product-name">Desciption</th>
+                                                                                <th class="product-price">Equipment Make</th>
+                                                                                <th class="product-name">Term Period</th>
+                                                                                <th class="product-quantity">New/Used<br />Refurbished</th>
+                                                                                <th class="product-quantity">Qty</th>
+                                                                                <th class="product-price">Price</th>
+                                                                                <th class="product-short-description">Delivery address if different</th>
+                                                                                <th class="product-actions">Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="item in value track by $index">
+                                                                                <td class="product-remove">
+                                                                                <input type="checkbox" ng-checked="leaseexists(item.msubquoteid, leaseselected,item)" ng-click="leasetoggle(item.msubquoteid, leaseselected,item)">
+                                                                                </td>
+                                                                                <td data-title="Product">{{item.mproductname}}</td>
+                                                                                <td data-title="Make">{{item.Make}}</td>
+                                                                                <td class="product-name" align="center" style="width:200px;">
+                                                                                    <div class="term-add-to-cart" ng-show="item.mflexible==1" style="width:100%;">
+                                                                                        <div class="col-xs-6 term-freq" style="padding:0px;">
+                                                                                            <label>Freq</label>
+
+                                                                                            <select ng-options="size.code as size.name for size in sizes" ng-init="item.mtermf!=null && 'item.mtermf=item.mtermf' || 'item.mtermf=6';oldterm=item.mtermf;oldp=item.mtermp;" class="form-control termselect" ng-model="item.mtermf" ng-change="updatenwterm(item.mtermf,item,oldterm,oldp,item.mtermp,item.quantity)"></select>
+
+                                                                                        </div>
+                                                                                        <div class="col-xs-6 term-period" style="padding:0;">
+                                                                                            <label>Period</label>
+                                                                                            <select ng-options="period.code as period.name for period in periods" ng-init="item.mtermp!=null && 'item.mtermp=item.mtermp' || 'item.mtermp=1';oldterm=item.mtermf;oldp=item.mtermp;" class="form-control termselect" ng-model="item.mtermp" ng-change="updatenwterm(item.mtermf,item,oldterm,oldp,item.mtermp,item.quantity)"></select>
+                                                                                            <!--<select ng-init="termperiod = {code: item.mtermp}" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect" ng-model="termperiod" ng-change="updateterm(termdata,item,termperiod,item.quantity)"></select>-->
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="terms">
+                                                                                        <span class="woocommerce-Price-amount amount">{{ getTerms(item.mtermf,item.mtermp) }}</span>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td data-title="Condition">{{item.Condition}}</td>
+                                                                                <td data-title="Quantity" ng-init="$parent.total=$parent.total + (item.mprice * item.quantity);$parent.period=item.mtermp;$parent.freq=item.mtermf">{{item.quantity}}</td>
+                                                                                <td data-title="Price">{{item.mprice | number:2}}</td>
+
+                                                                                <td>
+                                                                                    <span style="display:block;">{{item.Address}}</span>
+                                                                                    <button type="button" class="btn btn-link" style="display:block;" ng-click="AddAddress(item)">Delivery Address</button>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <button class="btn btn-link" ng-show="musertype=='Approver'" style="border-radius:0;cursor:pointer" ng-click="updateApproveStatus2(item,'pending')" ng-show="item.mquotestatus=='approved'" title="Un Approve"><i class="fa fa-reply"></i></button>
+                                                                                    <button class="btn btn-link" style="border-radius:0;cursor:pointer;display:inline;" ng-click="PrintSingleItem(item,3,item)" title="Print / Email"><i class="fa fa-print"></i></button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+
+                                                                    </table>
+                                                                    <div class="col-md-12" style="color:#333;">
+                                                                        <p>
+                                                                            Please Read <a href="javascript:;"> Terms</a> carefully<br />
+                                                                            <input type="checkbox" ng-model="IsChecked[$index]" /> Accept Terms
+                                                                            <span class="invalid-feedback" style="display:block;" ng-show="IsClicked[$index]">please accept terms</span>
+                                                                        </p>
+                                                                    </div>
+
+                                                                    <div class="col-md-12" style="margin-left: 0px;display:block;">
+                                                                        <div class="actions wc-proceed-to-checkout" style="margin-bottom:10px;">
+                                                                            <button ng-disabled="EnableBtn(value)" ng-click="SaveOrder(value,$index)" class="checkout-button button alt wc-forward">
+                                                                                Send Order to lessor
+                                                                            </button>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            
+
+                                        </div>
+                                        <div id="successmsg" class="row" ng-show="showmsg">
+                                            <div class="col-xs-12">
+                                                <div class="alert alert-success" role="alert">
+                                                    <h4 class="alert-heading">Well done!</h4>
+                                                    <p>Your leasing order successfully saved! Now you can check your order status from your order page.<br />Now,you can view your orders from Go to My Account -> Your order or click below</p>
+                                                    <hr>
+                                                    <p class="mb-0">Go to <a ng-click="setActiveTab(4)" class="btn btn-primary" style="cursor:pointer;">Your Orders</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row agreementform" ng-show="generateagreement">
+
+
+
+                                    </div>
+
+
+                                    <!-- Default form register -->
+
+                                </div>
+
+                                <div ng-class="getTabPaneClass(4)" id="order-md" role="tabpanel" aria-labelledby="order-tab-md">
+                                    <div class="row">
+
+                                        <div ng-show="emptyorder" class="col-xs-12">
+                                            <div class="alert alert-warning" role="alert">
+                                                <h4 class="alert-heading">No Item!</h4>
+                                                <p>Please complete previous steps</p>
+                                                <hr>
+                                                <!--<p class="mb-0">For approval,Go to Quotation Approved or <a ng-click="setActiveTab(2)" class="btn btn-primary" style="cursor:pointer;">Click Here</a></p>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12" ng-show="Orders.length>0 && !emptyorder">
+                                            <div class="woocommerce">
+                                                <div class="woocommerce-notices-wrapper">
+                                                    <h3 style="text-align:center;">Your Orders</h3>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div ng-show="Orders.length>0 && !emptyorder" ng-init="total=0;period=0;freq=0" ng-repeat="ord in Orders">
+                                                <div class="panel-group col-xs-12" id="oaccordion{{$index}}" style="padding:0px;">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading alert alert-primary mb-0">
+                                                            <h4 class="panel-title">
+                                                                <a data-toggle="collapse" ng-click="toggleIcon($event)" data-parent="#oaccordion{{index}}" href="#ocollapse{{$index}}">
+                                                                    <i class="more-less fa fa-minus"></i>
+                                                                    Order Ref - {{ord.morderref}} Order Date - {{ord.createdate}}
+                                                                    
+                                                                </a>
+                                                                <button type="button" ng-show="ord.agreement=='generate'" class="btn btn-danger rounded pull-right" style="position: absolute;right: 33px;top: 8px;z-index:100" ng-click="getLeasePdf(ord.mleaseid)"> <i class="fa fa-file-pdf"></i></button>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="ocollapse{{$index}}" class="panel-collapse collapse in">
+                                                            <div class="panel-body">
+                                                                <div class="table-responsive-lg">
+                                                                    <table class="shop_table shop_table_responsive table-bordered table-hover cart woocommerce-cart-form__contents">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="product-thumbnail">&nbsp;</th>
+                                                                                
+                                                                                <th style="width:150px;" class="product-name">Product Detail</th>
+                                                                                <th class="product-name">Term Period</th>
+                                                                                <th class="product-price">Price</th>
+                                                                                <th class="product-quantity">Quantity</th>
+                                                                                <th class="product-subtotal">Total</th>
+                                                                                <th class="product-name">Status</th>
+                                                                                <th class="product-notes">Notes</th>
+                                                                                <th class="product-notes"></th>
+                                                                            </tr>
+
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="item in ord.Product |  orderBy:item.mquotestatus:false track by $index" ng-class="item.mquotestatus=='lpending'?'product-price lpendingtd':item.mquotestatus=='lapproved'?'product-price lapprovedtd':item.mquotestatus=='confirmed' || item.mquotestatus=='ldelivered'?'product-price lapprovedtd':item.mquotestatus=='lreject'?'product-price lrejectedtd':'produuct-price'" class="woocommerce-cart-form__cart-item cart_item">
+
+
+                                                                                <td class="product-thumbnail">
+                                                                                    <a href="#">
+                                                                                        <img ng-src="http://saicomputer.com/LeaseAdmin/Content/images/product/{{item.subpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" width="300" height="300">
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td class="product-name" style="word-wrap: break-word;white-space:normal;width:350px;" data-title="Product">
+                                                                                    {{item.mproductname}}
+                                                                                    <span ng-if="item.suppliername!=null"><br /><br />Supplier: {{item.suppliername}}</span>
+                                                                                </td>
+                                                                                <td class="product-name" align="center" style="width:200px;">
+                                                                                    <div class="terms">
+                                                                                        <span class="woocommerce-Price-amount amount">{{ getTerms(item.mtermf,item.mtermp) }}</span>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="product-price" data-title="Price">
+                                                                                    <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice | number:2}}</span>
+
+                                                                                </td>
+
+                                                                                <td class="product-quantity" data-title="Quantity" style="width:50px;">
+                                                                                    <div class="quantity" style="margin:0 auto;">
+                                                                                        <span class="woocommerce-Price-amount amount">{{item.quantity}}</span>
+                                                                                        <!--<button class="button" type="button" ng-click="UpdateCart(item,noOfItem[$index])" ng-disabled="noOfItem[$index]==undefined" style="padding:0px;width:1em;background:transparent;color:#000000"><i class="fa fa-refresh"></i></button>-->
+                                                                                    </div>
+                                                                                </td>
+
+                                                                                <td class="product-subtotal" data-title="Total">
+                                                                                    <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice*item.quantity | number:2}}</span>
+                                                                                </td>
+                                                                                <td data-title="Status">
+                                                                                    <span class="woocommerce-Price-amount amount" ng-show="item.mquotestatus=='lpending'">Pending</span>
+                                                                                    <!--<span class="woocommerce-Price-amount amount" ng-show="item.mquotestatus=='lapproved'">Approved By Lease Company</span>-->
+                                                                                    <span class="woocommerce-Price-amount amount" ng-show="item.mquotestatus=='lreject'">Rejected</span>
+                                                                                    <span class="woocommerce-Price-amount amount" ng-show="item.mquotestatus=='lapproved'">Delivered</span>
+
+                                                                                </td>
+                                                                                <td data-title="Notes">
+                                                                                    {{item.mnotes}}
+                                                                                </td>
+                                                                                <td data-title="Action">
+                                                                                    <div class="btndropdown dropdown" ng-show="item.mquotestatus=='lapproved' || item.mquotestatus=='confirmed'">
+                                                                                        <button class="btn btn-brand dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                            Action
+                                                                                        </button>
+                                                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                                            <a ng-click="confirmDeliveryModal(item.msubquoteid,$index)" ng-show="item.mquotestatus!='confirmed'" class="dropdown-item">Mark Shipped</a>
+                                                                                            <a ng-show="item.mquotestatus=='confirmed'" class="dropdown-item" href="javascript:;">Request to Return</a>
+                                                                                            <a class="dropdown-item" href="javascript:;">Product Review</a>
+                                                                                            <a class="dropdown-item" href="javascript:;">Supplier Review</a>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+
+                                                                    </table>
+                                                                    
+
+                                                                    
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+
+                                            
+                                            <div id="successmsg" class="row" ng-show="showmsg">
+                                                <div class="col-xs-12">
+                                                    <div class="alert alert-success" role="alert">
+                                                        <h4 class="alert-heading">Well done!</h4>
+                                                        <p>Your leasing order successfully saved! Now you can check your order status from your order page.<br />Now,you can view your orders from Go to My Account -> Your order or click below</p>
+                                                        <hr>
+                                                        <p class="mb-0">Go to <a ng-click="setActiveTab(4)" class="btn btn-primary" style="cursor:pointer;">Your Orders</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div style="display:none;" ng-class="getTabPaneClass(5)" id="lease-md" role="tabpanel" aria-labelledby="lease-tab-md">
+                                    <div class="row">
+
+                                        <div ng-show="emptyaggreement" class="col-xs-12">
+                                            <div class="alert alert-warning" role="alert">
+                                                <h4 class="alert-heading">No Item!</h4>
+                                                <p>Please complete previous steps</p>
+                                                <hr>
+                                                <!--<p class="mb-0">For approval,Go to Quotation Approved or <a ng-click="setActiveTab(2)" class="btn btn-primary" style="cursor:pointer;">Click Here</a></p>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12" ng-show="aggreements.length>0 && !emptyaggreement">
+                                            <div class="woocommerce">
+                                                <div class="woocommerce-notices-wrapper">
+                                                    <h3 style="text-align:center;">Your Aggreements</h3>
+
+                                                </div>
+
+                                            </div>
+                                            <table ng-show="aggreements.length>0 && !emptyaggreement" class="shop_table shop_table_responsive table-bordered table-hover cart woocommerce-cart-form__contents" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        
+                                                        <th>Aggreement Date</th>
+                                                        <th>Lease No.</th>
+                                                        <th>Order Ref.</th>
+                                                       
+                                                        <th class="product-subtotal">Total</th>
+                                                        <th class="product-name">Action</th>
+                                                        
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="item in aggreements |  orderBy:item.mleaseno:false track by $index"  class="woocommerce-cart-form__cart-item cart_item">
+
+
+                                                        <td class="product-name" style="word-wrap: break-word;white-space:normal;width:350px;" data-title="Order Date">
+                                                            <a href="#">{{item.displaydate}}</a>
+                                                        </td>
+                                                        <td class="product-name" style="word-wrap: break-word;white-space:normal;width:350px;" data-title="Order Ref.">
+                                                            <a href="#">{{item.mleaseno}}</a>
+                                                        </td>
+                                                        <td class="product-name" style="word-wrap: break-word;white-space:normal;width:350px;" data-title="Order Ref.">
+                                                            <a href="#">{{item.morderref}}</a>
+                                                        </td>
+                                                        
+                                                        <td class="product-subtotal" data-title="Total">
+                                                            <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.total | number:2}}</span>
+                                                        </td>
+                                                        <td data-title="Action">
+                                                                <button class="btn btn-primary" type="button" onclick="getaggreementpdf()">
+                                                                    <i class="fa fa-file-pdf"></i>
+                                                                </button>
+                                                                
+                                                            
+                                                        </td>
+                                                    </tr>
+
+
+
+
+                                                </tbody>
+                                            </table>
+                                            <div id="successmsg" class="row" ng-show="showmsg">
+                                                <div class="col-xs-12">
+                                                    <div class="alert alert-success" role="alert">
+                                                        <h4 class="alert-heading">Well done!</h4>
+                                                        <p>Your leasing order successfully saved! Now you can check your order status from your order page.<br />Now,you can view your orders from Go to My Account -> Your order or click below</p>
+                                                        <hr>
+                                                        <p class="mb-0">Go to <a ng-click="setActiveTab(4)" class="btn btn-primary" style="cursor:pointer;">Your Orders</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                         
+                    </article>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/js/pdf/jspdf.customfonts.min.js"></script>
+
+    <script src="~/Content/js/pdf/poscript.js"></script>
+    <script src="~/Content/bootstrap/bootstrap-datepicker.js"></script>
+
+    <script type="text/javascript">
+        app.controller('QuotationController', ['filterFilter', '$anchorScroll', '$scope', '$http', '$rootScope', '$location', '$sce', '$cookies', '$window', function (filterFilter, $anchorScroll, $scope, $http, $rootScope, $location, $sce, $cookies, $window) {
+            $rootScope.Quotations = [];
+            $scope.emptyquote = false;
+            $scope.emptyorder = false;
+            $scope.emptyaggreement = false;
+            $scope.emptyquoteapprove = false;
+            $scope.emptyprintedquote = false;
+            $scope.Quotes = [];
+            $scope.QuotesApprove = [];
+            $scope.PrintedQuotes = [];
+            $scope.Orders = [];
+            $scope.aggreements = [];
+            $scope.IsLogedIn = false;
+            $scope.loader = true;
+            $scope.dataloading = false;
+            $scope.tabloading = false;
+            $scope.generateagreement = false;
+            $scope.msubquote = 0;
+            $scope.position = 0;
+            $scope.bootmsg = "";
+            $scope.bootdetailmsg = "";
+            $scope.boottab = 0;
+            $scope.replaceProduct = 0;
+            $scope.showmodel = "";
+            $scope.nextstep = true;
+            $scope.edate = "@(DateTime.Now.ToString("yyyy-MM-dd"))";
+            $scope.condition = "";
+            $scope.morder1 = 0;
+            $scope.sizes = [{ code: 1, name: 'Monthly' }, { code: 3, name: 'Quaterly' }, { code: 4, name: 'Termly' }, { code: 6, name: 'Bi-annually' }, { code: 12, name: 'Annually' }]
+            $scope.periods = [{ code: 60, name: '5 years' }, { code: 48, name: '4 years' }, { code: 36, name: '3 years' }, { code: 24, name: '2 years' }, { code: 12, name: '1 years' }]
+            $scope.selected = [];
+            $scope.leaseselected = [];
+            $scope.mnotes = "";
+            $scope.SelectedQuotesApprove = [];
+            $scope.UserData = [];
+            $scope.agreementdata = [];
+            $scope.IsChecked = {};
+            $scope.IsClicked = false;
+            $scope.getSubProducts = [];
+            $scope.tabCount = ["", "", "", "", ""];
+            $scope.breadcum = "Your Lease Basket";
+            $scope.pagetitle = "Your Lease Basket";
+            //$scope.item = {};
+            $scope.toggleIcon = function ($event) {
+                console.log($event.target);
+                jQuery($event.target).parent().find(".more-less").toggleClass('fa-plus fa-minus');
+            };
+            $scope.leaseModal = {
+                title: "Warning!!!",
+                message: "Are you sure you want to delete?",
+                buttons: [{
+                    label: "Delete",
+                    action: "delete"
+                }]
+            };
+            $scope.confirmationDialogConfig = {
+                title: "Caution!!!",
+                message: "Are you sure you want to delete?",
+                buttons: [{
+                    label: "Delete",
+                    action: "delete"
+                }]
+            };
+            if ($rootScope.muserid > 0) {
+                $scope.IsLogedIn = true;
+            }
+            else {
+                $window.location.href = "/Leasing/";
+            }
+            function initTabs() {
+                tabClasses = ["nav-link", "nav-link", "nav-link", "nav-link", "nav-link","nav-link"];
+                tabPaneClasses = ["", "", ""];
+
+            }
+
+            $scope.getTabClass = function (tabNum) {
+                return tabClasses[tabNum];
+            };
+
+            $scope.getTabPaneClass = function (tabNum) {
+                return "tab-pane fade" + tabPaneClasses[tabNum];
+            }
+            loadcompareproducts();
+            $scope.setActiveTab = function (tabNum) {
+                initTabs();
+                $scope.showmodel = false;
+                //jQuery("#msgModal").modal("hide");
+                if (tabNum == 1) {
+                    $scope.breadcum = "Your Lease Basket";
+                    $scope.pagetitle = "Your Lease Basket";
+                    $scope.generateagreement = false;
+                    loadquotes();
+                }
+                if (tabNum == 2) {
+                    $scope.breadcum = "Orders";
+                    $scope.pagetitle = "Orders";
+                    $scope.generateagreement = false;
+                    $scope.getorders();
+                    //$scope.getprintedquote();
+                }
+                if (tabNum == 3) {
+                    $scope.breadcum = "Active Lease";
+                    $scope.pagetitle = "Active Lease";
+                    //$scope.getapprovequote();
+
+                }
+                if (tabNum == 4) {
+                    $scope.breadcum = "Wishlist";
+                    $scope.pagetitle = "Wishlist";
+                    $scope.generateagreement = false;
+                    
+
+                }
+                if (tabNum == 5) {
+                    $scope.breadcum = "Settings";
+                    $scope.pagetitle = "Settings";
+                    $scope.generateagreement = false;
+                    //$scope.getleaseaggreement();
+
+                }
+                tabClasses[tabNum] = "nav-link active";
+                tabPaneClasses[tabNum] = "in active";
+            };
+
+            //Initialize
+            initTabs();
+            $scope.setActiveTab(1);
+            function getCounter() {
+                $http.get('/api/QuotationApi/GetTotalNumberId?getid=' + $rootScope.mschoolid).success(function (data) {
+                    if (data.length > 0) {
+                        $scope.tabCount[0] = data[0];
+                        $scope.tabCount[1] = data[1];
+                        $scope.tabCount[2] = data[2];
+                        $scope.tabCount[3] = data[3];
+                        $scope.tabCount[4] = data[4];
+                    }
+                });
+            }
+
+            //loadquotes();
+            function loadcompareproducts() {
+                $http.get('/api/QuotationApi/GetCompareProductData?id=' + $rootScope.mschoolid).success(function (data2) {
+                    $scope.getSubProducts = data2;
+                });
+            }
+            function loadquotes() {
+                //alert("called");
+                $http.get('/api/QuotationApi/GetQuoteById?getid=' + $rootScope.mschoolid).success(function (data) {
+                    console.log(data);
+                    if (data.length <= 0) {
+                        $scope.emptyquote = true;
+                        $scope.Quotes = [];
+                    }
+                    else {
+                        $scope.emptyquote = false;
+                        $scope.Quotes = data;
+                        setTimeout(function () {
+                            for (var i = 0; i < data.length; i++) {
+                                //$scope.getSubProducts2(data[i]);
+                                var termf = ".termf1" + data[i].mprodvarid;
+                                var termp = ".termp1" + data[i].mprodvarid;
+
+                                jQuery(termf).val(data[i].mtermf);
+                                jQuery(termp).val(data[i].mtermp);
+                            }
+                        }, 100);
+
+                    }
+                    //getCounter();
+                    $scope.loader = false;
+
+
+                });
+
+            }
+            $scope.getSubProducts2 = function (item) {
+                $http.get('/api/QuotationApi/GetCompareProductData?id=' + item.msubquoteid).success(function (data2) {
+                    if (data2.length > 0) {
+                        $scope.getSubProducts.push(data2);
+                    }
+
+                });
+                console.log($scope.getSubProducts);
+            }
+            $scope.getprintedquote = function () {
+                $scope.tabloading = true;
+                $http.get('/api/QuotationApi/GetPrintedQuoteById?getid=' + $rootScope.mschoolid).success(function (data) {
+                    console.log(data);
+
+                    if (data == "empty") {
+                        $scope.emptyprintedquote = false;
+                        $scope.PrintedQuotes = [];
+
+                    }
+                    if (data.length <= 0) {
+                        $scope.emptyprintedquote = false;
+                        $scope.PrintedQuotes = [];
+                    }
+                    else {
+                        $scope.emptyprintedquote = false;
+                        $scope.PrintedQuotes = data;
+
+
+                    }
+                    getCounter();
+                    $scope.tabloading = false;
+
+
+                });
+            }
+            $scope.getorders = function () {
+                $scope.tabloading = true;
+                $http.get('/api/OrderApi/GetNewOrder?getid=' + $rootScope.mschoolid).success(function (data) {
+
+                    if (data.length <= 0) {
+                        $scope.emptyorder = false;
+                        $scope.Orders = [];
+                    }
+                    else {
+                        $scope.Orders = data;
+                        $scope.emptyorder = false;
+                    }
+                   // getCounter();
+                    $scope.tabloading = false;
+
+
+                });
+            }
+            $scope.getleaseaggreement=function () {
+                $scope.tabloading = true;
+                $http.get('/api/OrderApi/GetLeaseAggreementId?getid=' + $rootScope.mschoolid).success(function (data) {
+
+                    if (data.length <= 0) {
+                        $scope.emptyaggreement = true;
+                        $scope.aggreements = [];
+                    }
+                    else {
+                        $scope.aggreements = data;
+                        $scope.emptyaggreement = false;
+                    }
+                    getCounter();
+                    $scope.tabloading = false;
+
+
+                });
+            }
+            $scope.getapprovequote = function () {
+                $scope.tabloading = true;
+                $http.get('/api/QuotationApi/GetApproveQuoteById?getid=' + $rootScope.mschoolid).success(function (data) {
+                    if (data.length <= 0) {
+                        $scope.emptyquoteapprove = false;
+                        $scope.QuotesApprove = [];
+                    }
+                    else {
+                        $scope.QuotesApprove = data;
+                        $scope.SelectedQuotesApprove = data;
+                        $scope.emptyquoteapprove = false;
+                    }
+                    getCounter();
+                    $scope.tabloading = false;
+
+
+                });
+                $http.get("api/UserApi/getUserDatas?getid=" + $rootScope.muserid).success(function (data, status) {
+                    $scope.UserData = data;
+                    console.log($scope.UserData.morgname);
+                });
+            };
+            $scope.toggle = function (item, list, quote) {
+                var idx = list.indexOf(item);
+                quote.Selected = !quote.Selected;
+                if (idx > -1) {
+                    list.splice(idx, 1);
+                    console.log(list);
+                }
+                else {
+                    list.push(item);
+                    console.log(list);
+
+                }
+            };
+
+            $scope.exists = function (item, list, quote) {
+                return list.indexOf(item) > -1;
+            };
+            $scope.leasetoggle = function (item, list, quote) {
+
+                var idx = list.indexOf(item);
+                quote.Selected = !quote.Selected;
+
+                if (idx > -1) {
+                    list.splice(idx, 1);
+                    console.log(list);
+                }
+                else {
+                    list.push(item);
+                    console.log(list);
+                }
+            };
+            $scope.leaseexists = function (item, list) {
+                return list.indexOf(item) > -1;
+            };
+            $rootScope.shoppingCart.totalPrice = 0;
+
+            $scope.updatetermdata = function (item, code) {
+               
+                item.termdata = { code: code };
+                console.log("termdata"+item.termdata);
+            }
+
+            $scope.updatenwterm = function (termfreq, item, oldtermf,oldp,termperiod, qty, step) {
+                console.log(termfreq);  
+                var freq = termfreq;
+                var period = termperiod;
+                var oldf = oldtermf;
+                var oldp = oldp;
+                var oldprice = item.mprice;
+                var mbaseprice = (item.mprice * oldp * 0.9) / oldf;
+                item.mtermf = freq;
+                item.mtermp = period;
+
+                item.mprice = (mbaseprice * freq) / (period * 0.9);
+                $scope.UpdateTotal(oldprice, item.mprice, item, step);
+                $scope.UpdateSubCart(item.msubquoteid, freq, period);
+                console.log(item);
+                //console.log($scope.Quotes);
+                //$scope.UpdateCart(item, qty);
+            }
+
+            $scope.updateterm = function (termfreq, item, termperiod, qty, step) {
+                var freq = termfreq.code;
+                var period = termperiod.code;
+                var oldf = item.mtermf;
+                var oldp = item.mtermp;
+                var oldprice = item.mprice;
+                var mbaseprice = (item.mprice * oldp * 0.9) / oldf;
+                item.mtermf = freq;
+                item.mtermp = period;
+
+                item.mprice = (mbaseprice * freq) / (period * 0.9);
+                $scope.UpdateTotal(oldprice, item.mprice, item, step);
+                
+                //$scope.UpdateCart(item, qty);
+            }
+            $scope.UpdateSubCart = function (id, mterf, mtermp) {
+                if ($scope.getSubProducts.length > 0) {
+                    $scope.getSubProducts.forEach(function (obj) {
+                        if (obj.mprodid == id) {
+                            obj.mterf = mterf;
+                            obj.mtermp = mtermp;
+                            obj.mprice = (obj.mbasicprice * mterf) / (mtermp * 0.9);
+                        }
+
+                    });
+                }
+
+            }
+            $scope.UpdateTotal = function (oldprice, newprice, item, step) {
+                var passdata = item;
+                $http.post("api/QuotationApi/updateQuoteDatas", passdata).success(function (data, status) {
+                    if (step == 1) {
+
+                        $scope.Quotes.mquotetotal = $scope.Quotes.mquotetotal - oldprice + newprice;
+
+                    }
+                    else if (step == 2) {
+                        $scope.PrintedQuotes.mquotetotal = $scope.PrintedQuotes.mquotetotal - oldprice + newprice;
+                    }
+                });
+            };
+            $scope.UpdateCart = function (item, no,step) {
+                var oldprice = item.mprice;
+                item.quantity = no;
+                var newprice = item.mprice * no;
+                $scope.UpdateTotal(oldprice, newprice,item,step);
+              
+            };
+            $scope.getTermData = function (key) {
+                var str = key.split(',');
+                var term = $scope.getTerms(Number(str[0]), Number(str[1]));
+                return term;
+            };
+            $scope.getTermDataOnly = function (key) {
+                var str = key.split(',');
+                var term = $scope.getOnlyTerms(Number(str[0]), Number(str[1]));
+                return term;
+            };
+
+            $scope.getOnlyTerms = function (mtermf, mtermp) {
+                var msg = "";
+                var p = "";
+
+                switch (mtermf) {
+                    case 1:
+                        msg = p + "monthly";
+                        break;
+                    case 3:
+                        msg = p + "quarterly";
+                        break;
+                    case 4:
+                        msg = p + "termly";
+                        break;
+                    case 6:
+                        msg = p + "bi-annually";
+                        break;
+                    case 12:
+                        msg = p + "annually";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+            $scope.getNewTerms = function (mtermf, mtermp) {
+                var msg = "";
+                var p = "";
+
+                switch (mtermf) {
+                    case 1:
+                        msg = p + " per month";
+                        break;
+                    case 3:
+                        msg = p + " per quarter";
+                        break;
+                    case 4:
+                        msg = p + " per term";
+                        break;
+                    case 6:
+                        msg = p + " per bi-annual";
+                        break;
+                    case 12:
+                        msg = p + " per annual";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+            $scope.getTerms = function (mtermf, mtermp) {
+                var msg = "";
+                var p = "";
+                if (mtermp != null) {
+                    p = mtermp / 12;
+                }
+
+                switch (mtermf) {
+                    case 1:
+                        msg = p + " years monthly";
+                        break;
+                    case 3:
+                        msg = p + " years quarterly";
+                        break;
+                    case 4:
+                        msg = p + " years termly";
+                        break;
+                    case 6:
+                        msg = p + " years bi-annually";
+                        break;
+                    case 12:
+                        msg = p + " years annually";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+            $scope.getPeriodInWords = function (mtermf) {
+                switch (mtermf) {
+                    case 1:
+                        msg = "One";
+                        break;
+                    case 2:
+                        msg = "Four";
+                        break;
+                    case 3:
+                        msg = "Three";
+                        break;
+                    case 4:
+                        msg = "Four";
+                        break;
+                    case 5:
+                        msg = "Five";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+            $scope.getTotalPrice = function () {
+                $scope.Quotes.forEach(function (itemObj) {
+                    $scope.Quotes.totalPrice = Number($scope.Quotes.totalPrice) + Number($scope.getItemPrice(itemObj));
+                });
+            };
+            $scope.getItemPrice = function (itemObj) {
+                var itemPrice = 0;
+                itemPrice = (Number(itemObj.Product.mprice) * Number(itemObj.Product.quantity));
+                return itemPrice;
+            };
+            $scope.deleteFromCart = function (index, step) {
+                console.log("index:");
+                $scope.confirmationDialogConfig = {
+                    title: "Warning!!!",
+                    message: "Are you sure you want to delete?",
+                    buttons: [{
+                        label: "Delete",
+                        action: "delete",
+                        step: step,
+                        index: index
+                    }]
+                };
+                $scope.showDialog(true);
+            };
+            $scope.deleteFromSubCart = function (index) {
+                //var id = $cookies.getObject('leasebasket');
+                $scope.confirmationDialogConfig = {
+                    title: "Warning!!!",
+                    message: "Are you sure you want to delete?",
+                    buttons: [{
+                        label: "Delete Reference",
+                        action: "deleterelatedproduct",
+                        step: 1,
+                        index: index
+                    }]
+                };
+                $scope.showDialog(true);
+            };
+            $scope.executeDialogAction = function (action, index, step) {
+                if (typeof $scope[action] === "function") {
+                    $scope[action](index, step);
+                }
+            };
+            $scope.showDialog = function (flag) {
+                jQuery("#confirmation-dialog .modal").modal(flag ? 'show' : 'hide');
+            };
+
+            $scope.GenerateAgreement = function () {
+                $scope.generateagreement = true;
+                $scope.SelectedQuotesApprove = filterFilter($scope.QuotesApprove, { Selected: true });
+                var d = [];
+                $scope.SelectedQuotesApprove.forEach(function (e) {
+                    var dd = {
+                        "muserid": $rootScope.mschoolid,
+                        "msubquoteid": e.msubquoteid
+                    }
+                    d.push(dd);
+                });
+                $http.get("api/UserApi/getUserDatas?getid=" + $rootScope.muserid).success(function (data, status) {
+                    $scope.UserData = data;
+                    console.log($scope.UserData.morgname);
+                });
+                $location.hash('successmsg');
+                $anchorScroll();
+            }
+            $scope.BackToAgreement = function () {
+                $scope.generateagreement = false;
+                $scope.SelectedQuotesApprove = [];
+                var offset = jQuery('#lessor-md').offset();
+                o = offset.top - 150;
+                $window.scrollTo(0, o);
+                //$location.hash('successmsg');
+                //$anchorScroll();
+            }
+            $scope.setData = function (index, item) {
+                //var d = [];
+                if (item.length > 0) {
+                    var s = "";
+                    item.forEach(function (e) {
+                        if (s == "") {
+                            s = e.msubquoteid;
+                        }
+                        else {
+                            s = s + "," + e.msubquoteid;
+                        }
+                    });
+                    var dd = {
+                        "Itemlist": s
+                    }
+                    $scope.agreementdata.push(dd);
+                }
+
+            }
+            $scope.AddAddress = function (item) {
+                $scope.leaseaddress = {
+                    buttons: [{
+                        label: "UpdateAddress",
+                        action: "UpdateAddress",
+                        item: item,
+                        qty: 1,
+                        event: 0,
+                    }]
+                };
+                jQuery("#alternative_address").val(item.Address);
+                jQuery("#leaseaddress-dialog .modal").modal('show');
+            }
+            $scope.UpdateAddress = function (item) {
+                var address = jQuery("#alternative_address").val();
+                item.Address = address;
+                jQuery("#alternative_address").val('');
+                jQuery("#leaseaddress-dialog .modal").modal('hide');
+
+            }
+            $scope.SaveAgreement = function (item) {
+                $scope.leaseTerms = {
+                    buttons: [{
+                        label: "Continue",
+                        action: "SaveOrder",
+                        item: item,
+                        qty: 1,
+                        event: 0,
+                    }]
+                };
+                jQuery("#leaseterm-dialog .modal").modal('show');
+                toastr.success("Address updated successfully", "Success");
+            };
+            $scope.EnableBtn = function () {
+                var f = true;
+                console.log("va");
+                var value = $scope.Quotes;
+                value.forEach(function (obj) {
+                    
+                    if(obj.Selected==true)
+                    {
+                        f = false;
+                    }
+                });
+                if (f) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+                
+            }
+            $scope.SaveOrder = function () {
+                if (!$scope.IsChecked) {
+                    $scope.IsClicked = true;
+                    return;
+                }
+                var items = $scope.Quotes.filter(function (prods) {
+                    return (prods.Selected==true);
+                });
+                if (items.length <= 0) {
+                    $scope.IsClicked = true;
+                    return;
+                }
+                //jQuery("#leaseterm-dialog .modal").modal('hide');
+                var datas = {
+                    "Product":items,
+                    "muserid": $rootScope.mschoolid,
+                    "mnotes": $scope.mnotes
+                };
+                console.log(datas);
+                $scope.tabloading = true;
+                //$scope.Quotes.SelectedQuote=$scope.selected;
+
+                $http.post("api/ProductApi/SaveOrder", datas).success(function (data, status) {
+                    if (data == "Save") {
+                        $scope.IsChecked = false;
+                        $scope.IsClicked = false;
+
+                        $scope.tabloading = false;
+                        toastr.success("Please check your order in Your order", "Order sent succeesfully to lessor");
+                        loadquotes();
+                        $scope.bootmsg = "Order sent succeesfully to lessor";
+                        $scope.bootdetailmsg = "Please check your order in Your order";
+                        $scope.boottab = 4;
+                        $scope.nextstep = true;
+                        //$scope.showmodel = true;
+                        //jQuery("#msgModal").modal("show");
+                    }
+                });
+            };
+            $scope.updateTermCondition = function (index, quotestatus) {
+                var getid = $scope.PrintedQuotes[index].msubquoteid;
+                var oproduct = $scope.PrintedQuotes[index];
+                var moreoption = [];
+                if ($scope.getSubProducts.length > 0) {
+                    moreoption = $scope.getSubProducts.filter(function (obj) {
+                        return obj.mprodid === getid;
+                    });
+                }
+                console.log("More");
+                console.log(moreoption);
+                $scope.leaseTerms1 = {
+                    title: "Approval Required!",
+                    message: "Do you want to make terms flexible for further?",
+                    moreoption: moreoption,
+                    oproduct:oproduct,
+                    buttons: [{
+                        label: "Yes, make it flexible",
+                        action: "updateStatus",
+                        item: index,
+                        qty: quotestatus,
+                        event: 1
+                    },
+                    {
+                        label: "No, make it fixed",
+                        action: "updateStatus",
+                        item: index,
+                        qty: quotestatus,
+                        event: 0
+                    },
+                    ]
+
+                };
+                jQuery("#leaseterm1-dialog .modal").modal('show');
+            };
+            $scope.updateReplaceProduct = function (itemid) {
+                $scope.replaceProduct = itemid;
+            };
+            $scope.updateStatus = function (index, quotestatus, flag) {
+                // console.log($scope.Quotes.Product[index]);
+                var flexible = 0;
+                console.log($scope.replaceProduct);
+                if ($scope.replaceProduct != 0) {
+                    
+                    var item = $scope.PrintedQuotes[index];
+                    var rproduct = $scope.getSubProducts.filter(function (obj) {
+                        console.log(obj);
+                        return obj.Id == $scope.replaceProduct;
+                    });
+                    var rproduct2 = {
+                        "mprodvarid": rproduct[0].mprodvarid,
+                        "msupplierid": rproduct[0].msupplierid,
+                        "mprice":rproduct[0].mprice
+                        };
+                    $scope.getSubProducts.forEach(function (obj) {
+                        if(obj.Id === $scope.replaceProduct)
+                        {
+                            obj.mprodvarid=item.mprodvarid;
+                            obj.msupplierid=item.msupplierid;
+                            obj.mprice=item.mprice;
+                        }
+                    });
+                    $scope.PrintedQuotes[index].mprodvarid = rproduct2.mprodvarid;
+                    $scope.PrintedQuotes[index].msupplierid = rproduct2.msupplierid;
+                    $scope.PrintedQuotes[index].mprice = rproduct2.mprice;
+                    
+                }
+                
+                if (flag == 1) {
+                    flexible = 1;
+                }
+                else {
+                    flexible = 0;
+                }
+                jQuery("#leaseterm1-dialog .modal").modal('hide');
+                var getid = $scope.PrintedQuotes[index].msubquoteid;
+                $http.get("api/QuotationApi/updateQuoteStatus?getid=" + getid + "&status=" + quotestatus + "&flexible=" + flexible + "&muserid=" + $rootScope.muserid).success(function (data, status) {
+                    if (data == "Updated") {
+                        if ($scope.replaceProduct != 0) {
+                            $scope.UpdateTotal($scope.PrintedQuotes[index].mprice, $scope.PrintedQuotes[index].mprice, $scope.PrintedQuotes[index], 2);
+                            $http.post("api/QuotationApi/updateRelatedProduct", rproduct).success(function (data, status) {
+                            });
+                        }
+                        $scope.replaceProduct = 0;
+                        $scope.getprintedquote();
+                        $scope.bootmsg = "Approve Successfully";
+                        $scope.bootdetailmsg = "Product move to step-3 sent to lessor";
+                        $scope.boottab = 3;
+                        $scope.nextstep = true;
+                        //$scope.showmodel = true;
+                        //jQuery("#msgModal").modal("show");
+                        toastr.success("Product move to step-3 sent to lessor", "Approve Successfully");
+
+                        //$scope.PrintedQuotes[index].mquotestatus = quotestatus;
+
+                    }
+                    else {
+                        toastr.error("Something went wrong", "Warning");
+                    }
+                });
+                $scope.showDialog();
+            };
+
+            $scope.updateApproveStatus2 = function (item, quotestatus) {
+                // console.log($scope.Quotes.Product[index]);
+                var getid = item.msubquoteid;
+                $http.get("api/QuotationApi/updateQuoteStatus?getid=" + getid + "&status=" + quotestatus + "&flexible=0&muserid=" + $rootScope.muserid).success(function (data, status) {
+                    if (data == "Updated") {
+
+                        //toastr.success("Quotation status is updated successfully!", "Success");
+                        $scope.getapprovequote();
+                        $scope.bootmsg = "Un Approve Successfully";
+                        $scope.bootdetailmsg = "Product move to step-2 approve quotation";
+                        $scope.boottab = 3;
+                        $scope.nextstep = false;
+                        //$scope.showmodel = true;
+                        /*$scope.bootmsg = "Approve Successfully";
+                        $scope.bootdetailmsg = "Please check your order in Your order";
+                        $scope.boottab = 4;
+                        jQuery("#msgModal").modal("show");
+                        */
+                        toastr.success("Product move to step-2 approve quotation", "Un Approve Successfully");
+                    }
+                    else {
+                        toastr.error("Something went wrong", "Warning");
+                    }
+                });
+                $scope.showDialog();
+            };
+
+            $scope.delete = function (index, step) {
+                console.log("Index :" + index + " Step:" + step);
+                var getid = 0;
+
+                if (step == 1) {
+                    getid = $scope.Quotes[index].msubquoteid;
+                }
+                else if (step == 2) {
+                    getid = $scope.PrintedQuotes[index].msubquoteid;
+                }
+                $http.get("api/QuotationApi/deleteSubQuoteById?getid=" + getid).success(function (data, status) {
+                    if (data == "Delete") {
+                        if (step == 1) {
+                            toastr.success("Your item remove from lease basket sucessfully!", "Success");
+                            $scope.Quotes.splice(index, 1);
+                            if ($scope.Quotes.length <= 0) {
+                                $scope.emptyquote = true;
+                            }
+                        }
+                        else if (step == 2) {
+                            toastr.success("Your item remove from lease basket sucessfully!", "Success");
+                            $scope.PrintedQuotes.splice(index, 1);
+                            if ($scope.PrintedQuotes.length <= 0) {
+                                $scope.emptyprintedquote = false;
+                                
+                            }
+                            getCounter();
+                        }
+                    }
+                    else {
+                        toastr.error("Something went wrong", "Warning");
+                    }
+                });
+                $scope.showDialog();
+            };
+            $scope.deleterelatedproduct = function (index, step) {
+                var id = index;
+                $http.get('/api/QuotationApi/DeleteCompareProduct?id=' + id).success(function (data) {
+                    if (data == "delete") {
+                        var qst = $scope.getSubProducts.filter(function (prod) {
+                            return prod.Id !== id;
+                        });
+                        $scope.getSubProducts = qst;
+                        toastr.success("Related Product remove from your basket", "Success");
+                    }
+                    $scope.showDialog(false);
+                });
+
+            };
+
+            jQuery(function () {
+                jQuery("#datepicker").datepicker({
+                    autoclose: true,
+                    todayHighlight: true,
+                    format: 'dd/mm/yyyy'
+                }).datepicker('update', new Date())
+                .on('changeDate', function (ev) {
+                    newDate = new Date(ev.date);
+                    $scope.edate = newDate.getFullYear() + "-" + (("0" + (newDate.getMonth() + 1)).slice(-2)) + "-" + newDate.getDate();
+                    console.log($scope.edate);
+                });
+            });
+            $scope.confirmDeliveryModal = function (msubq, index) {
+                $scope.msubquote = msubq;
+                $scope.position = index;
+                //jQuery("#reviewModal .modal-body").html(data);
+                jQuery("#reviewModal").modal("show");
+
+                /*$http.post("api/ProductApi/UpdateQuote", passdata).success(function (data, status) {
+                    $http({
+                        method: "POST",
+                        url: "/Quotation/LoadQuotation/",
+                        data: {"mquoteid":$scope.Quotes.mquoteid,"subquoteids":$scope.selected}
+                    }).success(function (data) {
+
+                    });
+                });*/
+            };
+            $scope.SaveReview = function () {
+                jQuery("#reviewModal").modal("hide");
+                $scope.tabloading = true;
+                var pos = $scope.position;
+                var subquote = $scope.msubquote;
+                var edate = $scope.edate;
+                var condition = $scope.condition;
+                console.log("Position" + $scope.position);
+                var data = { "mreceivedate": edate, "mcondition": condition, "msubquoteid": subquote, "muserid": $rootScope.muserid };
+                $http.post("api/OrderApi/updateOrderStatus", data).success(function (data, status) {
+                    $scope.tabloading = false;
+
+                    if (data == "Save") {
+                        $scope.condition = 1;
+                        $scope.reviewnote = "";
+                        $scope.msubquote = 0;
+                        $scope.position = -1;
+                        $scope.Orders[pos].mquotestatus = "confirmed";
+                        toastr.success("Thank you for your delivery review!", "Success");
+                    }
+                    else {
+                        toastr.error("Something went wrong", "Warning");
+                    }
+                });
+                //$scope.showDialog();
+            }
+
+            /****************************Print / Email ***************************************/
+            $scope.executeleaseAction = function (action, passdata, step, getid) {
+                if (typeof $scope[action] === "function") {
+                    $scope[action](passdata, step, getid);
+                }
+            };
+            $scope.showleaseDialog = function (flag) {
+                jQuery("#leaseconfirmation-dialog .modal").modal(flag ? 'show' : 'hide');
+            };
+            $scope.proceed = function (passdata, step, getid) {
+                if (step == 1) {
+                    PrintSingleQuotes(passdata, getid);
+
+                }
+                else if (step == 2) {
+                    PrintQuotes(passdata);
+                }
+                else if (step == 3) {
+                    PrintAllQuotes(passdata);
+                }
+
+            };
+
+            $scope.CheckQuoteTerm = function (d) {
+                $http.post("api/ProductApi/CheckQuoteTerms", d).success(function (data, status) {
+                    return data;
+                });
+            }
+            $scope.getLeasePdf = function (mleaseid) {
+                
+                $http({
+                    method: "POST",
+                    url: "/Order/LoadOrder/",
+                    data: { "mleaseid": mleaseid}
+                }).success(function (data) {
+                    jQuery("#agreementmodal .modal-body").html(data);
+                    jQuery("#agreementmodal .modal").modal({
+                       
+                        "show": true
+                    });
+                    $scope.dataloading = false;
+                });
+                
+            };
+            $scope.PrintSingleQuote = function (index) {
+                $scope.dataloading = true;
+                var passdata = $scope.Quotes[index];
+                var getid = $scope.Quotes[index].msubquoteid;
+                var d = [];
+                d.push(passdata);
+                $http.post("api/ProductApi/CheckQuoteTerms", d).success(function (data, status) {
+                    if (data == false) {
+                        $scope.leaseModal = {
+                            title: "Warning!!!",
+                            message: "Lease term defined differs from that of previous item/s approved in basket",
+                            buttons: [{
+                                label: "Proceed with this new lease term for this item",
+                                action: "proceed",
+                                item: passdata,
+                                qty: 1,
+                                event: getid
+                            }]
+                        };
+                        $scope.showleaseDialog(true);
+                        $scope.dataloading = false;
+                    }
+                    else {
+                        PrintSingleQuotes(passdata, getid);
+                        //$scope.dataloading = false;
+                    }
+                });
+
+            };
+
+            function PrintSingleQuotes(passdata, getid) {
+                $scope.showleaseDialog(false);
+                $scope.dataloading = true;
+                $http.post("api/ProductApi/UpdateSingleQuote", passdata).success(function (data, status) {
+                    $http({
+                        method: "POST",
+                        url: "/Quotation/LoadQuotation/",
+                        data: { "muserid": $rootScope.muserid, "subquoteids": getid }
+                    }).success(function (data) {
+                        jQuery("#quoteModal .modal-body").html(data);
+                        jQuery("#quoteModal").modal("show");
+                        $scope.setActiveTab(1);
+                        $scope.dataloading = false;
+                    });
+                });
+            }
+
+            $scope.PrintReferenceSingleQuotes=function(getid) {
+                $scope.showleaseDialog(false);
+                $scope.dataloading = true;
+                    $http({
+                        method: "POST",
+                        url: "/Quotation/LoadReferenceQuotation/",
+                        data: { "muserid": $rootScope.muserid, "subquoteids": getid }
+                    }).success(function (data) {
+                        jQuery("#quoteModal .modal-body").html(data);
+                        jQuery("#quoteModal").modal("show");
+                        //$scope.setActiveTab(1);
+                        $scope.dataloading = false;
+                    });
+                
+            }
+            $scope.PrintQuote = function () {
+                $scope.dataloading = true;
+                var passdata = $scope.Quotes;
+                $http.post("api/ProductApi/CheckSelectedQuoteTerms", passdata).success(function (data, status) {
+                    if (data == false) {
+                        $scope.leaseModal = {
+                            title: "Warning!!!",
+                            message: "Lease term defined differs from that of previous item/s approved in basket",
+                            buttons: [{
+                                label: "Proceed with this new lease term for this item",
+                                action: "proceed",
+                                item: passdata,
+                                qty: 2,
+                                event: 0
+                            }]
+                        };
+                        $scope.showleaseDialog(true);
+                        $scope.dataloading = false;
+                    }
+                    else {
+                        PrintQuotes(passdata);
+                        //$scope.dataloading = false;
+                    }
+                });
+
+
+
+            };
+            function PrintQuotes(passdata) {
+                $scope.showleaseDialog(false);
+                $scope.dataloading = true;
+                $http.post("api/ProductApi/UpdateSelectedQuote", passdata).success(function (data, status) {
+                    $http({
+                        method: "POST",
+                        url: "/Quotation/LoadQuotation/",
+                        data: { "muserid": $rootScope.muserid, "subquoteids": $scope.selected }
+                    }).success(function (data) {
+
+                        jQuery("#quoteModal .modal-body").html(data);
+                        jQuery("#quoteModal").modal("show");
+                        loadquotes();
+                        $scope.selected = [];
+                        $scope.dataloading = false;
+                    });
+                });
+            }
+            $scope.PrintAllQuote = function () {
+                $scope.dataloading = true;
+                var passdata = $scope.Quotes;
+                $http.post("api/ProductApi/CheckQuoteTerms", passdata).success(function (data, status) {
+                    if (data == false) {
+                        $scope.leaseModal = {
+                            title: "Warning!!!",
+                            message: "Lease term defined differs from that of previous item/s approved in basket",
+                            buttons: [{
+                                label: "Proceed with this new lease term for this item",
+                                action: "proceed",
+                                item: passdata,
+                                qty: 3,
+                                event: 0
+                            }]
+                        };
+                        $scope.showleaseDialog(true);
+                        $scope.dataloading = false;
+                    }
+                    else {
+                        PrintAllQuotes(passdata);
+                        //$scope.dataloading = false;
+                    }
+                });
+            };
+            function PrintAllQuotes(passdata) {
+                $scope.showleaseDialog(false);
+                $scope.dataloading = true;
+                var list = [];
+                $scope.Quotes.forEach(function (itemObj) {
+                    list.push(itemObj.msubquoteid);
+                });
+                $scope.selected = list;
+                $http.post("api/ProductApi/UpdateQuote", passdata).success(function (data, status) {
+                    $http({
+                        method: "POST",
+                        url: "/Quotation/LoadQuotation/",
+                        data: { "muserid": $rootScope.muserid, "subquoteids": $scope.selected }
+                    }).success(function (data) {
+
+                        jQuery("#quoteModal .modal-body").html(data);
+                        jQuery("#quoteModal").modal("show");
+                        loadquotes();
+                        $scope.dataloading = false;
+                    });
+                });
+            };
+            $scope.PrintSingleItem = function (index, step, item) {
+                $scope.dataloading = true;
+                var passdata = $scope.Quotes[index];
+                var getid = 0;
+                if (step == 3) {
+                    getid = item.msubquoteid;
+                }
+                else if (step == 2) {
+                    getid = $scope.PrintedQuotes[index].msubquoteid;
+                }
+                $http({
+                    method: "POST",
+                    url: "/Quotation/LoadQuotation/",
+                    data: { "muserid": $rootScope.muserid, "subquoteids": getid }
+                }).success(function (data) {
+
+                    jQuery("#quoteModal .modal-body").html(data);
+                    jQuery("#quoteModal").modal("show");
+                    $scope.dataloading = false;
+                });
+
+            };
+        }]);
+        app.controller('ShoppingCartController', ['$scope', '$http', '$rootScope', '$location', '$sce', '$cookies', function ($scope, $http, $rootScope, $location, $sce, $cookies) {
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 365);
+            $scope.isCheckoutPage = false;
+            $rootScope.shoppingCart = $rootScope.shoppingCart || [];
+            $rootScope.shoppingCart.totalPrice = 0;
+            if (!angular.isUndefined($cookies.get('leasebasket'))) {
+                var id = $cookies.getObject('leasebasket');
+
+                $http.get('/api/CookieApi/GetCookieCart?id=' + id).success(function (data) {
+                    $rootScope.shoppingCart = data;
+                    $rootScope.shoppingCart.totalPrice = 0;
+                    $rootScope.shoppingCart.totalItems = 0;
+                    //$scope.getTotalPrice();
+                    $scope.getTotalNoOfItems();
+
+                    $scope.loader = false;
+                });
+            }
+            $rootScope.$on('itemList', function (event, itemList) {
+                $scope.itemList = itemList;
+            });
+
+            $scope.$watch('shoppingCart', function () {
+                $rootScope.shoppingCart.totalPrice = 0;
+                $rootScope.shoppingCart.totalItems = 0;
+                //$scope.getTotalPrice();
+                //$scope.getTotalNoOfItems();
+                console.log('changed');
+            }, true);
+
+            $scope.checkout = function () {
+                $location.path('/checkout');
+                $scope.isCheckoutPage = true;
+            };
+
+            $scope.deleteFromCart = function (index) {
+                var id = $cookies.getObject('leasebasket');
+                $http.get('/api/CookieApi/GetCartDelete?id=' + $rootScope.shoppingCart[index].Id).success(function (data) {
+                    if (data == "delete") {
+                        $rootScope.shoppingCart.splice(index, 1);
+                        if ($rootScope.shoppingCart.length <= 0) {
+                            $cookies.remove("leasebasket", { path: '/' });
+
+                        }
+                        else {
+                            $cookies.putObject('leasebasket', id, { 'expires': expireDate });
+                        }
+                        toastr.success("Product remove from your basket", "Success");
+                    }
+
+                });
+
+            };
+
+            $scope.clearShoppingCart = function (index) {
+                $rootScope.shoppingCart = [];
+            };
+
+            $scope.backToList = function () {
+                $location.path('/list');
+                $scope.isCheckoutPage = false;
+            };
+
+            $scope.getTotalPrice = function () {
+                $rootScope.shoppingCart.forEach(function (itemObj) {
+                    $rootScope.shoppingCart.totalPrice = Number($rootScope.shoppingCart.totalPrice) + $scope.getItemPrice(itemObj);
+                });
+            };
+
+            $scope.getTotalNoOfItems = function () {
+                $rootScope.shoppingCart.forEach(function (itemObj) {
+                    $rootScope.shoppingCart.totalItems += $scope.getItemNo(itemObj);
+                });
+            };
+
+            $scope.getItemPrice = function (itemObj) {
+                var itemPrice = 0;
+                console.log("items");
+                itemPrice = (Number(itemObj.Product.mprice) * Number(itemObj.Quantity)).toFixed(2);
+                return Number(itemPrice);
+            };
+
+            $scope.getItemNo = function (itemObj) {
+                return itemObj.Quantity;
+            };
+
+            $scope.confirmCheckout = function () {
+                $location.path('/checkoutsuccess');
+                $scope.message = $sce.trustAsHtml($rootScope.shoppingCart.length + ' Items' + ' @@ $' + $rootScope.shoppingCart.totalPrice);
+                console.log($scope.successMsg);
+                $rootScope.shoppingCart = [];
+            };
+        }]);
+
+    </script>
+}
+

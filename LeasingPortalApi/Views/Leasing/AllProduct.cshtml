@@ -1,0 +1,295 @@
+﻿
+@{
+    Layout = null;
+}
+
+<nav class="woocommerce-breadcrumb"><a href="/Leasing/">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Smart Phones &amp; Tablets</nav>
+<div class="site-content-inner">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+            <div class="woocommerce-notices-wrapper"></div>
+            <header class="page-header">
+                <h1 class="page-title">Computer Accessories &amp; Smart Phone</h1>
+                <p class="woocommerce-result-count"> Showing all {{Products.length | number}} results</p>
+            </header>
+            <div class="ng-cloak" ng-controller="ShoppingCartController">
+                <section class="well" ng-show="Products">
+                    <h1>Your Shopping Cart</h1>
+                    <div>
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        <span>{{shoppingCart.totalItems}} Items</span>
+                        <span class="bold">${{shoppingCart.totalPrice}}</span>
+                        <button ng-disabled="!shoppingCart.length" ng-show="!isCheckoutPage" ng-click="checkout()" class="btn btn-success"> Checkout</button>
+                        <button ng-disabled="!shoppingCart.length" ng-click="clearShoppingCart()" class="btn btn-warning">Clear</button>
+                        <button ng-show="isCheckoutPage" ng-click="backToList()" class="btn btn-success"> Back to Store</button>
+                    </div>
+                </section>
+            </div>
+            <div class="shop-control-bar">
+                <div class="handheld-sidebar-toggle">
+                    <button class="btn sidebar-toggler" type="button"><i class="fas fa-sliders-h"></i><span>Filters</span></button>
+                </div>
+                <ul class="shop-view-switcher nav nav-tabs" role="tablist" style="padding:10px;">
+                    <!--<li class="nav-item"><a class="nav-link" data-toggle="tab" data-archive-class="grid" title="Grid View" href="#grid" aria-expanded="false"><i class="fa fa-th"></i></a></li>-->
+                    <li class="nav-item"><a class="nav-link  active" data-toggle="tab" data-archive-class="grid-extended" title="Grid Extended View" href="#grid-extended" aria-expanded="true"><i class="fa fa-align-justify"></i></a></li>
+                    <!--<li class="nav-item"><a class="nav-link " data-toggle="tab" data-archive-class="list-view" title="List View" href="#list-view"><i class="fa fa-list"></i></a></li>-->
+                    <li class="nav-item"><a class="nav-link " data-toggle="tab" data-archive-class="list-view-small" title="List View Small" href="#list-view-small"><i class="fa fa-th-list"></i></a></li>
+                </ul>
+                <div class="woocommerce-ordering" style="margin-bottom:0px;">
+                    <select ng-model="listOrder" name="orderby" class="orderby">
+                        <option value="mprodname">Default sorting</option>
+                        <option value="-mprodname">Sort by popularity</option>
+                        <option value="rating">Sort by average rating</option>
+                        <option value="date">Sort by latest</option>
+                        <option value="price">Sort by price: low to high</option>
+                        <option value="price-desc">Sort by price: high to low</option>
+                    </select>
+                    <input type="hidden" name="paged" value="1">
+                </div>
+            </div>
+            <div class="se-pre-con ng-hide" ng-show="loader">
+
+            </div>
+            <ul data-view="grid-extended" data-toggle="shop-products" class="products columns-5 columns__wide--5">
+
+                <li ng-repeat="product in Products | filter: query | orderBy: listOrder " class="post-2706 product type-product status-publish has-post-thumbnail product_cat-tablets first instock shipping-taxable purchasable product-type-simple">
+                    <div class="product-outer product-item__outer">
+                        <div class="product-inner product-item__inner">
+                            <div class="product-loop-header product-item__header">
+                                <span class="loop-product-categories"><a href="/Leasing/SingleProduct/" rel="tag">{{product.mprodcatname}}</a></span>
+                                <a href="/Leasing/SingleProduct/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                    <h2 class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
+                                    <div class="product-thumbnail product-item__thumbnail">
+                                        <img width="300" height="300" ng-src="~/Content/images/product/{{product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-loop-body product-item__body">
+                                <span class="loop-product-categories"><a href="/Leasing/SingleProduct/" rel="tag">{{product.mprodcatname}}</a></span>
+                                <a href="#/product/tablet-air-3-wifi-64gb-gold/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                    <h2 class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
+                                    <div class="product-rating ng-hide">
+                                        <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                                        (3)
+                                    </div>
+                                    <div class="product-short-description" style="display:none;">
+                                        <ul>
+                                            <li>4.5 inch HD Screen</li>
+                                            <li>Android 4.4 KitKat OS</li>
+                                            <li>1.4 GHz Quad Core™ Processor</li>
+                                            <li>20 MP front Camera</li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-sku" style="display:none;">SKU: 5487FB8/35</div>
+                                </a>
+                            </div>
+                            <div class="product-loop-footer product-item__footer">
+                                <div class="price-add-to-cart">
+                                    <span class="price">
+                                        <span class="electro-price">
+                                            <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{product.mprice}}</span>
+                                        </span>
+                                    </span>
+                                    <div class="add-to-cart-wrap" data-toggle="tooltip" data-title=" Add to Basket" data-original-title="" title="">
+                                        <a href="/electro-wide/product-category/smart-phones-tablets/?add-to-cart=2706" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="2706" data-product_sku="5487FB8/35" aria-label="Add “Tablet Air 3 WiFi 64GB  Gold” to your cart" rel="nofollow" ng-click="addToCart(product,1)"> Add to Basket</a>
+                                    </div>
+                                </div>
+                                <div class="hover-area">
+                                    <div class="action-buttons">
+                                        <div class="yith-wcwl-add-to-wishlist add-to-wishlist-2706">
+                                            <div class="yith-wcwl-add-button show" style="display:block">
+                                                <a href="/electro-wide/product-category/smart-phones-tablets/?add_to_wishlist=2706" rel="nofollow" data-product-id="2706" data-product-type="simple" class="add_to_wishlist"> Wishlist</a>
+                                                <img src="#/wp-content/plugins/yith-woocommerce-wishlist/assets/images/wpspin_light.gif" class="ajax-loading" alt="loading" width="16" height="16" style="visibility:hidden">
+                                            </div>
+                                            <div class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                                                <span class="feedback">Product added!</span>
+                                                <a href="#/wishlist/" rel="nofollow"> Browse Wishlist </a>
+                                            </div>
+                                            <div class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                                                <span class="feedback">The product is already in the wishlist!</span>
+                                                <a href="#/wishlist/" rel="nofollow"> Browse Wishlist </a>
+                                            </div>
+                                            <div style="clear:both"></div>
+                                            <div class="yith-wcwl-wishlistaddresponse"></div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <a href="#?action=yith-woocompare-add-product&amp;id=2706" class="add-to-compare-link" data-product_id="2706">Compare</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--<li class="post-2701 product type-product status-publish has-post-thumbnail product_cat-tablets outofstock shipping-taxable purchasable product-type-simple">
+                    <div class="product-outer product-item__outer">
+                        <div class="product-inner product-item__inner">
+                            <div class="product-loop-header product-item__header">
+                                <span class="loop-product-categories">
+                                    <a href="#" rel="tag">Tablets</a>
+                                </span>
+                                <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                    <h2 class="woocommerce-loop-product__title">White Tablet S2 WiFi 62GB LTE Internet</h2>
+                                    <div class="product-thumbnail product-item__thumbnail">
+                                        <img src="~/Content/images/products/Tablet-300x300.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" width="300" height="300">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-loop-body product-item__body">
+                                <span class="loop-product-categories">
+                                    <a href="#" rel="tag">Tablets</a>
+                                </span>
+                                <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                    <h2 class="woocommerce-loop-product__title">White Tablet S2 WiFi 62GB LTE Internet</h2>
+                                    <div class="product-rating ng-hide">
+                                        <div class="star-rating"><span style="width:73.4%">Rated <strong class="rating">3.67</strong> out of 5</span></div> (3)
+                                    </div>
+
+                                </a>
+                            </div>
+                            <div class="product-loop-footer product-item__footer">
+                                <div class="price-add-to-cart">
+                                    <span class="price">
+                                        <span class="electro-price">
+                                            <span class="woocommerce-Price-amount amount">
+                                                <span class="woocommerce-Price-currencySymbol">£</span>428.00
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <div class="add-to-cart-wrap" data-toggle="tooltip" data-title="Read more" data-original-title="" title="">
+                                        <a href="#" data-quantity="1" class="button product_type_simple" data-product_id="2701" data-product_sku="5487FB8/32" aria-label="Read more about “White Tablet S2 WiFi 62GB LTE Internet”" rel="nofollow">Read more</a>
+                                    </div>
+                                </div>
+                                <div class="hover-area">
+                                    <div class="action-buttons">
+                                        <div class="yith-wcwl-add-to-wishlist add-to-wishlist-2706">
+                                            <div class="yith-wcwl-add-button show" style="display:block">
+                                                <a href="/electro-wide/product-category/smart-phones-tablets/?add_to_wishlist=2706" rel="nofollow" data-product-id="2706" data-product-type="simple" class="add_to_wishlist"> Wishlist</a>
+                                                <img src="#/wp-content/plugins/yith-woocommerce-wishlist/assets/images/wpspin_light.gif" class="ajax-loading" alt="loading" width="16" height="16" style="visibility:hidden">
+                                            </div>
+                                            <div class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                                                <span class="feedback">Product added!</span>
+                                                <a href="#/wishlist/" rel="nofollow"> Browse Wishlist </a>
+                                            </div>
+                                            <div class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                                                <span class="feedback">The product is already in the wishlist!</span>
+                                                <a href="#/wishlist/" rel="nofollow"> Browse Wishlist </a>
+                                            </div>
+                                            <div style="clear:both"></div>
+                                            <div class="yith-wcwl-wishlistaddresponse"></div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <a href="#?action=yith-woocompare-add-product&amp;id=2706" class="add-to-compare-link" data-product_id="2706">Compare</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>-->
+            </ul>
+            <div class="shop-control-bar-bottom">
+                <p class="woocommerce-result-count"> Showing all {{Products.length | number}} results</p>
+            </div>
+        </main>
+    </div>
+    <div id="sidebar" class="sidebar" role="complementary">
+        <aside id="electro_product_categories_widget-1" ng-controller="FilterController" class="widget woocommerce widget_product_categories electro_widget_product_categories">
+            <ul class="product-categories category-single">
+                <li class="product_cat">
+                    <ul class="show-all-cat">
+                        <li class="product_cat">
+                            <span class="show-all-cat-dropdown">Show All Categories<span class="child-indicator"></span></span>
+                            <ul style="display: none;">
+                                <li ng-repeat="menu in FilterMenu | filter:{mpreviouscat : 0}" class="cat-item cat-item-88">
+                                    <a href="#/product-category/accessories/"><span class="no-child"></span>{{menu.mcatname}}</a> <!--<span class="count">(11)</span>-->
+                                </li>
+                                <!--<li class="cat-item cat-item-89">
+                                    <a href="#/product-category/cameras-photography/"><span class="no-child"></span>Playground Equipment</a> <span class="count">(5)</span>
+                                </li>
+                                <li class="cat-item cat-item-93">
+                                    <a href="#/product-category/computer-components/"><span class="no-child"></span>Safety &amp; Security Systems</a> <span class="count">(1)</span>
+                                </li>
+                                <li class="cat-item cat-item-96">
+                                    <a href="#/product-category/gadgets/"><span class="no-child"></span>Indoor Furniture</a> <span class="count">(3)</span>
+                                </li>
+                                <li class="cat-item cat-item-103">
+                                    <a href="#/product-category/home-entertainment/"><span class="no-child"></span>Outdoor Furniture</a> <span class="count">(1)</span>
+                                </li>
+                                <li class="cat-item cat-item-119">
+                                    <a href="#/product-category/printers-ink/"><span class="no-child"></span>Lighting Systems</a> <span class="count">(1)</span>
+                                </li>
+                                <li class="cat-item cat-item-126">
+                                    <a href="#/product-category/smart-phones-tablets/"><span class="no-child"></span>Interactive Screens</a> <span class="count">(20)</span>
+                                </li>
+                                <li class="cat-item cat-item-135">
+                                    <a href="#/product-category/tv-audio/"><span class="no-child"></span>Storage &amp; Lockers</a> <span class="count">(1)</span>
+                                </li>
+                                <li class="cat-item cat-item-140">
+                                    <a href="#/product-category/video-games-consoles/"><span class="no-child"></span>GYM Equipment</a> <span class="count">(3)</span>
+                                </li>-->
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="cat-item cat-item-126 current-cat">
+                            <a href="#/product-category/smart-phones-tablets/"><span class="child-indicator open"><i class="fa fa-angle-up"></i></span>Smart Phones &amp; Tablets</a> <span class="count">(20)</span>
+                            <ul class="children" style="display: block;">
+                                <li class="cat-item cat-item-127"><a href="#/product-category/smart-phones-tablets/smartphones/"><span class="no-child"></span>Smartphones</a> <span class="count">(16)</span></li>
+                                <li class="cat-item cat-item-134"><a href="/Leasing/SingleProduct/"><span class="no-child"></span>Tablets</a> <span class="count">(4)</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+        <aside id="electro_products_filter-1" class="widget widget_electro_products_filter">
+            <h3 class="widget-title">Filters</h3>
+            <aside id="woocommerce_layered_nav-1" class="widget woocommerce widget_layered_nav woocommerce-widget-layered-nav">
+                <h3 class="widget-title">Brands</h3>
+                <ul class="woocommerce-widget-layered-nav-list">
+                    <li data-ng-model="search.mbrand" class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=apple">Apple</a> <span class="count">(4)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=gionee">Gionee</a> <span class="count">(2)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=htc">HTC</a> <span class="count">(2)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=lg">LG</a> <span class="count">(2)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=micromax">Micromax</a> <span class="count">(1)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style="display: none;"><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=microsoft">Microsoft</a> <span class="count">(2)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style="display: none;"><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=samsung">Samsung</a> <span class="count">(5)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style="display: none;"><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=xiaomi">Xiaomi</a> <span class="count">(2)</span></li>
+                </ul>
+                <p class="maxlist-more"><a href="#">+ Show more</a></p>
+            </aside>
+            <aside id="woocommerce_layered_nav-2" class="widget woocommerce widget_layered_nav woocommerce-widget-layered-nav">
+                <h3 class="widget-title">Color</h3>
+                <ul class="woocommerce-widget-layered-nav-list">
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=black-de">Black</a> <span class="count">(4)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=black-leather-de">Black Leather</a> <span class="count">(2)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=gold">Gold</a> <span class="count">(4)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=spacegrey">Spacegrey</a> <span class="count">(3)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=turquoise-de">Turquoise</a> <span class="count">(2)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style="display: none;"><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=white-de">White</a> <span class="count">(4)</span></li>
+                    <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style="display: none;"><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=white-with-gold">White with Gold</a> <span class="count">(1)</span></li>
+                </ul>
+                <p class="maxlist-more"><a href="#">+ Show more</a></p>
+            </aside>
+            <aside id="woocommerce_price_filter-1" class="widget woocommerce widget_price_filter">
+                <h3 class="widget-title">Price</h3>
+                <form method="get" action="#/product-category/smart-phones-tablets/">
+                    <div class="price_slider_wrapper">
+                        <div class="price_slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="">
+                            <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 100%;"></div>
+                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 100%;"></span>
+                        </div>
+                        <div class="price_slider_amount">
+                            <input type="text" id="min_price" name="min_price" value="200" data-min="200" placeholder="Min price" style="display: none;"> <input type="text" id="max_price" name="max_price" value="3485" data-max="3485" placeholder="Max price" style="display: none;"> <button type="submit" class="button">Filter</button>
+                            <div class="price_label" style=""> Price: <span class="from">£200</span> — <span class="to">£3,485</span></div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </form>
+            </aside>
+        </aside>
+        <aside id="media_image-2" class="widget widget_media_image">
+            <img width="270" height="315" src="~/Content/images/shop-sidebar-ad-banner.jpg" class="image wp-image-2142  attachment-full size-full" alt="" style="max-width: 100%; height: auto;">
+        </aside>
+
+    </div>
+</div>

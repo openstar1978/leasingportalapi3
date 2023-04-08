@@ -1,0 +1,88 @@
+﻿@{
+    Layout = null;
+}
+
+<div id="login-dialog">
+    <div class="modal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header align-items-lg-center text-center">
+                    <div style="display:block;width:100%">
+                        <h2 class="h4 mb-0" style="color:#333;">Welcome Back!</h2><br />
+                    </div>
+                    <button type="button" style="" class="close mdclose" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    <form name="loginfield" ng-submit="InsideLogin()" class="js-validate">
+                        <!-- Login -->
+                        <div id="login" data-target-group="idForm">
+                            <!-- Form Group -->
+                            <div class="form-group" ng-show="IsError">
+                                <div class="alert alert-warning">{{invalidlogin}}</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="js-form-message js-focus-state">
+                                    <label class="sr-only" for="signinEmail">Email</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="signinEmailLabel">
+                                                <span class="fas fa-user"></span>
+                                            </span>
+                                        </div>
+                                        <input type="email" ng-model="MenuLoginData.museridemail" name="museridemail" ng-class="MSubmitted?'form-control ng-dirty':'form-control'" required id="signinSrEmailExample3" placeholder="Email address" aria-label="Email address"
+                                               data-msg="Please enter a valid email address."
+                                               data-error-class="u-has-error"
+                                               data-success-class="u-has-success">
+                                        <span class="loginerror" ng-show="(loginfield.museridemail.$dirty || MSubmitted) && loginfield.museridemail.$error.required">Username required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Form Group -->
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <div class="js-form-message js-focus-state">
+                                    <label class="sr-only" for="signinPassword">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="signinPasswordLabel">
+                                                <span class="fas fa-lock"></span>
+                                            </span>
+                                        </div>
+                                        <input type="password" ng-model="MenuLoginData.mpwd" name="mpwd" ng-class="MSubmitted?'form-control ng-dirty':'form-control'" required id="signinSrPasswordExample2" placeholder="********" aria-label="********"
+                                               data-msg="Your password is invalid. Please try again."
+                                               data-error-class="u-has-error"
+                                               data-success-class="u-has-success">
+                                        <span class="loginerror" ng-show="(loginfield.mpwd.$dirty || MSubmitted) && loginfield.mpwd.$error.required">Password required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Form Group -->
+
+                            <div class="d-flex justify-content-end mb-4">
+                                <a class="js-animation-link small link-muted" href="javascript:;"
+                                   data-target="#forgotPassword"
+                                   data-link-group="idForm"
+                                   data-animation-in="slideInUp">Forgot Password?</a>
+                            </div>
+
+                            <div class="mb-2">
+                                <button type="submit" ng-disabled="MSubmitted" class="btn btn-block btn-sm btn-primary transition-3d-hover">Login</button>
+                            </div>
+
+                            <div class="text-center mb-4">
+                                <span class="small text-muted">Do not have an account?</span>
+                                <a class="js-animation-link small text-dark" href="/Leasing/Registration/">
+                                    Signup
+                                </a>
+                            </div>
+
+
+                            <!-- End Login Buttons -->
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

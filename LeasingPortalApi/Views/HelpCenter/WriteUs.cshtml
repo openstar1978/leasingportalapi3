@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+
+}
+<style>
+    .contactus {
+        color: #333;
+    }
+
+    .invalid-feedback {
+        display: block;
+    }
+</style>
+<main id="content" role="main" class="" ng-controller="CallbackController">
+    <div class="se-pre-con" ng-show="loader">
+
+    </div>
+    <!-- breadcrumb -->
+
+    <div class="container contactus">
+
+
+        <div id="primary" class="content-area">
+            <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Home")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span><a href="@Url.Action("Index","HelpCenter")">HelpCenter</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Write Us</nav>
+
+            <main id="main" class="site-main">
+                <article class="post-2508 page type-page status-publish hentry" id="post-2508">
+                    <div itemprop="mainContentOfPage" class="entry-content">
+                        <div class="vc_row wpb_row vc_row-fluid">
+                            <div class="contact-form wpb_column vc_column_container vc_col-sm-12 col-sm-12">
+                                <div class="vc_column-inner ">
+                                    <div class="wpb_wrapper">
+                                        <div class="wpb_text_column wpb_content_element ">
+                                            <div class="wpb_wrapper">
+                                                <h2 class="contact-page-title">Request a Call Back</h2>
+
+                                            </div>
+                                        </div>
+                                        <div lang="en-US" dir="ltr" id="wpcf7-f2507-p2508-o1" class="wpcf7" role="form">
+                                            <form name="form" class="wpcf7-form" method="post" ng-submit="SaveData(form.$valid)">
+
+                                                <div class="form-group row">
+                                                    <div class="col-xs-12 col-md-4">
+                                                        <label>Your Name*</label><br>
+                                                        <span class="wpcf7-form-control-wrap first-name">
+                                                            <input type="text" required class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required input-text" size="40" value="" name="Name" ng-model="cnt.Name">
+                                                            <span class="invalid-feedback" ng-show="(form.$submitted || form.Name.$touched) && form.Name.$error.required">Enter detail</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-4">
+                                                        <label>Contact No*</label><br>
+                                                        <span class="wpcf7-form-control-wrap last-name">
+                                                            <input type="number" ng-minlength="10" ng-maxlength="10" required class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required input-text" size="40" value="" name="ContactNo" ng-model="cnt.ContactNo">
+                                                        </span>
+                                                        <span class="invalid-feedback" ng-show="(form.$submitted || form.ContactNo.$touched) && form.ContactNo.$error.required">Enter detail</span>
+                                                        <span class="invalid-feedback" ng-show="form.ContactNo.$touched && (form.ContactNo.$error.minlength || form.ContactNo.$error.maxlength)">Enter 10 digit contact</span>
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-4">
+                                                        <label>Email</label><br>
+                                                        <span class="wpcf7-form-control-wrap subject">
+                                                            <input required type="email" aria-invalid="false" class="wpcf7-form-control wpcf7-text input-text" size="40" value="" name="subject" ng-model="cnt.Email">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Write Us</label><br>
+                                                    <span class="wpcf7-form-control-wrap your-message"><textarea aria-invalid="false" class="wpcf7-form-control wpcf7-textarea" rows="5" cols="40" name="your-message" ng-model="cnt.Message"></textarea></span>
+                                                </div>
+                                                <!--<div class="form-group has-feedback">
+                                                    <div class="g-recaptcha" id="gcaptcha3" data-sitekey="6Lea7UgUAAAAAGw9F_NmSsCRMbYJ09AexjaG1CHp"></div>
+                                                </div>-->
+                                                <div class="form-group clearfix">
+
+                                                    <p><input type="submit" ng-disabled="form.$invalid || rsubmitted" value="{{submitText}}"></p>
+
+                                                </div>
+                                                <div class="form-group clearfix" ng-bind-html="message">
+
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </article>
+            </main><!-- #main -->
+        </div><!-- #primary -->
+    </div><!-- .container -->
+</main>
+@section scripts{
+    <script type="text/javascript">
+        /*var widget3;
+        var wwidget3;
+        var verifyCallback3 = function (response) {
+            widget3 = response;
+        };
+        var onloadCallback = function () {
+            wwidget3 = grecaptcha.render(document.getElementById('gcaptcha3'), {
+                'sitekey': '6Lea7UgUAAAAAGw9F_NmSsCRMbYJ09AexjaG1CHp',
+                'callback': verifyCallback3,
+            });
+        };*/
+        app.controller('CallbackController', ['$scope', '$http', '$rootScope', '$window', '$sce', '$cookies', function ($scope, $http, $rootScope, $window, $sce, $cookies, LoginService) {
+            $scope.cnt = {
+                "Name": '',
+                "ContactNo": '',
+                "Email": '',
+                "Message": '',
+                "SchoolName":'',
+                "Captcha_Response": ''
+            }
+            $scope.$watchGroup(['f1.$valid', 'reg.$valid', 'shoppingCart', 'IsLogedIn', 'form.$valid'], function (newVal) {
+                $scope.IsFormValid = newVal;
+                $scope.IsRegisterFormValid = newVal;
+                //$scope.getTotalPrice();
+
+
+            }, true);
+            $scope.submitText = "Send";
+            $scope.rsubmitted = false;
+            $scope.message = "";
+            $scope.SaveData = function (isValid) {
+                if ($scope.submitText == 'Send') {
+                    $scope.rsubmitted = true;
+                    $scope.message = '';
+                    $scope.cnt.Captcha_Response = jQuery("#commoncaptcha").val();//widget3;//jQuery('textarea[id="g-recaptcha-response"]').val();
+                    if (isValid) {
+                        $scope.submitText = 'Please Wait...';
+                        //$scope.User = data;
+                        $http({
+
+                            method: "POST",
+
+                            url: "/HelpCenter/SendWriteUs",
+
+                            data: $scope.cnt
+                        }).success(function (data) {
+                            if (data["msg"] == "Success") {
+                                $scope.message = "<div class='alert alert-success'>Thank you for writing us.</div>";
+                                //toastr.success($scope.Message, "Success");
+                                $scope.cnt = {
+                                    "Name": '',
+                                    "ContactNo": '',
+                                    "Email": '',
+                                    "Message": '',
+                                    "SchoolName":'',
+                                    "Captcha_Response": ''
+                                }
+                                //grecaptcha.reset();
+                                $scope.rsubmitted = false;
+                                $scope.submitText = "Send";
+                                //$scope.SaveCart();
+                            }
+                            else {
+                                $scope.IsError = true;
+                                $scope.message = "<div class='alert alert-warning'>Invalid Captcha or Expired.Please try again</div>";
+                                //alert('Invalid Captcha!');
+                                //grecaptcha.reset();
+                                $scope.rsubmitted = false;
+                                $scope.submitText = "Send";
+                            }
+
+                            $scope.user = null;
+
+                        }).error(function () {
+                            grecaptcha.reset();
+                            $scope.message = "<div class='alert alert-danger'>Something went wrong!please try again.</div>";
+                            $scope.rsubmitted = false;
+                            $scope.submitText = "Send";
+                            //alert('failed');
+
+                        })
+
+                    }
+                    else {
+                        jQuery('input.ng-invalid').first().focus();
+                        $scope.message = 'Please fill required fields value';
+                        $scope.rsubmitted = false;
+                        $scope.submitText = "Send";
+                    }
+                    grecaptcha.execute('6LfJV9MkAAAAAPJvDFy18GmUo_5oipfGR4umPwHd', { action: 'submit' }).then(function (token) {
+                        jQuery("textarea[id='commoncaptcha']").val(token);
+                    });
+                }
+            }
+        }]);
+    </script>
+
+}

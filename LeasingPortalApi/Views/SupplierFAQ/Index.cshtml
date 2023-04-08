@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+<style>
+    #content {
+        width: 100%;
+    }
+
+    .collapse.in {
+        border-left: 1px solid #808080;
+        border-right: 1px solid #808080;
+        padding: 5px;
+    }
+
+    .faqtab .card-header {
+        background: #d0cfd1 !important;
+        border: 1px solid #808080;
+    }
+
+    .faqtab1 .btn {
+        padding: 15px 0 !important;
+    }
+
+    .faqtab .card-header {
+        padding: 0 !important;
+    }
+
+    .faqtab .mb-3 {
+        margin-bottom: 0 !important;
+    }
+
+    .faqtab .card-btn-arrow {
+        margin-top: 10px;
+    }
+
+    .faqtab .btn:focus {
+        background-color: inherit;
+    }
+
+    .faqtab .button:focus {
+        background-color: inherit;
+    }
+
+    .faqtab .px-0 {
+        white-space: normal;
+    }
+</style>
+<div class="se-pre-con" ng-show="loader">
+
+</div>
+<div id="content" class="site-content" tabindex="-1" ng-controller="SupplierFaqsController">
+    <div class="container">
+
+
+        <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Leasing")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Supplier FAQs</nav>
+        <div class="site-content-inner">
+            <main id="content" role="main">
+                <div class="container">
+
+                    <div class="mb-6 text-center" style="color: black; ">
+                        <h1>Supplier FAQs</h1>
+                    </div>
+                    <!-- Basics Accordion -->
+                    <div id="basicsAccordion" class="mb-6 faqtab">
+                        <!-- Card -->
+                        <div ng-repeat="d in faqs | orderBy:d.display_order:true" class="card mb-3 border-top-0 border-left-0 border-right-0 border-color-1 rounded-0">
+                            <div class="card-header card-collapse bg-transparent-on-hover border-0" id="basicsHeadingOne{{$index}}">
+                                <h5 class="mb-0">
+                                    <button type="button" class="px-0 btn btn-link btn-block d-flex justify-content-between card-btn py-3 font-size-20 border-0  {{$index==0?'':'collapesed'}}" data-toggle="collapse" data-target="#basicsCollapseOner{{$index}}" aria-expanded="{{$index==0?'true':'false'}}" aria-controls="basicsCollapseOner">
+                                        {{d.faq_name}}
+
+                                        <span class="card-btn-arrow">
+                                            <i class="fas fa-chevron-down text-gray-90 font-size-18"></i>
+                                        </span>
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="basicsCollapseOner{{$index}}" class="collapse" ng-class="$index==0?'show in':''" aria-labelledby="basicsHeadingOne{{$index}}" data-parent="#basicsAccordion">
+                                <div class="card-body pl-0 pb-8">
+                                    <p class="mb-0" ng-bind-html="d.faq_description"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                        <!-- Card -->
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        app.controller('SupplierFaqsController', ['$scope', '$http', '$rootScope', '$location', '$window', '$cookies', 'CommonLeaseTerm',
+            function ($scope, $http, $rootScope, $location, $window, $cookies, CommonLeaseTerm) {
+                //app.controller('SupplierFaqsController', ['$scope', '$http', '$rootScope', '$location', '$sce', '$cookies', function ($scope, $http, $rootScope, $location, $sce, $cookies) {
+                $scope.loader = true;
+                $scope.faqs = [];
+                $http.get('/api/ExtraPageApi/GetSupplierFaqs').success(function (data) {
+                    $scope.faqs = data;
+                    $scope.loader = false;
+                });
+            }]);
+
+
+    </script>
+}

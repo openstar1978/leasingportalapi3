@@ -1,0 +1,409 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+
+}
+@section head{
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/641c243131ebfa0fe7f43773/1gs6uqoh1';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+}
+<style>
+    .contactus {
+        color: #333;
+    }
+
+    .invalid-feedback {
+        display: block;
+    }
+</style>
+<main id="content" role="main" class="" ng-controller="HelpCenterController">
+    <div class="se-pre-con" ng-show="loader">
+
+    </div>
+    <!-- breadcrumb -->
+
+    <div ng-cloak class="container helpcenter">
+
+
+        <div id="primary" class="content-area">
+            <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Home")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Help Center</nav>
+
+            <main id="main" class="site-main">
+                <article class="post-2508 page type-page status-publish hentry" id="post-2508">
+                    <!--<div class="entry-content">
+                        <div class="woocommerce">
+                            <div class="woocommerce-notices-wrapper"></div>
+                            <p class="cart-empty woocommerce-info" style="margin-top: 0.5em; color: #fff; padding: 0.5em 1.618em;font-size:2.5em"><span ng-show="IsUserLogedIn" style="font-weight:700">Hi,{{musername}}.</span> &nbsp;&nbsp; How can we help you?</p>
+
+                        </div>
+                    </div>-->
+                    <header class="entry-header" style="margin-bottom: 0.857em;">
+                        <h1 class="entry-title"><span ng-show="IsUserLogedIn" style="font-weight:700">Hi,{{musername}}.</span> &nbsp;How can we help you?</h1>
+
+                    </header>
+
+                    <header class="entry-header" ng-If="!IsUserLogedIn" style="margin-bottom: 0.857em;">
+                        <button type="button" class="btn btn-primary-dark-w px-5" ng-click="openloginmodal()" style="padding-left: 3rem !important;padding-right:3rem!important;">Login</button>
+                        <p class="entry-subtitle" style="margin-bottom:0px;">Login to see your order details, track order etc.</p>
+                    </header>
+                    <div class="border-bottom border-color-1 mb-5 ng-hide">
+                        &nbsp;
+                    </div>
+                    <div itemprop="mainContentOfPage" class="entry-content">
+                        <div class="vc_row-full-width vc_clearfix"></div>
+                        <div class="vc_row wpb_row vc_row-fluid box-shadow-1 pt-5 pb-5 mb-5 m-0">
+
+                            <div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12">
+                                <div class="vc_column-inner ">
+                                    <div class="wpb_wrapper">
+                                        <div class="border-bottom border-color-1 mb-5">
+
+                                            <h3 class="section-title mb-0 pb-2">Help Categories</h3>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wpb_column vc_column_container vc_col-sm-3 col-sm-3 mb-3">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper box-shadow-1 h-20  flex-content-center">
+                                        <a href="javascript:;" ng-If="!IsUserLogedIn" ng-click="openloginmodal()" class="btn btn-link px-5 w-100" style="border-radius:0px;">Order Completed</a>
+                                        <a href="/MyAccount/Index?tab=yourleaseorder&content=3" ng-If="IsUserLogedIn" class="btn btn-link px-5 w-100" style="border-radius:0px;">Order Completed</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wpb_column vc_column_container vc_col-sm-3 col-sm-3 mb-3">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper box-shadow-1 h-20  flex-content-center">
+                                        <a href="javascript:;" ng-If="!IsUserLogedIn" ng-click="openloginmodal()" class="btn btn-link px-5 w-100" style="border-radius:0px;">Ticket Center</a>
+                                        <a href="/Ticket/" ng-If="IsUserLogedIn" class="btn btn-link px-5 w-100" style="border-radius:0px;">Ticket Center</a>
+                                        
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wpb_column vc_column_container vc_col-sm-3 col-sm-3 mb-3">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper box-shadow-1 h-20  flex-content-center">
+                                        <a href="javascript:;" ng-If="!IsUserLogedIn" ng-click="openloginmodal()" class="btn btn-link px-5 w-100" style="border-radius:0px;">Account Related</a>
+                                        <a href="/MyAccount/Index?tab=yourleaseorder&content=7" ng-If="IsUserLogedIn" class="btn btn-link px-5 w-100" style="border-radius:0px;">Account Related</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="wpb_column vc_column_container vc_col-sm-3 col-sm-3 mb-3">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper box-shadow-1 h-20  flex-content-center">
+                                        <a href="javascrip:;" class="btn btn-link px-5 w-100" style="border-radius:0px;">Shipping & Refund Policy</a>
+
+                                    </div>
+                                </div>
+                            </div>-->
+
+                            <div class="wpb_column vc_column_container vc_col-sm-3 col-sm-3 mb-3">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper box-shadow-1 h-20  flex-content-center">
+                                        <a href="/HelpCenter/RequestCallback" class="btn btn-link px-5 w-100" style="border-radius:0px;">Request a Call Back</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wpb_column vc_column_container vc_col-sm-3 col-sm-3 mb-3">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper box-shadow-1 h-20  flex-content-center">
+                                        <a href="javascript:void(Tawk_API.toggle())" class="btn btn-link px-5 w-100" style="border-radius:0px;">Chat Support<br />(9am to 5pm)</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wpb_column vc_column_container vc_col-sm-3 col-sm-3 mb-3">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper box-shadow-1 h-20  flex-content-center">
+                                        <a href="/HelpCenter/WriteUs" class="btn btn-link px-5 w-100" style="border-radius:0px;">Write to Us</a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wpb_column vc_column_container vc_col-sm-3 col-sm-3 mb-3">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper box-shadow-1 h-20  flex-content-center">
+                                        <a href="javascrip:;" class="btn btn-link px-5 w-100" style="border-radius:0px;">Report Suspicious</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12 ">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper">
+                                        <div lang="en-US" dir="ltr" id="wpcf7-f2507-p2508-o1" class="wpcf7" role="form">
+                                            <div class="w-100"></div>
+
+                                            <div class="col-md-3">
+                                                <div class="box-shadow-1 h-20 flex">
+                                                    <a href="javascrip:;" class="btn btn-link px-5 w-100" style="border-radius:0px;">Order Completed<br />111</a>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="javascrip:;" class="box-shadow-1 btn btn-link px-5 w-100" style="padding: 3rem !important;border-radius:0px;">Ticket Center</a>
+                                            </div>
+                                            <div class="col-md-3">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="javascrip:;" class="box-shadow-1 btn btn-link px-5 w-100" style="padding: 3rem !important;border-radius:0px;">Shipping & Refund Policy</a>
+                                            </div>
+                                            <div class="w-100 p-1">&nbsp;</div>
+                                            <div class="col-md-3">
+                                                <a href="javascrip:;" class="box-shadow-1 btn btn-link px-5 w-100" style="padding: 3rem !important;border-radius:0px;">Request a Call Back</a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="javascrip:;" class="box-shadow-1 btn btn-link px-5 w-100" style="padding: 3rem !important;border-radius:0px;">Chat Support<br />(9am to 5pm)  </a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="javascrip:;" class="box-shadow-1 btn btn-link px-5 w-100" style="padding: 3rem !important;border-radius:0px;">Write to Us</a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="javascrip:;" class="box-shadow-1 btn btn-link px-5 w-100" style="padding: 3rem !important;border-radius:0px;">Report Suspicious</a>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                        </div>
+                    </div>
+                </article>
+            </main><!-- #main -->
+        </div><!-- #primary -->
+    </div><!-- .container -->
+</main>
+@section scripts{
+    <script type="text/javascript">
+        /*var widget3;
+        var wwidget3;
+        var verifyCallback3 = function (response) {
+            widget3 = response;
+        };
+        var onloadCallback = function () {
+            wwidget3 = grecaptcha.render(document.getElementById('gcaptcha3'), {
+                'sitekey': '6Lea7UgUAAAAAGw9F_NmSsCRMbYJ09AexjaG1CHp',
+                'callback': verifyCallback3,
+            });
+        };*/
+        app.controller('HelpCenterController', ['$scope', '$http', '$rootScope', '$window', '$sce', '$cookies', function ($scope, $http, $rootScope, $window, $sce, $cookies, LoginService) {
+            $scope.userid = 0;
+            if (!angular.isUndefined($cookies.get('userdata'))) {
+                var userdatas = $cookies.getObject('userdata');
+
+                $rootScope.IsUserLogedIn = true;
+                $rootScope.muserid = userdatas.muserid;
+                $rootScope.musername = userdatas.mname;
+                $rootScope.mschoolid = userdatas.muid;
+                $rootScope.musertype = userdatas.musertype;
+                $rootScope.morgname = userdatas.morgname;
+
+            }
+            else {
+                $rootScope.IsUserLogedIn = false;
+                $rootScope.muserid = 0;
+
+            }
+            $scope.openloginmodal = function () {
+                var lessitem = {
+                    Session_Id: "",
+                    mprodid: "",
+                    mprodvarid: "",
+                    mprodname: "",
+                    msubpicname: "",
+                    msupplierid: "",
+                    mproducturl: "",
+                    mprice: "",
+                    mtermf: "",
+                    mtermp: "",
+                    mqty: "",
+                };
+                $scope.passdata = lessitem;
+                $rootScope.$emit("OpenLoginModal", $scope.passdata);
+            }
+            $scope.forgetPassword = function () {
+                $scope.FSubmitted = true;
+                // alert("submit");
+                //if ($scope.IsLoginFormValid) {
+                $http.get('/api/UserApi/ForgetUser?email=' + $scope.recoverEmail).success(function (data) {
+
+                    if (data["msg"] == "Success") {
+                        $rootScope.IsUserLogedIn = false;
+                        $scope.showforget = false;
+
+                        $rootScope.showmsg = "Please check your registered email for forget password.";
+                        $scope.invalidFlogin = "";
+                        $scope.FSubmitted = false;
+                    }
+                    else {
+                        $scope.IsFError = true;
+                        $scope.invalidFlogin = "Invalid Username";
+                        $scope.FSubmitted = false;
+                    }
+
+                    $scope.user = null;
+
+                }).error(function () {
+                    $scope.FSubmitted = false;
+                    alert('failed');
+
+                })
+                //}
+            };
+            $scope.IsLoginFormValid = false;
+            $scope.InsideLogin = function () {
+                $scope.MSubmitted = true;
+                if ($scope.IsLoginFormValid) {
+                    $http({
+
+                        method: "POST",
+
+                        url: "/User/UserLogin",
+
+                        data: $scope.MenuLoginData
+                    }).success(function (data) {
+
+                        if (data["msg"] == "Success") {
+                            $scope.userid = true;
+                            $rootScope.IsUserLogedIn = true;
+                            jQuery("#login-dialog .modal").modal("hide");
+                            toastr.success("Login successfully!", "Welcome");
+                            $rootScope.mschoolid = data["Data"].muid;
+                            $rootScope.muserid = data["Data"].muserid;
+                            $rootScope.musername = data["Data"].mname;
+                            $rootScope.musertype = data["Data"].musertype;
+                            $rootScope.morgname = data["Data"].morgname;
+                            var expireDate = new Date();
+                            expireDate.setDate(expireDate.getDate() + 1);
+                            $cookies.putObject('userdata', data["Data"], { 'expires': expireDate, 'path': '/' });
+                            PrintSingleItems($scope.passdata);
+
+                        } else if (data["msg"] == "NotVerify") {
+                            $scope.IsError = true;
+                            $scope.invalidlogin = "Your account is not verified yet.<br/>Please check your email and verify account.";
+                            $scope.MSubmitted = false;
+                        }
+                        else if (data["msg"] == "NotActive") {
+                            $scope.IsError = true;
+                            $scope.invalidlogin = "Your account is under review.<br/>Please contact administrator.";
+                            $scope.MSubmitted = false;
+                        }
+                        else {
+                            $scope.IsError = true;
+                            $scope.invalidlogin = "Invalid Username or Password";
+                            $scope.MSubmitted = false;
+                        }
+
+                        $scope.user = null;
+
+                    }).error(function () {
+
+                        alert('failed');
+
+                    })
+                }
+            };
+            $scope.cnt = {
+                "Name": '',
+                "ContactNo": '',
+                "Email": '',
+                "Message": '',
+                "Captcha_Response": ''
+            }
+            $scope.$watchGroup(['f1.$valid', 'reg.$valid', 'shoppingCart', 'IsLogedIn', 'form.$valid'], function (newVal) {
+                $scope.IsFormValid = newVal;
+                $scope.IsRegisterFormValid = newVal;
+                //$scope.getTotalPrice();
+
+
+            }, true);
+            $scope.submitText = "Send";
+            $scope.rsubmitted = false;
+            $scope.message = "";
+            $scope.SaveData = function (isValid) {
+                if ($scope.submitText == 'Send') {
+                    $scope.rsubmitted = true;
+                    $scope.message = '';
+                    $scope.cnt.Captcha_Response = jQuery("#commoncaptcha").val();//widget3;//jQuery('textarea[id="g-recaptcha-response"]').val();
+                    if (isValid) {
+                        $scope.submitText = 'Please Wait...';
+                        //$scope.User = data;
+                        $http({
+
+                            method: "POST",
+
+                            url: "/ContactUs/SendContact",
+
+                            data: $scope.cnt
+                        }).success(function (data) {
+                            if (data["msg"] == "Success") {
+                                $scope.message = "<div class='alert alert-success'>Thank you for contacting us</div>";
+                                //toastr.success($scope.Message, "Success");
+                                $scope.cnt = {
+                                    "Name": '',
+                                    "ContactNo": '',
+                                    "Email": '',
+                                    "Message": '',
+                                    "Captcha_Response": ''
+                                }
+                                //grecaptcha.reset();
+                                $scope.rsubmitted = false;
+                                $scope.submitText = "Send";
+                                //$scope.SaveCart();
+                            }
+                            else {
+                                $scope.IsError = true;
+                                $scope.message = "<div class='alert alert-warning'>Invalid Captcha or Expired.Please try again</div>";
+                                //alert('Invalid Captcha!');
+                                //grecaptcha.reset();
+                                $scope.rsubmitted = false;
+                                $scope.submitText = "Send";
+                            }
+
+                            $scope.user = null;
+
+                        }).error(function () {
+                            grecaptcha.reset();
+                            $scope.message = "<div class='alert alert-danger'>Something went wrong!please try again.</div>";
+                            $scope.rsubmitted = false;
+                            $scope.submitText = "Send";
+                            //alert('failed');
+
+                        })
+
+                    }
+                    else {
+                        jQuery('input.ng-invalid').first().focus();
+                        $scope.message = 'Please fill required fields value';
+                        $scope.rsubmitted = false;
+                        $scope.submitText = "Send";
+                    }
+                    grecaptcha.execute('6LfJV9MkAAAAAPJvDFy18GmUo_5oipfGR4umPwHd', { action: 'submit' }).then(function (token) {
+                        jQuery("textarea[id='commoncaptcha']").val(token);
+                    });
+                }
+            }
+        }]);
+    </script>
+
+}

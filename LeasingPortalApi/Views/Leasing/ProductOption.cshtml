@@ -1,0 +1,639 @@
+﻿
+@{
+    ViewBag.Title = "Product Option";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    Page.Title = "AllProduct";
+    var id = ViewBag.Id;
+}
+<style>
+    @@media (min-width: 992px) {
+        .woocommerce-loop-product__title {
+            height: 3.7em;
+        }
+    }
+
+    select.form-control {
+        border-width: 1px;
+    }
+
+    .mylabel {
+        color: #878787;
+        margin-bottom: 1em;
+        font-size: .857em;
+        line-height: 1.05em;
+        height: 1.05em;
+    }
+</style>
+<div class="se-pre-con ng-hide" ng-show="loader" style="z-index:100">
+
+</div>
+<div id="content" class="site-content" tabindex="-1" ng-controller="ProductController">
+    <div class="container">
+
+        <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Home")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>@ViewBag.Category</nav>
+        <div class="site-content-inner">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    <div class="woocommerce-notices-wrapper"></div>
+                    <header class="page-header">
+                        <h1 class="page-title">@ViewBag.Category</h1>
+                        <p class="woocommerce-result-count"> Showing all {{filtered.length | number}} results</p>
+                    </header>
+                    <!--<div class="ng-cloak" ng-controller="ShoppingCartController">
+                        <section class="well" ng-show="Products">
+                            <h1>Your Shopping Cart</h1>
+                            <div>
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                                <span>{{shoppingCart.totalItems}} Items</span>
+                                <span class="bold">${{shoppingCart.totalPrice}}</span>
+                                <button ng-disabled="!shoppingCart.length" ng-show="!isCheckoutPage" ng-click="checkout()" class="btn btn-success"> Checkout</button>
+                                <button ng-disabled="!shoppingCart.length" ng-click="clearShoppingCart()" class="btn btn-warning">Clear</button>
+                                <button ng-show="isCheckoutPage" ng-click="backToList()" class="btn btn-success"> Back to Store</button>
+                            </div>
+                        </section>
+                    </div>-->
+                    <div class="shop-control-bar">
+                        <div class="handheld-sidebar-toggle">
+                            <button class="btn sidebar-toggler" type="button"><i class="fas fa-sliders-h"></i><span>Filters</span></button>
+                        </div>
+                        <ul class="shop-view-switcher nav nav-tabs" role="tablist" style="padding:10px;">
+                            <!--<li class="nav-item"><a class="nav-link" data-toggle="tab" data-archive-class="grid" title="Grid View" href="#grid" aria-expanded="false"><i class="fa fa-th"></i></a></li>-->
+                            <li class="nav-item"><a class="nav-link  " data-toggle="tab" data-archive-class="grid-extended" title="Grid Extended View" href="#grid-extended" aria-expanded="true"><i class="fa fa-align-justify"></i></a></li>
+                            <!--<li class="nav-item"><a class="nav-link " data-toggle="tab" data-archive-class="list-view" title="List View" href="#list-view"><i class="fa fa-list"></i></a></li>-->
+                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" data-archive-class="list-view-small" title="List View Small" href="#list-view-small"><i class="fa fa-th-list"></i></a></li>
+                        </ul>
+                        <div class="woocommerce-ordering" style="margin-bottom:0px;">
+                            <select ng-model="listOrder" name="orderby" class="orderby">
+                                <option value="mprodname">Default sorting</option>
+                                <option value="-mprodname">Sort by name</option>
+                                <option value="mprice">Sort by price: low to high</option>
+                                <option value="-mprice">Sort by price: high to low</option>
+                            </select>
+                            <input type="hidden" name="paged" value="1">
+                        </div>
+                    </div>
+
+                    <ul data-view="list-view-small" data-toggle="shop-products" class="products columns-5 columns__wide--5">
+
+                        <li ng-cloak ng-repeat="product in filtered = (Products | filter:priceFilter) | orderBy: listOrder  " class="post-2706 product type-product status-publish has-post-thumbnail product_cat-tablets first instock shipping-taxable purchasable product-type-simple">
+                            <div class="product-outer product-item__outer">
+                                <div class="product-inner product-item__inner">
+                                    <div class="product-loop-header product-item__header">
+                                        <span ng-cloak class="loop-product-categories"><a href="/Leasing/SingleProduct/" rel="tag">{{product.mprodcatname}}</a></span>
+                                        <a href="/Leasing/ProductDetail?{{product.mproducturl}}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                            <h2 ng-cloak class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
+                                            <div class="product-thumbnail product-item__thumbnail">
+                                                <img width="300" height="300" ng-src="/LeaseAdmin/Content/images/product/{{product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
+                                            </div>
+                                            <div class="product-rating">
+                                                <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                                                (3)
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="product-loop-body product-item__body">
+                                        <div class="col-xs-12">
+                                            <!--<span class="loop-product-categories"><a href="/Leasing/ProductDetail?{{product.mproducturl}}" rel="tag">{{product.mprodcatname}}</a></span>-->
+                                            <a href="/Leasing/ProductDetail?{{product.mproducturl}}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                <h2 class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
+
+                                                <div class="product-short-description" ng-show="product.msuppliername!=null">
+                                                    Supplier: {{product.msuppliername}}
+                                                    <!--<ul>
+                                                        <li>4.5 inch HD Screen</li>
+                                                        <li>Android 4.4 KitKat OS</li>
+                                                        <li>1.4 GHz Quad Core™ Processor</li>
+                                                        <li>20 MP front Camera</li>
+                                                    </ul>-->
+                                                </div>
+                                                <div class="product-sku"></div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="product-loop-footer product-item__footer">
+                                        <div class="term-add-to-cart" style="display:block;width:100%;">
+                                            <div class="col-xs-12">
+                                                <label>Lease Term</label>
+
+                                            </div>
+
+                                            <div class="col-xs-6 term-freq">
+                                                <label>Freq</label>
+                                                <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                <select ng-init="termdata = sizes[0]" ng-options="size as size.name for size in sizes " class="form-control termselect" ng-model="termdata" ng-change="updateterm(termdata,product,termperiod)"></select>
+
+                                            </div>
+                                            <div class="col-xs-6 term-period">
+                                                <label>Period</label>
+                                                <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                <select ng-init="termperiod = periods[0]" ng-options="period as period.name for period in periods " class="form-control termselect" ng-model="termperiod" ng-change="updateterm(termdata,product,termperiod)"></select>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="price-add-to-cart">
+                                            <span class="price">
+                                                <span class="electro-price">
+                                                    <span ng-cloak class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span> {{product.mprice | number:2 }}</span>
+                                                </span>
+                                            </span>
+                                            <div class="add-to-cart-wrap" data-toggle="tooltip" data-title=" Add to Basket" data-original-title="" title="">
+                                                <a href="/electro-wide/product-category/smart-phones-tablets/?add-to-cart=2706" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="2706" data-product_sku="5487FB8/35" aria-label="Add “Tablet Air 3 WiFi 64GB  Gold” to your cart" rel="nofollow" ng-click="addToCart(product,1)"> Add to Basket</a>
+                                            </div>
+                                        </div>
+                                        <div class="hover-area">
+                                            <div class="action-buttons">
+                                                <div class="yith-wcwl-add-to-wishlist add-to-wishlist-2706">
+                                                    <div class="yith-wcwl-add-button show" style="display:block">
+                                                        <a href="/electro-wide/product-category/smart-phones-tablets/?add_to_wishlist=2706" rel="nofollow" data-product-id="2706" data-product-type="simple" class="add_to_wishlist"> Wishlist</a>
+                                                        <img src="#/wp-content/plugins/yith-woocommerce-wishlist/assets/images/wpspin_light.gif" class="ajax-loading" alt="loading" width="16" height="16" style="visibility:hidden">
+                                                    </div>
+                                                    <div class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                                                        <span class="feedback">Product added!</span>
+                                                        <a href="#/wishlist/" rel="nofollow"> Browse Wishlist </a>
+                                                    </div>
+                                                    <div class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                                                        <span class="feedback">The product is already in the wishlist!</span>
+                                                        <a href="#/wishlist/" rel="nofollow"> Browse Wishlist </a>
+                                                    </div>
+                                                    <div style="clear:both"></div>
+                                                    <div class="yith-wcwl-wishlistaddresponse"></div>
+                                                </div>
+                                                <div class="clear"></div>
+                                                <a href="#?action=yith-woocompare-add-product&amp;id=2706" class="add-to-compare-link" data-product_id="2706">Compare</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!--<li class="post-2701 product type-product status-publish has-post-thumbnail product_cat-tablets outofstock shipping-taxable purchasable product-type-simple">
+                            <div class="product-outer product-item__outer">
+                                <div class="product-inner product-item__inner">
+                                    <div class="product-loop-header product-item__header">
+                                        <span class="loop-product-categories">
+                                            <a href="#" rel="tag">Tablets</a>
+                                        </span>
+                                        <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                            <h2 class="woocommerce-loop-product__title">White Tablet S2 WiFi 62GB LTE Internet</h2>
+                                            <div class="product-thumbnail product-item__thumbnail">
+                                                <img src="~/Content/images/products/Tablet-300x300.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" width="300" height="300">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="product-loop-body product-item__body">
+                                        <span class="loop-product-categories">
+                                            <a href="#" rel="tag">Tablets</a>
+                                        </span>
+                                        <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                            <h2 class="woocommerce-loop-product__title">White Tablet S2 WiFi 62GB LTE Internet</h2>
+                                            <div class="product-rating">
+                                                <div class="star-rating"><span style="width:73.4%">Rated <strong class="rating">3.67</strong> out of 5</span></div> (3)
+                                            </div>
+
+                                        </a>
+                                    </div>
+                                    <div class="product-loop-footer product-item__footer">
+                                        <div class="price-add-to-cart">
+                                            <span class="price">
+                                                <span class="electro-price">
+                                                    <span class="woocommerce-Price-amount amount">
+                                                        <span class="woocommerce-Price-currencySymbol">£</span>428.00
+                                                    </span>
+                                                </span>
+                                            </span>
+                                            <div class="add-to-cart-wrap" data-toggle="tooltip" data-title="Read more" data-original-title="" title="">
+                                                <a href="#" data-quantity="1" class="button product_type_simple" data-product_id="2701" data-product_sku="5487FB8/32" aria-label="Read more about “White Tablet S2 WiFi 62GB LTE Internet”" rel="nofollow">Read more</a>
+                                            </div>
+                                        </div>
+                                        <div class="hover-area">
+                                            <div class="action-buttons">
+                                                <div class="yith-wcwl-add-to-wishlist add-to-wishlist-2706">
+                                                    <div class="yith-wcwl-add-button show" style="display:block">
+                                                        <a href="/electro-wide/product-category/smart-phones-tablets/?add_to_wishlist=2706" rel="nofollow" data-product-id="2706" data-product-type="simple" class="add_to_wishlist"> Wishlist</a>
+                                                        <img src="#/wp-content/plugins/yith-woocommerce-wishlist/assets/images/wpspin_light.gif" class="ajax-loading" alt="loading" width="16" height="16" style="visibility:hidden">
+                                                    </div>
+                                                    <div class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                                                        <span class="feedback">Product added!</span>
+                                                        <a href="#/wishlist/" rel="nofollow"> Browse Wishlist </a>
+                                                    </div>
+                                                    <div class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                                                        <span class="feedback">The product is already in the wishlist!</span>
+                                                        <a href="#/wishlist/" rel="nofollow"> Browse Wishlist </a>
+                                                    </div>
+                                                    <div style="clear:both"></div>
+                                                    <div class="yith-wcwl-wishlistaddresponse"></div>
+                                                </div>
+                                                <div class="clear"></div>
+                                                <a href="#?action=yith-woocompare-add-product&amp;id=2706" class="add-to-compare-link" data-product_id="2706">Compare</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>-->
+                    </ul>
+                    <div class="shop-control-bar-bottom">
+                        <p ng-cloak class="woocommerce-result-count"> Showing all {{filtered.length | number}} results</p>
+                    </div>
+                </main>
+            </div>
+            <div id="sidebar" class="sidebar" role="complementary">
+                <aside id="electro_product_categories_widget-1" ng-controller="FilterController" class="widget woocommerce widget_product_categories electro_widget_product_categories">
+                    <ul class="product-categories category-single">
+                        <li class="product_cat">
+                            <ul class="show-all-cat">
+                                <li class="product_cat">
+                                    <span class="show-all-cat-dropdown">Show All Categories<span class="child-indicator"></span></span>
+                                    <ul style="display: none;">
+                                        <li ng-repeat="menu in FilterMenu | filter:{mpreviouscat : 0}" class="cat-item cat-item-88">
+                                            <a href="#/product-category/accessories/"><span class="no-child"></span>{{menu.mcatname}}</a> <!--<span class="count">(11)</span>-->
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li class="cat-item cat-item-126 current-cat">
+                                    <a href="#/product-category/smart-phones-tablets/"><span class="child-indicator open"><i class="fa fa-angle-up"></i></span>@ViewBag.Category</a> <span class="count">({{filtered.length | number}})</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
+                <aside id="electro_products_filter-1" class="widget widget_electro_products_filter">
+                    <h3 class="widget-title">Filters</h3>
+                    <aside id="woocommerce_layered_nav-1" class="widget woocommerce widget_layered_nav woocommerce-widget-layered-nav">
+                        <h3 class="widget-title">Brands</h3>
+                        <ul class="woocommerce-widget-layered-nav-list">
+                            <li data-ng-model="search.mbrand" class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=apple">Apple</a> <span class="count">(4)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=gionee">Gionee</a> <span class="count">(2)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=htc">HTC</a> <span class="count">(2)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=lg">LG</a> <span class="count">(2)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=micromax">Micromax</a> <span class="count">(1)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style="display: none;"><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=microsoft">Microsoft</a> <span class="count">(2)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style="display: none;"><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=samsung">Samsung</a> <span class="count">(5)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style="display: none;"><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_brands=xiaomi">Xiaomi</a> <span class="count">(2)</span></li>
+                        </ul>
+                        <p class="maxlist-more"><a href="#">+ Show more</a></p>
+                    </aside>
+                    <aside id="woocommerce_layered_nav-2" class="widget woocommerce widget_layered_nav woocommerce-widget-layered-nav">
+                        <h3 class="widget-title">Color</h3>
+                        <ul class="woocommerce-widget-layered-nav-list">
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=black-de">Black</a> <span class="count">(4)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=black-leather-de">Black Leather</a> <span class="count">(2)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=gold">Gold</a> <span class="count">(4)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=spacegrey">Spacegrey</a> <span class="count">(3)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style=""><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=turquoise-de">Turquoise</a> <span class="count">(2)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style="display: none;"><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=white-de">White</a> <span class="count">(4)</span></li>
+                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " style="display: none;"><a rel="nofollow" href="#/product-category/smart-phones-tablets/?filter_color=white-with-gold">White with Gold</a> <span class="count">(1)</span></li>
+                        </ul>
+                        <p class="maxlist-more"><a href="#">+ Show more</a></p>
+                    </aside>
+                    <aside id="electro_products_filter-1" class="widget widget_electro_products_filter">
+                        <h3 class="widget-title">Filters</h3>
+                        <!--<aside id="woocommerce_layered_nav_filters-1" class="widget woocommerce widget_layered_nav_filters"><h3 class="widget-title">Active Filters</h3><ul><li class="chosen"><a rel="nofollow" aria-label="Remove filter" href="https://demo2.madrasthemes.com/electro-wide/product-category/laptops-computers/accessories-laptops-computers/?max_price=250">Min <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>152.00</span></a></li><li class="chosen"><a rel="nofollow" aria-label="Remove filter" href="https://demo2.madrasthemes.com/electro-wide/product-category/laptops-computers/accessories-laptops-computers/?min_price=152">Max <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>250.00</span></a></li></ul></aside>-->
+                        <aside id="woocommerce_price_filter-1" class="widget woocommerce widget_price_filter">
+                            <h3 class="widget-title">Price</h3>
+                            <input type="hidden" id="hidden_minimum_price" value="0" />
+                            <input type="hidden" id="hidden_maximum_price" value="65000" />
+                            <div class="price_slider_wrapper">
+                                <p id="price_show">{{min}} - {{max}}</p>
+                                <div class="price_slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                    <div id="price_range2"></div>
+                                </div>
+                                <input class="btn btn-primary btn-sm" type="submit" ng-click="priceFiltering()" value="Filter">
+                            </div>
+                            <!--<form method="get" >
+                                <div class="price_slider_wrapper">
+                                    <div class="price_slider" style="display:none;"></div>
+                                    <div class="price_slider_amount">
+                                        <input type="text" id="min_price" name="min_price" value="152" data-min="110" placeholder="Min price" />
+                                        <input type="text" id="max_price" name="max_price" value="250" data-max="250" placeholder="Max price" />
+                                        <button type="submit" class="button">Filter</button>
+                                        <div class="price_label" style="display:none;">
+                                            Price: <span class="from"></span> &mdash; <span class="to"></span>
+                                        </div>
+
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </form>-->
+                        </aside>
+                        <script type="text/javascript">
+					jQuery( document ).ready( function(){
+						jQuery('.widget_electro_products_filter .widget .widget-title + ul').hideMaxListItems({
+							'max': 5,
+							'speed': 500,
+							'moreText': "+ Show more",
+							'lessText': "- Show less",
+						});
+						if( jQuery('.widget_electro_products_filter > .widget').length == 0 ) {
+							jQuery('.widget_electro_products_filter').hide();
+						}
+					} );
+                        </script>
+                    </aside>
+                </aside>
+                <aside id="media_image-2" class="widget widget_media_image">
+                    <img width="270" height="315" src="~/Content/images/shop-sidebar-ad-banner.jpg" class="image wp-image-2142  attachment-full size-full" alt="" style="max-width: 100%; height: auto;">
+                </aside>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+                               {
+    <script type='text/javascript' src='~/Content/js/theme/accounting.min.js?ver=0.4.2'></script>
+    <script type='text/javascript' src='~/Content/js/theme/hidemaxlistitem.min.js?ver=2.3.1'></script>
+
+    <script type='text/javascript' src='~/Content/js/theme/widget.min.js?ver=1.11.4'></script>
+    <script type='text/javascript' src='~/Content/js/theme/mouse.min.js?ver=1.11.4'></script>
+    <script src="~/Content/js/theme/slider.min.js?ver=1.11.4" type="text/javascript"></script>
+    <script>
+        /*app.filter('priceFilter', function () {
+            return function(product,min,max) {
+
+                console.log(product);
+                if ((product.mprice <= max) && (product.mprice >= $min)){
+
+                    return product;
+                };
+            }
+            $window.scrollTo(0, angular.element('#ProductController').offsetTop);
+        })*/
+        app.controller('ProductController', ['$scope', '$http', '$rootScope','$location','$window','$cookies',
+        function ($scope, $http, $rootScope,$location,$window,$cookies) {
+
+            /*$scope.url = $location.host();
+            $scope.path = $location.path();
+            $scope._params = $location.search();
+            $scope._catname=$scope._params["Category"];
+            console.log($scope._params["getproducts"]);*/
+
+            $rootScope.shoppingcart = [];
+                    $scope.listOrder = 'mprodname'
+                    $scope.getcount=0;
+                    $scope.Products = [];
+                    $scope.count = "";
+                    $scope.loader = true;
+                    $scope.search = '';
+                    $scope.userid=0;
+                    $scope.sizes = [ {code: 1, name: 'Monthly'}, {code: 3, name: 'Quaterly'},{code:4,name:'Termly'},{code:6,name:'Bi-annually'},{code:12,name:'Annually'}]
+                    $scope.periods = [ {code: 60, name: '5 year'}, {code: 48, name: '4 year'},{code:36,name:'3 year'},{code:24,name:'2 year'},{code:12,name:'1 year'}]
+                    /*$http.get('/Api/ProductApi/GetAllProduct/',$scope.params).success(function (data) {
+                        $scope.Products = data;
+                        $scope.loader = false;
+                        $scope.count = "showing " + data.length + " results";
+                    });*/
+                    if (!angular.isUndefined($cookies.get('userdata'))) {
+
+                        $scope.userid = true;
+                    }
+                    $http.get('/Api/ProductApi/GetMoreProductById?getid=' + @id).success(function (data) {
+                        for(var i=0;i<data.length;i++){
+                            data[i].mprice=((data[i].mprice*1)/(60*0.9)).toFixed(2);
+                        }
+                        $scope.Products = data;
+                        $scope.getcount=$scope.Products.length;
+                        $scope.loader = false;
+                        $scope.count = "showing " + data.length + " results";
+
+                        $rootScope.min = Math.min.apply(Math,$scope.Products.map(function(item){return item.mprice;}));
+                        $rootScope.max = Math.max.apply(Math,$scope.Products.map(function(item){return item.mprice;}));
+                        jQuery('#price_range2').slider({
+                            range:true,
+                            min:$scope.min,
+                            max:$scope.max,
+                            values:[$scope.min, $scope.max],
+                            step:5,
+                            stop:function(event, ui)
+                            {
+                                jQuery('#price_show').html("£"+ui.values[0] + ' -  £' + ui.values[1]);
+                                $scope.max=ui.values[1];
+                                $scope.min=ui.values[0];
+                                //$scope.priceFilter();
+
+                            }
+                        });
+
+
+                    });
+
+            $scope.priceFiltering = function(){
+                $scope.priceFilter = function(product) {
+                    var i=0;
+                    if ((product.mprice <= $scope.max) && (product.mprice >= $scope.min)){
+                        return product;
+                    };
+
+                    $window.scrollTo(0, angular.element('#ProductController').offsetTop);
+
+                }
+
+
+            }
+            $scope.updateterm = function(termfreq,item,termperiod) {
+                var freq=termfreq.code;
+                var period=termperiod.code;
+
+                item.mtermf=freq;
+                item.mtermp=period;
+                item.mprice = (item.mbasicprice*freq)/(period*0.9);
+                //switch (datacode) {
+                //    case 1:
+                //        item.mprice = (item.mbasicprice*1)/(60*0.9);
+                //        break;
+                //    case 2:
+                //        item.mprice = (item.mbasicprice*3)/(36*0.9);
+                //        break;
+                //    case 3:
+                //        item.mprice = (item.mbasicprice*6)/(60*0.9);
+                //        break;
+                //    default:
+                //        item.mprice = (item.mbasicprice*1)/(60*0.9);
+                //        break;
+
+                //}
+                //item.mprice=5;
+                console.log(item.mtermp);
+            }
+
+                    $scope.$watch('Products', function () {
+                        $scope.$emit('Products', $scope.Products);
+
+                    });
+
+            //Sepetimiz daha önceden tanımlıysa onu çekelim
+                    if (!angular.isUndefined($cookies.get('leasebasket'))) {
+                        $rootScope.shoppingCart =  $cookies.getObject('leasebasket');
+                    }
+                    $scope.addToCart = function (item, no) {
+                        var lessitem={
+
+                            mprodid:item.mprodid,
+                            mprodvarid:item.mprodvarid,
+                            mprodname:item.mprodname,
+                            msubpicname:item.msubpicname,
+                            msupplierid: item.msupplierid,
+                            mproducturl:item.mproducturl,
+                            mprice:item.mprice,
+                            mtermf:item.mtermf,
+                            mtermp:item.mtermp
+                        };
+                        var items = {Product:lessitem,Quantity:no};
+                        if ($rootScope.shoppingCart.length === 0){
+                            $rootScope.shoppingCart.push(items);
+                            $scope.count = "showing " + $rootScope.shoppingCart.length + " results";
+                        } else {
+                            var repeat = false;
+                            for(var i = 0; i< $rootScope.shoppingCart.length; i++){
+                                if($rootScope.shoppingCart[i].Product.mprodvarid === items.Product.mprodvarid && $rootScope.shoppingCart[i].Product.msupplierid===items.Product.msupplierid){
+                                    repeat = true;
+                                    $rootScope.shoppingCart[i].count +=1;
+                                }
+                            }
+                            if (!repeat) {
+                                $rootScope.shoppingCart.push(items);
+                            }
+                            $scope.count = "showing " + $rootScope.shoppingCart.length + " results";
+                        }
+                        console.log(items);
+                        var expireDate = new Date();
+                        expireDate.setDate(expireDate.getDate() + 1);
+                        $cookies.putObject('leasebasket', $rootScope.shoppingCart,  {'expires': expireDate,'path':'/'});
+                        $rootScope.shoppingCart = $cookies.getObject('leasebasket');
+
+                        $scope.total += parseFloat(items.Product.mprice);
+                        $cookies.put('total', $scope.total,  {'expires': expireDate});
+
+                        /*$.ajax({
+                            url: '/Api/ProductApi/AddToCart/',
+                            type: "post",
+                            data: { item: item, no: no },
+                            success: function (data) {
+                                console.log(data);
+                                $scope.loader = false;
+                                $scope.count = "showing " + data.length + " results";
+                            }
+                        });*/
+
+                        /*$http.post('/Product/Buy/', items).success(function (data) {
+                            console.log(data);
+                            $scope.loader = false;
+                            $scope.count = "showing " + data.length + " results";
+                        });*/
+                        console.log("Shopping Cart");
+                        console.log($rootScope.shoppingCart);
+                        //$rootScope.shoppingCart.push({ item, no });
+
+                    };
+                }
+        ]);
+        app.controller('ShoppingCartController', ['$scope', '$http', '$rootScope', '$location', '$sce','$cookies', function ($scope, $http, $rootScope, $location, $sce,$cookies) {
+            $scope.isCheckoutPage = false;
+            $rootScope.shoppingCart = $rootScope.shoppingCart || [];
+            $rootScope.shoppingCart.totalPrice = 0;
+            if (!angular.isUndefined($cookies.get('leasebasket'))) {
+                $rootScope.shoppingCart =  $cookies.getObject('leasebasket');
+            }
+            /*$http.get('/Product/GetCart').success( function (data) {
+                $rootScope.shoppingCart = $cookies.getObject('leasebasket');;
+
+                console.log($scope.shoppingCart);
+                $scope.loader = false;
+            });
+            */
+            $rootScope.$on('itemList', function (event, itemList) {
+                $scope.itemList = itemList;
+            });
+
+            $scope.$watch('shoppingCart', function () {
+                $rootScope.shoppingCart.totalPrice = 0;
+                $rootScope.shoppingCart.totalItems = 0;
+                $scope.getTotalPrice();
+                $scope.getTotalNoOfItems();
+                console.log('changed');
+            }, true);
+
+            $scope.checkout = function () {
+                $location.path('/checkout');
+                $scope.isCheckoutPage = true;
+            };
+
+            $scope.deleteFromCart = function (index) {
+                $rootScope.shoppingCart.splice(index, 1);
+                expireDate = new Date();
+                expireDate.setDate(expireDate.getDate() + 1);
+                $cookies.putObject('leasebasket', $rootScope.shoppingCart, {'expires': expireDate,'path':'/'});
+            };
+
+            $scope.clearShoppingCart = function (index) {
+                $rootScope.shoppingCart = [];
+            };
+
+            $scope.backToList = function () {
+                $location.path('/list');
+                $scope.isCheckoutPage = false;
+            };
+
+            $scope.getTotalPrice = function () {
+                $rootScope.shoppingCart.forEach(function (itemObj) {
+                    $rootScope.shoppingCart.totalPrice = Number($rootScope.shoppingCart.totalPrice)+ $scope.getItemPrice(itemObj);
+                });
+            };
+
+            $scope.getTotalNoOfItems = function () {
+                $rootScope.shoppingCart.forEach(function (itemObj) {
+                    $rootScope.shoppingCart.totalItems += $scope.getItemNo(itemObj);
+                });
+            };
+
+            $scope.getItemPrice = function (itemObj) {
+                var itemPrice = 0;
+                console.log("items");
+                itemPrice = (Number(itemObj.Product.mprice) * Number(itemObj.Quantity)).toFixed(2);
+                return Number(itemPrice);
+            };
+
+            $scope.getItemNo = function (itemObj) {
+                return itemObj.Quantity;
+            };
+
+            $scope.confirmCheckout = function () {
+                $location.path('/checkoutsuccess');
+                $scope.message = $sce.trustAsHtml($rootScope.shoppingCart.length + ' Items' + ' @@ $' + $rootScope.shoppingCart.totalPrice);
+                console.log($scope.successMsg);
+                $rootScope.shoppingCart = [];
+            };
+        }]);
+        app.controller('FilterController', ['$scope', '$http',
+    function ($scope, $http) {
+        $scope.FilterMenu = [];
+        $http.get('/api/HomeApi/GelAllMainCategories').success(function (data) {
+            $scope.FilterMenu = data;
+        });
+    }
+        ]);
+        jQuery(document).ready(function () {
+            jQuery('.widget_electro_products_filter .widget .widget-title + ul').hideMaxListItems({
+                'max': 5,
+                'speed': 500,
+                'moreText': "+ Show more",
+                'lessText': "- Show less",
+            });
+            if (jQuery('.widget_electro_products_filter > .widget').length == 0) {
+                jQuery('.widget_electro_products_filter').hide();
+            }
+        });
+
+
+//var woocommerce_price_slider_params = {"currency_format_num_decimals":"0","currency_format_symbol":"\u00a3","currency_format_decimal_sep":".","currency_format_thousand_sep":",","currency_format":"%s%v"};
+
+//        jQuery(function(o){if("undefined"==typeof woocommerce_price_slider_params)return!1;function e(){o("input#min_price, input#max_price").hide(),o(".price_slider, .price_label").show();var e=o(".price_slider_amount #min_price").data("min"),r=o(".price_slider_amount #max_price").data("max"),i=o(".price_slider_amount #min_price").val(),c=o(".price_slider_amount #max_price").val();o(".price_slider:not(.ui-slider)").slider({range:!0,animate:!0,min:e,max:r,values:[i,c],create:function(){o(".price_slider_amount #min_price").val(i),o(".price_slider_amount #max_price").val(c),o(document.body).trigger("price_slider_create",[i,c])},slide:function(e,r){o("input#min_price").val(r.values[0]),o("input#max_price").val(r.values[1]),o(document.body).trigger("price_slider_slide",[r.values[0],r.values[1]])},change:function(e,r){o(document.body).trigger("price_slider_change",[r.values[0],r.values[1]])}})}o(document.body).bind("price_slider_create price_slider_slide",function(e,r,i){o(".price_slider_amount span.from").html(accounting.formatMoney(r,{symbol:woocommerce_price_slider_params.currency_format_symbol,decimal:woocommerce_price_slider_params.currency_format_decimal_sep,thousand:woocommerce_price_slider_params.currency_format_thousand_sep,precision:woocommerce_price_slider_params.currency_format_num_decimals,format:woocommerce_price_slider_params.currency_format})),o(".price_slider_amount span.to").html(accounting.formatMoney(i,{symbol:woocommerce_price_slider_params.currency_format_symbol,decimal:woocommerce_price_slider_params.currency_format_decimal_sep,thousand:woocommerce_price_slider_params.currency_format_thousand_sep,precision:woocommerce_price_slider_params.currency_format_num_decimals,format:woocommerce_price_slider_params.currency_format})),o(document.body).trigger("price_slider_updated",[r,i])}),e(),"undefined"!=typeof wp&&wp.customize&&wp.customize.selectiveRefresh&&wp.customize.widgetsPreview&&wp.customize.widgetsPreview.WidgetPartial&&wp.customize.selectiveRefresh.bind("partial-content-rendered",function(){e()})});
+    </script>
+
+}

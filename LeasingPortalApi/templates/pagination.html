@@ -1,0 +1,7 @@
+<nav class="woocommerce-pagination">
+    <ul class="page-numbers">
+        <li ng-class="{disabled: noPrevious()}"><a ng-click="selectPrevious()">Previous</a></li>
+        <li ng-repeat="page in pages" ><a ng-click="selectPage(page)"><span class="page-numbers" ng-class="{current: isActive(page)}">{{page}}</span></a></li>
+        <li ng-class="{disabled: noNext()}"><a ng-click="selectNext()">Next</a></li>
+    </ul>
+    </nav>

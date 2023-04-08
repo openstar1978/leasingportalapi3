@@ -1,0 +1,3059 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>
+        HTML to PDF - techumber
+    </title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.0/semantic.min.css" />
+</head>
+<body>
+    <div class="ui button aligned center teal" id="create_pdf" onclick="getpdf1()">Create PDF</div>
+    <button onclick="getPDF()" id="downloadbtn"><b>Click to Download HTML as PDF</b></button>
+    <form class="ui form canvas_div_pdf" style="width:800px;">
+        <div id="grid">
+            <style>
+                
+            </style>
+            <style>
+                #page_31 .border-r, #page_31 .border-b {
+                    border: none !important;
+                }
+
+                #page_31 .table3 td, #page_31 .table3 th {
+                    padding: .15rem;
+                    vertical-align: top;
+                }
+
+                #page_3 table p {
+                    font: 8px 'Arial';
+                    text-align: center;
+                }
+
+                #page_3 table tr td p {
+                    line-height: 12px;
+                }
+
+                .approvedtd td {
+                    background: #ffd89c;
+                    border: 1px solid #bba7a7;
+                }
+
+                .lapprovedtd td {
+                    background: #d4edda;
+                    border: 1px solid #bba7a7;
+                }
+
+                .lpendingtd td {
+                    background: #fff3cd;
+                    border: 1px solid #bba7a7;
+                }
+
+                .lrejectedtd td {
+                    background: #f8d7da;
+                    border: 1px solid #bba7a7;
+                }
+
+                table.cart .actions {
+                    padding-top: 0 !important;
+                }
+
+                .tab-pane {
+                    padding: 1rem;
+                }
+
+                .md-tabs {
+                    position: relative;
+                    z-index: 1;
+                    padding: .7rem;
+                    margin-right: 1rem;
+                    margin-bottom: -20px;
+                    margin-left: 1rem;
+                    background-color: #fff;
+                    border: 0;
+                    border-radius: .25rem;
+                    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+                    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+                }
+
+                .indigo1 {
+                    background-color: #3f51b5 !important;
+                }
+
+                .md-tabs .nav-link {
+                    color: #082044;
+                    border: 0;
+                    -webkit-transition: all .4s;
+                    transition: all .4s;
+                }
+
+                .nav-tabs .nav-link {
+                    border: 1px solid transparent;
+                    border-top-left-radius: .25rem;
+                    border-top-right-radius: .25rem;
+                }
+
+                .nav-link {
+                    display: block;
+                    padding: .5rem 1rem;
+                }
+
+                .nav-tabs .nav-link:hover, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover {
+                    border-color: #3f51b5;
+                }
+
+                .nav-tabs .nav-item {
+                    background: rgba(0,0,0,0.05);
+                    display: block;
+                    position: relative;
+                }
+
+                    .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+                        color: #fff !important;
+                        background-color: #082044 !important;
+                        border-color: #e7eaf3 #e7eaf3 #fff;
+                    }
+
+                .entry-content .card {
+                    font-weight: 400;
+                    border: 0;
+                    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+                    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+                }
+
+                table.cart .actions {
+                    padding-top: 0 !important;
+                }
+
+                .btndropdown .btn, .open > .btn.dropdown-toggle, .open > .button.dropdown-toggle, .open > .dropdown-toggle.hero-action-btn, .open > button.dropdown-toggle {
+                    background-color: #4d44bd;
+                    border-color: #4940b4;
+                    border-radius: 0px;
+                    color: #fff;
+                }
+
+
+                .btndropdown .dropdown-menu {
+                    margin-top: 0px;
+                }
+
+                .btndropdown .dropdown-item {
+                    cursor: pointer;
+                }
+
+                #datepicker .input-group-addon, #datepicker .input-group-btn {
+                    width: 9% !important;
+                    padding: 0.67rem .75rem !important;
+                }
+
+
+                .quoteh6 {
+                    text-align: left;
+                    color: #8a0808 !important;
+                    padding-bottom: 15px;
+                    font-size: 0.8rem;
+                }
+
+                .col-xs-3.quoteh6.border, .col-xs-9.border.quoteh6 {
+                    padding-top: 15px;
+                }
+
+                {
+                    padding-top: 15px;
+                }
+
+
+
+                .agreementform {
+                    color: #333;
+                }
+
+                .agreementtable {
+                    background-color: #082044;
+                }
+
+                .panel-group .panel {
+                    border-radius: 0;
+                    box-shadow: none;
+                    border: 1px solid #EEEEEE;
+                    margin-top: 10px;
+                }
+
+                .panel-default > .panel-heading {
+                    padding: 0;
+                    border-radius: 0;
+                    color: #212121;
+                    /*background-color: #FAFAFA;*/
+                    /*border-color: #EEEEEE;*/
+                }
+
+                .panel-title {
+                    font-size: 14px;
+                }
+
+                    .panel-title > a {
+                        display: block;
+                        padding: 15px;
+                        text-decoration: none;
+                    }
+
+                .more-less {
+                    float: right;
+                    color: #212121;
+                    margin-top: 10px;
+                    margin-right: 10px;
+                }
+
+                .panel-default > .panel-heading + .panel-collapse > .panel-body {
+                    border-top-color: #EEEEEE;
+                }
+
+                .nav-tabs .nav-link .tab-items-count {
+                    border: 1px solid #fe5300;
+                    background: #fe5300;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: -8px;
+                    right: 0px;
+                    color: #fff;
+                }
+
+                .nav-tabs .nav-link.active1 .tab-items-count {
+                    background: #fff;
+                    color: #333;
+                }
+
+
+
+                #agreementmodal p {
+                    margin-bottom: 0px;
+                }
+
+                .price-color-gold {
+                    color: #000 !important;
+                }
+
+                .maintable {
+                    border-collapse: separate;
+                    border-spacing: 0 0.5em;
+                }
+
+                .nav-item1 a, li .dropdown-title {
+                    font-size: 1em;
+                }
+
+                .sidebar-navbar.view-all .dropdown-toggle::after {
+                    content: "\f105";
+                }
+
+                .nav-item1 {
+                    margin: 0px !important;
+                }
+
+                    .nav-item1.active {
+                        background: #082044;
+                    }
+
+                    .nav-item1 a:before {
+                        content: "\f105";
+                        font-size: 1.00012rem;
+                        line-height: 1;
+                        order: -1;
+                        margin-left: 0;
+                        margin-right: .5rem;
+                        display: inline-block;
+                        font-family: "Font Awesome 5 Free";
+                        font-weight: 900;
+                    }
+
+                    .nav-item1.active a {
+                        color: #fff;
+                    }
+
+                    .nav-item1:hover {
+                        background: #082044;
+                        color: #fff;
+                    }
+
+                        .nav-item1:hover a {
+                            color: #fff;
+                        }
+
+                .invalid-feedback {
+                    display: block;
+                    margin-left: 10px;
+                    text-align: left;
+                }
+
+                #grid table {
+                    border: inherit;
+                    color: #333 !important;
+                }
+
+                    #grid table td, #grid table th {
+                        border: inherit;
+                        padding: 0px;
+                    }
+
+                #grid .table3 td, #grid .table3 th, #grid .border {
+                    border: 1px solid !important;
+                }
+
+                .nodata p {
+                    font-size: 1.2em;
+                }
+
+                #agreementmodal form {
+                    margin-bottom: 0px !important;
+                }
+
+                #generatedAgreementmodal .modal-lg {
+                    width: 80%;
+                    max-width: 80%;
+                }
+
+                #msgModal:before {
+                    content: '';
+                    display: inline-block;
+                    height: 100%;
+                    vertical-align: middle;
+                }
+
+                #msgModal .modal-dialog {
+                    display: inline-block;
+                    vertical-align: middle;
+                    left: 18%;
+                }
+
+                #msgModal .modal-content {
+                    -webkit-animation-name: modal-animation;
+                    -webkit-animation-duration: 0.5s;
+                    animation-name: modal-animation;
+                    animation-duration: 0.5s;
+                }
+
+                @media(min-width:1100px) {
+                    #reviewModal .modal-lg {
+                        width: 600px;
+                    }
+
+                    #agreementmodal .modal-lg {
+                        width: 900px;
+                        max-width: 900px;
+                    }
+
+                    #leaseterm-dialog .modal-lg {
+                        width: 70%;
+                        max-width: 100%;
+                    }
+                }
+
+                .panel-table {
+                    margin-bottom: 0px;
+                }
+
+                    .panel-table thead th, .panel-table tbody td {
+                        border-top: none;
+                        border-bottom: none;
+                        color: #333;
+                        padding: 4px .75rem;
+                    }
+
+                .aggreementrow table tbody td {
+                    padding: 4px .75rem !important;
+                    border-top: 0px !important;
+                }
+
+                .aggreementrow .btn {
+                    padding: 4px 10px !important;
+                    cursor: pointer !important;
+                }
+            </style>
+            <style>
+                #grid div table tr td p {
+                    color: #333;
+                }
+
+                .border {
+                    border: 1px solid;
+                }
+
+                .border-r {
+                    border-right: 1px solid;
+                }
+
+                .border-l {
+                    border-left: 1px solid;
+                }
+
+                .border-t {
+                    border-top: 1px solid;
+                }
+
+                .border-b {
+                    border-bottom: 1px solid;
+                }
+                /*
+                      * 1.1 -> Basic Margin
+                      * -----------------------------------------------
+                      */
+                .m-0 {
+                    margin: 0px !important;
+                }
+
+                .m-5 {
+                    margin: 5px !important;
+                }
+
+                .m-10 {
+                    margin: 10px !important;
+                }
+
+                .m-15 {
+                    margin: 15px !important;
+                }
+
+                .m-20 {
+                    margin: 20px !important;
+                }
+
+                .m-30 {
+                    margin: 30px !important;
+                }
+
+                .m-40 {
+                    margin: 40px !important;
+                }
+
+                .m-50 {
+                    margin: 50px !important;
+                }
+
+                .m-60 {
+                    margin: 60px !important;
+                }
+
+                .m-70 {
+                    margin: 70px !important;
+                }
+
+                .m-80 {
+                    margin: 80px !important;
+                }
+
+                .m-90 {
+                    margin: 90px !important;
+                }
+
+                .m-100 {
+                    margin: 100px !important;
+                }
+
+                .m-110 {
+                    margin: 110px !important;
+                }
+
+                .m-120 {
+                    margin: 120px !important;
+                }
+
+                .m-130 {
+                    margin: 130px !important;
+                }
+
+                .m-140 {
+                    margin: 140px !important;
+                }
+
+                .m-150 {
+                    margin: 150px !important;
+                }
+
+                .m-160 {
+                    margin: 160px !important;
+                }
+
+                .m-170 {
+                    margin: 170px !important;
+                }
+
+                .m-180 {
+                    margin: 180px !important;
+                }
+
+                .m-190 {
+                    margin: 190px !important;
+                }
+
+                .m-200 {
+                    margin: 200px !important;
+                }
+                /*
+                      * 1.2 -> Basic Padding
+                      * -----------------------------------------------
+                      */
+                .p-0 {
+                    padding: 0 !important;
+                }
+
+                .p-5 {
+                    padding: 5px !important;
+                }
+
+                .p-10 {
+                    padding: 10px !important;
+                }
+
+                .p-15 {
+                    padding: 15px !important;
+                }
+
+                .p-20 {
+                    padding: 20px !important;
+                }
+
+                .p-30 {
+                    padding: 30px !important;
+                }
+
+                .p-40 {
+                    padding: 40px !important;
+                }
+
+                .p-50 {
+                    padding: 50px !important;
+                }
+
+                .p-60 {
+                    padding: 60px !important;
+                }
+
+                .p-70 {
+                    padding: 70px !important;
+                }
+
+                .p-80 {
+                    padding: 80px !important;
+                }
+
+                .p-90 {
+                    padding: 90px !important;
+                }
+
+                .p-100 {
+                    padding: 100px !important;
+                }
+
+                .p-110 {
+                    padding: 110px !important;
+                }
+
+                .p-120 {
+                    padding: 120px !important;
+                }
+
+                .p-130 {
+                    padding: 130px !important;
+                }
+
+                .p-140 {
+                    padding: 140px !important;
+                }
+
+                .p-150 {
+                    padding: 150px !important;
+                }
+
+                .p-160 {
+                    padding: 160px !important;
+                }
+
+                .p-170 {
+                    padding: 170px !important;
+                }
+
+                .p-180 {
+                    padding: 180px !important;
+                }
+
+                .p-190 {
+                    padding: 190px !important;
+                }
+
+                .p-200 {
+                    padding: 200px !important;
+                }
+                /*
+                      * 1.3 -> Margin top
+                      * -----------------------------------------------
+                      */
+                .mt-0 {
+                    margin-top: 0 !important;
+                }
+
+                .mt-5 {
+                    margin-top: 5px !important;
+                }
+
+                .mt-10 {
+                    margin-top: 10px !important;
+                }
+
+                .mt-15 {
+                    margin-top: 15px !important;
+                }
+
+                .mt-20 {
+                    margin-top: 20px !important;
+                }
+
+                .mt-30 {
+                    margin-top: 30px !important;
+                }
+
+                .mt-40 {
+                    margin-top: 40px !important;
+                }
+
+                .mt-50 {
+                    margin-top: 50px !important;
+                }
+
+                .mt-60 {
+                    margin-top: 60px !important;
+                }
+
+                .mt-70 {
+                    margin-top: 70px !important;
+                }
+
+                .mt-80 {
+                    margin-top: 80px !important;
+                }
+
+                .mt-90 {
+                    margin-top: 90px !important;
+                }
+
+                .mt-100 {
+                    margin-top: 100px !important;
+                }
+
+                .mt-110 {
+                    margin-top: 110px !important;
+                }
+
+                .mt-120 {
+                    margin-top: 120px !important;
+                }
+
+                .mt-130 {
+                    margin-top: 130px !important;
+                }
+
+                .mt-140 {
+                    margin-top: 140px !important;
+                }
+
+                .mt-150 {
+                    margin-top: 150px !important;
+                }
+
+                .mt-160 {
+                    margin-top: 160px !important;
+                }
+
+                .mt-170 {
+                    margin-top: 170px !important;
+                }
+
+                .mt-180 {
+                    margin-top: 180px !important;
+                }
+
+                .mt-190 {
+                    margin-top: 190px !important;
+                }
+
+                .mt-200 {
+                    margin-top: 200px !important;
+                }
+                /*
+                      * 1.4 -> Margin right
+                      * -----------------------------------------------
+                      */
+                .mr-0 {
+                    margin-right: 0 !important;
+                }
+
+                .mr-5 {
+                    margin-right: 5px !important;
+                }
+
+                .mr-10 {
+                    margin-right: 10px !important;
+                }
+
+                .mr-15 {
+                    margin-right: 15px !important;
+                }
+
+                .mr-20 {
+                    margin-right: 20px !important;
+                }
+
+                .mr-30 {
+                    margin-right: 30px !important;
+                }
+
+                .mr-40 {
+                    margin-right: 40px !important;
+                }
+
+                .mr-50 {
+                    margin-right: 50px !important;
+                }
+
+                .mr-60 {
+                    margin-right: 60px !important;
+                }
+
+                .mr-70 {
+                    margin-right: 70px !important;
+                }
+
+                .mr-80 {
+                    margin-right: 80px !important;
+                }
+
+                .mr-90 {
+                    margin-right: 90px !important;
+                }
+
+                .mr-100 {
+                    margin-right: 100px !important;
+                }
+
+                .mr-110 {
+                    margin-right: 110px !important;
+                }
+
+                .mr-120 {
+                    margin-right: 120px !important;
+                }
+
+                .mr-130 {
+                    margin-right: 130px !important;
+                }
+
+                .mr-140 {
+                    margin-right: 140px !important;
+                }
+
+                .mr-150 {
+                    margin-right: 150px !important;
+                }
+
+                .mr-160 {
+                    margin-right: 160px !important;
+                }
+
+                .mr-170 {
+                    margin-right: 170px !important;
+                }
+
+                .mr-180 {
+                    margin-right: 180px !important;
+                }
+
+                .mr-190 {
+                    margin-right: 190px !important;
+                }
+
+                .mr-200 {
+                    margin-right: 200px !important;
+                }
+                /*
+                      * 1.5 -> Margin bottom
+                      * -----------------------------------------------
+                      */
+                .mb-0 {
+                    margin-bottom: 0 !important;
+                }
+
+                .mb-5 {
+                    margin-bottom: 5px !important;
+                }
+
+                .mb-10 {
+                    margin-bottom: 10px !important;
+                }
+
+                .mb-15 {
+                    margin-bottom: 15px !important;
+                }
+
+                .mb-20 {
+                    margin-bottom: 20px !important;
+                }
+
+                .mb-30 {
+                    margin-bottom: 30px !important;
+                }
+
+                .mb-40 {
+                    margin-bottom: 40px !important;
+                }
+
+                .mb-50 {
+                    margin-bottom: 50px !important;
+                }
+
+                .mb-60 {
+                    margin-bottom: 60px !important;
+                }
+
+                .mb-70 {
+                    margin-bottom: 70px !important;
+                }
+
+                .mb-80 {
+                    margin-bottom: 80px !important;
+                }
+
+                .mb-90 {
+                    margin-bottom: 90px !important;
+                }
+
+                .mb-100 {
+                    margin-bottom: 100px !important;
+                }
+
+                .mb-110 {
+                    margin-bottom: 110px !important;
+                }
+
+                .mb-120 {
+                    margin-bottom: 120px !important;
+                }
+
+                .mb-130 {
+                    margin-bottom: 130px !important;
+                }
+
+                .mb-140 {
+                    margin-bottom: 140px !important;
+                }
+
+                .mb-150 {
+                    margin-bottom: 150px !important;
+                }
+
+                .mb-160 {
+                    margin-bottom: 160px !important;
+                }
+
+                .mb-170 {
+                    margin-bottom: 170px !important;
+                }
+
+                .mb-180 {
+                    margin-bottom: 180px !important;
+                }
+
+                .mb-190 {
+                    margin-bottom: 190px !important;
+                }
+
+                .mb-200 {
+                    margin-bottom: 200px !important;
+                }
+                /*
+                      * 1.6 -> Margin left
+                      * -----------------------------------------------
+                      */
+                .ml-0 {
+                    margin-left: 0 !important;
+                }
+
+                .ml-5 {
+                    margin-left: 5px !important;
+                }
+
+                .ml-10 {
+                    margin-left: 10px !important;
+                }
+
+                .ml-15 {
+                    margin-left: 15px !important;
+                }
+
+                .ml-20 {
+                    margin-left: 20px !important;
+                }
+
+                .ml-30 {
+                    margin-left: 30px !important;
+                }
+
+                .ml-40 {
+                    margin-left: 40px !important;
+                }
+
+                .ml-50 {
+                    margin-left: 50px !important;
+                }
+
+                .ml-60 {
+                    margin-left: 60px !important;
+                }
+
+                .ml-70 {
+                    margin-left: 70px !important;
+                }
+
+                .ml-80 {
+                    margin-left: 80px !important;
+                }
+
+                .ml-90 {
+                    margin-left: 90px !important;
+                }
+
+                .ml-100 {
+                    margin-left: 100px !important;
+                }
+
+                .ml-110 {
+                    margin-left: 110px !important;
+                }
+
+                .ml-120 {
+                    margin-left: 120px !important;
+                }
+
+                .ml-130 {
+                    margin-left: 130px !important;
+                }
+
+                .ml-140 {
+                    margin-left: 140px !important;
+                }
+
+                .ml-150 {
+                    margin-left: 150px !important;
+                }
+
+                .ml-160 {
+                    margin-left: 160px !important;
+                }
+
+                .ml-170 {
+                    margin-left: 170px !important;
+                }
+
+                .ml-180 {
+                    margin-left: 180px !important;
+                }
+
+                .ml-190 {
+                    margin-left: 190px !important;
+                }
+
+                .ml-200 {
+                    margin-left: 200px !important;
+                }
+                /*
+                      * 1.7 -> Padding top
+                      * -----------------------------------------------
+                      */
+                .pt-0 {
+                    padding-top: 0 !important;
+                }
+
+                .pt-5 {
+                    padding-top: 5px !important;
+                }
+
+                .pt-10 {
+                    padding-top: 10px !important;
+                }
+
+                .pt-15 {
+                    padding-top: 15px !important;
+                }
+
+                .pt-20 {
+                    padding-top: 20px !important;
+                }
+
+                .pt-30 {
+                    padding-top: 30px !important;
+                }
+
+                .pt-40 {
+                    padding-top: 40px !important;
+                }
+
+                .pt-50 {
+                    padding-top: 50px !important;
+                }
+
+                .pt-60 {
+                    padding-top: 60px !important;
+                }
+
+                .pt-70 {
+                    padding-top: 70px !important;
+                }
+
+                .pt-80 {
+                    padding-top: 80px !important;
+                }
+
+                .pt-90 {
+                    padding-top: 90px !important;
+                }
+
+                .pt-100 {
+                    padding-top: 100px !important;
+                }
+
+                .pt-110 {
+                    padding-top: 110px !important;
+                }
+
+                .pt-120 {
+                    padding-top: 120px !important;
+                }
+
+                .pt-130 {
+                    padding-top: 130px !important;
+                }
+
+                .pt-140 {
+                    padding-top: 140px !important;
+                }
+
+                .pt-150 {
+                    padding-top: 150px !important;
+                }
+
+                .pt-160 {
+                    padding-top: 160px !important;
+                }
+
+                .pt-170 {
+                    padding-top: 170px !important;
+                }
+
+                .pt-180 {
+                    padding-top: 180px !important;
+                }
+
+                .pt-190 {
+                    padding-top: 190px !important;
+                }
+
+                .pt-200 {
+                    padding-top: 200px !important;
+                }
+                /*
+                      * 1.8 -> Padding right
+                      * -----------------------------------------------
+                      */
+                .pr-0 {
+                    padding-right: 0 !important;
+                }
+
+                .pr-5 {
+                    padding-right: 5px !important;
+                }
+
+                .pr-10 {
+                    padding-right: 10px !important;
+                }
+
+                .pr-15 {
+                    padding-right: 15px !important;
+                }
+
+                .pr-20 {
+                    padding-right: 20px !important;
+                }
+
+                .pr-30 {
+                    padding-right: 30px !important;
+                }
+
+                .pr-40 {
+                    padding-right: 40px !important;
+                }
+
+                .pr-50 {
+                    padding-right: 50px !important;
+                }
+
+                .pr-60 {
+                    padding-right: 60px !important;
+                }
+
+                .pr-70 {
+                    padding-right: 70px !important;
+                }
+
+                .pr-80 {
+                    padding-right: 80px !important;
+                }
+
+                .pr-90 {
+                    padding-right: 90px !important;
+                }
+
+                .pr-100 {
+                    padding-right: 100px !important;
+                }
+
+                .pr-110 {
+                    padding-right: 110px !important;
+                }
+
+                .pr-120 {
+                    padding-right: 120px !important;
+                }
+
+                .pr-130 {
+                    padding-right: 130px !important;
+                }
+
+                .pr-140 {
+                    padding-right: 140px !important;
+                }
+
+                .pr-150 {
+                    padding-right: 150px !important;
+                }
+
+                .pr-160 {
+                    padding-right: 160px !important;
+                }
+
+                .pr-170 {
+                    padding-right: 170px !important;
+                }
+
+                .pr-180 {
+                    padding-right: 180px !important;
+                }
+
+                .pr-190 {
+                    padding-right: 190px !important;
+                }
+
+                .pr-200 {
+                    padding-right: 200px !important;
+                }
+                /*
+                      * 1.9 -> Padding bottom
+                      * -----------------------------------------------
+                      */
+                .pb-0 {
+                    padding-bottom: 0 !important;
+                }
+
+                .pb-5 {
+                    padding-bottom: 5px !important;
+                }
+
+                .pb-10 {
+                    padding-bottom: 10px !important;
+                }
+
+                .pb-15 {
+                    padding-bottom: 15px !important;
+                }
+
+                .pb-20 {
+                    padding-bottom: 20px !important;
+                }
+
+                .pb-30 {
+                    padding-bottom: 30px !important;
+                }
+
+                .pb-40 {
+                    padding-bottom: 40px !important;
+                }
+
+                .pb-50 {
+                    padding-bottom: 50px !important;
+                }
+
+                .pb-60 {
+                    padding-bottom: 60px !important;
+                }
+
+                .pb-70 {
+                    padding-bottom: 70px !important;
+                }
+
+                .pb-80 {
+                    padding-bottom: 80px !important;
+                }
+
+                .pb-90 {
+                    padding-bottom: 90px !important;
+                }
+
+                .pb-100 {
+                    padding-bottom: 100px !important;
+                }
+
+                .pb-110 {
+                    padding-bottom: 110px !important;
+                }
+
+                .pb-120 {
+                    padding-bottom: 120px !important;
+                }
+
+                .pb-130 {
+                    padding-bottom: 130px !important;
+                }
+
+                .pb-140 {
+                    padding-bottom: 140px !important;
+                }
+
+                .pb-150 {
+                    padding-bottom: 150px !important;
+                }
+
+                .pb-160 {
+                    padding-bottom: 160px !important;
+                }
+
+                .pb-170 {
+                    padding-bottom: 170px !important;
+                }
+
+                .pb-180 {
+                    padding-bottom: 180px !important;
+                }
+
+                .pb-190 {
+                    padding-bottom: 190px !important;
+                }
+
+                .pb-200 {
+                    padding-bottom: 200px !important;
+                }
+                /*
+                      * 1.10 -> Padding left
+                      * -----------------------------------------------
+                      */
+                .pl-0 {
+                    padding-left: 0 !important;
+                }
+
+                .pl-5 {
+                    padding-left: 5px !important;
+                }
+
+                .pl-10 {
+                    padding-left: 10px !important;
+                }
+
+                .pl-15 {
+                    padding-left: 15px !important;
+                }
+
+                .pl-20 {
+                    padding-left: 20px !important;
+                }
+
+                .pl-30 {
+                    padding-left: 30px !important;
+                }
+
+                .pl-40 {
+                    padding-left: 40px !important;
+                }
+
+                .pl-50 {
+                    padding-left: 50px !important;
+                }
+
+                .pl-60 {
+                    padding-left: 60px !important;
+                }
+
+                .pl-70 {
+                    padding-left: 70px !important;
+                }
+
+                .pl-80 {
+                    padding-left: 80px !important;
+                }
+
+                .pl-90 {
+                    padding-left: 90px !important;
+                }
+
+                .pl-100 {
+                    padding-left: 100px !important;
+                }
+
+                .pl-110 {
+                    padding-left: 110px !important;
+                }
+
+                .pl-120 {
+                    padding-left: 120px !important;
+                }
+
+                .pl-130 {
+                    padding-left: 130px !important;
+                }
+
+                .pl-140 {
+                    padding-left: 140px !important;
+                }
+
+                .pl-150 {
+                    padding-left: 150px !important;
+                }
+
+                .pl-160 {
+                    padding-left: 160px !important;
+                }
+
+                .pl-170 {
+                    padding-left: 170px !important;
+                }
+
+                .pl-180 {
+                    padding-left: 180px !important;
+                }
+
+                .pl-190 {
+                    padding-left: 190px !important;
+                }
+
+                .pl-200 {
+                    padding-left: 200px !important;
+                }
+
+                #page_1 {
+                    position: relative;
+                    overflow: hidden;
+                    margin: 0px 0px 21px 20px;
+                    padding: 0px;
+                    border: none;
+                    width: 766px;
+                    display: block;
+                    height: auto;
+                    color: #333;
+                }
+
+                    #page_1 #p1dimg1 {
+                        position: absolute;
+                        top: 0px;
+                        left: 0px;
+                        z-index: -1;
+                        width: 738px;
+                        height: auto;
+                    }
+
+                .dclr {
+                    clear: both;
+                    float: none;
+                    height: 1px;
+                    margin: 0px;
+                    padding: 0px;
+                    overflow: hidden;
+                }
+
+                #page_1 #id1_1 {
+                    border: none;
+                    /* margin: 22px 0px 0px 2px; */
+                    padding: 0px;
+                    border: none;
+                    width: 100%;
+                    overflow: hidden;
+                }
+
+                p {
+                    font: 9px 'Arial';
+                    line-height: 12px;
+                    text-align: left;
+                    padding: 4px 7px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    white-space: nowrap;
+                }
+
+                .table1 p {
+                    padding: 5px 7px;
+                }
+
+                .table3 p {
+                    font: 8px 'Arial';
+                    text-align: center;
+                }
+
+                .table3 tr td p {
+                    line-height: 12px;
+                }
+
+                .table-title tr td {
+                    border-right: #6e7171 1px solid;
+                    border-bottom: #6e7171 1px solid;
+                    padding: 0px;
+                    margin: 0px;
+                    width: 433px;
+                    vertical-align: bottom;
+                    background: #6e7171;
+                }
+
+                    .table-title tr td p {
+                        font: 11px 'Arial';
+                        color: #ffffff;
+                        line-height: 14px;
+                        text-align: center;
+                        padding: 2px 60px 0px 0px;
+                    }
+
+                .table-agree tr td p {
+                    font: 11px 'Arial';
+                }
+
+                #page_1 #id1_2 #id1_2_1 {
+                    float: left;
+                    border: none;
+                    margin: 2px 0px 0px 0px;
+                    padding: 0px;
+                    border: none;
+                    width: 165px;
+                    overflow: hidden;
+                }
+
+                #page_1 #id1_2 #id1_2_2 {
+                    float: left;
+                    border: none;
+                    margin: 0px 0px 0px 4px;
+                    padding: 0px;
+                    border: none;
+                    width: 559px;
+                    overflow: hidden;
+                }
+
+                #page_2 {
+                    position: relative;
+                    overflow: hidden;
+                    margin: 0px 0px 21px 20px;
+                    padding: 0px;
+                    border: none;
+                    width: 764px;
+                    color: #333;
+                }
+
+                    #page_2 #id2_1 {
+                        border: none;
+                        margin: 2px 0px 0px 245px;
+                        padding: 0px;
+                        border: none;
+                        width: 519px;
+                        overflow: hidden;
+                    }
+
+                    #page_2 #id2_2 {
+                        border: none;
+                        margin: 16px 0px 0px 19px;
+                        padding: 0px;
+                        border: none;
+                        width: 745px;
+                        overflow: hidden;
+                    }
+
+                        #page_2 #id2_2 #id2_2_1 {
+                            float: left;
+                            border: none;
+                            margin: 0px 0px 0px 0px;
+                            padding: 0px;
+                            border: none;
+                            width: 355px;
+                            overflow: hidden;
+                        }
+
+                        #page_2 #id2_2 #id2_2_2 {
+                            float: left;
+                            border: none;
+                            margin: 0px 0px 0px 0px;
+                            padding: 0px;
+                            border: none;
+                            width: 390px;
+                            overflow: hidden;
+                        }
+
+                    #page_2 #id2_3 {
+                        border: none;
+                        margin: 6px 0px 0px 0px;
+                        padding: 0px;
+                        border: none;
+                        width: 764px;
+                        overflow: hidden;
+                    }
+
+                    #page_2 #id2_4 {
+                        border: none;
+                        margin: 28px 0px 0px 266px;
+                        padding: 0px;
+                        border: none;
+                        width: 467px;
+                        overflow: hidden;
+                    }
+
+                    #page_2 #p2dimg1 {
+                        position: absolute;
+                        top: 0px;
+                        left: 0px;
+                        z-index: -1;
+                        width: 733px;
+                        height: 1047px;
+                    }
+
+                        #page_2 #p2dimg1 #p2img1 {
+                            width: 733px;
+                            height: 1047px;
+                        }
+
+
+                /* Font Size  */
+                .font-8 {
+                    font: 8px 'Arial' !important;
+                }
+
+                .font-9 {
+                    font: 9px 'Arial' !important;
+                }
+
+                .font-10 {
+                    font: 10px 'Arial' !important;
+                }
+
+                .font-11 {
+                    font: 11px 'Arial' !important;
+                }
+
+                .font-12 {
+                    font: 12px 'Arial' !important;
+                }
+
+                .font-15 {
+                    font: 15px 'Arial' !important;
+                }
+
+                .table5 label {
+                    position: relative;
+                    bottom: 2px;
+                }
+
+                .table8 tr td {
+                    font: 11px 'Arial';
+                }
+
+                .table9 tr td {
+                    font: 11px 'Arial';
+                }
+
+
+                .table-radius-gray {
+                    width: 98%;
+                    border-radius: 10px;
+                    border: 1px solid #6f7072;
+                    border-collapse: collapse;
+                    overflow: hidden;
+                }
+
+                    .table-radius-gray th {
+                        background: #6f7072;
+                        border-radius: 8px 8px 0 0;
+                    }
+
+                .table-radius-purple {
+                    width: 98%;
+                    border-radius: 10px;
+                    border: 1px solid #674e76;
+                    /*box-shadow: inset 0px 0px 0px 1.3px #674e76;*/
+                    border-collapse: collapse;
+                    overflow: hidden;
+                }
+
+                    .table-radius-purple th {
+                        background: #674e76;
+                        border-radius: 8px 8px 0px 0px;
+                    }
+
+                .table11 {
+                    font: 9px 'Arial';
+                }
+
+                    .table11 .p0 {
+                        text-align: left;
+                        margin-top: 0px;
+                        margin-bottom: 0px;
+                        white-space: nowrap;
+                    }
+
+                    .table11 .td151 {
+                        border: 1px solid #fff;
+                        padding: 0px;
+                        margin: 0px;
+                        width: 15px;
+                        vertical-align: bottom;
+                    }
+
+                .table-black {
+                    width: 100%;
+                    /* border-radius: 10px; */
+                    border: 1px solid;
+                    box-shadow: inset 0px 0px 0px 1px #010101;
+                    border-collapse: collapse;
+                    overflow: hidden;
+                }
+
+                    .table-black th {
+                        background: #010101;
+                    }
+
+                .table13 table {
+                    font: 7px 'Arial';
+                    margin-left: 5px;
+                    line-height: 8px;
+                    text-align: justify;
+                }
+
+                    .table13 table p {
+                        width: 12px;
+                        font: 7px 'Arial';
+                        white-space: nowrap;
+                        text-align: justify;
+                        padding: 0px;
+                        margin: 0px;
+                    }
+
+                    .table13 table tr.title-bold {
+                        font-weight: 600;
+                    }
+
+                        .table13 table tr.title-bold td:first-child {
+                            width: 10% !important;
+                        }
+
+                .font-bold {
+                    font-weight: 600;
+                }
+
+                .table14 {
+                    font: 12px 'Arial';
+                    line-height: 15px;
+                }
+
+                    .table14 ul li {
+                        padding-bottom: 10px;
+                    }
+
+                .table13 table tr td {
+                    vertical-align: top;
+                    padding: 0px;
+                    margin: 0px;
+                }
+
+
+                /* Float  */
+
+                .float-l {
+                    float: left;
+                }
+
+                .float-r {
+                    float: right;
+                }
+
+                .square-img {
+                    width: 15px;
+                    height: auto;
+                    border: 1px solid #331;
+                }
+
+                #page_1 {
+                    page-break-after: always;
+                }
+
+                #page_3 {
+                    position: relative;
+                    overflow: hidden;
+                    margin: 0px 0px 21px 20px;
+                    padding: 0px;
+                    border: none;
+                    width: 766px;
+                }
+
+                    #page_3 #id1_1 {
+                        border: none;
+                        padding: 0px;
+                        border: none;
+                        width: 100%;
+                        overflow: hidden;
+                    }
+
+                    #page_3 #id1_2 {
+                        border: none;
+                        margin: 276px 0px 0px 164px;
+                        padding: 0px;
+                        border: none;
+                        width: 534px;
+                        overflow: hidden;
+                    }
+
+                    #page_3 #p1dimg1 {
+                        position: absolute;
+                        top: 0px;
+                        left: 0px;
+                        z-index: -1;
+                    }
+
+
+
+
+
+                .dclr {
+                    clear: both;
+                    float: none;
+                    height: 1px;
+                    margin: 0px;
+                    padding: 0px;
+                    overflow: hidden;
+                }
+
+                .ft0 {
+                    font: bold 19px 'Calibri';
+                    line-height: 23px;
+                }
+
+                .ft1 {
+                    font: bold 15px 'Calibri';
+                    line-height: 17px;
+                }
+
+                .ft2 {
+                    font: 15px 'Calibri';
+                    line-height: 18px;
+                }
+
+                .ft3 {
+                    font: bold 15px 'Calibri';
+                    line-height: 18px;
+                }
+
+                .ft4 {
+                    font: 1px 'Calibri';
+                    line-height: 1px;
+                }
+
+                .ft5 {
+                    font: bold 14px 'Calibri';
+                    line-height: 17px;
+                }
+
+                .ft6 {
+                    font: 15px 'Calibri';
+                    color: #bfbfbf;
+                    line-height: 18px;
+                }
+
+                .ft7 {
+                    font: 15px 'Calibri';
+                    color: #bfbfbf;
+                    line-height: 17px;
+                }
+
+                .ft8 {
+                    font: 8px 'Calibri';
+                    line-height: 10px;
+                }
+
+                .p0 {
+                    text-align: left;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                .p1 {
+                    text-align: left;
+                    margin-top: 16px;
+                    margin-bottom: 0px;
+                }
+
+                .p2 {
+                    text-align: left;
+                    margin-top: 1px;
+                    margin-bottom: 0px;
+                }
+
+                .p3 {
+                    text-align: left;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    white-space: nowrap;
+                }
+
+                .p4 {
+                    text-align: left;
+                    padding-left: 7px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                    white-space: nowrap;
+                }
+
+                .p5 {
+                    text-align: left;
+                    padding-left: 72px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                .p6 {
+                    text-align: left;
+                    padding-left: 61px;
+                    margin-top: 23px;
+                    margin-bottom: 0px;
+                }
+
+                .p7 {
+                    text-align: left;
+                    padding-left: 80px;
+                    margin-top: 22px;
+                    margin-bottom: 0px;
+                }
+
+                .p8 {
+                    text-align: left;
+                    padding-left: 101px;
+                    margin-top: 23px;
+                    margin-bottom: 0px;
+                }
+
+                .p9 {
+                    text-align: center;
+                    padding-left: 0px;
+                    margin-top: 50px;
+                    margin-bottom: 0px;
+                }
+
+                .p10 {
+                    text-align: center;
+                    padding-left: 0px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                .p11 {
+                    text-align: center;
+                    padding-left: 0px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                .td0 {
+                    padding: 0px;
+                    margin: 0px;
+                    width: 160px;
+                    vertical-align: top;
+                }
+
+                .td1 {
+                    padding: 0px;
+                    margin: 0px;
+                    width: 94px;
+                    vertical-align: top;
+                }
+
+                .td2 {
+                    padding: 0px;
+                    margin: 0px;
+                    width: 275px;
+                    vertical-align: top;
+                }
+
+                .td3 {
+                    padding: 0px;
+                    margin: 0px;
+                    width: 65px;
+                    vertical-align: top;
+                }
+
+                .tr0 {
+                    height: 25px;
+                }
+
+                .tr1 {
+                    height: 30px;
+                }
+
+                .tr2 {
+                    height: auto;
+                    font-size: 11pt;
+                    line-height: 8px;
+                }
+
+                .t0 {
+                    width: 100%;
+                    margin-top: 32px;
+                    font: bold 15px 'Calibri';
+                }
+
+                #page_3 table tbody tr:nth-of-type(odd) {
+                    background-color: rgba(0,0,0,.05);
+                }
+
+                @media print {
+                    #page_1, #page_2 {
+                        width: 21cm;
+                        height: 29.7cm;
+                        /* change the margins as you want them to be. */
+                    }
+                }
+            </style>
+
+            <div id="page_1" class="print-wrap">
+                <p style="page-break-before: avoid"></p>
+                <!--<div id="p1dimg1">
+                <IMG src="http://saicomputer.com/LeaseAdmin/Content/images/Logo.jpg" id="p1img1">
+            </div>-->
+
+
+                <div class="dclr"></div>
+                <div id="id1_1">
+                    <table table-title="" mb-10"="" cellpadding="3" cellspacing="0" style="width:98%; font: 11px 'Arial'; border: 0px solid #6e7171; ">
+                        <tbody>
+                            <tr>
+                                <td style="width:50%">
+                                    <table class="logo mb-10" style="float: left;">
+                                        <tbody>
+                                            <tr>
+                                                <td><!--<img src="/LeaseAdmin/Content/images/Logo.jpg" alt="" style="width: 100%;">--></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                                <td style="width:50%">
+                                    <table class="table-agree mb-0" cellpadding="3" cellspacing="0" style="font: 11px 'Arial'; border: 1px solid; float: right; margin-top: 25px;">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <p style="width:100%;">AGREEMENT NO.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table-title mb-10" cellpadding="3" cellspacing="0" style="width: 98%; font: 11px 'Arial'; border: 1px solid #6e7171; ">
+                        <tbody>
+                            <tr>
+                                <td colspan="3" style="width: 20%; background: #6e7171;">
+                                    <p>O P E R A T I N G - R E N T A L - A G R E E M E N T</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table1 mb-10" cellpadding="3" cellspacing="0" style="width: 98%; font: 11px 'Arial'; border: 1px solid; ">
+                        <tbody>
+                            <tr>
+                                <td style="border-right: 1px solid; width: 20%;">
+                                    <p>Owner’s Name and Address</p>
+                                </td>
+                                <td>
+                                    <p>Technology Rentals Ltd t/a Funding 4 Education, Merlin House, 8 Grove Avenue, Wilmslow, Cheshire SK9 5EG</p>
+                                </td>
+                                <td style="width: 15%; text-align: right;">
+                                    <p style="text-align: right;">(“we”, “us“, “our“)</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table2 mb-10" cellpadding="3" cellspacing="0" style="width: 98%; font: 11px 'Arial'; border: 1px solid;">
+                        <tbody>
+                            <tr>
+                                <td class="border-b" style="border-right: 1px solid; width: 20%;">
+                                    <p>Hirer’s Name</p>
+                                </td>
+                                <td class="border-b">Saicomputer</td>
+                                <td class="border-b" style="width: 15%; text-align: right;">
+                                    <p style="text-align: right;">(“you“, “your“)</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid; width: 20%;">
+                                    <p>Hirer’s Address</p>
+                                </td>
+                                <td>shrimali wado, Chokshi bajar,<br>shrimali wado, Chokshi bajar,<br> Mehsana - 384001<br> Phone : 7600723467</td>
+                                <td style="width: 15%; text-align: right;">
+                                    <p style="text-align: right;"></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table3 mb-10" cellpadding="3" cellspacing="0" style="width: 98%; font: 11px 'Arial'; border: 1px solid;">
+                        <tbody>
+                            <tr>
+                                <td class="border-r border-b">
+                                    Qty
+                                </td>
+                                <td class="border-r border-b">
+                                    Equipment Make
+                                </td>
+                                <td class="border-r border-b">
+                                    Equipment Model
+                                </td>
+                                <td class="border-r border-b">
+                                    Equipment Description/Accessories
+                                </td>
+                                <td class="border-r border-b">
+                                    New/Used/ <br>Refurbished
+                                </td>
+                                <td class="border-r border-b">
+                                    Equipment <br>Serial Numbers
+                                </td>
+                                <td class="border-b">
+                                    If Equipment location is different <br> to hirer’s address please provide <br> alternative address
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-r border-b" colspan="7">Please check page no.3 for your ordered items</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- id1_1 end-->
+                <!-- 1 -->
+                <table class="table4 mb-10" cellpadding="0" cellspacing="0" style="width: 98%; font: 11px 'Arial'; ">
+                    <tbody>
+                        <tr>
+                            <!-- 1 -->
+
+                            <td style="width: 50%;">
+                                <table style="width:98%;">
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-11" style="width:40%;">This Agreement is for the<br> Minimum Period of </td>
+                                            <td class="border" style="font: 8px 'Arial';line-height: 10px;height: 19px;padding-bottom: 0px;padding-bottom: 0px; width:50%;"> <p class="pb-0 float-l ml-50">5 year(s) and 0 months</p></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+
+                            <!-- 2 -->
+
+                            <td style="width: 50%;">
+                                <table style="width:98%;">
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-11" style="width:40%;">First Rental <p class="p-0 font-8">plus a facility fee of 9.99+VAT</p> </td>
+                                            <td class="border" style="font: 8px 'Arial';line-height: 10px;height: 24px;padding-bottom: 0px;padding-bottom: 0px; width:50%;"> <p class="pb-0 float-l">£ 0 excluding VAT</p> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- 2 -->
+                <table class="table4 mb-10" cellpadding="0" cellspacing="0" style="width: 98%; font: 11px 'Arial'; ">
+                    <tbody>
+                        <tr>
+                            <!-- 1 -->
+
+                            <td style="width: 50%;">
+                                <table style="width:98%;">
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-11" style="width:40%;">When the Equipment is <br>delivered, followed by at least</td>
+                                            <td class="border" style="width:50%; font: 8px 'Arial';line-height: 10px;height: 19px;padding-bottom: 0px;padding-bottom: 0px; "> <p class="pb-0 float-l ">(in words) Four</p>  </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
+
+                            <!-- 2 -->
+                            <td style="width: 50%;">
+                                <table style="width:98%;">
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-11" style="width:40%;">Further Rentals of</td>
+                                            <td class="border" style="font: 8px 'Arial';line-height: 10px;height: 24px;padding-bottom: 0px;padding-bottom: 0px; width:50%;"> <p class="pb-0 float-l">£ 0 excluding VAT</p> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- You will pay rentals on a -->
+                <table class="table5 mb-10" style="width:98%;">
+                    <tbody>
+                        <tr>
+
+                            <td class="font-11">You will pay rentals on a</td>
+                            <td class="font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre03.jpg"></td>
+                            <td class="font-11">Monthly</td>
+                            <td class="font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre04.jpg"></td>
+                            <td class="font-11">Quaterly</td>
+                            <td class="font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre04.jpg"></td>
+                            <td class="font-11">Termly</td>
+                            <td class="font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre04.jpg"></td>
+                            <td class="font-11">Half yearly</td>
+                            <td class="font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre04.jpg"></td>
+                            <td class="font-11">Annual</td>
+
+                            <td class="font-8" style="position: relative; top: 3px;">basis starting from the date of delivery of the Equipment until this Agreements ends.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- You will also pay -->
+                <table class="table5 mb-10" style="width:98%;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p class="font-11 p-0" style="margin-bottom: 2px;">You will also pay an annual service fee of £14.99+VAT which will be payable on each anniversary of this Agreement.</p>
+                                <p class="font-9 p-0 ">We will arrange protection cover for the Equipment on your behalf and the payments will be added to your rental. Tick here only if you do not wish us to include the cover.</p>
+                            </td>
+                            <td>
+                                <form action="">
+                                    <input type="checkbox" id="vehicle1" name="" value="">
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Table 6 -->
+                <table class="table6 border mb-10" style="width: 98%;">
+                    <tbody>
+                        <tr>
+                            <td class="border-r font-12 p-5" style="width:17%; font-weight: 600;">KEY INFORMATION</td>
+                            <td class="font-9">Your attention is brought to the existence of clause 4 of the attached Terms of this Agreement which excludes and/or limits our liability for the Equipment</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Table 7 -->
+                <table class="table7 table-radius-purple border mb-10" style="">
+                    <tbody>
+                        <tr>
+                            <th colspan="2" style="">
+                                <p class="font-11" style="color: white;">Y O U R S I G N A T U R E</p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="font-11 pr-15 pl-5  pt-5 pb-5">This is a Rental Agreement. Sign it only if you want to be legally bound by its terms.</td>
+                            <td class="border-l font-9 pl-15" rowspan="4" style="vertical-align: top;border-color: #674e76;">Print name(s) and positions(s) of person(s) who have signed</td>
+                        </tr>
+                        <tr>
+                            <td class="font-11 pl-5">Signature of hirer(s):</td>
+                        </tr>
+                        <tr>
+                            <td class="pl-5" style="padding: 4px 0px;">
+                                <p style="float: left; font-size: 22px;font-weight: 600;
+                        ">X</p>
+                                <p class="font-11 pr-15" style="float: right;">Date ____________________</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-10 pl-5 pb-5">Under this Agreement the goods do not become your property and you must not sell them. </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- Table 8 -->
+                <table class="table8 table-radius-gray border mb-10" style="">
+                    <tbody>
+                        <tr style="background: #6f7072;">
+                            <th colspan="4" style="">
+                                <p class="font-11" style="color: white;">
+                                    C O N T A C T D E T A I L S
+                                </p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="pl-5 pt-5 pb-5">Title________</td>
+                            <td>Initial(s)________</td>
+                            <td>Name Palak H Shah</td>
+                            <td>Position_____________________________________________________</td>
+                        </tr>
+                        <tr>
+                            <td class="pl-5 pt-5 pb-5" colspan="3">Tel. No. 7600723467</td>
+                            <td>Email Address shahpalakh@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <td class="pl-5 pb-10" colspan="4">
+                                Name of School  Saicomputer
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- Table 9 -->
+                <table class="table9 table-radius-gray border mb-5" style="" cellpadding="3">
+                    <tbody>
+                        <tr>
+                            <th colspan="2" style="">
+                                <p class="font-11" style="color: white;">
+                                    O W N E R ’ S A C C E P T A N C E
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (FOR OFFICE USE ONLY)
+                                </p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="pl-5 pb-10" colspan="2">We Technology Rentals Ltd t/a Funding 4 Education sign to accept this Agreement.</td>
+                        </tr>
+                        <tr>
+                            <td class="pl-5 pt-5 pb-5">Signature_____________________________________________</td>
+                            <td>Agreement Commencement Date____________________________________</td>
+                        </tr>
+                        <tr>
+                            <td class="font-9 pl-5 pb-5" colspan="2">Funding 4 Education, Merlin House, 8 Grove Avenue, Wilmslow, Cheshire SK9 5EG. Tel: 01625 415 400 Email: accounts@f4e.co.uk www.funding4education.co.uk</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Table 10 -->
+                <table class="table10 mb-10" style="text-align: center;width: 100%;">
+
+                    <tbody>
+                        <tr>
+                            <td class=" pb-10 font-8">
+                                Funding 4 Education is a trading name of Technology Rentals Ltd.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Table 11 -->
+                <table class="table11 table-radius-purple border mb-5" style="">
+                    <tbody>
+                        <tr>
+                            <th colspan="2" style="">
+                                <p class="font-11" style="color: white;">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; I N S T R U C T I O N S T O Y O U R B A N K O R B U I L D I N G S O C I E T Y T O P A Y D I R E C T D E B I T
+                                </p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <!-- Sub Table 1 -->
+                            <td style="width: 50%;">
+                                <table class="pl-10 pr-5 mr-0" style="width: 99%;">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="9" class="font-11">Please complete form and send it to:</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="9" class="pb-15 font-11">Funding 4 Education, Merlin House, 8 Grove Avenue, Wilmslow, <br>Cheshire SK9 5EG Name(s) of Account Holder(s):</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border-t border-b" colspan="9">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pt-5 font-11">Bank Building Society Account Number</td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pt-5 font-11">Branch Sort Code</td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="pt-5 font-15" style="width: 15px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pt-5 font-11" colspan="9">Name and full postal address of your Bank or Building<br> Society Branch To the Manager:</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border-t border-b font-11" colspan="9"><p style="padding-bottom:0; padding-left: 0;">Bank or Building Society</p></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border-b font-11" colspan="9"><p style="padding-bottom:0; padding-left: 0;">Address:</p></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border-b font-11" colspan="9"><p style="float:right; padding-bottom:0; padding-left: 0;">Postcode: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </td>
+                            <!-- Sub Table 2 -->
+                            <td style="width: 50%;">
+                                <table class="pl-5 pr-10 ml-0 pb-5">
+                                    <tbody>
+                                        <tr>
+                                            <td style="height:30px;">&nbsp;</td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="font-11">Originator’s Identification Number</td>
+                                            <td><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+
+
+                                            <td class="td151 p-0" style="height: 14px; width: 30px;"><p class="p0 ft28 border-r p-0" style="width: 15px;">&nbsp;</p></td>
+
+                                            <td class="td151" style="height: 14px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="td151" style="height: 14px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="td151" style="height: 14px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="td151" style="height: 14px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mt-5 font-11">Technology Rentals Ltd. Ref. No.</td>
+                                            <td class="td151 mt-5" style="height: 14px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="td151" style="height: 14px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="td151 p-0" style="height: 14px; width: 30px;"><p class="p0 ft28 border-r p-0" style="width: 15px;">&nbsp;</p></td>
+
+                                            <td class="td151" style="height: 14px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="td151" style="height: 14px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="td151" style="height: 14px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                            <td class="td151" style="height: 14px;"><img class="square-img" src="/LeaseAdmin/Content/images/Squre4.png"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8" class="font-11" style="padding-top: 8px;">Instructions to your Bank or Building Society:</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-8" colspan="8">Please pay Technology Rentals Ltd. Direct Debits from the account detailed on this instruction subject to the safeguards assured by The Direct Debit Guarantee. I understand that this instruction may remain with Technology Rentals Ltd. and, if so, details will be passed electronically to my Bank/Building Society.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-11">Signatures:</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8" class="pt-50 border-b font-11">Date:</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Table 12 -->
+                <table class="table12 mb-15" style="text-align: center;width: 98%;">
+
+                    <tbody>
+                        <tr>
+                            <td class=" pb-10 font-8">
+                                <p style="text-align: center;"><span style="color: #ec7624;">PLEASE NOTE: </span>SOME BANKS AND BUILDING SOCIETIES MAY NOT ACCEPT DIRECT DEBIT INSTRUCTIONS ON SOME TYPES OF ACCOUNTS.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="page_2" class="print-wrap">
+                <!-- Table13 -->
+                <style>
+                    .table13 table tr td:first-child {
+                        width: 16pt;
+                    }
+
+                    .termtable table {
+                        margin-left: 5px;
+                        margin-bottom: 10px;
+                    }
+
+                    .termtable {
+                        border: 1px solid;
+                    }
+
+                        .termtable td {
+                            font-size: 8px;
+                            text-align: justify;
+                        }
+
+                    .termbold td {
+                        font-weight: 600;
+                    }
+
+                    .termbold {
+                        padding-top: 5px;
+                    }
+                </style>
+                <table class="termtable table-black mb-10" style="width:98%;font-size:8px;margin-left:5px;text-align:justify">
+                    <tbody>
+                        <tr style="background:#000">
+                            <th colspan="2">
+                                <p class="font-11" style="color: white; text-align: center;">
+                                    T E R M S O F T H I S A G R E E M E N T
+                                </p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="width:50%;">
+                                <table style="width:100%;margin-left:5px;">
+                                    <tbody>
+                                        <tr class="termbold">
+                                            <td style="width:12px;font-weight:600;">1.</td>
+                                            <td>The Agreement</td>
+                                        </tr>
+                                        <tr>
+                                            <td>a.</td>
+                                            <td>If you sign this Agreement and we also sign the Agreement, we agree to buy the equipment from the Supplier and allow you to hire it for the minimum period specified overleaf (the “Minimum Period”). The hiring will continue after the Minimum Period at the same rental and frequency until three months’ notice of termination is given in writing by either of us, such notice to expire at the end of the Minimum Period or at the end of any subsequent rental period thereafter.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>b.</td>
+                                            <td>These terms and conditions and those on the front page make up the whole Agreement between us. No other terms will apply unless we have agreed to them in writing on or after the date of this Agreement.</td>
+                                        </tr>
+                                        <tr class="termbold">
+                                            <td>2.</td>
+                                            <td>Payments</td>
+                                        </tr>
+                                        <tr>
+                                            <td>a.</td>
+                                            <td>You will pay the First Rental together with any Facility Fee on the date the Equipment is delivered to you. You must pay the Rentals to us according to the provisions detailed on the front page and in the terms of this Agreement. On each anniversary of this Agreement we will charge you an Annual Service Fee of £79 plus VAT.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>b.</td>
+                                            <td>You must pay VAT on all Rentals and other sums due under this Agreement at the applicable rate from time to time.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>c.</td>
+                                            <td>You will pay all the Rentals and other sums due under this Agreement on the due dates without deduction or set-off of any amounts for any reason. If you do not pay the Rentals or other sums on time this will mean you have committed a serious breach.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>d.</td>
+                                            <td>If you do not pay any Rental due under this Agreement on time you will pay interest on such sum at the rate of 2.5% per month from the date you should have paid it until the date we receive payment in full from you.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>e.</td>
+                                            <td>You must continue to pay the Rentals even if the Equipment cannot be used for any reason.</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>(i) We will charge you £35 plus VAT for each letter that we have to send you in the event of late or non-payment of any sum due to us by you. You must also pay any expenses, costs and charges incurred in finding you, the Equipment, or taking the Equipment back, or for any visit we make to your premises to find out why you have not paid.</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>(ii)Rentals will be collected by Direct Debit or Invoice. If you choose to pay by Direct Debit and subsequently change to pay by invoice, the rentals will be increased by 3% to cover additional administration costs.</td>
+                                        </tr>
+
+                                        <tr class="termbold">
+                                            <td>3.</td>
+                                            <td>Your Obligations</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>You confirm that the information set out in the front pages of this Agreement is accurate and you will;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>a.</td>
+                                            <td>inspect the Equipment when it is delivered to you and notify us immediately, in writing, of any defect. If you do not notify us of any defect within 48 hours from the time of delivery, then you shall be deemed to have accepted the Equipment and the Equipment shall be deemed to be complete, in good working order and condition, of satisfactory quality, and suitable for all your intended purposes.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>b.</td>
+                                            <td>arrange for the Equipment to be maintained in accordance with the manufacturer’s recommendations and any applicable legal requirements;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>c.</td>
+                                            <td>make sure that the Equipment is used properly according to the manufacturer’s operating instructions and that it is safe. You will be responsible for any loss, damage, or injury (including death) to people or property which is caused by using the Equipment except death or personal injury to the extent that it results from our negligence or that of our employees in the course of their employment by us;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>d.</td>
+                                            <td>let us inspect the Equipment at reasonable times during the period of this Agreement as long as we give you reasonable notice;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>e.</td>
+                                            <td>be solely responsible for and indemnify us, our employees, agents and contractors at all times from and against:</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>(i)loss, theft, destruction of or damage to the equipment from whatever cause arising and whether or not such loss, theft, destruction or damage results from your negligence or that of your employees or agents; and</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>(ii)all claims, demands, proceedings (civil or criminal), penalties, fines, liabilities, losses, damages, costs and expenses of whatsoever nature which may be brought against us or which we may suffer, incur or sustain in connection with our ownership of the Equipment or arising out of this Agreement. This indemnity will survive and remain in full force and effect should this Agreement be terminated.</td>
+                                        </tr>
+
+                                        <tr class="termbold">
+                                            <td>4.</td>
+                                            <td>Our Exclusions and Limitations</td>
+                                        </tr>
+                                        <tr>
+                                            <td>a.</td>
+                                            <td>We are not providing any services in relation to the Equipment and you and we agree that there is no term in this Agreement by which we are responsible for the performance of the Equipment, whether generally or in relation to any particular purpose.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>b.</td>
+                                            <td>We do not know if any representation was made to you about the Equipment, but if it was, you acknowledge that it was not made on our behalf and that you have not entered into this Agreement in reliance on it. You and we also agree that we have not assumed any duty of care towards you.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>c.</td>
+                                            <td>We agree, if you request us to do so, to transfer to you at your cost the benefit of any warranties or guarantees we may have received from the Supplier in respect of the Equipment.</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+
+
+                            </td>
+                            <td style="width:50%;padding-left: 5px;">
+                                <table style="width: 100%; ">
+                                    <tbody>
+                                        <tr>
+                                            <td>d.</td>
+                                            <td>In no event will our liability under this Agreement exceed the total of the Rentals paid by you at the time the liability arises.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>e.</td>
+                                            <td>In no event will we be liable to you in contract, tort or otherwise including any liability for negligence:-</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>(i)for any loss of revenue, business, anticipated savings or profits or any loss of use or value; or</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                (ii)for any indirect or consequential loss, however arising. “Anticipated savings” means any
+                                                expense which you expect to avoid incurring or to incur in a lesser amount than would otherwise have been the case.
+                                            </td>
+                                        </tr>
+
+                                        <tr class="termbold">
+                                            <td>5.</td>
+                                            <td>The Supplier</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>We do not authorise any supplier of the Equipment (the “Supplier”), any dealer or any person we do not employ to make any statements for us or commit us to any agreement or to make any amendment to this Agreement. Neither the Supplier nor any third party by or through whom this transaction was introduced, negotiated or conducted is our agent for any purpose and no liability will attach to us in respect of any statement, representation, warranty or guarantee made or given by any such person.</td>
+                                        </tr>
+
+                                        <tr class="termbold">
+                                            <td>6.</td>
+                                            <td>Insurance</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>If the protection cover box shown on the front page is ticked, the following provisions apply:</td>
+                                        </tr>
+                                        <tr>
+                                            <td>a.</td>
+                                            <td>Risk in the Equipment shall be borne by you from the date on which the Equipment is delivered to you until the Equipment is returned to or recovered by us.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>b.</td>
+                                            <td>At all times during the period referred to in clause 6a above, you shall insure the Equipment (in the joint name of you and us) without restriction or excess against:</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>(i) all risks of loss or damage for its full replacement value; and</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>(ii) third party liability for such amount as we may require from time to time or, in the absence of any stipulation, for the amount which is prudent in all the circumstances.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>c.</td>
+                                            <td>You shall pay punctually all premiums due for the insurances required under clause 6b and, at our request, produce to us the related policy or policies together with evidence of payment of the premiums. If you fail to do so, we may (but are under no obligation to do so) pay the relevant premiumoreffecttheinsurancerequiredandyoushallreimburseusondemandthecostofdoingso. If the protection cover box shown on the front page is not ticked, the following provisions apply:</td>
+                                        </tr>
+                                        <tr>
+                                            <td>d.</td>
+                                            <td>Provided you are not in breach of this Agreement, we will arrange protection cover for the equipment against its damage or loss.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>e.</td>
+                                            <td>Our sole obligation to you in respect of this cover is to use any proceeds to replace the damaged or destroyed Equipment.</td>
+                                        </tr>
+                                        <tr class="termbold">
+                                            <td>7.</td>
+                                            <td>Default</td>
+                                        </tr>
+                                        <tr>
+                                            <td>a.</td>
+                                            <td>If you or anyone who guaranteed the Agreement:</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>(i) fail to pay any Rental or any other sum due under this Agreement or any other agreement with us within 3 days of our demanding payment or;</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>(ii) do not keep to any of the terms of this Agreement or any other agreement with us after we have given not less than 10 days to remedy the breach, if we think that the breach is remediable; then in every such case an “event of default” will be deemed to have occurred.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>b.</td>
+                                            <td>On the occurrence of an event of default we may by notice in writing to you immediately or at any time afterwards end your right to hire the Equipment without affecting the duties and liabilities you had with us at the time.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>c.</td>
+                                            <td>Our right to terminate the hiring will not be prejudiced by us accepting Rentals subsequent to the occurrence of an event of default.</td>
+                                        </tr>
+                                        <tr class="termbold">
+                                            <td>8.</td>
+                                            <td>What you must pay if you stop hiring the Equipment</td>
+                                        </tr>
+                                        <tr>
+                                            <td>a.</td>
+                                            <td>If we end your right to hire the Equipment under Term 7 you must in addition to any of the amounts due hereunder, pay us by way of compensation any arrears of rentals and the rest of the rentals which would have been payable over the full Minimum Period but for termination less a 2% yearly compounded discount for each Rental. Payment of such amount will be equal to the loss we have suffered and will not affect our rights to claim damages.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>b.</td>
+                                            <td>On the ending of the hiring under Term 7 and when the Equipment is re-delivered to us we will use reasonable endeavours to sell the Equipment and will apply the net sale proceeds (if any) after deducting any selling costs against any sums which you owe us under this Term.</td>
+                                        </tr>
+                                        <tr class="termbold">
+                                            <td>9.</td>
+                                            <td>Return of Equipment</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>When this Agreement expires, or is terminated under Term 7, you must return the Equipment within fourteen days, in good working order and in a condition fit for re-sale, to an address nominated by us within the United Kingdom. If you do not, you must continue to pay Rentals on a pro rata basis until the Equipment is received and accepted by us.</td>
+                                        </tr>
+                                        <tr class="termbold">
+                                            <td style="width:12px;font-weight:600">10.</td>
+                                            <td>Our Rights</td>
+                                        </tr>
+                                        <tr>
+                                            <td>a.</td>
+                                            <td>If we do not enforce all our rights under this Agreement, or if we delay in doing so, we do not give up any of these rights or the rights which we have if you break this Agreement again.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>b.</td>
+                                            <td>We may assign our rights under this Agreement but you may not assign your rights under this Agreement.</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- Table14 -->
+                <table class="table14 table-black border mb-5" style="width: 98%;">
+                    <tbody>
+                        <tr>
+                            <th colspan="3" style="">
+                                <p class="font-11" style="color: white; text-align: center;">
+                                    &nbsp;
+                                </p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="pl-5" style="padding: 4px 0px;">
+                                <p style=" font-size: 22px;font-weight: 600;">X</p>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="pl-5" style="padding: 4px 0px;">
+                                <p style="float: left;">Signature</p>
+                                <p class="font-11 pr-15" style="float: right;">Date </p>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="font-9" colspan="3"></td>
+                        </tr>
+                        <tr>
+
+                            <td colspan="3">
+                                <ul class="pr-15">
+                                    <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits</li>
+                                    <li>If there are any changes to the amount, date or frequency of your Direct Debit Technology Rentals Ltd will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Technology Rentals Ltd to collect a payment, confirmation of the amount and date will be given to you at the time of the request</li>
+                                    <li>If an error is made in the payment of your Direct Debit by Technology Rentals Ltd or your bank or building society you are entitled to a full and immediate refund of the amount paid from your bank or building society</li>
+                                    <li>If you receive a refund you are not entitled to, you must pay it back when Technology Rentals Ltd asks you to</li>
+                                    <li>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify us.</li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <!-- Table 15 -->
+                <table class="table15 mb-15" style="text-align: center;width: 100%;">
+
+                    <tbody>
+                        <tr>
+                            <td class=" pb-10 font-8">
+                                <p style="text-align: center;">Funding 4 Education is a trading name of Technology Rentals Ltd.</p>
+                            </td>
+                            <td class="pb-10 font-8" style="text-align:right">165</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="page-break-before: always"></p>
+            <div id="page_3" class="print-wrap">
+                <div id="p1dimg1">
+                    <img src="" id="p1img1">
+                </div>
+
+
+                <div class="dclr"></div>
+                <div id="id1_1">
+                    <p class="p0 ft0">Equipment Schedule</p>
+                    <p class="p1 ft1">School:</p>
+                    <p class="p2 ft2">Saicomputer</p>
+                    <p class="p0 ft2">shrimali wado, Chokshi bajar,<br>shrimali wado, Chokshi bajar,<br> Mehsana - 384001<br> Phone : 7600723467</p>
+
+                    <table class="table3 mb-10" cellpadding="3" cellspacing="0" style="width: 98%; font: 11px 'Arial'; border: 1px solid;">
+                        <thead>
+                            <tr style="background: #6f7072;">
+                                <th colspan="7" style="">
+                                    <p class="font-11" style="color: white;">
+                                        Equipment
+
+                                    </p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="border-r border-b">
+                                    Qty
+                                </td>
+                                <td class="border-r border-b">
+                                    Make
+                                </td>
+                                <td class="border-r border-b">
+                                    Model
+                                </td>
+                                <td class="border-r border-b">
+                                    Description
+                                </td>
+                                <td class="border-r border-b">
+                                    New/Used/ <br>Refurbished
+                                </td>
+                                <td class="border-r border-b">
+                                    Serial Numbers
+                                </td>
+                                <td class="border-l border-b">
+                                    Delivery address
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border-r border-b">
+                                    1
+                                </td>
+                                <td class="border-r border-b">MAXTEK</td>
+                                <td class="border-r border-b"></td>
+                                <td class="border-r border-b">Mobile Whiteboard – 90 x 60 cm Portable Magnetic Dry Erase Board Stand Easel White Board Dry Erase Easel Standing Board Silver,90x60</td>
+                                <td class="border-r border-b">new</td>
+                                <td class="border-r border-b"></td>
+                                <td class="border-l border-b"></td>
+                                <!--<button type="button" class="btn btn-info btn-lg" ng-click="AddAddress(item)">Open Modal</button></td>-->
+                            </tr>
+                            <tr>
+                                <td class="border-r border-b">
+                                    1
+                                </td>
+                                <td class="border-r border-b">SANLINKEE</td>
+                                <td class="border-r border-b"></td>
+                                <td class="border-r border-b">sanlinkee Desktop Whiteboard with Stand, Small Whiteboards Mini White Board Dry Erase Adjustable White Boards </td>
+                                <td class="border-r border-b">new</td>
+                                <td class="border-r border-b"></td>
+                                <td class="border-l border-b"></td>
+                                <!--<button type="button" class="btn btn-info btn-lg" ng-click="AddAddress(item)">Open Modal</button></td>-->
+                            </tr>
+                            <tr>
+                                <td class="border-r border-b">
+                                    1
+                                </td>
+                                <td class="border-r border-b">MASTER OF BOARDS</td>
+                                <td class="border-r border-b"></td>
+                                <td class="border-r border-b">Magnetic Whiteboard | Dry Erase Board | # 1 White Board in Europe | Excellent for Office and Home - 45x60cm 45x60cm</td>
+                                <td class="border-r border-b">new</td>
+                                <td class="border-r border-b"></td>
+                                <td class="border-l border-b">
+                                    sadalskdja<br>
+                                    dasd<br>
+                                    asdas
+
+                                </td>
+                                <!--<button type="button" class="btn btn-info btn-lg" ng-click="AddAddress(item)">Open Modal</button></td>-->
+                            </tr>
+                            <tr>
+                                <td class="border-r border-b">
+                                    1
+                                </td>
+                                <td class="border-r border-b">ACER</td>
+                                <td class="border-r border-b"></td>
+                                <td class="border-r border-b">Acer Aspire 3 15.6" FHD Notebook </td>
+                                <td class="border-r border-b">new</td>
+                                <td class="border-r border-b"></td>
+                                <td class="border-l border-b"></td>
+                                <!--<button type="button" class="btn btn-info btn-lg" ng-click="AddAddress(item)">Open Modal</button></td>-->
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div style="width:100%;float:left;position:relative;">
+                        <div style="background-color: #f2f2f2;margin:0px auto;padding:10px;width:90%;">
+                            <p class="p5 ft3">Signature</p>
+                            <p class="p6 ft3">Print Name</p>
+                            <p class="p7 ft3">Position</p>
+                            <p class="p8 ft3">Date</p>
+                        </div>
+                        <p class="p9 ft6" style="width:100%;">Technology Rentals T/A Funding 4 Education • Merlin House • 8 Grove Avenue • Wilmslow •</p>
+                        <p class="p10 ft7" style="width:100%;">Cheshire • SK9 5EG</p>
+                        <p class="p11 ft6" style="width:100%;">01625 415 400 • www.funding4education.co.uk • hello@funding4education.co.uk</p>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+            <p style="page-break-before: avoid"></p>
+
+            <p style="page-break-after: avoid"></p>
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+
+    <script>
+       
+	var pdf,page_section,HTML_Width,HTML_Height,top_left_margin,PDF_Width,PDF_Height,canvas_image_width,canvas_image_height;
+
+//	pdf = new jsPDF('p', 'pt', [794, 1123]);
+
+
+	function calculatePDF_height_width(selector,index){
+	    page_section = $(selector).eq(index);
+	    HTML_Width = page_section.width();
+		HTML_Height = page_section.height();
+		top_left_margin = 15;
+		PDF_Width = HTML_Width + (top_left_margin * 2);
+		PDF_Height = (PDF_Width * 1.2) + (top_left_margin * 2);
+		canvas_image_width = HTML_Width;
+		canvas_image_height = HTML_Height;
+        
+	}
+
+
+
+
+    //Generate PDF
+    function getPDF() {
+        pdf = "";
+		$("#downloadbtn").hide();
+		$("#genmsg").show();
+		html2canvas($(".print-wrap:eq(0)")[0], {
+		    imageTimeout: 2000,
+		    scale: 2,
+		    removeContainer: true,
+		}).then(function (canvas) {
+		    canvas.getContext('2d').scale(2, 2);
+            calculatePDF_height_width(".print-wrap",0);
+            pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+
+            var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, HTML_Width, HTML_Height);
+		    html2canvas($(".print-wrap:eq(1)")[0], {
+			    imageTimeout: 2000,
+			    scale: 2,
+			    removeContainer: true,
+			}).then(function (canvas) {
+			    canvas.getContext('2d').scale(2, 2);
+			    calculatePDF_height_width(".print-wrap", 1);
+
+			    var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			    alert(PDF_Width);
+			    pdf.addPage(PDF_Width, PDF_Height);
+			    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, HTML_Width, HTML_Height);
+
+			});
+			html2canvas($(".print-wrap:eq(2)")[0], {
+			    imageTimeout: 2000,
+			    scale: 2,
+			    removeContainer: true,
+			}).then(function (canvas) {
+			    canvas.getContext('2d').scale(2, 2);
+			    calculatePDF_height_width(".print-wrap", 2);
+
+			    var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			    pdf.addPage(PDF_Width, PDF_Height);
+			    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, HTML_Width, HTML_Height);
+
+
+
+			    //console.log((page_section.length-1)+"==="+index);
+			    setTimeout(function () {
+
+			        //Save PDF Doc
+			        pdf.save("HTML-Document.pdf");
+
+			        //Generate BLOB object
+			        /*var blob = pdf.output("blob");
+
+                    //Getting URL of blob object
+                    var blobURL = URL.createObjectURL(blob);
+
+                    //Showing PDF generated in iFrame element
+                    var iframe = document.getElementById('sample-pdf');
+                    iframe.src = blobURL;
+
+                    //Setting download link
+                    var downloadLink = document.getElementById('pdf-download-link');
+                    downloadLink.href = blobURL;
+
+					$("#sample-pdf").slideDown();
+                    */
+
+			        $("#downloadbtn").show();
+			        $("#genmsg").hide();
+			    }, 0);
+			});
+
+        });
+
+		
+    };
+
+    
+	function getPDFold(){
+		$("#downloadbtn").hide();
+		$("#genmsg").show();
+		var HTML_Width = $(".canvas_div_pdf").width();
+		var HTML_Height = $(".canvas_div_pdf").height();
+		var top_left_margin = 2;
+		var PDF_Width = HTML_Width+(top_left_margin*2);
+		var PDF_Height = (PDF_Width * 1.2) + (top_left_margin * 2);
+		
+		var canvas_image_width = HTML_Width;
+		var canvas_image_height = HTML_Height;
+
+		var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
+		
+		html2canvas($(".canvas_div_pdf")[0], {
+		    imageTimeout: 2000,
+            scale:2,
+		    removeContainer: true,
+		}).then(function (canvas) {
+			canvas.getContext('2d').scale(2, 2);
+			
+
+			var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+		    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
+
+
+			for (var i = 1; i <= totalPDFPages; i++) {
+			    pdf.addPage(PDF_Width, PDF_Height);
+				pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+			}
+
+		    pdf.save("HTML-Documentnew.pdf");
+
+			setTimeout(function(){
+				$("#downloadbtn").show();
+				$("#genmsg").hide();
+			}, 0);
+
+        });
+	};
+
+
+    </script>
+    <script>
+            var form = $('.form'),
+      cache_width = form.width(),
+      a4 = [770, 990.89]; // for a4 size paper width and height
+
+            var canvasImage,
+              winHeight = a4[1],
+              formHeight = form.height(),
+              formWidth = form.width();
+
+            var imagePieces = [];
+
+            // on create pdf button click
+            $('#create_pdf').on('click', function () {
+                $('body').scrollTop(0);
+                imagePieces = [];
+                imagePieces.length = 0;
+                main();
+            });
+
+            // main code
+            function main() {
+                getCanvas().then(function (canvas) {
+                    canvasImage = new Image();
+                    canvasImage.src = canvas.toDataURL('image/png');
+                    canvasImage.onload = splitImage;
+                });
+            }
+
+            // create canvas object
+            function getCanvas() {
+                form.width(a4[0]).css('max-width', 'none');
+                return html2canvas(form, {
+                    imageTimeout: 2000,
+                    removeContainer: true,
+                });
+            }
+
+            // chop image horizontally
+            function splitImage(e) {
+                var totalImgs = Math.round(formHeight / winHeight);
+                for (var i = 0; i < totalImgs; i++) {
+                    var canvas = document.createElement('canvas'),
+                      ctx = canvas.getContext('2d');
+                    canvas.width = formWidth;
+                    canvas.height = winHeight;
+                    ctx.drawImage(canvasImage, 0, i * winHeight, formWidth, winHeight, 0, 0, canvas.width, canvas.height);
+
+                    imagePieces.push(canvas.toDataURL('image/png'));
+                }
+                console.log(imagePieces.length);
+                createPDF();
+            }
+
+            // crete pdf using chopped images
+            function createPDF() {
+                var totalPieces = imagePieces.length - 1;
+                var doc = new jsPDF({
+                    unit: 'px',
+                    format: 'a4',
+                });
+                imagePieces.forEach(function (img) {
+                    doc.addImage(img, 'JPEG', 10, 0);
+                    if (totalPieces) doc.addPage();
+                    totalPieces--;
+                });
+                doc.save('techumber-html-to-pdf.pdf');
+                form.width(cache_width);
+            }
+        </script>
+</body>
+</html>

@@ -1,0 +1,931 @@
+﻿@using LeasingPortalApi.Models;
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    Page.Title = "checkout";
+    var base64 = ViewBag.base64.ToString();
+    ViewBag.base64 = "";
+    List<int> p = new List<int>();
+}
+<style>
+    .showerror {
+        padding: 10px 10px;
+        background: #c10404;
+        color: #fff;
+        font-size: 16px;
+    }
+
+    #agreementmodal p {
+        margin-bottom: 0px;
+    }
+
+    #agreementmodal form {
+        margin-bottom: 0px !important;
+    }
+
+    #generatedAgreementmodal .modal-lg {
+        width: 80%;
+        max-width: 80%;
+    }
+
+    .form-label, .section-title {
+        color: #565555;
+    }
+
+    .radio-inline {
+        color: #fff;
+    }
+
+    .showerror.in {
+        display: block;
+    }
+
+    input.ng-invalid.ng-touched {
+        border-color: #FA787E;
+    }
+
+    input.ng-valid.ng-touched {
+        border-color: rgba(0, 201, 167, 0.1);
+    }
+
+    .invalid-feedback {
+        display: block;
+        margin-left: 10px;
+    }
+
+    .table-bordered td, .table-bordered th, table.cart tbody + tbody {
+        border-top: 2px solid #eceeef !important;
+        border-left: 0px;
+        border-right: 0px;
+        border-bottom: 0px;
+    }
+
+    table.cart tbody > tr > td {
+        border-top: 1px solid #eceeef !important;
+    }
+</style>
+<style>
+    .approvedtd td {
+        background: #ffd89c;
+        border: 1px solid #bba7a7;
+    }
+
+    .lapprovedtd td {
+        background: #d4edda;
+        border: 1px solid #bba7a7;
+    }
+
+    .lpendingtd td {
+        background: #fff3cd;
+        border: 1px solid #bba7a7;
+    }
+
+    .lrejectedtd td {
+        background: #f8d7da;
+        border: 1px solid #bba7a7;
+    }
+
+    table.cart .actions {
+        padding-top: 0 !important;
+    }
+
+    .tab-pane {
+        padding: 1rem;
+    }
+
+    .md-tabs {
+        position: relative;
+        z-index: 1;
+        padding: .7rem;
+        margin-right: 1rem;
+        margin-bottom: -20px;
+        margin-left: 1rem;
+        background-color: #fff;
+        border: 0;
+        border-radius: .25rem;
+        -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+    }
+
+    .indigo1 {
+        background-color: #3f51b5 !important;
+    }
+
+    .md-tabs .nav-link {
+        color: #082044;
+        border: 0;
+        -webkit-transition: all .4s;
+        transition: all .4s;
+    }
+
+    .nav-tabs .nav-link {
+        border: 1px solid transparent;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+    }
+
+    .nav-link {
+        display: block;
+        padding: .5rem 1rem;
+    }
+
+    .nav-tabs .nav-link:hover, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover {
+        border-color: #3f51b5;
+    }
+
+    .nav-tabs .nav-item {
+        background: rgba(0,0,0,0.05);
+        display: block;
+        position: relative;
+    }
+
+        .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+            color: #fff !important;
+            background-color: #082044 !important;
+            border-color: #e7eaf3 #e7eaf3 #fff;
+        }
+
+    .entry-content .card {
+        font-weight: 400;
+        border: 0;
+        -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    }
+
+    table.cart .actions {
+        padding-top: 0 !important;
+    }
+
+    .btndropdown .btn, .open > .btn.dropdown-toggle, .open > .button.dropdown-toggle, .open > .dropdown-toggle.hero-action-btn, .open > button.dropdown-toggle {
+        background-color: #4d44bd;
+        border-color: #4940b4;
+        border-radius: 0px;
+        color: #fff;
+    }
+
+
+    .btndropdown .dropdown-menu {
+        margin-top: 0px;
+    }
+
+    .btndropdown .dropdown-item {
+        cursor: pointer;
+    }
+
+    #datepicker .input-group-addon, #datepicker .input-group-btn {
+        width: 9% !important;
+        padding: 0.67rem .75rem !important;
+    }
+
+
+    .quoteh6 {
+        text-align: left;
+        color: #8a0808 !important;
+        padding-bottom: 15px;
+        font-size: 0.8rem;
+    }
+
+    .col-xs-3.quoteh6.border, .col-xs-9.border.quoteh6 {
+        padding-top: 15px;
+    }
+
+    {
+        padding-top: 15px;
+    }
+
+
+
+    .agreementform {
+        color: #333;
+    }
+
+    .agreementtable {
+        background-color: #082044;
+    }
+
+    .panel-group .panel {
+        border-radius: 0;
+        box-shadow: none;
+        border: 1px solid #EEEEEE;
+        margin-top: 10px;
+    }
+
+    .panel-default > .panel-heading {
+        padding: 0;
+        border-radius: 0;
+        color: #212121;
+        /*background-color: #FAFAFA;*/
+        /*border-color: #EEEEEE;*/
+    }
+
+    .panel-title {
+        font-size: 14px;
+    }
+
+        .panel-title > a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+        }
+
+    .more-less {
+        float: right;
+        color: #212121;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .panel-default > .panel-heading + .panel-collapse > .panel-body {
+        border-top-color: #EEEEEE;
+    }
+
+    .nav-tabs .nav-link .tab-items-count {
+        border: 1px solid #fe5300;
+        background: #fe5300;
+        border-radius: 50%;
+        position: absolute;
+        top: -8px;
+        right: 0px;
+        color: #fff;
+    }
+
+    .nav-tabs .nav-link.active1 .tab-items-count {
+        background: #fff;
+        color: #333;
+    }
+
+
+
+    #agreementmodal p {
+        margin-bottom: 0px;
+    }
+
+    .price-color-gold {
+        color: #000 !important;
+    }
+
+    .maintable {
+        border-collapse: separate;
+        border-spacing: 0 0.5em;
+    }
+
+    .nav-item1 a, li .dropdown-title {
+        font-size: 1em;
+    }
+
+    .sidebar-navbar.view-all .dropdown-toggle::after {
+        content: "\f105";
+    }
+
+    .nav-item1 {
+        margin: 0px !important;
+    }
+
+        .nav-item1.active {
+            background: #082044;
+        }
+
+        .nav-item1 a:before {
+            content: "\f105";
+            font-size: 1.00012rem;
+            line-height: 1;
+            order: -1;
+            margin-left: 0;
+            margin-right: .5rem;
+            display: inline-block;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+        }
+
+        .nav-item1.active a {
+            color: #fff;
+        }
+
+        .nav-item1:hover {
+            background: #082044;
+            color: #fff;
+        }
+
+            .nav-item1:hover a {
+                color: #fff;
+            }
+
+    .invalid-feedback {
+        display: block;
+        margin-left: 10px;
+        text-align: left;
+    }
+
+    #grid table {
+        border: inherit;
+        color: #333 !important;
+    }
+
+        #grid table td, #grid table th {
+            border: inherit;
+            padding: 0px;
+        }
+
+    #grid .table3 td, #grid .table3 th, #grid .border {
+        border: 1px solid !important;
+    }
+
+    .nodata p {
+        font-size: 1.2em;
+    }
+
+    #agreementmodal form {
+        margin-bottom: 0px !important;
+    }
+
+    #generatedAgreementmodal .modal-lg {
+        width: 80%;
+        max-width: 80%;
+    }
+
+    .msgModal.fade.in {
+        display: flex !important;
+        align-items: center;
+    }
+
+    #msgModal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    #msgModal1 .modal-dialog {
+        display: inline-block;
+        vertical-align: middle;
+        left: 18%;
+    }
+
+    #msgModal .modal-content {
+        -webkit-animation-name: modal-animation;
+        -webkit-animation-duration: 0.5s;
+        animation-name: modal-animation;
+        animation-duration: 0.5s;
+    }
+
+    .agreementordertable tr td {
+        color: #333 !important;
+    }
+
+    .agreementordertable tr td {
+        padding: 2px;
+    }
+
+    .agreementordertable tr.first td {
+        border-top: 0px;
+    }
+
+    .agreementordertable tr td {
+        width: 33.33%;
+    }
+
+        .agreementordertable tr td:first-child {
+            width: 50%;
+        }
+
+    .bnktable tr td {
+        padding: .25rem;
+    }
+
+    @@media(min-width:1100px) {
+        #reviewModal .modal-lg {
+            width: 600px;
+        }
+
+        #agreementmodal .modal-lg {
+            width: 900px;
+            max-width: 900px;
+        }
+
+        #agreementmodal2 .modal-lg {
+            width: 90%;
+            min-height: 700px;
+            max-width: 90%;
+        }
+
+        #leaseterm-dialog .modal-lg {
+            width: 70%;
+            max-width: 100%;
+        }
+    }
+
+    .panel-table {
+        margin-bottom: 0px;
+    }
+
+        .panel-table thead th, .panel-table tbody td {
+            border-top: none;
+            border-bottom: none;
+            color: #333;
+            padding: 4px .75rem;
+        }
+
+    .aggreementrow table tbody td {
+        padding: 4px .75rem !important;
+        border-top: 0px !important;
+    }
+
+    .aggreementrow .btn {
+        padding: 4px 10px !important;
+        cursor: pointer !important;
+    }
+
+    .nopadding {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .poinput {
+        color: #fff !important;
+    }
+
+        .poinput:focus {
+            color: #818181 !important;
+        }
+
+    .invalid-feedback {
+        color: #fd4537 !important;
+    }
+</style>
+<!-- ========== MAIN CONTENT ========== -->
+<main id="content" role="main" class="checkout-page confirmorder-page" ng-controller="ConfirmOrderController">
+    <div class="se-pre-con" ng-show="loader">
+
+    </div>
+    <div id="message" class="se-pre-con" style="left: 16px;top: 41px;width: 98%;height: 98%;z-index:111;display: none;">
+        <h1>Loading ...</h1>
+    </div>
+
+    <!-- breadcrumb -->
+    <div id="agreementmodal2">
+        <div class="modal fade confirmation-dialog" role="dialog" style="overflow-y:scroll">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close mdclose" data-dismiss="modal">×</button>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h4 class="modal-title ng-binding">Lease Agreement</h4>
+                            </div>
+                            <div class="col-lg-6" ng-show="printoption" style="display:none;">
+                                <button type="submit" class="btn btn-primary" onclick="doPrint()">Print Agreement</button>
+
+                                <form method="post" action="Order/Export" style="display:inline-block;margin-left:10px;">
+                                    <input type="hidden" name="html" />
+
+                                    <button type="submit" class="btn btn-primary" id="exportpdfnew">Export Agreement</button>
+                                </form>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="printf3" style="width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-cloak class="container" ng-if="!loader">
+
+        <form id="msform">
+            <ul id="progressbar">
+                <li class="active p-2 complete" id="order"><strong>Confirm Delivery Details</strong></li>
+                <li id="payment1" class="p-2 active complete"><strong>Confirm Payment Method</strong></li>
+                <li id="print active" class="p-2"><strong>Print Agreement</strong></li>
+                <!--<li id="agreement"><strong>Upload Signed Agreement</strong></li>-->
+
+            </ul>
+        </form>
+    </div>
+    <!-- End breadcrumb -->
+
+    <div ng-cloak class="container" >
+        <div id="primary">
+            <main id="main" class="site-main">
+
+
+                <article id="post-3134" class="post-3134 page type-page status-publish hentry">
+
+
+                    <div class="entry-content">
+                        <div class="woocommerce orderpage border box-shadow-1 pt-5 mb-10">
+                            <div id="tabloading" class="se-pre-con" style="left: 16px;top: 50px;width: 98%;height: 98%;z-index:111;" ng-show="tabloading">
+                            </div>
+
+                            <!-------------------Agreement Start---------------------------->
+                            <div ng-show="multipledatas.length>0">
+                                <div class="row box-shadow-1 ml-3 mr-3 p-2">
+                                    <div class="col-lg-12">
+                                        <div class="woocommerce-notices-wrapper">
+                                            <h3 class="text-center" style="color:#333;font-weight:600">{{pagetitle}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row box-shadow-1" style="margin-left:15px;margin-right:15px;margin-top:10px">
+                                    <div class="col-lg-12 mt-2">
+                                        <div class="alert alert-success text-center pl-2 pr-2" style="font-size:1rem">
+                                            <p>You are now at the final stage of electronically generating lease agreements for each of you purchase order/s</p>
+                                            <p class="mt-0" style="color:#c80606;">Press "Generate lease agreement" button to generate and digitally sign the lease agreement/s</p><br />
+                                            <p>Upon generating electronically duly signed lease agreement, the lessor will be immediately flagged who will in turn process the document. Upon sucessful processing, your order will be delivered to you promptly. A copy of your signed lease agreement shall be held with us at equipyourschool.co.uk and can be viewed and/or printed at any time via "My Account"->"Your lease orders"</p>
+                                            <!--<p ng-bind-html="bootdetailmsg"></p>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 mb-5 mt-3 nomobilepadding">
+                                        <div class="woocommerce agreementdatatable">
+
+                                            <div class="row box-shadow-1 m-3 p-2" ng-repeat="values in (multipledatas)">
+                                                <div class="col-lg-12" style="border-bottom: 1px solid #ddd;">
+                                                    <table class="table table-borderless agreementordertable">
+                                                        <thead>
+                                                            <tr>
+                                                                <td style="border-top:0px;">
+                                                                    <h6 style="color:#333">Lease term: <strong>{{values.Product[0].mtermp/12}} years, {{getOnlyTerms(values.Product[0].mtermf,"")}}.</strong> </h6>
+
+                                                                </td>
+
+                                                                <td style="border-top:0px;">Total rental = <strong>£{{values.total | number:2}} {{ getNewTerms(values.Product[0].mtermf,values.Product[0].mtermp) }}</strong> <span ng-if="values.Product[0].mleadtime>leadtime">(LeadTime : {{values.Product[0].mleadtime}} days)</span></td>
+                                                                <td style="border-top:0px;vertical-align:middle;" rowspan="2" align="center"><button type="button" ng-click="SaveAndPrintAgreement(values,true,$index)" class="btn btn-primary"><i class="fa fa-print"></i> Generate lease agreement</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <span style="color:#4940b4;font-size:14px;">Payment Method :-</span> {{values.mpayment==2?'Direct Debit':'On Invoice'}}
+                                                                </td>
+                                                                <td ng-if="values.msorderref!=null && values.msorderref!=''">
+                                                                    <span style="color:#4940b4;font-size:14px;">Your PO No :-</span> {{values.msorderref}}
+                                                                </td>
+                                                                <td ng-if="values.msorderref==null && values.msorderref==''">
+                                                                    &nbsp;
+                                                                </td>
+                                                            </tr>
+
+                                                        </thead>
+                                                    </table>
+
+
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents maintable" cellspacing="0" style="margin-bottom:0px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="product-thumbnail">&nbsp;</th>
+                                                                <th style="width:350px;" class="product-name">Product Details</th>
+                                                                <th style="text-align:center" class="product-quantity">Qty</th>
+                                                                <th style="text-align:center" class="product-subtotal">Total</th>
+                                                                <th style="width:150px;text-align:center;" class="product-name">Delivery Address</th>
+
+
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody ng-repeat="item in values.Product">
+                                                            <tr class="woocommerce-cart-form__cart-item cart_item border-0">
+                                                                <td class="product-thumbnail">
+                                                                    <a href="/Leasing/ProductDetail?{{item.mproducturl}}" target="_blank">
+                                                                        <img ng-src="/LeaseAdmin/Content/images/product/{{item.subpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" width="300" height="300">
+                                                                    </a>
+                                                                </td>
+
+                                                                <td class="product-name" style="word-wrap: break-word;white-space:normal;" data-title="Product">
+                                                                    <a href="/Leasing/ProductDetail?{{item.mproducturl}}" target="_blank">
+                                                                        {{item.mproductname}}
+                                                                    </a>
+                                                                    <span style="font-size: 0.675em;" ng-if="item.warrantydetails!=null"><br />With Extended {{item.warrantydetails.mprodname}}</span>
+                                                                    <span style="font-size: 0.675em;" ng-if="item.suppliername!=null"><br />Supplier: {{item.suppliername}}</span>
+                                                                    <span style="font-size: 0.675em;color:#06429c;" ng-if="item.suppliername!=null && item.mleadtime>=0 && item.mleadtime<=leadtime"><br />Estimated Delivery: {{item.Product.mleadtime}} days</span>
+                                                                    <span style="font-size: 0.675em;color:#c80606;" ng-if="item.suppliername!=null && item.mleadtime>leadtime"><br />Estimated Delivery: {{item.mleadtime}} days</span>
+                                                                    <div class="offer" style='margin-top:8px; margin-bottom:0px;background:#5cb85c;color: #fff !important;font-weight: 700;padding:5px;' ng-show="item.mofferdetail!=null && item.mofferdetail!='' && item.mofferapplied">
+                                                                        <span class="loop-product-categories dealdetail ng-cloak" ng-show="item.mofferapplied" style="">Applied: {{item.mofferdetail}}</span>
+                                                                    </div>
+
+                                                                </td>
+                                                                <td class="product-quantity" data-title="Quantity" style="text-align:center">
+                                                                    <div class="quantity" style="margin:0 auto;">
+                                                                        <input type="text" tabindex="-1" readonly id="quantity_5e0706480ca03" ng-model="noOfItem[$index]" class="input-text qty text" step="1" min="1" max="500" name="cart[8e68c3c7bf14ad0bcaba52babfa470bd][qty]" value="{{item.quantity}}" ng-change="UpdateCart(item,noOfItem[$index],1)" title="Qty" size="4" inputmode="numeric" aria-labelledby="White NX Mini F1  SMART NX quantity" style="width:4em">
+                                                                    </div>
+                                                                </td>
+                                                                <td class="product-subtotal" style="text-align:center;padding:12px 4px;" data-title="Total">
+                                                                    <span class="woocommerce-Price-amount amount">
+
+                                                                        <span class="price-color-gold">
+                                                                            <span class="woocommerce-Price-currencySymbol">£</span>{{item.mprice*item.quantity | number:2}}
+                                                                        </span>
+                                                                        <br />
+
+                                                                        <span class="pm" style="font-size:10px">{{ getNewTerms(item.mtermf,item.mtermp) }}</span>
+                                                                        <br />
+                                                                        <label ng-show="item.minstallationflag=='yes'" class="installtext" style="">Installation included</label>
+                                                                    </span>
+                                                                </td>
+                                                                <td class="product-name" style="text-align:center;word-wrap: break-word;white-space:normal;width:250px;position:relative;" data-title="Product">
+                                                                    <div ng-if="item.maddressflag==1" style="">
+                                                                        <div ng-bind-html="item.AddressDetail"></div>
+                                                                    </div>
+                                                                    <div ng-if="item.maddressflag!=1">
+                                                                        <div ng-bind-html="defaultaddress"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                        <tfoot>
+
+                                                        </tfoot>
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="woocommerce-notices-wrapper">
+                                                <p class="mb-0 text-danger" style="font-size:12px;">*All prices are excl. of VAT</p>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row mt-5 mb-5 ml-3 mr-3" style="width:98%;margin-top:10px;display:none;">
+                                    <!--<div class="col-md-2 col-md-6" style="margin-left:0px;margin-right:0px;">
+                <a href="/Leasing/ViewCart" style="margin-right:5px;" class="btn btn-warning">Back to Basket</a>
+
+            </div>-->
+                                    <div class="col-md-6  pull-right text-right">
+                                        <!--<button type="button" ng-click="BackStep('printpage',multipledatas.length)" class="btn btn-danger mr-1">Back</button>-->
+                                        <!--<button type="button" class="btn btn-primary mr-1" ng-show="multipledatas.length>1" ng-click="PrintAllAgreement()">Print all agreements</button>-->
+                                        <!--<button type="button" class="btn btn-primary mr-1" ng-show="multipledatas.length<=1" ng-click="PrintAllAgreement()">Print agreement</button>-->
+                                        <!--<button type="button" class="btn btn-warning mr-1" ng-disabled="!singleprint" ng-click="showfinish=true;Finish();">finish</button>-->
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-------------------Agreement End----------------------------->
+                            <!----------------------Finish Start--------------------------->
+                            <div ng-show="showfinish" class="border box-shadow-1 pt-5 mb-10">
+                                <div class="row m-1">
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-success">
+                                            <p ng-bind-html="bootdetailmsg" style="font-size:14px;"></p><br />
+                                            Go to your <a href="/MyAccount/Index" class="btn btn-primary"> Your lease order</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!----------------------Finish End--------------------------->
+                        </div>
+
+                        <iframe id="printf" name="printf" style="display:none;width:800px;top:10px;left:20px;right:20px;"></iframe>
+                        <div ng-include id="invoice-box" src="'/templates/printorder.html'" style="display:none;"></div>
+                        <div id="orderdata"></div>
+                    </div><!-- .entry-content -->
+
+                </article><!-- #post-## -->
+
+            </main><!-- #main -->
+        </div>
+
+    </div>
+</main>
+@section scripts {
+
+    <script type="text/javascript">
+        app.controller('ConfirmOrderController', ['$scope', '$anchorScroll', '$http', '$rootScope', '$location', '$sce', '$cookies', 'FileUploader', 'CommonLeaseTerm', function ($scope, $anchorScroll, $http, $rootScope, $location, $sce, $cookies, FileUploader, CommonLeaseTerm) {
+            $scope.bootdetailmsg = "Thank you for your order. Your order will now be processed and delivered to you in due course.  Please print copy of the agreement/s you have signed pertaining to the order/s to complete the process. You can also print the agreement/s in My account -> Your lease orders.";
+            jQuery("#payment1").addClass("complete");
+            jQuery("#print").addClass("active");
+            $scope.multipledatas = [];
+            $scope.loader = true;
+            $scope.pagetitle = "Generate lease Agreement";
+            $scope.getids = [];
+            @{
+                if (SessionWrapper.agnos != null)
+                {
+                    foreach(var ab in SessionWrapper.agnos) { 
+                        @:$scope.getids.push(@ab);
+                    }
+                }
+            }
+            $scope.getpendingsignaggreements = function () {
+                $scope.tabloading = true;
+                $http.post('/api/AggreementApi/GetPendingSignAggreementByMultipleIds',$scope.getids).success(function (data) {
+                    
+                    if (data == "empty") {
+                        //window.location.href = "/Leasing/Myaccount/Index";
+                        //$scope.emptyaggreement = false;
+                        window.location.href = "/Myaccount/Index";
+                        $scope.multipledatas = [];
+
+                    }
+                    if (data.length <= 0) {
+                        window.location.href = "/Myaccount/Index";
+                        //$scope.emptyaggreement = false;
+                        $scope.multipledatas = [];
+                    }
+                    else {
+                        //$scope.emptyaggreement = false;
+                        $scope.singlleasenos = $scope.getids;
+                        $scope.multipledatas = data;
+                        $scope.loader = false;
+                        $scope.tabloading = false;
+                    }
+                    //getCounter();
+                    
+
+
+                });
+            }
+
+            $scope.base64 = "@base64";
+                console.log($scope.getids);
+            if ($scope.base64 != "" && $scope.base64 != null) {
+                var blobURL = URL.createObjectURL(b64toBlob($scope.base64, "application/pdf"));
+                var iframe = document.getElementById('printf3');
+                iframe.src = blobURL + "#zoom=100";
+                jQuery("#agreementmodal2 .modal").modal({
+                    "show": true
+                }).on("hidden.bs.modal", function () {
+                    var iframe = document.getElementById('printf3');
+                    iframe.src = "";
+                    $scope.getpendingsignaggreements();
+                    $scope.showagreements = true;
+                });
+
+
+            } else {
+                $scope.getpendingsignaggreements();
+            }
+            function b64toBlob(b64Data, contentType, sliceSize) {
+                const byteCharacters = atob(b64Data);
+                const byteArrays = [];
+                sliceSize = 512;
+                for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                    const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                    const byteNumbers = new Array(slice.length);
+                    for (let i = 0; i < slice.length; i++) {
+                        byteNumbers[i] = slice.charCodeAt(i);
+                    }
+
+                    const byteArray = new Uint8Array(byteNumbers);
+                    byteArrays.push(byteArray);
+                }
+
+                const blob = new Blob(byteArrays, { type: contentType });
+                return blob;
+            }
+            //$scope.getpendingsignaggreements();
+            $scope.SaveAndPrintAgreement = function (singleorder, flag, $index) {
+                $scope.tabloading = true;
+                $scope.printoption = flag;
+                    jQuery.blockUI();
+                $scope.newsinglleasenos = [];
+                $scope.bootmsg = "Please wait. Your Lease Agreement is being generated";
+                $scope.bootdetailmsg = "Please print,  sign and send  the agreement/s in the said file to the lessor at address given on the agreement/s";
+                //$scope.showmodel = true;
+                $scope.hideclose = false;
+                    jQuery("#msgModal").modal({
+                    backdrop: 'static',
+                    show: true,
+                    keyboard: false
+                    });
+                $scope.newsinglleasenos.push($scope.singlleasenos[$index]);
+                /*$http.post("/api/ProductApi/SaveSingleOrderFromCart", singleorder).success(function (data2, status) {
+                    jQuery.unblockUI();
+
+                    if (data2 != "failed") {
+                        $scope.singlleasenos.push(data2);
+                      */
+
+                $http({
+                    method: "POST",
+                    url: "/Order/LoadOrders/",
+                    data: { "mleaseids": $scope.newsinglleasenos, "mremainids": $scope.singlleasenos }
+                }).success(function (data) {
+                    if (data["url"] != "" && data["url"] != null) {
+                        $scope.singlleasenos.splice($index, 1);
+                        window.location.href = data["url"];
+
+
+                        $scope.singleprint = true;
+                        $scope.tabloading = false;
+                        jQuery("#agreementmodal2 .modal").off("hidden.bs.modal");
+
+
+                    } else {
+                        alert("Something went wrong!Please try again.");
+                        jQuery("#msgModal").modal("hide");
+                        $scope.tabloading = false;
+                        $scope.loader = false;
+                    }
+
+                });
+                //}
+                //});
+
+
+            };
+
+            $scope.getOnlyTerms = function (mtermf, mtermp) {
+                var msg = "";
+                var p = "";
+
+                switch (mtermf) {
+                    case 1:
+                        msg = p + "monthly";
+                        break;
+                    case 3:
+                        msg = p + "quarterly";
+                        break;
+                    case 4:
+                        msg = p + "termly";
+                        break;
+                    case 6:
+                        msg = p + "bi-annually";
+                        break;
+                    case 12:
+                        msg = p + "annually";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+            $scope.getNewTerms = function (mtermf, mtermp) {
+                var msg = "";
+                var p = "";
+
+                switch (mtermf) {
+                    case 1:
+                        msg = p + " per month";
+                        break;
+                    case 3:
+                        msg = p + " per quarter";
+                        break;
+                    case 4:
+                        msg = p + " per term";
+                        break;
+                    case 6:
+                        msg = p + " per bi-annual";
+                        break;
+                    case 12:
+                        msg = p + " per annum";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+            $scope.getTerms = function (mtermf, mtermp) {
+                var msg = "";
+                var p = "";
+                if (mtermp != null) {
+                    p = mtermp / 12;
+                }
+
+                switch (mtermf) {
+                    case 1:
+                        msg = p + " years monthly";
+                        break;
+                    case 3:
+                        msg = p + " years quarterly";
+                        break;
+                    case 4:
+                        msg = p + " years termly";
+                        break;
+                    case 6:
+                        msg = p + " years bi-annually";
+                        break;
+                    case 12:
+                        msg = p + " years annually";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+        }]);
+    </script>
+}

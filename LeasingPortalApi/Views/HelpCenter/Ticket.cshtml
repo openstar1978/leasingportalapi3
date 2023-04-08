@@ -1,0 +1,1023 @@
+﻿@{
+    ViewBag.Title = "Ticket Center";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+<style>
+    .section-head {
+        background-color: #3c8dbc;
+        color: #ffffff;
+        padding: 3px 15px;
+        margin: 10px 0 0 0;
+    }
+
+    .badge.mainhead {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #222d32;
+    }
+
+    label {
+        display: inline-block;
+        max-width: 100%;
+        margin: 5px 0;
+        font-weight: 700;
+    }
+
+    .badge.red {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #ffffff;
+        background-color: #ff0000;
+    }
+
+    .badge.blue {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #ffffff;
+        background-color: #3c8dbc;
+    }
+
+    .badge.green {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #ffffff;
+        background-color: #1aa531;
+    }
+    
+    .contactus {
+        color: #333;
+    }
+
+    .invalid-feedback {
+        display: block;
+    }
+
+    label {
+        margin: 10px 0;
+    }
+
+    /*Custom Tab*/
+
+    ul.tabs {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+    }
+
+        ul.tabs li {
+            background: #f1f1f1;
+            color: #222;
+            display: inline-block;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+        }
+
+            ul.tabs li.current {
+                background: #360874;
+                color: #fff;
+                font-weight: 500;
+            }
+
+    .tab-content {
+        display: none;
+        border: 2px solid #360874;
+        padding: 15px;
+        background: none;
+    }
+
+        .tab-content.current {
+            display: inherit;
+            border-radius: 0 0 5px 5px;
+            margin-bottom: 20px;
+        }
+
+    table th {
+        font-weight: 600;
+    }
+
+    table {
+        color: #3c3c3c;
+    }
+
+    .btn {
+        padding: 5px 15px !important;
+    }
+
+    .table thead th {
+        border-bottom: none;
+    }
+
+    .table td, .table th {
+        padding: 7px;
+        line-height: 25px;
+        border-top: none;
+        font-size: 14px;
+    }
+
+    .table a.btn {
+        color: #360874 !important;
+    }
+        .table a.btn:hover {
+            color: #ffffff !important;
+            background: #360874 !important;
+            border:none;
+        }
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 10px 5px;
+    }
+    table .page-item.active .page-link {
+        color: #343434;
+        font-weight: 600;
+    }
+    .page-item.active .page-link, .page-item.active .page-link:focus, .page-item.active .page-link:hover {
+        color: #fff;
+        background-color: #360874;
+        border-color: #360874;
+    }
+/*    .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+        background:none !important;
+        border:none !important;
+    }*/
+    table.dataTable {
+        border-collapse: collapse !important;
+    }
+</style>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+<script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
+<main id="content" role="main" class="" ng-controller="TicketController">
+    <div class="se-pre-con" ng-show="loader">
+
+    </div>
+    <!-- breadcrumb -->
+    <style>
+        .mt-3{
+            margin-top:3px;
+        }
+    </style>
+    <div class="container contactus">
+
+        <div id="PartialView" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="box">
+                            <form role="form" id="eformid">
+                                <div class="box-body">
+                                    @*Row1*@
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="badge green sp-bg" ng-if="viewdetails.Priority == 'Normal'">
+                                                Priority: Normal
+                                            </label>
+                                            <label class="badge blue sp-bg" ng-if="viewdetails.Priority == 'Medium'">
+                                                Priority: Medium
+                                            </label>
+                                            <label class="badge red sp-bg" ng-if="viewdetails.Priority == 'High'">
+                                                Priority: High
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">
+                                                Full Name <span class="text-red">*</span></label>
+                                            <input type="text" required class="form-control" ng-model="viewdetails.FullName" disabled>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">Email</label>
+                                            <input type="text" class="form-control" ng-model="viewdetails.ReplyEmail" disabled>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">Mobile<span class="text-red">*</span></label>
+                                            <input type="text" class="form-control" ng-model="viewdetails.Mobile" disabled>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">Department</label>
+                                            <input type="text" class="form-control" ng-model="viewdetails.Department" disabled>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">Created Date</label>
+                                            <input type="email" class="form-control" ng-model="viewdetails.VarCreatedDate" disabled>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="exampleInputEmail1">Attachment</label>
+
+                                                <a ng-if="viewdetails.Attachment != ''" href="~/Content/Upload/TicketAttachment/{{viewdetails.Attachment}}" class="btn btn-primary btn-block" target="_blank">View Attachment</a>
+
+                                                <a ng-if="viewdetails.Attachment == ''" href="javascript:" class="btn btn-danger btn-block">Attachment Not Available</a>
+
+</div>
+                                        <div class="col-md-12">
+                                            <label for="exampleInputEmail1">Subject</label>
+                                            <input type="text" class="form-control" ng-model="viewdetails.Subject" disabled>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="exampleInputEmail1">Detail</label>
+                                            <textarea rows="5" class="form-control" disabled>{{viewdetails.Detail}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h4><strong>History</strong></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-danger pull-right" type="button" ng-click="ReplySingleTicket('openticket')">Add to Reply</button>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <style>
+                                                .cstbox {
+                                                    padding: 10px;
+                                                    border: 1px solid #3c8dbc;
+                                                    margin: 10px 0;
+                                                    border-radius: 5px;
+                                                    cursor: pointer;
+                                                    user-select: none;
+                                                }
+
+                                                .mb-5 {
+                                                    margin-bottom: 5px;
+                                                }
+                                            </style>
+
+                                            <div class="cstbox" ng-if="viewdetails.GetReply.length > 0" ng-repeat="item in viewdetails.GetReply">
+                                                <div style="display:table-cell; vertical-align:middle;">
+                                                    <input type="checkbox" />
+                                                </div>
+                                                <div style="padding-left:20px; display:table-cell;">
+                                                    <p class="mb-0"><strong ng-bind="item.UserName + ' (Reply On: ' + item.VarCreatedDate + ')'"></strong></p>
+                                                    <p class="mb-0" ng-bind="item.Detail"></p>
+                                                </div>
+                                            </div>
+                                            <h4 ng-if="!viewdetails.GetReply.length > 0" class="text-center"><strong class="text-red">Data not available!</strong></h4>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                @*button*@
+                                <div class="box-footer pull-right mt-3">
+                                    <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="reply" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong>Reply</strong>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" id="rformid">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="exampleInputEmail1">Text<span class="text-red">*</span></label>
+                                        <textarea id="r_text" rows="4" required class="form-control" name="r_text"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-footer mt-3 pull-right">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirm" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure to delete selected tickets?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-primary" id="deletebtn">Delete</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="open" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure to open selected tickets?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-primary" id="openbtn">Yes</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-danger">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="close" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure to close selected tickets?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-primary" id="closebtn">Yes</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="primary" class="content-area">
+            <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Home")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span><a href="@Url.Action("Index","HelpCenter")">HelpCenter</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Ticket Center</nav>
+
+            <main id="main" class="site-main">
+                <article class="post-2508 page type-page status-publish hentry" id="post-2508">
+                    <div itemprop="mainContentOfPage" class="entry-content">
+                        <div class="vc_row wpb_row vc_row-fluid">
+                            <div class="contact-form wpb_column vc_column_container vc_col-sm-12 col-sm-12">
+                                <div class="vc_column-inner ">
+                                    <div class="wpb_wrapper">
+                                        <div class="wpb_text_column wpb_content_element ">
+                                            <div class="wpb_wrapper">
+                                                <h2 class="contact-page-title">Ticket Center</h2>
+                                            </div>
+                                        </div>
+                                        <ul class="tabs">
+                                            <li class="tab-link current" ng-click="LoadDataTable('openticket')" data-tab="tab-1">Open Tickets</li>
+                                            <li class="tab-link" ng-click="LoadDataTable('closeticket')" data-tab="tab-2">Closed Tickets</li>
+                                            <li class="tab-link" data-tab="tab-3">Raise Ticket</li>
+                                        </ul>
+
+                                        <div id="tab-1" class="tab-content current">
+                                            <div class="mb-3">
+                                                <a href="javascript:" ng-click="ReplyTicket('openticket')" class="btn btn-primary btn-xs">Reply</a>
+                                                <a href="javascript:" ng-click="CloseTicket('openticket')" class="btn btn-primary btn-xs">Close Ticket</a>
+                                                <a href="javascript:" ng-click="DeleteTicket('openticket')" class="btn btn-primary btn-xs">Delete</a>
+                                            </div>
+                                            <table id="openticket" class="table" style="width:100%;" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="vertical-align:middle">Id</th>
+                                                        <th style="vertical-align:middle" width="5"></th>
+                                                        <th style="vertical-align:middle">Full Name</th>
+                                                        <th style="vertical-align:middle">Departments</th>
+                                                        <th style="vertical-align:middle">Subject</th>
+                                                        <th style="vertical-align:middle" width="20">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div id="tab-2" class="tab-content">
+                                            <input type="hidden" id="HiddenVar" ng-click="ViewTicket(this)" />
+                                            <div class="u-header mb-3">
+                                                <a href="javascript:" ng-click="OpenTicket('closeticket')" class="btn btn-primary btn-xs">Re-Open</a>
+                                                <a href="javascript:" ng-click="DeleteTicket('closeticket')" class="btn btn-primary btn-xs">Delete</a>
+                                            </div>
+                                            <table id="closeticket" class="table" style="width:100%;" border="1">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="vertical-align:middle">Id</th>
+                                                        <th style="vertical-align:middle" width="5"></th>
+                                                        <th style="vertical-align:middle">Full Name</th>
+                                                        <th style="vertical-align:middle">Departments</th>
+                                                        <th style="vertical-align:middle">Subject</th>
+                                                        <th style="vertical-align:middle" width="20">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div id="tab-3" class="tab-content">
+                                            <div lang="en-US" dir="ltr" id="wpcf7-f2507-p2508-o1" class="wpcf7" role="form">
+                                                <form style="margin-bottom:0;" name="form" id="SaveDataForm" class="wpcf7-form" method="post" ng-submit="SaveData(form.$valid)">
+                                                    <div class="form-group row">
+                                                        <div class="col-xs-12 col-md-3">
+                                                            <label>Full Name*</label><br>
+                                                            <span class="wpcf7-form-control-wrap">
+                                                                <input type="text" required class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required input-text" size="40" value="" placeholder="Enter Full Name" name="FullName" ng-model="cnt.FullName">
+                                                                <span class="invalid-feedback" ng-show="(form.$submitted || form.FullName.$touched) && form.FullName.$error.required">Enter full name</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-3">
+                                                            <label>Reply To Email*</label><br>
+                                                            <span class="wpcf7-form-control-wrap">
+                                                                <input required type="email" aria-invalid="false" class="wpcf7-form-control wpcf7-text input-text" size="40" value="" placeholder="Enter Email Address" name="ReplyEmail" ng-model="cnt.ReplyEmail">
+                                                                <span class="invalid-feedback" ng-show="(form.$submitted || form.ReplyEmail.$touched) && form.ReplyEmail.$error.required">Enter email address</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-3">
+                                                            <label>Mobile No*</label><br>
+                                                            <span class="wpcf7-form-control-wrap">
+                                                                <input type="text" maxlength="10" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" ng-minlength="10" ng-maxlength="10" placeholder="Enter Mobile No." required class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required input-text" size="40" value="" name="Mobile" ng-model="cnt.Mobile">
+                                                            </span>
+                                                            <span class="invalid-feedback" ng-show="(form.$submitted || form.Mobile.$touched) && form.Mobile.$error.required">Enter mobile number</span>
+                                                            <span class="invalid-feedback" ng-show="form.Mobile.$touched && (form.Mobile.$error.minlength || form.Mobile.$error.maxlength)">Enter 10 digit mobile number</span>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-3">
+                                                            <label>Department*</label><br>
+                                                            <span class="wpcf7-form-control-wrap">
+                                                                <select class="form-control select2" style="width:100%;" name="Department" ng-model="cnt.Department" required>
+                                                                    <option value="">Choose an option</option>
+                                                                    <option value="Sales">Sales</option>
+                                                                    <option value="Purchase">Purchase</option>
+                                                                    <option value="Support">Support</option>
+                                                                </select>
+                                                                <span class="invalid-feedback" ng-show="(form.$submitted || form.Department.$touched) && form.Department.$error.required">Select department</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-3">
+                                                            <label>Priority*</label><br>
+                                                            <span class="wpcf7-form-control-wrap">
+                                                                <select class="form-control select2" style="width:100%;" name="Priority" ng-model="cnt.Priority" required>
+                                                                    <option value="">Choose an option</option>
+                                                                    <option value="Normal">Normal</option>
+                                                                    <option value="Medium">Medium</option>
+                                                                    <option value="High">High</option>
+                                                                </select>
+                                                                <span class="invalid-feedback" ng-show="(form.$submitted || form.Priority.$touched) && form.Priority.$error.required">Select priority</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-3">
+                                                            <label>Attachment</label><br>
+                                                            <span class="wpcf7-form-control-wrap">
+                                                                <input type="file" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required input-text" accept=".jpg," id="Attachment" name="Attachment" ng-model="cnt.Attachment">
+                                                                @*<span class="invalid-feedback" ng-show="(form.$submitted || form.Attachment.$touched) && form.Attachment.$error.required">Select attachment</span>*@
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-6">
+                                                            <label>Subject*</label><br>
+                                                            <span class="wpcf7-form-control-wrap">
+                                                                <input type="text" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required input-text" required placeholder="Enter Subject" size="40" value="" name="Subject" ng-model="cnt.Subject">
+                                                                <span class="invalid-feedback" ng-show="(form.$submitted || form.Subject.$touched) && form.Subject.$error.required">Enter subject</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-12">
+                                                            <label>
+                                                                <strong>Your detailed explanation</strong><br />
+                                                                Please provide us with as much infornation as you can about your question*
+                                                            </label><br>
+                                                            <span class="wpcf7-form-control-wrap your-message"><textarea aria-invalid="false" class="wpcf7-form-control wpcf7-textarea" rows="5" cols="40" name="Detail" required placeholder="Enter Message" ng-model="cnt.Detail"></textarea></span>
+                                                            <span class="invalid-feedback" ng-show="(form.$submitted || form.Detail.$touched) && form.Detail.$error.required">Enter message</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--<div class="form-group has-feedback">
+                                                    <div class="g-recaptcha" id="gcaptcha3" data-sitekey="6Lea7UgUAAAAAGw9F_NmSsCRMbYJ09AexjaG1CHp"></div>
+                                                </div>-->
+                                                    <div class="form-group clearfix" style="margin-bottom:0;">
+
+                                                        <p style="margin-bottom:0;"><input type="submit" ng-disabled="form.$invalid || rsubmitted" value="{{submitText}}"></p>
+
+                                                    </div>
+                                                    <div style="margin-bottom:0;" class="form-group clearfix" ng-bind-html="message">
+
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- container -->
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </article>
+            </main><!-- #main -->
+        </div><!-- #primary -->
+    </div><!-- .container -->
+</main>
+@section scripts{
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        /*var widget3;
+        var wwidget3;
+        var verifyCallback3 = function (response) {
+            widget3 = response;
+        };
+        var onloadCallback = function () {
+            wwidget3 = grecaptcha.render(document.getElementById('gcaptcha3'), {
+                'sitekey': '6Lea7UgUAAAAAGw9F_NmSsCRMbYJ09AexjaG1CHp',
+                'callback': verifyCallback3,
+            });
+        };*/
+
+
+        app.controller('TicketController', ['$scope', '$http', '$rootScope', '$window', '$sce', '$cookies', function ($scope, $http, $rootScope, $window, $sce, $cookies, LoginService) {
+            $scope.loader = true;
+            $scope.cnt = {
+                "FullName": '',
+                "ReplyEmail": '',
+                "Mobile": '',
+                "Department": '',
+                "Subject": '',
+                "Detail": '',
+                "Attachment": '',
+                "Priority": '',
+                "UserId": '',
+                "Captcha_Response": '',
+            }
+            $scope.viewdetails = null;
+
+            if (!angular.isUndefined($cookies.get('userdata'))) {
+                var userdatas = $cookies.getObject('userdata');
+                $rootScope.IsUserLogedIn = true;
+                $scope.cnt.FullName = userdatas.mname;
+                $scope.cnt.ReplyEmail = userdatas.museridemail;
+                $scope.cnt.Mobile = userdatas.mphone;
+                $scope.cnt.UserId = userdatas.muserid;
+                $rootScope.UserId = userdatas.muserid;
+                $scope.loader = false;
+            }
+            else {
+                $scope.loader = true;
+                window.location.href = "/HelpCenter";
+            }
+
+
+
+            $scope.$watchGroup(['f1.$valid', 'reg.$valid', 'shoppingCart', 'IsLogedIn', 'form.$valid'], function (newVal) {
+                $scope.IsFormValid = newVal;
+                $scope.IsRegisterFormValid = newVal;
+                //$scope.getTotalPrice();
+
+
+            }, true);
+            $scope.submitText = "Send";
+            $scope.rsubmitted = false;
+            $scope.message = "";
+            $scope.SaveData = function (isValid) {
+                if ($scope.submitText == 'Send') {
+                    $scope.rsubmitted = true;
+                    $scope.message = '';
+                    $scope.cnt.Captcha_Response = jQuery("#commoncaptcha").val();//widget3;//jQuery('textarea[id="g-recaptcha-response"]').val();
+                    if (isValid) {
+                        $scope.submitText = 'Please Wait...';
+                        //$scope.User = data;
+
+                        if (window.FormData !== undefined) {
+                            var fileUpload = jQuery("#Attachment").get(0);
+                            var files = fileUpload.files;
+                            // Create FormData object
+                            var fileData = new FormData();
+                            // Looping over all files and add it to FormData object
+                            for (var i = 0; i < files.length; i++) {
+                                fileData.append(files[i].name, files[i]);
+                            }
+
+                            jQuery.ajax({
+                                url: '/Ticket/Attachment',
+                                type: "POST",
+                                contentType: false, // Not to set any content header
+                                processData: false, // Not to process data
+                                data: fileData,
+                                success: function (res) {
+                                    $scope.cnt.Attachment = res;
+                                    $http({
+
+                                        method: "POST",
+
+                                        url: "/Ticket/SaveData",
+
+                                        data: $scope.cnt
+                                    }).success(function (data) {
+                                        if (data == "Success") {
+                                            $scope.message = "<div class='alert alert-success'>Ticket created successfully.</div>";
+                                            //toastr.success($scope.Message, "Success");
+                                            $scope.cnt = {
+                                                "FullName": '',
+                                                "ReplyEmail": '',
+                                                "Mobile": '',
+                                                "Department": '',
+                                                "Subject": '',
+                                                "Detail": '',
+                                                "Attachment": '',
+                                                "Priority": '',
+                                                "Captcha_Response": '',
+                                            }
+                                            grecaptcha.reset();
+                                            document.getElementById("SaveDataForm").reset();
+                                            $scope.rsubmitted = false;
+                                            $scope.submitText = "Send";
+                                            //$scope.SaveCart();
+                                        }
+                                        else if (data == "CaptchaInvalid") {
+                                            $scope.IsError = true;
+                                            $scope.message = "<div class='alert alert-warning'>Invalid Captcha or Expired. Please try again</div>";
+                                            //alert('Invalid Captcha!');
+                                            grecaptcha.reset();
+                                            $scope.rsubmitted = false;
+                                            $scope.submitText = "Send";
+                                        }
+                                        else {
+                                            $scope.IsError = true;
+                                            $scope.message = "<div class='alert alert-danger'>Something went wrong! please try again.</div>";
+                                            //alert('Invalid Captcha!');
+                                            grecaptcha.reset();
+                                            $scope.rsubmitted = false;
+                                            $scope.submitText = "Send";
+                                        }
+
+                                        $scope.user = null;
+
+                                    }).error(function () {
+                                        grecaptcha.reset();
+                                        $scope.message = "<div class='alert alert-danger'>Something went wrong!please try again.</div>";
+                                        $scope.rsubmitted = false;
+                                        $scope.submitText = "Send";
+                                        //alert('failed');
+
+                                    });
+                                },
+                                error: function () {
+                                    $scope.message = "<div class='alert alert-danger'>Something went wrong! please try again.</div>";
+                                    $scope.rsubmitted = false;
+                                    $scope.submitText = "Send";
+                                }
+                            });
+                        }
+                    }
+                    else {
+                        jQuery('input.ng-invalid').first().focus();
+                        $scope.message = 'Please fill required fields value';
+                        $scope.rsubmitted = false;
+                        $scope.submitText = "Send";
+                    }
+                    grecaptcha.execute('6LfJV9MkAAAAAPJvDFy18GmUo_5oipfGR4umPwHd', { action: 'submit' }).then(function (token) {
+                        jQuery("textarea[id='commoncaptcha']").val(token);
+                    });
+                }
+            }
+
+            jQuery(document).ready(function () {
+                $scope.LoadDataTable("openticket");
+            });
+
+            $scope.LoadDataTable = function (tab_name) {
+                jQuery("#" + tab_name).DataTable({
+                    "destroy": true,
+                    "pageLength": 10,
+                    "lengthMenu": [[10, 25, 50, 100, 1000], [10, 25, 50, 100, 1000]],
+
+                    "processing": true, // for show progress bar
+                    "serverSide": true, // for process server side
+                    "filter": true, // this is for disable filter (search box)
+                    "orderMulti": true, // for disable multiple column at once
+
+                    "ajax": {
+                        "url": "/Ticket/LoadDataTable",
+                        "data": { "tab": tab_name },
+                        "type": "POST",
+                        "datatype": "json",
+                    },
+
+                    //"language": {
+                    //    processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading..n.</span> '
+                    //},
+
+                    'order': [[0, 'desc']],
+
+                    columnDefs: [{
+                        targets: 5,
+                    },
+                    {
+                        "targets": [0],
+                        "visible": false
+                    },
+                    {
+                        targets: [0, 1, 5],
+                        orderable: false
+                    },
+                    ],
+
+                    "columns": [
+
+                        { "data": "Id", "name": "Id" },
+
+                        {
+                            "render": function (data, type, full, meta) {
+                                var html = '<input type="checkbox" value="' + full.Id + '" />';
+                                return html;
+                            }
+                        },
+
+                        { "data": "FullName", "name": "FullName" },
+
+                        { "data": "Department", "name": "Department" },
+
+                        { "data": "Subject", "name": "Subject" },
+
+                        {
+                            "render": function (data, type, full, meta) {
+                                var html = "";
+                                if (tab_name != "closeticket") {
+                                    html = html + '<a onclick="ViewTicketNew(this)" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill mylink" style="cursor:pointer;" data-id="' + full.Id + '" title="View">' +
+                                        '<i class="fa fa-eye"></i>' +
+                                        '</a>';
+                                }
+                                return html;
+                            }
+                        },
+                    ],
+                });
+            }
+
+            var ticket_data = [];
+            var ref_tbl = [];
+            $scope.OpenTicket = function (tab_name) {
+                ticket_data = [];
+                ref_tbl = tab_name;
+                var flag = "false";
+                jQuery('#' + tab_name + ' input[type="checkbox"]').each(function () {
+                    if (this.checked) {
+                        ticket_data.push({
+                            "Id": jQuery(this).val(),
+                            "Status": 1,
+                        });
+                        flag = "true";
+                    }
+                });
+                if (flag == 'false') {
+                    toastr.info("Please Select at least one checkbox", "Info");
+                    return false;
+                }
+                else {
+                    jQuery('#open').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                }
+            }
+
+            $scope.CloseTicket = function (tab_name) {
+                ticket_data = [];
+                ref_tbl = tab_name;
+                var flag = "false";
+                jQuery('#' + tab_name + ' input[type="checkbox"]').each(function () {
+                    if (this.checked) {
+                        ticket_data.push({
+                            "Id": jQuery(this).val(),
+                            "Status": 0,
+                        });
+                        flag = "true";
+                    }
+                });
+                if (flag == 'false') {
+                    toastr.info("Please Select at least one checkbox", "Info");
+                    return false;
+                }
+                else {
+                    console.log("End");
+                    jQuery('#close').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    console.log("End1");
+                }
+            }
+
+            $scope.DeleteTicket = function (tab_name) {
+                ticket_data = [];
+                ref_tbl = tab_name;
+                var flag = "false";
+                jQuery('#' + tab_name + ' input[type="checkbox"]').each(function () {
+                    if (this.checked) {
+                        ticket_data.push({
+                            "Id": jQuery(this).val(),
+                            "Status": 1,
+                        });
+                        flag = "true";
+                    }
+                });
+                if (flag == 'false') {
+                    toastr.info("Please Select at least one checkbox", "Info");
+                    return false;
+                }
+                else {
+                    jQuery('#confirm').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                }
+            }
+
+            $scope.ReplyTicket = function (tab_name) {
+                ticket_data = [];
+                ref_tbl = tab_name;
+                var flag = "false";
+                jQuery('#' + tab_name + ' input[type="checkbox"]').each(function () {
+                    if (this.checked) {
+                        ticket_data.push({
+                            "TicketId": jQuery(this).val(),
+                            "UserId": $rootScope.UserId,
+                        });
+                        flag = "true";
+                    }
+                });
+                if (flag == 'false') {
+                    toastr.info("Please Select at least one checkbox", "Info");
+                    return false;
+                }
+                else {
+                    jQuery('#reply').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                }
+            }
+
+            //Update Data Start //OnClick
+            //Open
+            jQuery(document).on('click', '#openbtn', function (e) {
+
+                jQuery.ajax({
+                    url: '/Ticket/UpdateActionData',
+                    type: 'POST',
+                    data: { "TicketData": ticket_data, "Action": "open" },
+                    success: function (doc) {
+
+                        if (doc == 'Success') {
+                            jQuery('#open').modal('hide');
+                            toastr.success("tickets opened successfully...", "Success");
+                            RefreshAllTable();
+                        }
+                        else {
+                            jQuery('#open').modal('hide');
+                            toastr.error("Something went wrong. Please try again.", "Warning!");
+                        }
+                    },
+                    error: function () {
+
+                        jQuery('#open').modal('hide');
+                        toastr.error("Something went wrong. Please try again.", "Warning!");
+                    }
+                });
+            });
+
+            //Close
+            jQuery(document).on('click', '#closebtn', function (e) {
+                jQuery.ajax({
+                    url: '/Ticket/UpdateActionData',
+                    type: 'POST',
+                    data: { "TicketData": ticket_data, "Action": "close" },
+                    success: function (doc) {
+
+                        if (doc == 'Success') {
+                            jQuery('#close').modal('hide');
+                            toastr.success("tickets closed successfully...", "Success");
+                            RefreshAllTable();
+                        }
+                        else {
+                            jQuery('#close').modal('hide');
+                            toastr.error("Something went wrong. Please try again.", "Warning!");
+                        }
+                    },
+                    error: function () {
+                        jQuery('#close').modal('hide');
+                        toastr.error("Something went wrong. Please try again.", "Warning!");
+                    }
+                });
+            });
+            //Update Data End
+
+            function RefreshAllTable() {
+                var table = jQuery('#' + ref_tbl).DataTable();
+                table.ajax.reload(null, false);
+            }
+
+            //Delete Data Start //OnClick
+            jQuery(document).on('click', '#deletebtn', function (e) {
+
+                jQuery.ajax({
+                    url: '/Ticket/UpdateActionData',
+                    type: 'POST',
+                    data: { "TicketData": ticket_data, "Action": "delete" },
+                    success: function (doc) {
+
+                        if (doc == 'Success') {
+                            jQuery('#confirm').modal('hide');
+                            toastr.success("Record deleted successfully...", "Success");
+                            RefreshAllTable();
+                        }
+                        else {
+                            jQuery('#confirm').modal('hide');
+                            toastr.error("Something went wrong. Please try again.", "Warning!");
+                        }
+                    },
+                    error: function () {
+
+                        jQuery('#confirm').modal('hide');
+                        toastr.error("Something went wrong. Please try again.", "Warning!");
+                    }
+                });
+            });
+            //Delete Data End
+
+            //Reply Data Start //OnClick
+            jQuery(function () {
+                jQuery("#rformid").on("submit", function (event) {
+                    event.preventDefault();
+
+                    jQuery.ajax({
+                        url: '/Ticket/SaveReply',
+                        type: 'POST',
+                        data: { "records": ticket_data, "details": jQuery("#r_text").val() },
+                        success: function (doc) {
+
+                            jQuery("#r_text").val("");
+                            if (doc == 'Success') {
+                                jQuery('#reply').modal('hide');
+                                toastr.success("Reply send successfully...", "Success");
+                                RefreshAllTable();
+                            }
+                            else {
+                                jQuery('#reply').modal('hide');
+                                toastr.error("Something went wrong. Please try again.", "Warning!");
+                            }
+                        },
+                        error: function () {
+                            jQuery("#r_text").val("");
+
+                            jQuery('#reply').modal('hide');
+                            toastr.error("Something went wrong. Please try again.", "Warning!");
+                        }
+                    });
+                });
+            });
+            //Reply Data End
+
+            $scope.ReplySingleTicket = function (tab_name) {
+                ticket_data = [];
+                ref_tbl = tab_name;
+                ticket_data.push({
+                    "TicketId": $scope.viewdetails.Id,
+                    "UserId": $rootScope.UserId,
+                });
+                jQuery("#PartialView").modal("hide");
+                jQuery('#reply').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            }
+
+            //View Button Code Start
+            $scope.ViewTicket = function () {
+                dataid  = jQuery("#HiddenVar").val();
+                jQuery.ajax({
+                    type: "POST",
+                    url: "/Ticket/ViewDetails",
+                    data: { "Id": dataid },
+                    success: function (doc) {
+                        jQuery('[ng-controller="TicketController"]').scope().$apply(function () {
+                            $scope.viewdetails = doc;
+                        });                      
+
+                        jQuery('#PartialView').modal({
+                            backdrop: 'static',
+                            show: true,
+                            keyboard: false
+                        });
+                    }, error: function () {
+                        toastr.error("Something went wrong. Please try again.", "Warning!");
+                    }
+                });
+            }
+        //View Button Code End
+        }]);
+
+        function ViewTicketNew(e) {
+            jQuery("#HiddenVar").val(jQuery(e).attr('data-id'));
+            jQuery("#HiddenVar").click();
+        }
+
+        jQuery(document).ready(function () {
+            jQuery('ul.tabs li').click(function () {
+                var tab_id = jQuery(this).attr('data-tab');
+                jQuery('ul.tabs li').removeClass('current');
+                jQuery('.tab-content').removeClass('current');
+                jQuery(this).addClass('current');
+                jQuery("#" + tab_id).addClass('current');
+            });
+        })
+    </script>
+
+}

@@ -1,0 +1,90 @@
+﻿@model LeasingPortalApi.Models.Recipient
+@{
+    /**/
+    ViewBag.Title = "SendDocumentforSign";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+<iframe id="target" src="@ViewBag.r"style="width:100%;height:700px;"></iframe>
+@using (Html.BeginForm("SendDocumentforSign", "TestDoc", FormMethod.Post, new { enctype = "multipart/form-data", id = "SendForsign" }))
+{
+
+    
+    @Html.AntiForgeryToken()
+    <br />
+    <div class="panel panel-primary col-md-6">
+        <div class="panel-heading">Send For Sign</div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Document", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input id="UploadDocument" type="file" name="UploadDocument" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Send For Sign" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+<script>
+    var url="@ViewBag.r";
+    
+    var target = document.getElementById('target');
+    var myWindow="";
+    if(url!=null && url!=""){
+        myWindow = window.open(url, "myWindow", "width=1000, height=500");
+        window.addEventListener("message", this.sendMessage, false);
+    
+    } 
+    target.onload = function () {
+        window.addEventListener("message", this.sendMessage, false);
+    }
+    function sendMessage(e) {
+        jQuery("#target").hide();
+        console.log("Msg");
+        console.log(e);
+
+    //select the iframe containing the message receiver remote script
+    var remoteframe = document.getElementById("remotepage");
+
+    //Get the users message from the message input box
+    var message = document.getElementById("message").value;
+
+    //Check that the message is not blank
+    if (message !== "") {
+    remoteframe.contentWindow.postMessage(message, 'http://fiddle.jshell.net');
+    }
+    else {
+         alert("You cannot send a blank message!");
+    }
+}
+</script>
+    }

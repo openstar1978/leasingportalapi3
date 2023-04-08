@@ -1,0 +1,1472 @@
+﻿@{
+    ViewBag.Title = "ViewCart2";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+<style>
+    .savetotal {
+        color: #0c0579;
+        font-size: 11px;
+    }
+
+    .page .entry-header h1 {
+        font-size: 1.75rem;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .page .entry-header {
+        margin-bottom: 0.857em;
+    }
+
+    .term-add-to-cart {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+        .term-add-to-cart .form-control {
+            font-size: 0.875em;
+            border: 1px solid #a7a7a7;
+            border-radius: 3px;
+        }
+
+    div.cart .product-thumbnail img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        max-width: 100px;
+        margin: auto;
+        height: 92px;
+        width: auto;
+        border: 1px solid #ddd;
+        padding: 4px;
+    }
+
+
+    .customisecart .cart {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+        .customisecart .cart aside {
+            padding-left: 10px;
+            padding-right: 10px;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+        }
+
+    .customisecart .cart {
+        margin-bottom: 5px;
+    }
+
+        .customisecart .cart .product-remove a {
+            color: #a7a7a7;
+            font-size: 1.5em;
+        }
+
+        .customisecart .cart .btn {
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+    .pricing {
+        width: 100%;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .pricingsub div {
+        float: left;
+        display: inline;
+        width: 50%;
+    }
+
+    .pricingsub .qty {
+        border-radius: 3px;
+    }
+
+    table.cart tbody + tbody {
+        border: 0px solid #a7a7a7;
+    }
+
+    table.cart tbody + tbody {
+        border-top: 1px solid #a7a7a7;
+    }
+
+        table.cart tbody + tbody tr td {
+            padding-top: 10px;
+        }
+
+    .insidetd {
+        width: 50%;
+        border: 1px solid #eceeef !important;
+    }
+
+        .insidetd td {
+            padding: 5px 8px !important;
+        }
+
+    .maintable {
+        border-collapse: separate;
+        border-spacing: 0 0.5em;
+    }
+
+    .cartbtn .actions .checkout-button {
+        color: #fff;
+        background-color: #360874;
+        border-color: #360874;
+    }
+
+    #leaseterm-dialog .modal-lg {
+        max-width: 75%;
+        width: 75%;
+    }
+</style>
+
+<div id="content" class="site-content cartpage" tabindex="-1" ng-controller="ViewCartNewController">
+    <div class="se-pre-con" ng-show="loader">
+
+    </div>
+    <div class="container">
+        <div id="leaseterm-dialog">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{leaseTerms.title}}</h4>
+                            <button type="button" class="close mdclose" data-dismiss="modal">×</button>
+                        </div>
+                        <div class="modal-body">
+
+                            <!--<h6>{{leaseTerms.ProdName}}</h6>-->
+                            <ul data-view="list-view-small" data-toggle="shop-products" class="products columns-5 columns__wide--5 sameproduct">
+
+                                <li ng-cloak ng-repeat="product in leaseTerms.Products" class="post-2706 product type-product status-publish has-post-thumbnail product_cat-tablets first instock shipping-taxable purchasable product-type-simple  border box-shadow-1" style="margin-top:10px;">
+                                    <div class="product-outer product-item__outer">
+                                        <div class="product-inner product-item__inner">
+                                            <div class="product-loop-header product-item__header">
+                                                <span ng-cloak class="loop-product-categories"><a href="/Leasing/SingleProduct/" rel="tag">{{product.mprodcatname}}</a></span>
+                                                <a href="/Leasing/ProductDetail?{{product.mproducturl}}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                    <h2 ng-cloak class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
+                                                    <div class="product-thumbnail product-item__thumbnail">
+                                                        <img width="300" height="300" ng-src="/LeaseAdmin/Content/images/product/{{product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:auto;height:100px;">
+                                                    </div>
+                                                    <div class="product-rating">
+                                                        <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                                                        (3)
+                                                    </div>
+                                                </a>
+                                                <div class="hover-area">
+                                                    <div class="action-buttons">
+                                                        <div class="yith-wcwl-add-to-wishlist add-to-wishlist-2706">
+                                                            <div class="yith-wcwl-add-button show" style="display:block">
+                                                                <a href="javascript:;" rel="nofollow" title="Under Construction" data-product-id="2706" data-product-type="simple" class="add_to_wishlist"> Wishlist</a>
+                                                                <img src="" class="ajax-loading" alt="loading" width="16" height="16" style="visibility:hidden">
+                                                            </div>
+                                                            <div class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                                                                <span class="feedback">Product added!</span>
+                                                                <a href="" rel="nofollow"> Browse Wishlist </a>
+                                                            </div>
+                                                            <div class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                                                                <span class="feedback">The product is already in the wishlist!</span>
+                                                                <a href="" rel="nofollow"> Browse Wishlist </a>
+                                                            </div>
+                                                            <div style="clear:both"></div>
+                                                            <div class="yith-wcwl-wishlistaddresponse"></div>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        <!--<a href="javascript:;" class="add-to-compare-link1" title="Under Construction">Compare</a>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="product-loop-body product-item__body">
+                                                <div class="col-xs-12">
+                                                    <!--<span class="loop-product-categories"><a href="/Leasing/ProductDetail?{{product.mproducturl}}" rel="tag">{{product.mprodcatname}}</a></span>-->
+                                                    <a href="/Leasing/ProductDetail?{{product.mproducturl}}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                        <h2 class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
+
+                                                        <ul ng-show="product.productspecs.length>0" class="font-size-12 p-0 text-gray-110  d-none d-md-block">
+                                                            <li class="line-clamp-1 mb-1 list-bullet" style="border-bottom:0px!important;" ng-repeat="spec in product.productspecs">{{spec.mdetailvalue}} {{spec.muname}} {{spec.mdetailhead}}</li>
+
+                                                        </ul>
+                                                        <div class="product-short-description product-supplier" ng-show="(product.msuppliername!=null && product.msuppliername!='')">
+                                                            <span class="ps-sname">
+                                                                Supplier: {{product.msuppliername}}<br />
+                                                                <span class="est" style="font-size: 0.875em;color:#7d7d7d;" ng-if="product.msuppliername!=null && product.mleadtime!=0">Estimated Delivery: {{product.mleadtime}} days</span>
+                                                            </span>
+                                                            <div class="product-rating" style="margin-top:5px;">
+                                                                <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                                                                (3)
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="product-sku"></div>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="product-loop-footer product-item__footer">
+                                                <div class="term-add-to-cart" style="display:block;width:100%;">
+                                                    <div class="col-xs-12">
+                                                        <!--<label>Unit Rental <span class="excVAT">(exc. VAT)</span></label>-->
+
+                                                    </div>
+
+                                                    <div class="col-xs-6 term-freq">
+                                                        <label>Frequency</label>
+                                                        <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                        <select ng-init="termdata = sizes[0]" ng-options="size as size.name for size in sizes track by size.code" class="form-control termselect termf{{product.mprodvarid}}" ng-model="termdata" ng-change="updateterm(termdata,product,termperiod)"></select>
+
+                                                    </div>
+                                                    <div class="col-xs-6 term-period">
+                                                        <label>Period</label>
+                                                        <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                        <select ng-init="termperiod = periods[0]" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect termp{{product.mprodvarid}}" ng-model="termperiod" ng-change="updateterm(termdata,product,termperiod)"></select>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="price-add-to-cart mainprice">
+                                                    <span class="price" style="">
+                                                        <span class="electro-price" ng-init="noOfItem2[$index]=1">
+                                                            <input type="number" id="quantity_5e0706480ca03" ng-model="noOfItem2[$index]" class="input-text qty text" step="1" min="1" max="500" name="cart[8e68c3c7bf14ad0bcaba52babfa470bd][qty]" value="{{noOfItem2[$index]}}" title="Qty" size="4" inputmode="numeric" aria-labelledby="" style=""><br />
+                                                            <span class="pm">Qty</span>
+                                                        </span>
+                                                    </span>
+                                                    <span class="price">
+                                                        <span class="electro-price">
+                                                            <span class="quantity">
+                                                                <span ng-cloak class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{product.mprice * noOfItem2[$index] | number:2 }}</span><br /><span class="pm"><span class="pmVAT">+VAT </span><span class="pmper">{{ getNewTerms(product.mtermf,product.mtermp) }}</span></span>
+
+                                                                <!--<button class="button" type="button" ng-click="UpdateCart(item.Product,noOfItem[$index])" ng-disabled="noOfItem[$index]==undefined" style="padding:0px;width:1em;background:transparent;color:#000000"><i class="fa fa-refresh"></i></button>-->
+                                                            </span>
+
+                                                        </span>
+                                                    </span>
+                                                    <div class="add-to-cart-wrap" data-toggle="tooltip" data-title="Add to Your Basket" data-original-title="Add to Your Basket" title="">
+                                                        <a href="" class="btn btn-brand rounded-circle pull-right prnbtn prnbtn1" title="Print Quotations" style="margin-left:3px;background-color:#4c4a4a;" ng-click="PrintSingleItem(product,noOfItem2[$index])"><i class="fa fa-print" style="display:block;"></i> <span class="quotehead" style="font-size:10px;">Quote</span></a>
+                                                        <a href="" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" title="Add to Your Basket" data-product_id="2706" data-product_sku="5487FB8/35" aria-label="Add to your Your Basket" data-original-title="Add to Your Basket" rel="nofollow" ng-click="addToCart($event,product,noOfItem2[$index])"> Add to Basket</a>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal" class="btn" style="background:#000;">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="confirmation-dialog">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{confirmationDialogConfig.title}}</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="span5" ng-bind-html="confirmationDialogConfig.message"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-repeat="button in confirmationDialogConfig.buttons" ng-click="executeDialogAction(button.action,button.item,button.qty,button.event)" class="btn btn-primary">{{button.label}}</button>
+                            <button type="button" ng-repeat="button in confirmationDialogConfig.buttons2" ng-click="executeDialogAction(button.action,button.item,button.qty,button.event)" class="btn btn-warning">{{button.label}}</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="referencemodal-dialog">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Reference Products</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal" class="btn btn-primary">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Leasing")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Your Basket</nav><div class="site-content-inner">
+            <div id="primary" class="content-area">
+                <div id="tabloading" class="se-pre-con" style="left: 16px;width: 98%;height: 98%;z-index:111;" ng-show="tabloading">
+                </div>
+                <div class="row">
+                    <div class="col-xl-1"></div>
+                    <div class="col-xl-10">
+                        <main id="main" class="site-main" ng-if="!loader">
+
+
+                            <article id="post-3134" class="post-3134 page type-page status-publish hentry">
+
+                                <header class="entry-header" ng-show="shoppingCart.length>0">
+                                    <h1 class="entry-title">Your Basket</h1>
+                                </header><!-- .entry-header -->
+                                <div class="entry-content">
+                                    <div class="woocommerce" ng-show="shoppingCart.length>0 || inactiveshoppingCart.length>0">
+                                        <div class="woocommerce-notices-wrapper"></div>
+                                        <form class="woocommerce-cart-form" action="#" method="post">
+                                            <style>
+                                                .product-unit {
+                                                    width: 25%;
+                                                }
+
+                                                .product-remove {
+                                                    width: 5%;
+                                                }
+
+                                                .product-thumbnail {
+                                                    width: 15%;
+                                                }
+
+                                                .product-quantity, .product-subtotal {
+                                                    width: 10%;
+                                                }
+
+                                                @@media(max-width:999px) {
+                                                    .product-quantity, .product-subtotal {
+                                                        width: 100%;
+                                                    }
+
+                                                    table.shop_table.shop_table_responsive.cart tbody tr.cart_item:first-child td {
+                                                        padding-top: .529em;
+                                                    }
+
+                                                    table.cart tbody tr.cart_item:first-child td {
+                                                        padding: 2px 8px;
+                                                    }
+                                                }
+                                            </style>
+                                            <table ng-show="shoppingCart.length>0" class="shop_table shop_table_responsive cart woocommerce-cart-form__contents maintable cartpagetable" cellspacing="0" style="border-top: 1px solid #ddd;">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="product-remove">&nbsp;</th>
+                                                        <th class="product-thumbnail">&nbsp;</th>
+                                                        <th class="product-name">Product Detail</th>
+                                                        <th style="text-align:center;" class="product-unit">Unit Rental</th>
+                                                        <!--<th class="product-price">Price</th>-->
+                                                        <th class="product-quantity" style="text-align:center;">Qty</th>
+                                                        <!--<th class="product-subtotal">VAT</th>-->
+                                                        <th class="product-subtotal" style="text-align:center;" align="center">Total</th>
+
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody ng-repeat="item in shoppingCart track by $index">
+
+                                                    <tr class="woocommerce-cart-form__cart-item cart_item border box-shadow-1">
+
+                                                        <td class="product-remove">
+                                                            <a style="cursor:pointer;" ng-click="deleteFromCart($index)" class="remove" aria-label="Remove this item" data-product_id="2623" data-product_sku="5487FB8/08"><i class="fa fa-trash"></i></a>
+                                                        </td>
+                                                        <td class="product-thumbnail">
+                                                            <a href="/Leasing/ProductDetail?{{item.Product.mproducturl}}" target="_blank">
+                                                                <img ng-src="/LeaseAdmin/Content/images/product/{{item.Product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:100%;height:auto;max-width:70px;" width="300" height="300">
+                                                            </a>
+                                                        </td>
+
+                                                        <td class="product-name" style="word-wrap: break-word;white-space:normal;" data-title="Product">
+                                                            <a href="/Leasing/ProductDetail?{{item.Product.mproducturl}}" style="font-size:16px;" target="_blank">{{item.Product.mprodname}}</a><br />
+                                                            <span style="font-size:12px;" ng-if="item.Product.warrantydetails!=null">With Extended {{item.Product.warrantydetails.mprodname}}</span><br /><br />
+                                                            <p ng-show="showtermwarn[$index]" style="margin-bottom:5px;color:rgb(152 5 5);font-size:12px;">
+                                                                The extended warranty cover selected will not cover the lease term chosen.
+                                                            </p>
+                                                            <span style="font-size:12px;">Supplier: {{item.Product.suppliername}}</span>
+                                                            <span style="font-size: 0.675em;color:#a7a7a7;" ng-if="item.Product.suppliername!=null && item.Product.mleadtime>=0 && item.Product.mleadtime<=14"><br />Estimated Delivery: {{item.Product.mleadtime}} days</span>
+                                                            <span style="font-size: 0.675em;color:#c80606;" ng-if="item.Product.suppliername!=null && item.Product.mleadtime>=15"><br />Estimated Delivery: {{item.Product.mleadtime}} days</span>
+                                                            <div class="offer" style='margin-top:5px; margin-bottom:0px;font-size:14px;' ng-show="item.Product.mofferdetail!=null && item.Product.mofferdetail!=''">
+                                                                <span class="loop-product-categories dealdetail ng-cloak" ng-hide="offerapplied[$index]" style="margin-bottom:0px;background:#ffed28;color: #051876 !important;line-height: 16px;font-weight: 700;padding:5px;"><span class="topdetail">Buy {{item.Product.mofferqty}}</span> <span class="bottomdetail">and {{item.Product.mofferdetail}}</span></span>
+                                                                <span class="loop-product-categories dealdetail ng-cloak" ng-show="offerapplied[$index]" style="margin-bottom:0px;background:#5cb85c;color: #fff !important;line-height: 16px;font-weight: 700;padding:5px;">Applied:<span class="topdetail">Buy {{item.Product.mofferqty}}</span> <span class="bottomdetail">and {{item.Product.mofferdetail}}</span></span>
+                                                            </div><br />
+
+                                                        </td>
+                                                        <td class="unittd" align="center">
+                                                            <div class="term-add-to-cart" style="display:block;width:100%;float:left;">
+
+                                                                <div class="col-xs-6 term-freq">
+                                                                    <label>Frequency</label>
+
+                                                                    <select ng-init="termdata = {code:item.Product.mtermf}" ng-options="size as size.name for size in sizes track by size.code" class="form-control termselect termf{{item.Product.mprodvarid}}" ng-model="termdata" ng-change="updateterm(termdata,item.Product,termperiod,item.Quantity,$index)"></select>
+
+                                                                </div>
+                                                                <div class="col-xs-6 term-period">
+                                                                    <label>Period</label>
+
+                                                                    <select ng-init="termperiod = {code: item.Product.mtermp}" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect termp{{item.Product.mprodvarid}}" ng-model="termperiod" ng-change="updateterm(termdata,item.Product,termperiod,item.Quantity,$index)"></select>
+
+                                                                </div>
+                                                                <div class="col-xs-12" ng-show="item.Product.dprice>0">
+                                                                    <!--<label>Unit Rental <span class="excVAT">(exc. VAT)</span></label>-->
+                                                                    <span class="savetotal">Selecting annual frequency will save you £{{item.Product.dprice}}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="terms" style="float:left;margin-top:5px;position:relative;width:100%;text-align:center">
+                                                                <span class="woocommerce-Price-amount amount" style="padding-top:5px;"><span class="price-color-gold" style="color: #000;font-weight:600;"><span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice | number:2}}</span> <span class="" style="font-size:10px;">{{ getNewTerms(item.Product.mtermf,null) }}</span></span>
+                                                                <label ng-show="item.Product.minstallationflag=='yes'" class="installtext" style="">Installation included</label>
+                                                            </div>
+                                                        </td>
+
+
+                                                        <td class="product-quantity" align="center" data-title="Quantity">
+                                                            <div class="quantity">
+                                                                <input type="number" id="quantity_5e0706480ca03" ng-model="noOfItem[$index]" class="input-text qty text" step="1" min="1" max="500" name="cart[8e68c3c7bf14ad0bcaba52babfa470bd][qty]" ng-change="UpdateCart(item.Product,noOfItem[$index],$index)" title="Qty" size="4" inputmode="numeric" aria-labelledby="" style="width:5em" ng-value="item.Quantity">
+                                                                <!--<button class="button" type="button" ng-click="UpdateCart(item.Product,noOfItem[$index])" ng-disabled="noOfItem[$index]==undefined" style="padding:0px;width:1em;background:transparent;color:#000000"><i class="fa fa-refresh"></i></button>-->
+                                                            </div>
+                                                        </td>
+                                                        <!--<td class="product-subtotal" data-title="VAT">
+                                                            <span class="woocommerce-Price-amount amount"><span class="price-color-gold" style="color: #000;font-weight:600;"><span class="woocommerce-Price-currencySymbol">£</span>{{(item.Product.mprice*item.Quantity*(vat/100)) | number:2}}</span> <br /><span class="" style="font-size:10px;">{{ getNewTerms(item.Product.mtermf,null) }}</span></span>
+                                                        </td>-->
+                                                        <td class="product-subtotal" align="center" data-title="Total">
+                                                            <span class="woocommerce-Price-amount amount">
+                                                                <span class="price-color-gold" style="color: #000;font-weight:600;width:100%;display:block">
+                                                                    <!--<span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice*item.Quantity+(item.Product.mprice*item.Quantity*(vat/100)) | number:2}}</span> <br /><span class="" style="font-size:10px;">{{ getNewTerms(item.Product.mtermf,null) }}</span>-->
+                                                                    <span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice*item.Quantity | number:2}}
+                                                                </span>
+                                                                <!--<span class="" style="font-size:10px;color: #000;font-weight:500;width:100%;display:block">+ VAT</span>-->
+                                                                <span class="" style="font-size:10px;">{{ getNewTerms(item.Product.mtermf,null) }}</span>
+
+                                                            </span>
+                                                        </td>
+
+
+
+                                                    </tr>
+
+                                                </tbody>
+                                                <tbody style="border:none;display:none;">
+                                                    <tr class="last-body">
+                                                        <td colspan="7" class="actions">
+
+                                                            <div class="coupon" style="display:none;">
+                                                                <label for="coupon_code">Coupon:</label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code"> <button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply coupon</button>
+                                                            </div>
+
+                                                            <div class="wc-proceed-to-checkout">
+
+                                                                <a href="javascript:;" ng-click="Checkoutfunc()" class="checkout-button button alt wc-forward">
+                                                                    Proceed to checkout
+                                                                </a>
+                                                                <a class="button wc-backward" href="@Url.Action("Index","Leasing")">
+                                                                    Continue Shopping <i class="fa fa-arrow-right"></i>
+                                                                </a>
+
+                                                            </div>
+
+                                                            <input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce" value="1e9b71e198"><input type="hidden" name="_wp_http_referer" value="/electro-wide/cart/">
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <div class="alert alert-danger" ng-show="inactiveshoppingCart.length>0">
+                                                <p>Your cart has below products which is no more active. So, please select product from different supplier or add another similar product in your basket</p>
+                                            </div>
+                                            <table ng-show="inactiveshoppingCart.length>0" class="shop_table shop_table_responsive cart woocommerce-cart-form__contents maintable cartpagetable" cellspacing="0" style="border-top: 1px solid #ddd;">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="product-remove">&nbsp;</th>
+                                                        <th class="product-thumbnail">&nbsp;</th>
+                                                        <th class="product-name">Product Detail</th>
+                                                        <th style="text-align:center;" class="product-unit">Unit Rental</th>
+                                                        <!--<th class="product-price">Price</th>-->
+                                                        <th class="product-quantity" style="text-align:center;">Qty</th>
+                                                        <!--<th class="product-subtotal">VAT</th>-->
+                                                        <th class="product-subtotal" style="text-align:center;" align="center">Total</th>
+                                                        <th class="product-name"></th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody ng-repeat="item in inactiveshoppingCart track by $index">
+
+                                                    <tr class="woocommerce-cart-form__cart-item cart_item border box-shadow-1">
+
+                                                        <td class="product-remove">
+                                                            <!--<a style="cursor:pointer;" ng-click="deleteFromCart($index)" class="remove" aria-label="Remove this item" data-product_id="2623" data-product_sku="5487FB8/08"><i class="fa fa-trash"></i></a>-->
+                                                        </td>
+                                                        <td class="product-thumbnail">
+                                                            <a href="javascript:;" target="_blank">
+                                                                <img ng-src="/LeaseAdmin/Content/images/product/{{item.Product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:100%;height:auto;max-width:70px;" width="300" height="300">
+                                                            </a>
+                                                        </td>
+
+                                                        <td class="product-name" style="word-wrap: break-word;white-space:normal;" data-title="Product">
+                                                            <a href="javascript:;" style="font-size:16px;" target="_blank">{{item.Product.mprodname}}</a><br />
+                                                            <span style="font-size:12px;">Supplier: {{item.Product.suppliername}}</span>
+                                                            <span style="font-size: 0.675em;color:#a7a7a7;" ng-if="item.Product.suppliername!=null && item.Product.mleadtime>=0 && item.Product.mleadtime<=14"><br />Estimated Delivery: {{item.Product.mleadtime}} days</span>
+                                                            <span style="font-size: 0.675em;color:#c80606;" ng-if="item.Product.suppliername!=null && item.Product.mleadtime>=15"><br />Estimated Delivery: {{item.Product.mleadtime}} days</span>
+                                                            <div class="offer" style='margin-top:5px; margin-bottom:0px;font-size:14px;' ng-show="item.Product.mofferdetail!=null && item.Product.mofferdetail!=''">
+                                                                <span class="loop-product-categories dealdetail ng-cloak" ng-hide="offerapplied[$index]" style="margin-bottom:0px;background:#ffed28;color: #051876 !important;line-height: 16px;font-weight: 700;padding:5px;"><span class="topdetail">Buy {{item.Product.mofferqty}}</span> <span class="bottomdetail">and {{item.Product.mofferdetail}}</span></span>
+                                                                <span class="loop-product-categories dealdetail ng-cloak" ng-show="offerapplied[$index]" style="margin-bottom:0px;background:#5cb85c;color: #fff !important;line-height: 16px;font-weight: 700;padding:5px;">Applied:<span class="topdetail">Buy {{item.Product.mofferqty}}</span> <span class="bottomdetail">and {{item.Product.mofferdetail}}</span></span>
+                                                            </div>
+
+                                                        </td>
+                                                        <td class="unittd" align="center">
+                                                            <div class="term-add-to-cart" style="display:block;width:100%;float:left;">
+
+                                                                <div class="col-xs-6 term-freq">
+                                                                    <label>Frequency</label>
+
+                                                                    <select ng-disabled="true" ng-init="termdata = {code:item.Product.mtermf}" ng-options="size as size.name for size in sizes track by size.code" class="form-control termselect termf{{item.Product.mprodvarid}}" ng-model="termdata" ng-change="updateterm(termdata,item.Product,termperiod,item.Quantity,$index)"></select>
+
+                                                                </div>
+                                                                <div class="col-xs-6 term-period">
+                                                                    <label>Period</label>
+
+                                                                    <select ng-disabled="true" ng-init="termperiod = {code: item.Product.mtermp}" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect termp{{item.Product.mprodvarid}}" ng-model="termperiod" ng-change="updateterm(termdata,item.Product,termperiod,item.Quantity,$index)"></select>
+
+                                                                </div>
+                                                                <div class="col-xs-12" ng-show="item.Product.dprice>0">
+                                                                    <!--<label>Unit Rental <span class="excVAT">(exc. VAT)</span></label>-->
+                                                                    <span class="savetotal">Selecting annual frequency will save you £{{item.Product.dprice}}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="terms" style="float:left;margin-top:5px;position:relative;width:100%;text-align:center">
+                                                                <span class="woocommerce-Price-amount amount" style="padding-top:5px;"><span class="price-color-gold" style="color: #000;font-weight:600;"><span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice | number:2}}</span> <span class="" style="font-size:10px;">{{ getNewTerms(item.Product.mtermf,null) }}</span></span>
+                                                            </div>
+                                                        </td>
+
+
+                                                        <td class="product-quantity" align="center" data-title="Quantity">
+                                                            <div class="quantity">
+                                                                <input ng-disabled="true" type="number" id="quantity_5e0706480ca03" ng-model="noOfItem[$index]" class="input-text qty text" step="1" min="1" max="500" name="cart[8e68c3c7bf14ad0bcaba52babfa470bd][qty]" ng-change="UpdateCart(item.Product,noOfItem[$index],$index)" title="Qty" size="4" inputmode="numeric" aria-labelledby="" style="width:5em" ng-value="item.Quantity">
+                                                                <!--<button class="button" type="button" ng-click="UpdateCart(item.Product,noOfItem[$index])" ng-disabled="noOfItem[$index]==undefined" style="padding:0px;width:1em;background:transparent;color:#000000"><i class="fa fa-refresh"></i></button>-->
+                                                            </div>
+                                                        </td>
+                                                        <!--<td class="product-subtotal" data-title="VAT">
+                                                            <span class="woocommerce-Price-amount amount"><span class="price-color-gold" style="color: #000;font-weight:600;"><span class="woocommerce-Price-currencySymbol">£</span>{{(item.Product.mprice*item.Quantity*(vat/100)) | number:2}}</span> <br /><span class="" style="font-size:10px;">{{ getNewTerms(item.Product.mtermf,null) }}</span></span>
+                                                        </td>-->
+                                                        <td class="product-subtotal" align="center" data-title="Total">
+                                                            <span class="woocommerce-Price-amount amount">
+                                                                <span class="price-color-gold" style="color: #000;font-weight:600;width:100%;display:block">
+                                                                    <!--<span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice*item.Quantity+(item.Product.mprice*item.Quantity*(vat/100)) | number:2}}</span> <br /><span class="" style="font-size:10px;">{{ getNewTerms(item.Product.mtermf,null) }}</span>-->
+                                                                    <span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice*item.Quantity | number:2}}
+                                                                </span>
+                                                                <!--<span class="" style="font-size:10px;color: #000;font-weight:500;width:100%;display:block">+ VAT</span>--><span class="" style="font-size:10px;">{{ getNewTerms(item.Product.mtermf,null) }}</span>
+                                                            </span>
+                                                        </td>
+                                                        <td class="product-name">
+                                                            <a href="javascript:;" ng-show="item.Product.ProductOffer>0" ng-click="getOffer(item.Product,item.Id)" rel="nofollow" data-product-id="2706" data-product-type="simple" class="color-red">Get similar product</a>
+                                                        </td>
+
+
+                                                    </tr>
+
+                                                </tbody>
+
+                                            </table>
+                                        </form>
+
+                                        <div style="display:none;" class="cart-collaterals">
+                                            <div class="cart_totals ">
+
+
+                                                <h2>Cart totals</h2>
+
+                                                <table class="shop_table shop_table_responsive" cellspacing="0">
+
+                                                    <tbody>
+                                                        <tr class="cart-subtotal">
+                                                            <th>Subtotal</th>
+                                                            <td data-title="Subtotal"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span> {{shoppingCart.totalPrice | number:2}}</span></td>
+                                                        </tr>
+
+
+
+
+
+
+                                                        <tr class="order-total">
+                                                            <th>Total</th>
+                                                            <td data-title="Total"><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span> {{shoppingCart.totalPrice | number:2}}</span></strong> </td>
+                                                        </tr>
+
+
+                                                    </tbody>
+                                                </table>
+
+                                                <div class="wc-proceed-to-checkout">
+
+                                                    <a href="@Url.Action("Checkout","Leasing")" class="checkout-button button alt wc-forward">
+                                                        Proceed to checkout
+                                                    </a>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="woocommerce pull-right cartbtn mb-5" ng-show="shoppingCart.length>0">
+
+                                        <div class="coupon" style="display:none;">
+                                            <label for="coupon_code">Coupon:</label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code"> <button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply coupon</button>
+                                        </div>
+
+                                        <div class="wc-proceed-to-checkout actions">
+
+                                            <a href="javascript:;" ng-click="Checkoutfunc()" class="checkout-button button alt">
+                                                Proceed to checkout
+                                            </a>
+                                            <a class="button wc-backward" href="@Url.Action("Index","Leasing")">
+                                                Continue Shopping <i class="fa fa-arrow-right"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="woocommerce" ng-show="shoppingCart.length<=0 && inactiveshoppingCart.length<=0">
+                                        <div class="woocommerce-notices-wrapper"></div><p class="cart-empty">Your cart is currently empty.</p>	<p class="return-to-shop">
+                                            <a class="button wc-backward" href="@Url.Action("Index","Leasing")">
+                                                Continue Shopping
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div><!-- .entry-content -->
+
+                            </article><!-- #post-## -->
+
+                        </main><!-- #main -->
+                    </div>
+                    <div class="col-xl-1"></div>
+                </div>
+            </div><!-- #primary -->
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        app.controller('ViewCartNewController', ['$scope', '$http', '$rootScope', '$location',  '$cookies', 'CommonLeaseTerm', function ($scope, $http, $rootScope, $location,  $cookies, CommonLeaseTerm) {
+            $scope.isCheckoutPage = false;
+            $scope.loader = true;
+            $scope.cartdisable = true;
+            $scope.sameval = 1;
+            $scope.termfreq = [];
+            $scope.termperiod = [];
+            $scope.Session_Id = "";
+            $scope.getSubProducts = [];
+            $scope.GetItem = 0;
+            $scope.showtermwarn = [];
+            $scope.offerapplied = [];
+            $scope.tabloading = false;
+            $scope.noOfItem = [];
+            $rootScope.shoppingCart = $rootScope.shoppingCart || [];
+            $scope.inactiveshoppingCart = [];
+            $scope.deteleinactivesubquoteid = [];
+            $rootScope.shoppingCart.totalPrice = 0;
+            $scope.productreplace = false;
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 365);
+            $scope.sizes = [{ code: 1, name: 'Monthly' }, { code: 3, name: 'Quarterly' }, { code: 4, name: 'Termly' }, { code: 6, name: 'Bi-annually' }, { code: 12, name: 'Annually' }]
+            $scope.periods = [{ code: 60, name: '5 years' }, { code: 48, name: '4 years' }, { code: 36, name: '3 years' }, { code: 24, name: '2 years' }, { code: 12, name: '1 years' }]
+            $scope.cartbutton = function () {
+                $scope.cartdisable = false;
+            }
+            $scope.loadcart = function () {
+                if (!angular.isUndefined($cookies.get('leasebasket'))) {
+                    var id = $cookies.getObject('leasebasket');
+                    $scope.Session_Id = id;
+                    $http.get('/api/CookieApi/GetCookieCart?id=' + id).success(function (data) {
+                        console.log(data["data"]);
+                        if (data != "empty") {
+                            if (data.data.length > 0) {
+                                for (var i = 0; i < data.data.length; i++) {
+                                    //data[i].mprice=((data[i].mprice*1)/(60*0.9)).toFixed(2);
+                                    $rootScope.vat = data.data[i].mvat;
+                                    if (data.data[i].Product.moffer > 0) {
+                                        if (data.data[i].Product.mofferqty <= data.data[i].Quantity) {
+                                            data.data[i].Product.mprice = CommonLeaseTerm.updateTerms(data.data[i].Product.mofferprice, data.data[i].Product.mtermf, data.data[i].Product.mtermp);
+                                            if (data.data[i].Product.mtermf < 12) {
+                                                var p = CommonLeaseTerm.updateTerms(data.data[i].Product.mofferprice, 12, data.data[i].Product.mtermp);
+                                                //atprice = p * (period / 12);
+                                                //tprice = item.mprice * (12 / freq) * (period / 12);
+                                                data.data[i].Product.dprice = CommonLeaseTerm.updatedprice(p, data.data[i].Product.mprice, data.data[i].Product.mtermf, data.data[i].Product.mtermp);
+                                            } else {
+                                                data.data[i].Product.dprice = 0;
+                                            }
+                                            $scope.offerapplied[i] = true;
+                                        }
+                                        else {
+                                            data.data[i].Product.mprice = CommonLeaseTerm.updateTerms(data.data[i].Product.mbaseprice, data.data[i].Product.mtermf, data.data[i].Product.mtermp);
+                                            if (data.data[i].Product.mtermf < 12) {
+                                                var p = CommonLeaseTerm.updateTerms(data.data[i].Product.mbaseprice, 12, data.data[i].Product.mtermp);
+                                                //atprice = p * (period / 12);
+                                                //tprice = item.mprice * (12 / freq) * (period / 12);
+                                                data.data[i].Product.dprice = CommonLeaseTerm.updatedprice(p, data.data[i].Product.mprice, data.data[i].Product.mtermf, data.data[i].Product.mtermp);
+                                            } else {
+                                                data.data[i].Product.dprice = 0;
+                                            }
+                                            $scope.offerapplied[i] = false;
+                                        }
+                                    } else {
+                                        data.data[i].Product.mprice = CommonLeaseTerm.updateTerms(data.data[i].Product.mbaseprice, data.data[i].Product.mtermf, data.data[i].Product.mtermp);
+                                        if (data.data[i].Product.mtermf < 12) {
+                                            var p = CommonLeaseTerm.updateTerms(data.data[i].Product.mbaseprice, 12, data.data[i].Product.mtermp);
+                                            //atprice = p * (period / 12);
+                                            //tprice = item.mprice * (12 / freq) * (period / 12);
+                                            data.data[i].Product.dprice = CommonLeaseTerm.updatedprice(p, data.data[i].Product.mprice, data.data[i].Product.mtermf, data.data[i].Product.mtermp);
+                                        } else {
+                                            data.data[i].Product.dprice = 0;
+                                        }
+                                        $scope.offerapplied[i] = false;
+                                    }
+                                    if (data.data[i].Product.warrantydetails != null && data.data[i].Product.warrantydetails != "") {
+                                        if (data.data[i].Product.maxwarrantyflag) {
+                                            $scope.showtermwarn[i] = true;
+                                        }
+                                        data.data[i].Product.warrantydetails.mprice = CommonLeaseTerm.updateTerms(data.data[i].Product.warrantydetails.mprice, data.data[i].Product.mtermf, data.data[i].Product.mtermp);
+                                        data.data[i].Product.mprice = Number(data.data[i].Product.mprice) + Number(data.data[i].Product.warrantydetails.mprice);
+                                    }
+
+                                }
+                            }
+                            $rootScope.shoppingCart = data.data;
+                            if (data.inactivedata.length > 0) {
+                                for (var i = 0; i < data.inactivedata.length; i++) {
+                                    //data[i].mprice=((data[i].mprice*1)/(60*0.9)).toFixed(2);
+                                    $rootScope.vat = data.inactivedata[i].mvat;
+                                    if (data.inactivedata[i].Product.moffer > 0) {
+                                        if (data.inactivedata[i].Product.mofferqty <= data.inactivedata[i].Quantity) {
+                                            data.inactivedata[i].Product.mprice = CommonLeaseTerm.updateTerms(data.inactivedata[i].Product.mofferprice, data.inactivedata[i].Product.mtermf, data.inactivedata[i].Product.mtermp);
+                                            $scope.offerapplied[i] = true;
+                                        }
+                                        else {
+                                            data.inactivedata[i].Product.mprice = CommonLeaseTerm.updateTerms(data.inactivedata[i].Product.mbaseprice, data.inactivedata[i].Product.mtermf, data.inactivedata[i].Product.mtermp);
+                                            $scope.offerapplied[i] = false;
+                                        }
+                                    } else {
+                                        data.inactivedata[i].Product.mprice = CommonLeaseTerm.updateTerms(data.inactivedata[i].Product.mbaseprice, data.inactivedata[i].Product.mtermf, data.inactivedata[i].Product.mtermp);
+                                        $scope.offerapplied[i] = false;
+                                    }
+                                }
+                            }
+                            $scope.inactiveshoppingCart = data.inactivedata;
+                        } else {
+                            $cookies.remove("leasebasket", { path: '/' });
+                        }
+                        $rootScope.shoppingCart.totalPrice = 0;
+                        $rootScope.shoppingCart.totalItems = 0;
+                        $scope.getTotalPrice();
+                        $scope.getTotalNoOfItems();
+
+                        $scope.loader = false;
+                    });
+                    $http.get('/api/CookieApi/GetSubCart?id=' + id).success(function (data2) {
+                        if (data2.length > 0) {
+                            $scope.getSubProducts = data2;
+                        }
+
+                    });
+                    //$scope.loader = false;
+                }
+                else {
+                    $scope.loader = false;
+                    console.log("PageReload");
+                }
+            }
+            $scope.loadcart();
+            $scope.checkoffer = function (qty,index) {
+                if ($rootScope.shoppingCart[index].Product.mofferdetail != null && $rootScope.shoppingCart[index].Product.mofferdetail != "") {
+                    if (qty >= $rootScope.shoppingCart[index].Product.mofferqty) {
+
+                        $rootScope.shoppingCart[index].Product.mprice = CommonLeaseTerm.updateTerms($rootScope.shoppingCart[index].Product.mofferprice,1, 60);
+                        $scope.offerapplied[index] = true;
+                        $scope.noOfItem[index] = qty;
+                        console.log($rootScope.shoppingCart[index].Product.mprice + " " + $scope.noOfItem[index]);
+                    }
+                    else {
+
+                        $rootScope.shoppingCart[index].Product.mprice = CommonLeaseTerm.updateTerms($rootScope.shoppingCart[index].Product.mbaseprice, $rootScope.shoppingCart[index].Product.mtermf, $rootScope.shoppingCart[index].Product.mtermp);
+                        //$scope.Products.mrp = CommonLeaseTerm.updateTerms($scope.Products.mbasicprice, 1, 60);
+                        $scope.offerapplied[index] = false;
+                        $scope.noOfItem[index] = qty;
+                    }
+                }
+            }
+            $scope.getOffer = function (obj,subquoteid) {
+                $scope.dataloading = true;
+                $scope.deteleinactivesubquoteid = subquoteid;
+                $http.post('/api/ProductApi/GetOfferProduct', obj).success(function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        //data[i].mprice=(data[i].mprice*1).toFixed(2);
+                        data[i].mprice = CommonLeaseTerm.updateTerms(data[i].mbasicprice, data[i].mtermf, data[i].mtermp);
+                    }
+                    $scope.GetOfferProductDatas = data;
+                    $scope.leaseTerms = {
+                        title: "Get Comparative Quotes",
+                        ProdName: obj.mprodname,
+                        Products: $scope.GetOfferProductDatas,
+                        buttons: [{
+                            label: "Yes",
+                            action: "SaveOrder",
+                            item: $scope.Quotes,
+                            qty: 1,
+                            event: 0,
+                        }]
+
+                    };
+                    jQuery("#leaseterm-dialog .modal").modal({
+                        backdrop: 'static',
+                        keyboard: false,
+                        "show": true
+                    });
+                    $scope.dataloading = false;
+                    //alert($scope.GetUpdate);
+                    console.log(data);
+                });
+
+
+            }
+            jQuery("#leaseterm-dialog .modal").on('hidden.bs.modal', function () {
+                if ($scope.productreplace) {
+                    window.location.reload();
+                }
+            });
+            /********************check out*****************************/
+            $scope.Checkoutfunc = function () {
+                if ($rootScope.muserid > 0 && $rootScope.savequote == 0) {
+                    if (!angular.isUndefined($cookies.get('leasebasket'))) {
+                        $scope.tabloading = true;
+                        window.location = "/Leasing/ConfirmOrder";
+                        /*$scope.Session_Id = $cookies.getObject('leasebasket');
+                        $rootScope.shoppingCart.totalPrice = 0;
+                        $scope.IsLogedIn = true;
+                        var passdata = { "SessionId": $scope.Session_Id, "Product": $scope.shoppingCart, "muserid": $rootScope.mschoolid, "mquotetotal": $scope.shoppingCart.totalPrice };
+                        $http.post("api/ProductApi/SaveQuote", passdata).success(function (data, status) {
+
+                            if (data == "Save") {
+                                $rootScope.shoppingCart = [];
+                                $cookies.remove("leasebasket", { path: '/' });
+                                $cookies.remove("same");
+                                window.location = "/Leasing/QuoteDetail";
+                                //$rootScope.savequote = 1;
+                                //$scope.loader = false;
+
+                            }
+                            else {
+                                $scope.IsError = true;
+                                alert('Invalid Credential!');
+                            }
+
+                            $scope.user = null;
+
+                        }).error(function () {
+
+                            alert('failed');
+
+                        });*/
+                    }
+                }
+                else {
+                    window.location = "/Leasing/Checkout";
+                }
+
+            }
+
+            /*************************************************/
+
+            if (!angular.isUndefined($cookies.get('same'))) {
+                $scope.sameval = $cookies.getObject('same');
+            }
+            $scope.myFilter = function (item, itemid) {
+                console.log(item);
+                console.log(itemid);
+                if (item.mprodid === itemid) {
+                    return item;
+                }
+            };
+            $scope.getItems = function (item) {
+
+                $scope.GetItem = item.Id;
+
+            }
+            $scope.updateterm = function (termfreq, item, termperiod, qty, index) {
+                if ($scope.sameval == 3 && ($rootScope.shoppingCart[0].Product.mtermf !== termfreq.code || $rootScope.shoppingCart[0].Product.mtermp !== termperiod.code)) {
+                    $scope.termfreq = termfreq;
+                    $scope.termperiod = termperiod;
+                    $scope.confirmationDialogConfig = {
+                        title: "Warning!!!",
+                        message: "Lease term defined differs from that of previous item put in basket",
+                        buttons: [{
+                            label: "Proceed with this new lease term for this item",
+                            action: "yes",
+                            item: item,
+                            qty: qty,
+                            event: index
+                        }],
+                        buttons2: [{
+                            label: "Set to prev item lease terms (" + $scope.getTerms($rootScope.shoppingCart[0].Product.mtermf, $rootScope.shoppingCart[0].Product.mtermp) + ")",
+                            action: "no",
+                            item: item,
+                            qty: qty,
+                            event: ""
+                        }]
+                    };
+                    $scope.showDialog(true);
+                } else {
+                    var id = $rootScope.shoppingCart[index].Id;
+                    var freq = termfreq.code;
+                    var period = termperiod.code;
+                    var oldf = item.mtermf;
+                    var oldp = item.mtermp;
+
+                    //CommonLeaseTerm.updateTerms(data[i].mbasicprice, data[i].mtermf, data[i].mtermp);
+                    //var mbaseprice = (item.mprice * oldp * 0.9) / oldf;
+                    //console.log(mbaseprice);
+                    item.mtermf = freq;
+                    item.mtermp = period;
+
+                    item.mprice = CommonLeaseTerm.updateTerms(item.mbaseprice, item.mtermf, item.mtermp);
+                    if (freq < 12) {
+                        var p = CommonLeaseTerm.updateTerms(item.mbaseprice, 12, period);
+                        //atprice = p * (period / 12);
+                        //tprice = item.mprice * (12 / freq) * (period / 12);
+                        item.dprice = CommonLeaseTerm.updatedprice(p, item.mprice, freq, period);
+                    } else {
+                        item.dprice = 0;
+                    }
+                    var f = 0;
+                    if (item.warrantydetails != null && item.warrantydetails != "") {
+                        if (oldp <= (item.warrantydetails.mtermp * 12) && oldp != item.mtermp) {
+
+                            $http.get("/api/WarrantyApi/GetSingleWarrantyDetails?mprodid=" + item.mprodid + "&supid=" + item.msupplierid + "&term=" + (item.mtermp / 12)).success(function (data2, status) {
+                                if (data2 != "") {
+                                    var len = data2.length;
+                                    for (var i = 0; i < len; i++) {
+                                        item.warrantydetails.mtermp = data2[i].warrantyterm;
+                                        item.warrantydetails.mprice = CommonLeaseTerm.updateTerms(data2[i].warrantyprice, item.mtermf, item.mtermp);
+                                        item.mprice = Number(item.mprice) + Number(item.warrantydetails.mprice);
+                                        if (freq < 12) {
+                                            var p = CommonLeaseTerm.updateTerms(item.mbaseprice, 12, item.mtermp);
+                                            var p2 = CommonLeaseTerm.updateTerms(data2[i].warrantyprice, 12, item.mtermp);
+                                            item.dprice = CommonLeaseTerm.updatedprice(Number(p)+Number(p2), item.mprice, freq, period);
+                                        } else {
+                                            item.dprice = 0;
+                                        }
+                                        var lessitem = {
+                                            mprodname: data2[i].warrantyterm + " years " + data2[i].WarrantyTitle,
+                                            msupplierid: item.msupplierid,
+                                            mprice: data2[i].warrantyprice,
+                                            mtermf: item.mtermf,
+                                            mtermp: data2[i].warrantyterm * 12,
+                                            mqty: 1,
+                                            subwarrantid: data2[i].subwarrantid
+                                        };
+                                        item.warrantydetails.mprodname = data2[i].warrantyterm + " years " + data2[i].WarrantyTitle,
+                                        item.warrantyexist = true;
+                                        item.wcart = lessitem;
+                                        item.subwarrantid = item.warrantydetails.subwarrantid;
+                                        if ((item.warrantydetails.mtermp * 12) < item.mtermp) {
+                                            $scope.showtermwarn[index] = true;
+                                        } else {
+                                            $scope.showtermwarn[index] = false;
+                                        }
+                                    }
+
+                                    $scope.UpdateCart(item, qty, index);
+                                    $scope.UpdateSubCart(id, freq, period);
+
+                                } else {
+                                    if ((item.warrantydetails.mtermp * 12) < item.mtermp) {
+                                        $scope.showtermwarn[index] = true;
+                                    } else {
+                                        $scope.showtermwarn[index] = false;
+                                    }
+                                    item.warrantydetails.mprice = CommonLeaseTerm.updateTerms(item.warrantydetails.mbaseprice, item.mtermf, item.mtermp);
+                                    item.mprice = Number(item.mprice) + Number(item.warrantydetails.mprice);
+                                    if (freq < 12) {
+                                        var p = CommonLeaseTerm.updateTerms(item.mbaseprice, 12, item.mtermp);
+                                        var p2 = CommonLeaseTerm.updateTerms(item.warrantydetails.mbaseprice, 12, item.mtermp);
+                                        item.dprice = CommonLeaseTerm.updatedprice(Number(p) + Number(p2), item.mprice, freq, period);
+                                    } else {
+                                        item.dprice = 0;
+                                    }
+                                    $scope.UpdateCart(item, qty, index);
+                                    $scope.UpdateSubCart(id, freq, period);
+                                }
+                            });
+
+
+                        } else {
+                            if ((item.warrantydetails.mtermp * 12) < item.mtermp) {
+                                $scope.showtermwarn[index] = true;
+                            } else {
+                                $scope.showtermwarn[index] = false;
+                            }
+                            item.warrantydetails.mprice = CommonLeaseTerm.updateTerms(item.warrantydetails.mbaseprice, item.mtermf, item.mtermp);
+                            item.mprice = Number(item.mprice) + Number(item.warrantydetails.mprice);
+                            if (freq < 12) {
+                                var p = CommonLeaseTerm.updateTerms(item.mbaseprice, 12, item.mtermp);
+                                var p2 = CommonLeaseTerm.updateTerms(item.warrantydetails.mbaseprice, 12, item.mtermp);
+                                item.dprice = CommonLeaseTerm.updatedprice(Number(p) + Number(p2), item.mprice, freq, period);
+                            } else {
+                                item.dprice = 0;
+                            }
+                            $scope.UpdateCart(item, qty, index);
+                            $scope.UpdateSubCart(id, freq, period);
+                        }
+
+
+
+                    }
+                    else {
+                        $scope.UpdateCart(item, qty, index);
+                        $scope.UpdateSubCart(id, freq, period)
+
+                    }
+
+                }
+            }
+            $scope.getNewTerms = function (mtermf, mtermp) {
+                var msg = "";
+                var p = "";
+
+                switch (mtermf) {
+                    case 1:
+                        msg = p + " per month";
+                        break;
+                    case 3:
+                        msg = p + " per quarter";
+                        break;
+                    case 4:
+                        msg = p + " per term";
+                        break;
+                    case 6:
+                        msg = p + " per bi-annual";
+                        break;
+                    case 12:
+                        msg = p + " per annum";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+            $scope.getTerms = function (mtermf, mtermp) {
+                var msg = "";
+                var p = "";
+                if (mtermp != null) {
+                    p = mtermp / 12;
+                }
+                console.log(mtermf, mtermp);
+                switch (mtermf) {
+                    case 1:
+                        msg = p + " years monthly";
+                        break;
+                    case 3:
+                        msg = p + " years quarterly";
+                        break;
+                    case 4:
+                        msg = p + " years termly";
+                        break;
+                    case 6:
+                        msg = p + " years bi-annually";
+                        break;
+                    case 12:
+                        msg = p + " years annually";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+            /*********************************************/
+            $scope.confirmationDialogConfig = {
+                title: "Warning!!!",
+                message: "Lease Term selected for this product is different with selected previous products,do you want to continue?",
+                buttons: [{
+                    label: "Yes",
+                    action: "yes"
+                }],
+                buttons2: [{
+                    label: "Set to prev item lease terms",
+                    action: "no",
+
+                }]
+            };
+            $scope.executeDialogAction = function (action, item, qty, index) {
+                if (typeof $scope[action] === "function") {
+                    $scope[action](item, qty, index);
+                }
+            };
+            $scope.showDialog = function (flag) {
+                jQuery("#confirmation-dialog .modal").modal(flag ? 'show' : 'hide');
+            };
+            $scope.yes = function (item, qty, index) {
+                $scope.sameval = 0;
+
+                $scope.showDialog(false);
+                var freq = $scope.termfreq.code;
+                var period = $scope.termperiod.code;
+                var oldf = item.mtermf;
+                var oldp = item.mtermp;
+                var mbaseprice = (item.mprice * oldp * 0.9) / oldf;
+                //console.log("mbase:" + mbaseprice);
+                item.mtermf = freq;
+                item.mtermp = period;
+
+                item.mprice = CommonLeaseTerm.updateTerms(item.mbaseprice, item.mtermf, item.mtermp);
+                $scope.UpdateCart(item, qty, index);
+                //toastr.success("Product updated in Your Basket", "Success");
+                //jQuery(event).addClass("added");
+            };
+            $scope.no = function (item, qty, index) {
+                console.log(item);
+                var termf = ".termf" + item.mprodvarid;
+                var termp = ".termp" + item.mprodvarid;
+
+                jQuery(termf).val(item.mtermf);
+                jQuery(termp).val(item.mtermp);
+                $scope.showDialog(false);
+            };
+            /*******************************************/
+            $scope.openReference = function (id) {
+
+                var divid = "#div" + id;
+                var html = jQuery(divid).html();
+                jQuery("#referencemodal-dialog .modal-body").html(html);
+                jQuery("#referencemodal-dialog .modal").modal("show");
+            }
+
+            $scope.$watch('shoppingCart', function () {
+                $rootScope.shoppingCart.totalPrice = 0;
+                $rootScope.shoppingCart.totalItems = 0;
+                $scope.getTotalPrice();
+
+                $scope.getTotalNoOfItems();
+
+                console.log('changed');
+            }, true);
+            $scope.UpdateSubCart = function (id, mterf, mtermp) {
+                if ($scope.getSubProducts.length > 0) {
+                    $scope.getSubProducts.forEach(function (obj) {
+                        if (obj.mprodid == id) {
+                            obj.mterf = mterf;
+                            obj.mtermp = mtermp;
+                            obj.mprice = (obj.mbasicprice * mterf) / (mtermp * 0.9);
+                        }
+
+                    });
+                }
+
+            }
+            $scope.addToCart = function ($event,item, no) {
+                $event.stopPropagation();
+                if (no == 0 || no == "" || no == null) {
+
+                    toastr.warning("Please enter quantity between 1 to 99","Warning");
+                    return false;
+                }
+                var msg=true;
+                if (!angular.isUndefined($cookies.get('leasebasket'))) {
+                    $scope.Session_Id= $cookies.getObject('leasebasket');
+                    //$rootScope.shoppingCart =  $cookies.getObject('leasebasket');
+                }
+                var lessitem={
+                    Session_Id:$scope.Session_Id,
+                    mprodid:item.mprodid,
+                    mprodvarid:item.mprodvarid,
+                    mprodname:item.mprodname,
+                    msubpicname:item.msubpicname,
+                    msupplierid: item.msupplierid,
+                    mproducturl:item.mproducturl,
+                    mprice:item.mprice,
+                    mtermf:item.mtermf,
+                    mtermp:item.mtermp,
+                    mqty:no,
+                };
+                var repeat = false;
+                var items = {Product:lessitem,Quantity:no};
+                if ($rootScope.shoppingCart.length === 0){
+                    msg=false;
+                    $rootScope.shoppingCart.push(items);
+                    $scope.count = "showing " + $rootScope.shoppingCart.length + " results";
+                } else {
+                    for(var i = 0; i< $rootScope.shoppingCart.length; i++){
+                        if($rootScope.shoppingCart[i].Product.mprodvarid === items.Product.mprodvarid && $rootScope.shoppingCart[i].Product.msupplierid===items.Product.msupplierid && $rootScope.shoppingCart[i].Product.mtermf === items.Product.mtermf && $rootScope.shoppingCart[i].Product.mtermp === items.Product.mtermp){
+                            repeat = true;
+                            msg=false;
+                            $rootScope.shoppingCart[i].Quantity+=1;
+                            $rootScope.shoppingCart[i].count +=1;
+                        }
+                    }
+                    if (!repeat) {
+                        if(($rootScope.shoppingCart[0].Product.mtermf!==items.Product.mtermf || $rootScope.shoppingCart[0].Product.mtermp!==items.Product.mtermp) && $scope.sameval==3){
+                            msg=true;
+                            item.mtermf=$rootScope.shoppingCart[0].Product.mtermf;
+                            item.mtermp=$rootScope.shoppingCart[0].Product.mtermp;
+                            $scope.items=items;
+                            $scope.confirmationDialogConfig = {
+                                title: "Warning!!!",
+                                message: "Lease term defined differs from that of previous item put in basket",
+                                buttons: [{
+                                    label: "Proceed with this new lease term for this item",
+                                    action: "yes",
+                                    item:items,
+                                    qty:no,
+                                    event:""
+                                }],
+                                buttons2: [{
+                                    label: "Set to prev item lease terms ("+$scope.getTerms($rootScope.shoppingCart[0].Product.mtermf,$rootScope.shoppingCart[0].Product.mtermp)+")",
+                                    action: "no",
+                                    item:item,
+                                    qty:no,
+                                    event:""
+                                }]
+                            };
+                            console.log($event);
+                            jQuery($event.target).addClass(items.Product.mprodvarid+"btny");
+                            $scope.showDialog(true);
+
+                        }
+                        else{
+                            msg=false;
+                            $rootScope.shoppingCart.push(items);
+                        }
+                    }
+                    $scope.count = "showing " + $rootScope.shoppingCart.length + " results";
+                }
+                if(!msg){
+                    console.log(items);
+                    var d=[];
+                    d.push(lessitem)
+                    var datas=lessitem;
+                    if ($rootScope.shoppingCart.length !== 0 && repeat==true){
+                        $http.post("/api/CookieApi/UpdateCookieCart",datas).success(function (data, status) {
+
+                            if(data.length>0 && data[0]=="Success"){
+                                $scope.loader = false;
+                                //$cookies.putObject('leasebasket', data[1],  {'expires': expireDate,'path':'/'});
+                                //$scope.total += parseFloat(items.Product.mprice);
+                                $scope.deleteFromCartusingId($scope.deteleinactivesubquoteid);
+                                $scope.loadcart();
+                                $scope.deteleinactivesubquoteid = 0;
+                                $scope.productreplace = true;
+                                $scope.count = "showing " + data.length + " results";
+                                jQuery(".added_to_cart.wc-forward").data("original-title","View Your Basket");
+                                // window.location="/Leasing/ViewProduct?"+item.mproducturl+"&update=yes";
+                                toastr.success("Product added in Your Basket","Success");
+                            }
+
+                        });
+
+                    }else{
+                        $http.post("/api/CookieApi/SaveCookieCart",datas).success(function (data, status) {
+
+                            if(data.length>0 && data[0]=="Success"){
+                                $scope.loader = false;
+                                /*if (angular.isUndefined($cookies.get('leasebasket'))) {
+                                    $cookies.putObject('leasebasket', data[1],  {'expires': expireDate,'path':'/'});
+
+                                }*/
+                                $scope.deleteFromCartusingId($scope.deteleinactivesubquoteid);
+                                $scope.loadcart();
+                                $scope.deteleinactivesubquoteid = 0;
+                                $scope.productreplace = true;
+                                //$rootScope.shoppingCart = $cookies.getObject('leasebasket');
+
+                                //$scope.total += parseFloat(items.Product.mprice);
+
+                                $scope.count = "showing " + data.length + " results";
+                                jQuery(".added_to_cart.wc-forward").data("original-title","View Your Basket");
+                                //$rootScope.shoppingCart.push({ item, no });
+                                //window.location="/Leasing/ViewProduct?"+item.mproducturl+"&update=no";
+                                toastr.success("Product added in Your Basket","Success");
+                            }
+
+                        });
+
+                    }
+
+                }else{
+                    $event.stopPropagation();
+
+                }
+
+            };
+
+            $scope.UpdateCart = function (item, no, index) {
+                if (no <= 0) {
+                    return false;
+                }
+                var items = { Product: item, Quantity: no };
+                $rootScope.shoppingCart[index].Quantity = no;
+                if ($rootScope.shoppingCart[index].Product.mofferdetail != null && $rootScope.shoppingCart[index].Product.mofferdetail != "") {
+                    if (no >= $rootScope.shoppingCart[index].Product.mofferqty) {
+
+                        $rootScope.shoppingCart[index].Product.mprice = CommonLeaseTerm.updateTerms($rootScope.shoppingCart[index].Product.mofferprice, $rootScope.shoppingCart[index].Product.mtermf, $rootScope.shoppingCart[index].Product.mtermp);
+                        $scope.offerapplied[index] = true;
+
+                    }
+                    else {
+
+                        $rootScope.shoppingCart[index].Product.mprice = CommonLeaseTerm.updateTerms($rootScope.shoppingCart[index].Product.mbaseprice, $rootScope.shoppingCart[index].Product.mtermf, $rootScope.shoppingCart[index].Product.mtermp);
+                        //$scope.Products.mrp = CommonLeaseTerm.updateTerms($scope.Products.mbasicprice, 1, 60);
+                        $scope.offerapplied[index] = false;
+
+                    }
+                }
+                var moffer = (item.mofferdetail != null && item.mofferdetail != "") ? 1 : 0;
+                var lessitem = {
+                    Session_Id: $scope.Session_Id,
+                    mprodid: item.mprodid,
+                    mprodvarid: item.mprodvarid,
+                    mprodname: item.mprodname,
+                    msubpicname: item.msubpicname,
+                    msupplierid: item.msupplierid,
+                    mproducturl: item.mproducturl,
+                    mprice: item.mprice,
+                    mtermf: item.mtermf,
+                    mtermp: item.mtermp,
+                    mqty: no,
+                    moffer: moffer,
+                    wcart: item.wcart,
+                    warrantyexist:item.warrantyexist,
+                };
+                var d = [];
+                d.push(lessitem)
+                var datas = lessitem;
+                $http.post("/api/CookieApi/UpdateCookieFromCart", datas).success(function (data, status) {
+
+                    if (data.length > 0 && data[0] == "Success") {
+                        $scope.loader = false;
+                        $rootScope.shoppingCart[index].Quantity = no;
+                        $scope.count = "showing " + $rootScope.shoppingCart.length + " results";
+
+                        $cookies.putObject('leasebasket', data[1], { 'expires': expireDate, 'path': '/' });
+                        $scope.total += parseFloat(items.Product.mprice);
+                        $cookies.put('same', $scope.sameval, { 'expires': expireDate });
+
+                        $scope.count = "showing " + data.length + " results";
+                        //toastr.success("Product data updates in Your Basket", "Success");
+                    }
+
+                });
+
+
+
+            };
+            $scope.checkout = function () {
+                $location.path('/checkout');
+                $scope.isCheckoutPage = true;
+            };
+
+            $scope.deleteFromCart = function (index) {
+                var id = $cookies.getObject('leasebasket');
+                $http.get('/api/CookieApi/GetCartDelete?id=' + $rootScope.shoppingCart[index].Id).success(function (data) {
+                    if (data == "delete") {
+                        $rootScope.shoppingCart.splice(index, 1);
+                        if ($rootScope.shoppingCart.length <= 0) {
+                            $cookies.remove("leasebasket", { path: '/' });
+
+                        }
+                        else {
+                            $cookies.putObject('leasebasket', id, { 'expires': expireDate, 'path': '/' });
+                        }
+                        toastr.success("Product remove from Your Basket", "Success");
+                    }
+
+                });
+            };
+            $scope.deleteFromCartusingId = function (id) {
+                //var id = $cookies.getObject('leasebasket');
+                $http.get('/api/CookieApi/GetCartDelete?id=' + id).success(function (data) {
+                    if (data == "delete") {
+                        //$rootScope.shoppingCart.splice(index, 1);
+                        //toastr.success("Product remove from Your Basket", "Success");
+                    }
+
+                });
+            };
+            $scope.deleteFromSubCart = function (index) {
+                //var id = $cookies.getObject('leasebasket');
+                var id = index;
+                $http.get('/api/CookieApi/GetSubCartDelete?id=' + id).success(function (data) {
+                    if (data == "delete") {
+                        var qst = $scope.getSubProducts.filter(function (prod) {
+                            return prod.Id !== id;
+                        });
+                        $scope.getSubProducts = qst;
+                        toastr.success("Related Product remove from Your Basket", "Success");
+                    }
+
+                });
+            };
+            $scope.clearShoppingCart = function (index) {
+                /*$http.post('/Product/Empty').success(function (data) {
+                    //console.log(data);
+                    $scope.loader = false;
+                    $scope.count = "showing " + data.length + " results";
+                });*/
+                $rootScope.shoppingCart = [];
+                $cookies.remove("leasebasket", { path: '/' });
+
+            };
+
+            $scope.backToList = function () {
+                $location.path('/list');
+                $scope.isCheckoutPage = false;
+            };
+
+            $scope.getTotalPrice = function () {
+                $rootScope.shoppingCart.forEach(function (itemObj) {
+                    $rootScope.shoppingCart.totalPrice = Number($rootScope.shoppingCart.totalPrice) + Number($scope.getItemPrice(itemObj));
+                });
+            };
+
+            $scope.getTotalNoOfItems = function () {
+                $rootScope.shoppingCart.forEach(function (itemObj) {
+                    $rootScope.shoppingCart.totalItems += $scope.getItemNo(itemObj);
+                });
+            };
+
+            $scope.getItemPrice = function (itemObj) {
+                var itemPrice = 0;
+                console.log("items");
+                itemPrice = (Number(itemObj.Product.mprice) * Number(itemObj.Quantity));
+                return itemPrice;
+            };
+
+            $scope.getItemNo = function (itemObj) {
+                return itemObj.Quantity;
+            };
+
+
+
+
+
+
+
+        }]);
+
+
+    </script>
+}

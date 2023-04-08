@@ -1,0 +1,809 @@
+﻿
+@{
+    ViewBag.Title = "ReviewandRating";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    var searchproduct = ViewBag.SearchProduct.ToString();
+    
+
+}
+<style>
+    .table-black tr th {
+        color: #333;
+    }
+
+    .table-black tr td {
+        color: #333;
+    }
+
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+    }
+
+        .rate:not(:checked) > input {
+            position: absolute;
+            top: -9999px;
+        }
+
+    .checked ~ label {
+        color: #ffc700 !important;
+    }
+
+    .rate:not(:checked) > label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+
+    .rate > input:checked ~ label {
+        color: #ffc700;
+    }
+
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
+        color: #deb217;
+    }
+
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
+</style>
+<div class="se-pre-con" ng-show="loader">
+
+</div>
+<main id="content" role="main" class="checkout-page" ng-controller="ReviewRatingController">
+    <!-- breadcrumb -->
+    <div class="container">
+        <nav class="woocommerce-breadcrumb"><a href="/Leasing/">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Ratings and Reviews</nav>
+    </div>
+    <div id="login-dialog">
+        <div class="modal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header align-items-lg-center text-center">
+                        <div style="display:block;width:100%">
+                            <h2 class="h4 mb-0" style="color:#333;" ng-hide="showforget">Welcome Back!</h2>
+                            <h2 class="h4 mb-0" style="color:#333;" ng-show="showforget">Recover Password.</h2>
+                            <br />
+                        </div>
+                        <button type="button" style="" class="close mdclose" data-dismiss="modal" ng-click="showforget=false;">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="loginfield" ng-hide="showforget" ng-submit="InsideLogin()" class="js-validate">
+                            <!-- Login -->
+                            <div id="login" data-target-group="idForm">
+                                <!-- Form Group -->
+                                <div class="form-group" ng-show="showmsg!=''&&showmsg!=null">
+                                    <div class="alert alert-success" ng-bind-html="showmsg"></div>
+                                </div>
+                                <div class="form-group" ng-show="IsError">
+                                    <div class="alert alert-warning">{{invalidlogin}}</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="js-form-message js-focus-state">
+                                        <label class="sr-only" for="signinEmail">Email</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="signinEmailLabel">
+                                                    <span class="fas fa-user"></span>
+                                                </span>
+                                            </div>
+                                            <input type="email" ng-model="MenuLoginData.museridemail" name="museridemail" ng-class="MSubmitted?'form-control ng-dirty':'form-control'" required id="signinSrEmailExample3" placeholder="Email address" aria-label="Email address"
+                                                   data-msg="Please enter a valid email address."
+                                                   data-error-class="u-has-error"
+                                                   data-success-class="u-has-success">
+                                            <span class="loginerror" ng-show="(loginfield.museridemail.$dirty || MSubmitted) && loginfield.museridemail.$error.required">Username required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Form Group -->
+                                <!-- Form Group -->
+                                <div class="form-group">
+                                    <div class="js-form-message js-focus-state">
+                                        <label class="sr-only" for="signinPassword">Password</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="signinPasswordLabel">
+                                                    <span class="fas fa-lock"></span>
+                                                </span>
+                                            </div>
+                                            <input type="password" ng-model="MenuLoginData.mpwd" name="mpwd" ng-class="MSubmitted?'form-control ng-dirty':'form-control'" required id="signinSrPasswordExample2" placeholder="********" aria-label="********"
+                                                   data-msg="Your password is invalid. Please try again."
+                                                   data-error-class="u-has-error"
+                                                   data-success-class="u-has-success">
+                                            <span class="loginerror" ng-show="(loginfield.mpwd.$dirty || MSubmitted) && loginfield.mpwd.$error.required">Password required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Form Group -->
+
+                                <div class="d-flex justify-content-end mb-4">
+                                    <a class="js-animation-link small link-muted" href="javascript:;"
+                                       data-target="#forgotPassword"
+                                       data-link-group="idForm"
+                                       data-animation-in="slideInUp" ng-click="showforget=true;">Forgot Password?</a>
+                                </div>
+
+                                <div class="mb-2">
+                                    <button type="submit" ng-disabled="MSubmitted" class="btn btn-block btn-sm btn-primary transition-3d-hover">Login</button>
+                                </div>
+
+                                <div class="mb-2 border-top-gray-1 text-center" style="border-top:1px solid;">
+                                    <span style="text-align:center;">New customer! Start here.</span>
+                                    <a href="/Leasing/Registration" class="btn btn-block btn-sm  btnloginregister transition-3d-hover">
+                                        Register
+                                    </a>
+
+                                </div>
+
+                                <!-- End Login Buttons -->
+                            </div>
+                        </form>
+                        <form name="forgetpwd" ng-show="showforget" ng-submit="forgetPassword()">
+
+                            <!-- Forgot Password -->
+                            <div id="forgotPassword" data-target-group="idForm">
+                                <!-- Title -->
+                                <header class="text-center mb-7">
+
+                                    <p>Enter your email address and an email with instructions will be sent to you.</p>
+                                </header>
+                                <!-- End Title -->
+                                <!-- Form Group -->
+                                <div class="form-group" ng-show="IsFError">
+                                    <div class="alert alert-warning">{{invalidFlogin}}</div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="js-form-message js-focus-state">
+                                        <label class="sr-only" for="recoverEmail">Your email</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="recoverEmailLabel">
+                                                    <span class="fas fa-user"></span>
+                                                </span>
+                                            </div>
+                                            <input type="email" class="form-control" name="recoveremail" ng-model="recoverEmail" id="recoverEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmailLabel" required
+                                                   data-msg="Please enter a valid email address."
+                                                   data-error-class="u-has-error"
+                                                   data-success-class="u-has-success">
+                                            <span class="loginerror" ng-show="(forgetpwd.recoveremail.$dirty || FSubmitted) && forgetpwd.recoveremail.$error.required">Username required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Form Group -->
+
+                                <div class="mb-2">
+                                    <button type="submit" ng-disabled="FSubmitted" class="btn btn-block btn-sm btn-primary transition-3d-hover">Recover Password</button>
+                                </div>
+
+                                <div class="text-center mb-4">
+                                    <span class="small text-dark">Remember your password?</span>
+                                    <a class="js-animation-link small" href="javascript:;"
+                                       data-target="#login"
+                                       data-link-group="idForm"
+                                       data-animation-in="slideInUp" ng-click="showforget=false;" style="color:#333!important;">
+                                        Login
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End Forgot Password -->
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="shopCartAccordion1" class="accordion rounded mb-6" ng-cloak ng-show="IsUserLogedIn && datafound">
+            <!-- Card -->
+            <div class="card border-0">
+                <div id="shopCartTwo" class="border border-0 collapse show in" aria-labelledby="shopCartHeadingTwo" data-parent="#shopCartAccordion1" style="" aria-expanded="true">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8 order-lg-1 rform border-top-gray-1 border-top">
+                        <form class="rform js-validate" id="reviewform" name="form" ng-submit="SaveReview(form.$valid)" novalidate>
+
+                            <div class="pb-7 mb-7">
+
+
+                                <div class="row box-shadow-1 pt-5 pb-5 mb-5">
+                                    <!-- Title -->
+                                    <div class="col-md-12">
+                                        <p style="color:#ae0404">All fields mark (*) are compulsory</p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label">
+                                            Overall Rating
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="rate">
+                                            <input type="radio" id="star5" name="rate" ng-model="rating.mrankno" ng-class="rating.mrankno==5?'checked':''" required value="5" />
+                                            <label for="star5" title="text">5 stars</label>
+                                            <input type="radio" id="star4" name="rate" ng-model="rating.mrankno" ng-class="rating.mrankno==4?'checked':''" required value="4" />
+                                            <label for="star4" title="text">4 stars</label>
+                                            <input type="radio" id="star3" name="rate" ng-model="rating.mrankno" ng-class="rating.mrankno==3?'checked':''" required value="3" />
+                                            <label for="star3" title="text">3 stars</label>
+                                            <input type="radio" id="star2" name="rate" ng-model="rating.mrankno" ng-class="rating.mrankno==2?'checked':''" required value="2" />
+                                            <label for="star2" title="text">2 stars</label>
+                                            <input type="radio" id="star1" name="rate" ng-model="rating.mrankno" ng-class="rating.mrankno==1?'checked':''" required value="1" />
+                                            <label for="star1" title="text">1 stars</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <!-- Input -->
+                                        <div class="js-form-message mb-6">
+                                            <label class="form-label">
+                                                Heading
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" ng-model="rating.mreviewtitle" name="heading" required placeholder="Enter Title">
+                                            <div class="invalid-feedback" ng-show="(form.$submitted || form.heading.$touched) && form.heading.$error.required">Enter detail</div>
+
+                                        </div>
+
+                                        <!-- End Input -->
+                                    </div>
+                                    <div class="col-md-12">
+                                        <!-- Input -->
+                                        <div class="js-form-message mb-6">
+                                            <label class="form-label">
+                                                Description
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <textarea type="text" maxlength="100" class="form-control" ng-model="rating.mcomments" required name="Description" placeholder="Review Description"></textarea>
+                                            <div class="invalid-feedback" ng-show="(form.$submitted || form.Description.$touched) && form.Description.$error.required">Enter detail</div>
+                                        </div>
+                                        <!-- End Input -->
+                                    </div>
+                                    <div class="col-md-12" ng-show="reviewimg.length>0">
+                                        <!-- Input -->
+                                        <div class="js-form-message mb-6">
+                                            <label class="form-label">
+                                                Uploaded Images
+
+                                            </label>
+                                            <div class="col-md-2 text-center" style="margin:0 auto;" ng-repeat="img2 in reviewimg">
+                                                <img src="~/leaseadmin/Content/RatingDoc/{{img2.mpicname}}" style="width:100%;" />
+                                                <button type="button" ng-click="deletereviewimg(img2.mid)" class="btn btn-warning mt-1"><span class="glyphicon glyphicon-trash"></span> Remove</button>
+                                            </div>
+                                        </div>
+                                        <!-- End Input -->
+                                    </div>
+                                    <div class="col-md-12">
+                                        <!-- Input -->
+                                        <div class="js-form-message mb-6">
+                                            <label class="form-label">
+                                                Select Images
+
+                                            </label>
+                                            <input type="file" name="imgfile" nv-file-select="" uploader="uploader" multiple /><br />
+                                            <div class="invalid-feedback" ng-show="(form.$submitted || form.Description.$touched) && form.Description.$error.required">Enter detail</div>
+                                        </div>
+                                        <!-- End Input -->
+                                    </div>
+                                    <table class="table table-black" ng-show="uploader.queue.length>0">
+                                        <thead>
+                                            <tr>
+                                                <th width="50%">Name</th>
+                                                <th ng-show="uploader.isHTML5">Size</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in uploader.queue">
+                                                <td>
+                                                    <!-- Image preview -->
+                                                    <!--auto height-->
+                                                    <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                                                    <!--auto width-->
+                                                    <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 50 }"></div>
+                                                    <!--fixed width and height -->
+                                                    <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                                                </td>
+                                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                                <td nowrap>
+                                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-primary-dark-w btn-block btn-pill font-size-16 mb-3 py-3 mt-0" ng-click="uploader.uploadAll()" ng-show="uploader.queue.length>0" ng-disabled="form.$invalid || resubmitted">
+                                            <span class="glyphicon glyphicon-upload"></span> {{submitText}}
+                                        </button>
+                                        <button type="submit" ng-hide="uploader.queue.length>0" ng-disabled="form.$invalid || resubmitted" class="btn btn-primary-dark-w btn-block btn-pill font-size-16 mb-3 py-3 mt-0">{{submitText}}</button>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                    </div>
+                                    <div class="col-md-4 pull-right">
+                                        <button type="button" ng-show="osubmitText == 'Update Review'" ;" ng-click="deletereview()" class="btn btn-primary btn-block btn-pill font-size-16 mb-3 py-3">Delete Review</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </form>
+                    </div>
+
+                    <div class="col-lg-2"></div>
+                </div>
+
+            </div>
+            <!-- End Card -->
+        </div>
+        <div class="woocommerce border box-shadow-1" ng-show="!IsUserLogedIn">
+            <div class="woocommerce-notices-wrapper"></div><p class="cart-empty" style="font-size:24px">
+                <div class="cart-empty-msg" style="color:#333;text-align:center;margin:0 auto">
+                    Please first login for review and rating product<br />
+                    <div class="form-check">
+                        <button ng-click="showlogin()" class="btn btn-primary">Login</button>
+                    </div>
+                </div>
+
+            </p>
+
+        </div>
+        <div class="woocommerce border box-shadow-1" ng-cloak ng-show="errormsg && IsUserLogedIn">
+            <div class="woocommerce-notices-wrapper"></div><p class="cart-empty" style="font-size:24px">
+                <div class="cart-empty-msg" style="color:#333;text-align:center;margin:0 auto">
+                    <h2>Haven't Purchase this product?</h2><br />
+                    <p>If you have not purchase this product then you cannot review this product</p>
+                </div>
+
+
+
+        </div>
+    </div>
+</main>
+@section scripts{
+    @if (ViewBag.msg == "Success")
+    {
+
+        if (ViewBag.data == "Review")
+        {
+            <script>
+                jQuery(document).ready(function () {
+                    toastr.success("Review created successfully...","Success");
+                })
+            </script>
+        }
+
+    }
+    @if (ViewBag.msg == "Update")
+    {
+
+        if (ViewBag.data == "Review")
+        {
+            <script>
+                jQuery(document).ready(function () {
+                    toastr.success("Review created successfully...", "Success");
+                })
+            </script>
+        }
+
+    }
+    <script type="text/javascript">
+        app.directive('ngThumb', ['$window', function ($window) {
+            var helper = {
+                support: !!($window.FileReader && $window.CanvasRenderingContext2D),
+                isFile: function (item) {
+                    return angular.isObject(item) && item instanceof $window.File;
+                },
+                isImage: function (file) {
+                    var type = '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
+                    return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+                }
+            };
+
+            return {
+                restrict: 'A',
+                template: '<canvas/>',
+                link: function (scope, element, attributes) {
+                    if (!helper.support) return;
+
+                    var params = scope.$eval(attributes.ngThumb);
+
+                    if (!helper.isFile(params.file)) return;
+                    if (!helper.isImage(params.file)) return;
+
+                    var canvas = element.find('canvas');
+                    var reader = new FileReader();
+
+                    reader.onload = onLoadFile;
+                    reader.readAsDataURL(params.file);
+
+                    function onLoadFile(event) {
+                        var img = new Image();
+                        img.onload = onLoadImage;
+                        img.src = event.target.result;
+                    }
+
+                    function onLoadImage() {
+                        var width = params.width || this.width / this.height * params.height;
+                        var height = params.height || this.height / this.width * params.width;
+                        canvas.attr({ width: width, height: height });
+                        canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
+                    }
+                }
+            };
+        }]);
+        app.controller('ReviewRatingController', ['$scope', '$http', '$rootScope', '$window', '$sce', '$cookies', 'FileUploader', function ($scope, $http, $rootScope, $window, $sce, $cookies,FileUploader, LoginService) {
+            $scope.ratingproduct = "@searchproduct";
+            $scope.loader = true;
+            $scope.osubmitText = "Submit Review";
+            $scope.submitText = "Submit Review";
+            $scope.errormsg = false;
+            $scope.noreview = true;
+            $scope.datafound = false;
+            $scope.rating = {
+                "mrankno": '',
+                "mreviewtitle": '',
+                "mcomments": '',
+                "files": [],
+                "mprodid": '',
+                "muserid": '',
+                "emprodid": '',
+            };
+            console.log($scope.ratingproduct);
+            $scope.reviewimg = [];
+            if (!angular.isUndefined($cookies.get('userdata'))) {
+                var userdatas = $cookies.getObject('userdata');
+
+                $rootScope.IsUserLogedIn = true;
+
+            }
+            else {
+                jQuery("#login-dialog .modal").modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                    show:true
+                });
+                $rootScope.IsUserLogedIn = false;
+            }
+            $http.get('/Api/ProductApi/FindandGetRatingProduct?getproduct=' + $scope.ratingproduct+'&userid='+$rootScope.mschoolid).success(function (data) {
+
+                if (data == "noproduct") {
+
+                    $scope.errormsg = true;
+                }
+                else {
+                    if (data != "empty") {
+                        $scope.rating = data["productrating"];
+                        if (data["reviewimage"].length > 0) {
+                            $scope.reviewimg = data["reviewimage"];
+                        }
+                        $scope.rating.files = [];
+                        $scope.submitText = "Update Review";
+                        $scope.osubmitText = "Update Review";
+                        jQuery("#star" + $scope.rating.mrankno).attr("checked", "checked");
+
+                    }
+                    else {
+                        $scope.noreview = true;
+                    }
+                    $scope.datafound = true;
+                }
+                $scope.loader = false;
+            });
+            $scope.showlogin = function () {
+                jQuery("#login-dialog .modal").modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                    show: true
+                });
+            }
+            $scope.$watchGroup(['insidelogin.$valid'], function (newVal) {
+                $scope.IsLoginFormValid = newVal;
+
+            }, true);
+            $scope.forgetPassword = function () {
+                $scope.FSubmitted = true;
+                // alert("submit");
+                //if ($scope.IsLoginFormValid) {
+                $http.get('/api/UserApi/ForgetUser?email=' + $scope.recoverEmail).success(function (data) {
+
+                    if (data["msg"] == "Success") {
+                        $rootScope.IsUserLogedIn = false;
+                        $scope.showforget = false;
+
+                        $rootScope.showmsg = "Please check your registered email for forget password.";
+                        $scope.invalidFlogin = "";
+                        $scope.FSubmitted = false;
+                    }
+                    else {
+                        $scope.IsFError = true;
+                        $scope.invalidFlogin = "Invalid Username";
+                        $scope.FSubmitted = false;
+                    }
+
+                    $scope.user = null;
+
+                }).error(function () {
+                    $scope.FSubmitted = false;
+                    alert('failed');
+
+                })
+                //}
+            };
+            $scope.IsLoginFormValid = false;
+            $scope.InsideLogin = function () {
+                $scope.MSubmitted = true;
+                if ($scope.IsLoginFormValid) {
+                    $http({
+
+                        method: "POST",
+
+                        url: "/User/UserLogin",
+
+                        data: $scope.MenuLoginData
+                    }).success(function (data) {
+
+                        if (data["msg"] == "Success") {
+                            $scope.userid = true;
+                            $rootScope.IsUserLogedIn = true;
+                            jQuery("#login-dialog .modal").modal("hide");
+                            toastr.success("Login successfully!", "Welcome");
+                            $rootScope.mschoolid = data["Data"].muid;
+                            $rootScope.muserid = data["Data"].muserid;
+                            $rootScope.musername = data["Data"].mname;
+                            $rootScope.musertype = data["Data"].musertype;
+                            $rootScope.morgname = data["Data"].morgname;
+                            var expireDate = new Date();
+                            expireDate.setDate(expireDate.getDate() + 1);
+                            $cookies.putObject('userdata', data["Data"], { 'expires': expireDate, 'path': '/' });
+                            $http.get('/Api/ProductApi/FindandGetRatingProduct?getproduct=' + $scope.ratingproduct + '&userid=' + $rootScope.mschoolid).success(function (data) {
+
+                                if (data == "noproduct") {
+
+                                    $scope.errormsg = true;
+                                }
+                                else {
+                                    if (data != "empty") {
+                                        $scope.rating = data["productrating"];
+                                        if (data["reviewimage"].length > 0) {
+                                            $scope.reviewimg = data["reviewimage"];
+                                        }
+                                        $scope.rating.files = [];
+                                        $scope.submitText = "Update Review";
+                                        $scope.osubmitText = "Update Review";
+                                        jQuery("#star" + $scope.rating.mrankno).attr("checked", "checked");
+
+                                    }
+                                    else {
+                                        $scope.noreview = true;
+                                    }
+                                    $scope.datafound = true;
+                                }
+                                $scope.loader = false;
+                            });
+
+                        }
+                        else if (data["msg"] == "NotVerify") {
+                            $scope.IsError = true;
+                            $scope.invalidlogin = "Your account is not verified yet.<br/>Please check your email and verify account.";
+                            $scope.MSubmitted = false;
+                        }
+                        else {
+                            $scope.IsError = true;
+                            $scope.invalidlogin = "Invalid Username or Password";
+                            $scope.MSubmitted = false;
+                        }
+
+                        $scope.user = null;
+
+                    }).error(function () {
+
+                        alert('failed');
+
+                    })
+                }
+            };
+            $scope.SaveReview = function (isValid) {
+                if($scope.osubmitText == "Submit Review")
+                {
+                    $scope.resubmitted = true;
+                $scope.message = '';
+                $scope.rating.muserid=$rootScope.mschoolid;
+                $scope.rating.emprodid=$scope.ratingproduct;
+                $http({
+
+                    method: "POST",
+
+                    url: "/Review/SaveReview",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: $scope.rating
+                }).success(function (data) {
+                    //console.log("Muid : " + data["muid"]);
+                    if (data == "Success") {
+                        //$scope.SaveCart();
+                        toastr.success("Thank you for review.", "Success");
+                        $window.location.reload();
+                    }
+                    else {
+                        $scope.IsError = true;
+                        $scope.resubmitted = false;
+                        $scope.submitText = "Submit Review";
+                        alert('Something went wrong!');
+                    }
+
+                    $scope.user = null;
+
+                }).error(function () {
+
+                    alert('failed');
+
+                })
+
+                }
+                else {
+                    if ($scope.osubmitText = "Update Review") {
+                        if (isValid) {
+                            $scope.UpdateReview(true);
+                        }
+
+                    }
+                }
+            }
+            $scope.UpdateReview = function (isValid) {
+
+                $scope.resubmitted = true;
+                $scope.message = '';
+                $scope.rating.muserid = $rootScope.mschoolid;
+                $scope.rating.emprodid = $scope.ratingproduct;
+                $http({
+
+                    method: "POST",
+
+                    url: "/Review/UpdateReview",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: $scope.rating
+                }).success(function (data) {
+                    //console.log("Muid : " + data["muid"]);
+                    if (data == "Success") {
+                        //$scope.SaveCart();
+                        //toastr.success("Your review updated sucessfully.", "Success");
+                       $window.location.reload();
+                    }
+                    else {
+                        $scope.IsError = true;
+                        $scope.resubmitted = false;
+                        $scope.submitText = "Submit Review";
+                        alert('Something went wrong!');
+                    }
+
+                    $scope.user = null;
+
+                }).error(function () {
+
+                    alert('failed');
+
+                })
+
+
+            }
+            $scope.deletereview = function () {
+                if (confirm("Are you delete this review, it will delete permenanetly")) {
+                    $scope.loader = true;
+                    $http.get('/Api/RatingApi/DeleteReview?mreviewid=' + $scope.rating.mreviewid).success(function (data) {
+                        if (data == "Success") {
+
+                            toastr.success("review removed sucessfully.", "Success");
+                            $scope.rating = {
+                                "mrankno": '',
+                                "mreviewtitle": '',
+                                "mcomments": '',
+                                "files": '',
+                                "mprodid": '',
+                                "muserid": '',
+                                "emprodid": '',
+                            };
+                            $scope.submitText = "Submit Review";
+                            $window.location.reload();
+                        }
+                        else {
+                            $scope.IsError = true;
+                            $scope.loader = false;
+                            //$scope.resubmitted = false;
+                            $scope.submitText = "Update Review";
+                            alert('Something went wrong');
+                        }
+                    });
+                }
+
+            }
+            $scope.deletereviewimg = function (id) {
+                if (confirm("Are you delete this image, it will delete permenanetly")) {
+                    $http.get('/Api/RatingApi/DeleteImage?id=' + id).success(function (data) {
+                        if (data == "Success") {
+                            toastr.success("review image removed sucessfully.", "Success");
+                            $scope.reviewimg = $scope.reviewimg.filter(function (obj) {
+                                return obj.mid != id;
+                            });
+                        }
+                    });
+                }
+
+            }
+            //Clear Form (reset)
+            function ClearForm() {
+                $scope.User = {};
+                $scope.reg.$setPristine(); //here f1 our form name
+                $scope.submitted = false;
+            }
+
+            var formData = new FormData();
+            var uploader = $scope.uploader = new FileUploader({
+                    url: '/api/RatingApi/UploadFile',
+
+            });
+
+            // FILTERS
+
+            uploader.filters.push({
+                name: 'imageFilter',
+                fn: function (item /*{File|FileLikeObject}*/, options) {
+                    var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                    if ('|jpg|png|jpeg|'.indexOf(type) == -1) {
+                        toastr.error("Invalid file format. Please select a file with |jpg|png|jpeg or rtf format  and try again.", "Warning");
+                    }
+                    return '|jpg|png|jpeg|'.indexOf(type) !== -1;
+                }
+            });
+            uploader.filters.push({
+                name: 'sizeFilter',
+                fn: function (item, options) {
+                    var fileSize = item.size;
+                    fileSize = parseInt(fileSize) / (1024 * 1024);
+                    if (fileSize <= 1)
+                        return true;
+                    else {
+                        toastr.error("Selected file exceeds the MB file size limit. Please choose a new file and try again.", "Warning");
+                        return false;
+                    }
+                }
+            });
+            // CALLBACKS
+
+            uploader.onBeforeUploadItem = function (item) {
+                $scope.submitText = 'Please Wait...';
+                console.info('onBeforeUploadItem', item);
+            };
+            uploader.onSuccessItem = function (fileItem, response, status, headers) {
+                //alert($scope.rating.files);
+               $scope.rating.files.push(response);
+
+            };
+           uploader.onCompleteAll = function () {
+               if ($scope.osubmitText == "Submit Review") {
+                   $scope.SaveReview(true);
+               } else {
+                   $scope.UpdateReview(true);
+               }
+
+           };
+    }]);
+    </script>
+}

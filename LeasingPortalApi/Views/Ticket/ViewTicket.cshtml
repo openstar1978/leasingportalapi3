@@ -1,0 +1,255 @@
+﻿@using LeasingPortalApi.Models
+
+@{
+    ViewBag.Title = "ViewTicket";
+    Layout = "~/_Layouts/_Admin.cshtml";
+}
+@model IEnumerable<LeasingPortalApi.Models.TicketViewModel>
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <!-- END: Subheader -->
+    <div class="m-content">
+
+
+        <div class="m-portlet m-portlet--mobile">
+             <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            View Ticket (@Model.First().Priority Priority)
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <button onclick="goBack()" class="btn btn-secondary" style="width:85px;height:50px;padding-top:8px;margin-top:8px;">
+
+                    <span>
+                        <i class="la la-arrow-left" style="padding-top:8px;"></i>
+                        <span style="padding-top:8px;">Back</span>
+
+                    </span>
+
+                </button>
+            </div>
+            <div class="m-portlet__body">
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label  class="col-lg-12" for="exampleInputdescription" style="font-weight:600">User Details</label>
+                        @{
+                            var db = new LeasingDbEntities();
+                            var fullname = Model.First().FullName;
+                            string fname = "FName";
+                            string lname = "LName";
+
+                        }
+                        <label class="col-lg-12" for="exampleInputdescription">Name : <span style="font-weight:600"> @fname  @lname</span></label>
+                        <label class="col-lg-12" for="exampleInputdescription">Email : <span style="font-weight:600"> @Model.First().ReplyEmail</span></label>
+                        <label class="col-lg-12" for="exampleInputdescription">Mobile : <span style="font-weight:600"> @Model.First().Mobile</span></label>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="col-lg-12" for="exampleInputdescription" style="font-weight:600">Department</label>
+
+                        <label class="col-lg-12" for="exampleInputdescription">@Model.First().Department</label>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="col-lg-12" for="exampleInputdescription" style="font-weight:600">Created On</label>
+
+                        <label class="col-lg-12" for="exampleInputdescription">@(Model.First().CreatedDate.HasValue ? Model.First().CreatedDate.Value.ToString("dd/MM/yyyy") : "") </label>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-12">
+                        <label class="col-lg-1" for="exampleInputdescription" style="font-weight:600">Subject</label>
+
+                        <label class="col-lg-10" for="exampleInputdescription">@Model.First().Subject</label>
+                    </div>
+
+                    </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-12">
+                        <label class="col-lg-1" for="exampleInputdescription" style="font-weight:600">Detail</label>
+
+                        <label class="col-lg-10" for="exampleInputdescription">@Model.First().Detail</label>
+                    </div>
+
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-12">
+                        <label class="col-lg-1" for="exampleInputdescription" style="font-weight:600">Attachment</label>
+
+                        <label class="col-lg-10" for="exampleInputdescription"><a href="~/Uploads/@Model.First().Attachment" target="_blank">Click Here</a></label>
+                    </div>
+
+                </div>
+
+
+                </div>
+
+
+
+        </div>
+
+        <div class="m-portlet m-portlet--full-height ">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            History
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <!-- <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+                         <li class="nav-item m-tabs__item">
+                             <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget2_tab1_content" role="tab">
+                                 Today
+                             </a>
+                         </li>
+                         <li class="nav-item m-tabs__item">
+                             <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget2_tab2_content1" role="tab">
+                                 Week
+                             </a>
+                         </li>
+                         <li class="nav-item m-tabs__item">
+                             <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget2_tab3_content1" role="tab">
+                                 Month
+                             </a>
+                         </li>
+                     </ul>!-->
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#m_modal_6">Add to Reply</button>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-danger msg2" style="display:none">
+            <strong>Failed!</strong> Something went wrong.Please,try agian.
+        </div>
+        <input type="hidden" name="hiddenid" value="@Model.First().Id" data-user="@Model.First().FullName">
+        <input type="hidden" name="hiddenuserid" value="@Model.First().FullName" >
+        @{ 
+            var id = Model.First().Id;
+            var objdata = db.TicketReplies.Where(x => x.TicketId == id).OrderByDescending(x=>x.Id).ToList();
+            
+        }
+        @if (objdata != null)
+        {
+        <div class="m-portlet__body">
+            <div class="tab-content">
+                <div class="tab-pane active" id="m_widget2_tab1_content">
+                    <div class="m-widget2">
+                        @foreach (var a in objdata)
+                        {
+                            <div class="m-widget2__item m-widget2__item--primary">
+                                <div class="m-widget2__checkbox">
+                                    <label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
+                                        <input type="checkbox" name="id[]" value="@a.Id" data-user="@Model.First().FullName">
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="m-widget2__desc">
+                                    <span class="m-widget2__text">
+                                        @{
+                                            fname = "FName";
+                                            lname = "LName";
+                                        }
+                                        @fname @lname (Reply On : @(a.CreatedDate.HasValue?a.CreatedDate.Value.ToString("dd/MM/yyyy"):""))
+                                    </span>
+                                    <br />
+                                    <span class="m-widget2__user-name">
+                                         <a href="#" class="m-widget2__link">
+                                          @a.Detail
+                                        </a>
+                                    </span>
+                                </div>
+
+                            </div>
+                        }
+                        
+                        
+                        <!-- END EXAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+        <!-- Modal -->
+        <div class="modal fade" id="action-modal4" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-success">
+                            <strong>Success!</strong> Data added successfully.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="m_modal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Reply</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control" id="text" rows="6" placeholder="Reply"></textarea>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" onclick="sendReply()" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section scripts
+{
+<script>
+    function goBack() {
+        window.history.back();
+    }
+    function sendReply() {
+        var records = [];
+        dataid = [];
+        flag = "false";
+        var id = $("input[name='hiddenid']").val();
+        var userid = $("input[name='hiddenuserid']").val();
+        dataid.push({
+            "TicketId": id,
+            "UserId": userid,
+            "Detail": $("#text").val()
+        });
+        $.post("/Admin/Ticket/saveReply", { "records": dataid }, function (re) {
+            console.log(re);
+            if (re == 'Success') {
+                $('#m_modal_6').modal('hide');
+                $('#action-modal4').modal('show');
+                $('#action-modal4 .modal-body .alert-success').html('').html("<strong>Success!</strong> Reply Send.");
+                setTimeout(function () { window.location.href = '/Admin/Ticket/ViewTicket/'+id; }, 1000);
+
+            }
+            else {
+                $('#m_modal_6').modal('hide');
+                $(".msg2").css("display", "block");
+            }
+        })
+    }
+    </script>    
+}
+

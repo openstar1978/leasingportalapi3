@@ -1,0 +1,318 @@
+﻿
+@{
+    ViewBag.Title = "ViewCart";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+<div class="se-pre-con ng-hide" ng-show="loader">
+
+</div>
+<div id="content" class="site-content" tabindex="-1"   ng-controller="ShoppingCartController">
+    <div class="container">
+        <nav class="woocommerce-breadcrumb"><a href="#/electro-wide">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Cart</nav><div class="site-content-inner">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main" ng-if="!loader">
+
+
+                    <article id="post-3134" class="post-3134 page type-page status-publish hentry">
+
+                        <header class="entry-header"  ng-show="shoppingCart.length>0">
+                            <h1 class="entry-title">Cart</h1>
+                        </header><!-- .entry-header -->
+                        <div class="entry-content">
+                            <div class="woocommerce" ng-show="shoppingCart.length>0">
+                                <div class="woocommerce-notices-wrapper"></div>
+                                <form class="woocommerce-cart-form" action="#/electro-wide/cart/" method="post">
+
+                                    <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-remove">&nbsp;</th>
+                                                <th class="product-thumbnail">&nbsp;</th>
+                                                <th class="product-name">Product</th>
+                                                <th class="product-price">Price</th>
+                                                <th class="product-quantity">Quantity</th>
+                                                <th class="product-subtotal">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr ng-repeat="item in shoppingCart track by $index" class="woocommerce-cart-form__cart-item cart_item" >
+
+                                                <td class="product-remove">
+                                                    <a style="cursor:pointer;" ng-click="deleteFromCart($index)" class="remove" aria-label="Remove this item" data-product_id="2623" data-product_sku="5487FB8/08">×</a>
+                                                </td>
+
+                                                <td class="product-thumbnail">
+                                                    <a href="#">
+                                                        <img ng-src="~/Content/images/product/{{item.Product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" width="300" height="300">
+                                                    </a>
+                                                </td>
+
+                                                <td class="product-name" data-title="Product">
+                                                    <a href="#">{{item.Product.mprodname}}</a>
+                                                </td>
+
+                                                <td class="product-price" data-title="Price">
+                                                    <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice}}</span>
+                                                </td>
+
+                                                <td class="product-quantity" data-title="Quantity">
+                                                    <div class="quantity">
+                                                        <label for="quantity_5e0706480ca03">Quantity</label>
+                                                        <input type="number" id="quantity_5e0706480ca03" ng-model="noOfItem[$index]" class="input-text qty text" step="1" min="1" max="500" name="cart[8e68c3c7bf14ad0bcaba52babfa470bd][qty]" value="{{item.Quantity}}" ng-change="cartbutton()" title="Qty" size="4"  inputmode="numeric" aria-labelledby="White NX Mini F1  SMART NX quantity" style="width:4em">
+                                                        <button class="button" type="button" ng-click="UpdateCart(item.item,noOfItem[$index])" ng-disabled="noOfItem[$index]==undefined" style="padding:0px;width:1em;background:transparent;color:#000000"><i class="fa fa-refresh"></i></button>
+                                                    </div>
+                                                </td>
+
+                                                <td class="product-subtotal" data-title="Total">
+                                                    <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice*item.Quantity}}</span>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td colspan="6" class="actions">
+
+                                                    <div class="coupon">
+                                                        <label for="coupon_code">Coupon:</label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code"> <button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply coupon</button>
+                                                    </div>
+                                                   <!-- <button class="button" type="button" ng-click="addToCart(item,noOfItem[$index])" ng-disabled="cartdisable">Update Cart</button>
+                                                    <button type="submit" class="button" name="update_cart" value="Update cart"  ng-click="addToCart(item,noOfItem[$index])" ng-disabled="noOfItem[$index]==undefined">Update cart</button>-->
+
+                                                    <div class="wc-proceed-to-checkout">
+
+                                                        <a href="#" class="checkout-button button alt wc-forward">
+                                                            Proceed to checkout
+                                                        </a>
+                                                    </div>
+
+                                                    <input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce" value="1e9b71e198"><input type="hidden" name="_wp_http_referer" value="/electro-wide/cart/">
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </form>
+
+                                <div class="cart-collaterals">
+                                    <div class="cart_totals ">
+
+
+                                        <h2>Cart totals</h2>
+
+                                        <table class="shop_table shop_table_responsive" cellspacing="0">
+
+                                            <tbody>
+                                                <tr class="cart-subtotal">
+                                                    <th>Subtotal</th>
+                                                    <td data-title="Subtotal"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{shoppingCart.totalPrice}}</span></td>
+                                                </tr>
+
+
+
+
+
+
+                                                <tr class="order-total">
+                                                    <th>Total</th>
+                                                    <td data-title="Total"><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{shoppingCart.totalPrice}}</span></strong> </td>
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+
+                                        <div class="wc-proceed-to-checkout">
+
+                                            <a href="#/electro-wide/checkout/" class="checkout-button button alt wc-forward">
+                                                Proceed to checkout
+                                            </a>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="woocommerce"  ng-show="shoppingCart.length<=0">
+                                <div class="woocommerce-notices-wrapper"></div><p class="cart-empty">Your cart is currently empty.</p>	<p class="return-to-shop">
+                                    <a class="button wc-backward" href="/Leasing/Products">
+                                        Return to shop
+                                    </a>
+                                </p>
+                            </div>
+                        </div><!-- .entry-content -->
+
+                    </article><!-- #post-## -->
+
+                </main><!-- #main -->
+            </div><!-- #primary -->
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+    app.controller('ShoppingCartController', ['$scope', '$http', '$rootScope', '$location', '$sce','$cookies', function ($scope, $http, $rootScope, $location, $sce,$cookies) {
+        $scope.isCheckoutPage = false;
+        $scope.loader = true;
+        $scope.cartdisable = true;
+        $rootScope.shoppingCart = [];
+        $scope.cartbutton = function () {
+            $scope.cartdisable = false;
+        }
+        if (!angular.isUndefined($cookies.get('leasebasket'))) {
+            $rootScope.shoppingCart = $cookies.getObject('leasebasket');
+        //    $scope.shoppingCart = $cookies.getObject('leasebasket');
+            $scope.loader = false;
+        }
+        /*
+        $http.get('/Product/GetCart').success( function (data) {
+            $rootScope.shoppingCart = [];
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i]["Product"];
+                var no = data[i]["Quantity"];
+                $rootScope.shoppingCart.push({ item, no });
+                $rootScope.shoppingCart.totalPrice = 0;
+                $rootScope.shoppingCart.totalItems = 0;
+                $scope.getTotalPrice();
+                $scope.getTotalNoOfItems();
+            }
+            console.log($scope.shoppingCart);
+            $scope.loader = false;
+        });*/
+           $rootScope.shoppingCart.totalPrice = 0;
+           $scope.$watch('shoppingCart', function () {
+               $rootScope.shoppingCart.totalPrice = 0;
+               $rootScope.shoppingCart.totalItems = 0;
+               $scope.getTotalPrice();
+               
+               $scope.getTotalNoOfItems();
+                   
+               console.log('changed');
+           }, true);
+           $scope.UpdateCart = function (item, no) {
+               var items = { Product: item, Quantity: no };
+
+               console.log(items);
+               if ($rootScope.shoppingCart.length === 0) {
+                   $rootScope.shoppingCart.push(items);
+                   $scope.count = "showing " + $rootScope.shoppingCart.length + " results";
+               } else {
+                   var repeat = false;
+                   for (var i = 0; i < $rootScope.shoppingCart.length; i++) {
+                       console.log($rootScope.shoppingCart[i].Product.mprodvarid);
+                       if ($rootScope.shoppingCart[i].Product.mprodvarid === items.Product.mprodvarid) {
+                           repeat = true;
+                           $rootScope.shoppingCart[i].Quantity += 1;
+                       }
+                   }
+                   if (!repeat) {
+                       $rootScope.shoppingCart.push(items);
+                   }
+                   $scope.count = "showing " + $rootScope.shoppingCart.length + " results";
+               }
+               console.log(items);
+               var expireDate = new Date();
+               expireDate.setDate(expireDate.getDate() + 1);
+               $cookies.putObject('leasebasket', $rootScope.shoppingCart, { 'expires': expireDate });
+               $rootScope.shoppingCart = $cookies.getObject('leasebasket');
+
+               $scope.total += parseFloat(items.Product.mprice);
+               $cookies.put('total', $scope.total, { 'expires': expireDate });
+               /*$.ajax({
+                   url: '/Api/ProductApi/AddToCart/',
+                   type: "post",
+                   data: { item: item, no: no },
+                   success: function (data) {
+                       console.log(data);
+                       $scope.loader = false;
+                       $scope.count = "showing " + data.length + " results";
+                   }
+               });*/
+
+               /*$http.post('/Product/Buy/', items).success(function (data) {
+                   console.log(data);
+                   $scope.loader = false;
+                   $scope.count = "showing " + data.length + " results";
+               });
+               console.log($rootScope.shoppingCart);
+               for (var i in $rootScope.shoppingCart) {
+                   //console.log($rootScope.shoppingCart[i].item["mprodid"]);
+                   //console.log(item.item["mprodid"]);
+                   if ($rootScope.shoppingCart[i].item["mprodid"] == item["mprodid"]) {
+                       $rootScope.shoppingCart[i].no = no;
+                       break; //Stop this loop, we found it!
+                   }
+               }*/
+
+           };
+           $scope.checkout = function () {
+               $location.path('/checkout');
+               $scope.isCheckoutPage = true;
+           };
+           
+           $scope.deleteFromCart = function (index) {
+               $scope.loader = true;
+               var item = { index: index };
+               $rootScope.shoppingCart.splice(index, 1);
+
+               /*$http.post('/Product/Remove/', item).success(function (data) {
+                   //console.log(data);
+                   $scope.loader = false;
+                   $scope.count = "showing " + data.length + " results";
+                   if (data == "success") {
+                       $rootScope.shoppingCart.splice(index, 1);
+                   }
+               });*/
+               $scope.loader = false;
+           };
+
+           $scope.clearShoppingCart = function (index) {
+               /*$http.post('/Product/Empty').success(function (data) {
+                   //console.log(data);
+                   $scope.loader = false;
+                   $scope.count = "showing " + data.length + " results";
+               });*/
+               $rootScope.shoppingCart = [];
+           };
+
+           $scope.backToList = function () {
+               $location.path('/list');
+               $scope.isCheckoutPage = false;
+           };
+
+           $scope.getTotalPrice = function () {
+               $rootScope.shoppingCart.forEach(function (itemObj) {
+                   $rootScope.shoppingCart.totalPrice += $scope.getItemPrice(itemObj);
+               });
+           };
+
+           $scope.getTotalNoOfItems = function () {
+               $rootScope.shoppingCart.forEach(function (itemObj) {
+                   $rootScope.shoppingCart.totalItems += $scope.getItemNo(itemObj);
+               });
+           };
+
+           $scope.getItemPrice = function (itemObj) {
+               var itemPrice = 0;
+               console.log("items");
+               itemPrice = Number(itemObj.Product.mprice) * Number(itemObj.Quantity);
+               return itemPrice;
+           };
+
+           $scope.getItemNo = function (itemObj) {
+               return itemObj.Quantity;
+           };
+
+
+         
+
+            
+            
+         
+        }]);
+        </script>
+        }

@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+
+<style>
+    .clrbody {
+        color: black;
+    }
+</style>
+<div class="se-pre-con" ng-show="loader">
+
+</div>
+<div id="content" class="site-content" tabindex="-1" ng-controller="TermsConditionsController">
+    <div class="container">
+
+
+        <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Leasing")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Terms & Conditions</nav>
+        <div class="site-content-inner">
+            <main id="content" role="main">
+                <div class="container clrbody">
+                    <div class="mb-6 text-center">
+                        <h1>Terms & Conditions</h1>
+                    </div>
+                    <div class="mb-6">
+                        <div ng-repeat="d in Disclaimer">
+                            <p ng-bind-html="d.terms_conditions"></p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        app.controller('TermsConditionsController', ['$scope', '$http', '$rootScope', '$location', '$sce', '$cookies', function ($scope, $http, $rootScope, $location, $sce, $cookies) {
+            $scope.loader = true;
+            $scope.Disclaimer = [];
+            $http.get('/api/ExtraPageApi/GetTermsConditions').success(function (data) {
+                $scope.Disclaimer = data;
+                $scope.loader = false;
+            });
+        }]);
+
+    </script>
+}
+
+@*<div id="content" class="site-content" tabindex="-1" ng-controller="SchoolFaqsController">
+            <div class="container">
+                <div class="se-pre-con" ng-show="loader">
+
+                </div>
+
+
+                <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Leasing")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>School FAQs</nav>
+                <div class="site-content-inner">
+                    <main id="content" role="main">
+                        <div class="container">
+
+                            <div class="mb-6 text-center" style="color: black; ">
+                                <h1>School FAQs</h1>
+                            </div>
+                            <div ng-cloak id="basicsAccordion" class="mb-6 faqtab">
+                                <div ng-repeat="d in faqs | orderBy:d.display_order:true" class="card mb-3 border-top-0 border-left-0 border-right-0 border-color-1 rounded-0">
+                                    <div class="card-header card-collapse bg-transparent-on-hover border-0" id="basicsHeadingOne{{$index}}">
+                                        <h5 class="mb-0">
+                                            <button type="button" class="px-0 btn btn-link btn-block d-flex justify-content-between card-btn py-3 font-size-20 border-0 {{$index==0?'':'collapesed'}}" data-toggle="collapse" data-target="#basicsCollapseOner{{$index}}" aria-expanded="{{$index==0?'true':'false'}}" aria-controls="basicsCollapseOner">
+                                                {{d.faq_name}}
+
+                                                <span class="card-btn-arrow">
+                                                    <i class="fas fa-chevron-down text-gray-90 font-size-18"></i>
+                                                </span>
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="basicsCollapseOner{{$index}}" class="collapse" ng-class="$index==0?'show in':''" aria-labelledby="basicsHeadingOne{{$index}}" data-parent="#basicsAccordion">
+                                        <div class="card-body pl-0 pb-8">
+                                            <p class="mb-0" ng-bind-html="d.faq_description"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    @section scripts{
+        <script type="text/javascript">
+            app.controller('ProductController', ['$scope', '$http', '$rootScope', '$location', '$window', '$cookies', 'CommonLeaseTerm',
+                function ($scope, $http, $rootScope, $location, $window, $cookies, CommonLeaseTerm) {
+
+                }]);
+                        /*app.controller('SchoolFaqsController', ['$scope', '$http', '$rootScope', '$location', '$window', '$cookies', 'CommonLeaseTerm',
+    function ($scope, $http, $rootScope, $location, $window, $cookies, CommonLeaseTerm) {
+    //app.controller('SchoolFaqsController', ['$scope', '$http', '$rootScope', '$location', '$sce', '$cookies', function ($scope, $http, $rootScope, $location, $sce, $cookies) {
+    $scope.loader = true;
+    $scope.faqs = [];
+    $http.get('/api/ExtraPageApi/GetSchoolFaqs').success(function (data) {
+    $scope.faqs = data;
+    $scope.loader = false;
+    });
+    }]);
+    */
+        </script>
+    }*@

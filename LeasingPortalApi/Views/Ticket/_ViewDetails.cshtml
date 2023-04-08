@@ -1,0 +1,195 @@
+﻿
+@model LeasingPortalApi.Models.TicketViewModel
+<style>
+    .section-head {
+        background-color: #3c8dbc;
+        color: #ffffff;
+        padding: 3px 15px;
+        margin: 10px 0 0 0;
+    }
+
+    .badge.mainhead {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #222d32;
+    }
+
+    label {
+        display: inline-block;
+        max-width: 100%;
+        margin: 5px 0;
+        font-weight: 700;
+    }
+
+    .badge.red {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #ff0000;
+    }
+
+    .badge.blue {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #3c8dbc;
+    }
+
+    .badge.green {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #1aa531;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs pull-right">
+                <li class="pull-left header"><i class="fa fa-th"></i>View Ticket</li>
+            </ul>
+            <div class="box">
+                <form role="form" id="eformid">
+                    <div class="box-body">
+                        @*Row1*@
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if (Model.Priority == "Normal")
+                                {
+                                    <label class="badge green sp-bg">
+                                        Priority: Normal
+                                    </label>
+                                }
+                                @if (Model.Priority == "Medium")
+                                {
+                            <label class="badge blue sp-bg">
+                                Priority: Medium
+                            </label>
+                                }
+                                @if (Model.Priority == "High")
+                                {
+                            <label class="badge red sp-bg">
+                                Priority: High
+                            </label>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="exampleInputEmail1">Full Name<span class="text-red">*</span></label>
+                                <input type="text" required class="form-control" value="@Model.FullName" disabled>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="text" class="form-control" value="@Model.ReplyEmail" disabled>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="exampleInputEmail1">Mobile<span class="text-red">*</span></label>
+                                <input type="text" class="form-control" value="@Model.Mobile" disabled>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="exampleInputEmail1">Department</label>
+                                <input type="text" class="form-control" value="@Model.Department" disabled>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="exampleInputEmail1">Created Date</label>
+                                <input type="email" class="form-control" value="@(Model.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString("dd/MM/yyyy") : "-")" disabled>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="exampleInputEmail1">Attachment</label>
+                                @if (Model.Attachment != null && Model.Attachment != "")
+                                {
+                                    <a href="~/Content/Upload/TicketAttachment/@Model.Attachment" class="btn btn-primary btn-block" target="_blank">View Attachment</a>
+                                }
+                                else
+                                {
+                                    <a href="javascript:" class="btn btn-danger btn-block">Attachment Not Available</a>
+                                }
+                            </div>
+                            <div class="col-md-12">
+                                <label for="exampleInputEmail1">Subject</label>
+                                <input type="text" class="form-control" value="@Model.Subject" disabled>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="exampleInputEmail1">Detail</label>
+                                <textarea rows="5" class="form-control" disabled>@Model.Detail</textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-20">
+                            <div class="col-md-6">
+                                <h4><strong>History</strong></h4>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-danger pull-right" type="button" onclick="ReplySingleTicket('openticket')">Add to Reply</button>
+                            </div>
+                            <div class="col-md-12">
+                                <style>
+                                    .cstbox {
+                                        padding: 10px;
+                                        border: 1px solid #3c8dbc;
+                                        margin: 10px 0;
+                                        border-radius: 5px;
+                                        cursor:pointer;
+                                        user-select:none;
+                                        
+                                    }
+
+                                    .mb-5 {
+                                        margin-bottom: 5px;
+                                    }
+                                </style>
+                                @{
+                                    var check = LeasingPortalApi.Models.TicketDao.GetTicketReply(Model.Id);
+                                    if (check.Count > 0)
+                                    {
+                                        foreach (var a in check)
+                                        {
+                                                                <div class="cstbox">
+                                                                                                    <div style="display:table-cell; vertical-align:middle;">
+                                                                                                        <input type="checkbox" />
+
+                                                                                                    </div>
+                                                                    <div style="padding-left:20px; display:table-cell;">
+                                                                        <p class="mb-5"><strong>@a.UserName (Reply On: @(a.CreatedDate.HasValue ? a.CreatedDate.Value.ToString("dd/MM/yyyy hh:mm tt") : "Data Not Available"))</strong></p>
+                                                                        <p class="mb-0">@a.Detail</p>
+                                                                    </div>
+                                                                </div>
+                                                                    }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                    <h4 class="text-center"><strong class="text-red">Data not available!</strong></h4>
+                                                                    }
+                                                                    }
+</div>
+                        </div>
+                    </div>
+                    @*button*@
+                    <div class="box-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function ReplySingleTicket(tab_name) {
+        ticket_data = [];
+        ref_tbl = tab_name;
+        ticket_data.push({
+            "TicketId": "@Model.Id",
+            "UserId": "@null",
+        });
+        $("#PartialView").modal("hide");
+        $('#reply').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    }
+</script>

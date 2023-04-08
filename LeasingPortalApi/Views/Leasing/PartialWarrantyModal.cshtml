@@ -1,0 +1,81 @@
+﻿@using LeasingPortalApi.Models;
+@{
+    ViewBag.Title = "Unit";
+   
+}
+@model LeasingPortalApi.Models.ProductWarrantyViewModel
+<style>
+    .hidecustom {
+        display: none;
+    }
+</style>
+<form>
+    <div class="form-group m-form__group row">
+        <div class="col-xl-3">
+            <label for="exampleInputinvoiceserialnumber">Warranty Title</label>
+        </div>
+        <div class="col-xl-9">
+            <input type="text" maxlength="150" readonly class="form-control m-input--air" id="pmwarrantytitle" name="pmwarrantytitle" placeholder="Warranty Title" required value="@Model.WarrantyTitle">
+        </div>
+
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-xl-3">
+            <label for="exampleInputinvoiceserialnumber">Warranty Code</label>
+        </div>
+        <div class="col-xl-9">
+
+            <input type="text" readonly maxlength="20" class="form-control m-input--air" id="pmwarrantycode" name="warrantycode" placeholder="Warranty Code" required value="@Model.WarrantyCode">
+        </div>
+
+    </div>
+    @{
+        if (Model.ServiceSupport != null && Model.ServiceSupport != "")
+        {
+            <div class="form-group m-form__group row">
+                <div class="col-xl-3">
+                    <label for="exampleInputinvoiceserialnumber">Service and Support</label>
+                </div>
+                <div class="col-xl-9">
+                    <input type="text" readonly maxlength="500" class="form-control m-input--air" id="mservicesupport" name="servicesupport" placeholder="Service & Support" value="@Model.ServiceSupport">
+                </div>
+
+            </div>
+
+        }
+        if (Model.ServiceAvailability != null && Model.ServiceAvailability != "")
+        {
+            <div class="form-group m-form__group row">
+                <div class="col-xl-3">
+                    <label for="exampleInputinvoiceserialnumber">Service Availability</label>
+                </div>
+                <div class="col-xl-9">
+                    <input type="text" readonly maxlength="200" class="form-control m-input--air" id="mserviceavailability" name="serviceavailability" placeholder="Service Availability" value="@Model.ServiceAvailability">
+                </div>
+
+            </div>
+
+        }
+    }
+    <div class="form-group m-form__group row">
+        <div class="col-xl-3">
+            <label for="exampleInputinvoiceserialnumber">Warranty Description</label>
+        </div>
+        <div class="col-xl-9">
+            <p>@Html.Raw(Model.WarrantyDesc)</p>
+
+        </div>
+
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-xl-3">
+            <label for="exampleInputinvoiceserialnumber">Designed For</label>
+        </div>
+        <div class="col-xl-9">
+            <p>@Html.Raw(Model.DesignedFor)</p>
+
+        </div>
+
+    </div>
+
+</form>

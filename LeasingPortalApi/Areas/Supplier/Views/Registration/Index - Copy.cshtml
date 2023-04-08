@@ -1,0 +1,439 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SellerLayout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/js/validation/site-demos.css">
+<style>
+    #customer_login::before {
+     border-right: none;
+        }
+    .customize-form,.thankyou-form{
+        margin: 0 auto;
+    width: 100%;
+    /* background: border-box; */
+    border:1px solid #c9c9c9;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom:20px;
+    padding-right: 20px;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.35);
+-moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.35);
+box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.35);
+    }
+    .woocommerce-form-row
+    {
+        text-align:left;
+    }
+    .customize-form label{
+        margin-bottom: 0.5em;
+    }
+    .customize-form .input-text, input[type=email], input[type=password], input[type=search], input[type=text], input[type=url], textarea{
+        padding: .5em 1.214em;
+    }
+    .form-footer{
+     border-top:2px solid rgba(0,0,0,0.05);
+     padding-top:20px;   
+    }
+    .form-control, .navbar-search .form-control, table.cart .coupon .input-text{
+        border-width:1px;
+        padding: .5em 1.214em;
+    }
+    .form-row{
+        margin-bottom:0.714em;
+    }
+</style>
+
+<style type="text/css">
+    #loader2 {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.75) url(/Content/images/loading2.gif) no-repeat center center;
+        z-index: 10000;
+    }
+</style>
+<link rel="stylesheet" href="~/Content/bootstrap/datepicker.css" />
+<div id="content" class="site-content" tabindex="-1">
+    <div class="container">
+        
+        <div class="modal fade" id="error-modal5" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background:transparent;">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" style="background-color:transparent;border:none;">
+                    <div class="modal-body">
+                        <div class="alert alert-danger">
+                            <strong>Failed!</strong> Invalid username or password
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    <div class="site-content-inner" ng-controller="supplierregistercontroller">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+
+
+                    <article id="post-3854" class="post-3854 page type-page status-publish hentry">
+
+                        <div class="entry-content">
+                            <div class="woocommerce">
+                                <div class="customer-login-form">
+                                    <!--<span class="or-text">or</span><div class="woocommerce-notices-wrapper"></div>-->
+
+                                    <div class="u-columns col2-set" id="customer_login">
+
+                                        
+
+                                        <div class="customize-form">
+
+                                            <h2>Register</h2>
+                                            <div class="woocommerce-notices-wrapper" style="display:none;">
+                                                <ul class="woocommerce-error" role="alert">
+                                                    <li>
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <form id="simpleFelixform" enctype="multipart/form-data" class="woocommerce-form woocommerce-form-register register">
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Company Logo&nbsp;<span class="required">*</span></label>
+                                                        <input type="file" name="LeadFile" class="woocommerce-Input woocommerce-Input--text input-text" id="leadFile" style="padding-top: 5px;padding-bottom: 5px;">
+                                                        
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Company Name&nbsp;<span class="required">*</span></label>
+                                                        <input type="text" required class="woocommerce-Input woocommerce-Input--text input-text" name="morgname" maxlength="100" id="reg_org" autocomplete="organisation" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Trading As(if applicable)</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mtrading" id="reg_trading"  value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide" style="margin-bottom:0px;">
+                                                        <label for="reg_email">Date Established</label>
+                                                        <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
+                                                            <input class="form-control" type="text" readonly  style="padding-top:5px;"/>
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                        </div>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Company Type</label>
+                                                        <select name="org_type" id="org_type" class="form-control border-1">
+                                                            <option value="0">Select Company Type</option>
+                                                            <option value="1">LTD</option>
+                                                            <option value="2">LLP</option>
+                                                            <option value="3">PLC</option>
+                                                            <option value="4">Partnership</option>
+                                                            <option value="5">Sole Trader</option>
+                                                        </select>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Registration No.</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mregno" id="reg_regno" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Currently Using Lease?</label>
+                                                        <select name="org_lease" id="org_lease" class="form-control">
+                                                            <option value="0">Select Answer</option>
+                                                            <option value="1">Yes</option>
+                                                            <option value="2">No</option>
+                                                            
+                                                        </select>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Target Market Places</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mtplaces" id="reg_mtplaces" maxlength="150" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Source of enquiry</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mtplaces" id="reg_enquiry" maxlength="150" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <hr/>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Your Name&nbsp;<span class="required">*</span></label>
+                                                        <input type="text" required class="woocommerce-Input woocommerce-Input--text input-text" name="mname" id="reg_name" autocomplete="name" value="">
+                                                    </p>
+                                                </div>
+                                                
+                                                <div class="col-md-4">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Email address(use as username)&nbsp;<span class="required">*</span></label>
+                                                        <input type="email" required class="woocommerce-Input woocommerce-Input--text input-text" name="museridemail" id="reg_email" autocomplete="email" value="">
+
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Password&nbsp;<span class="required">*</span></label>
+                                                        <input type="password" required class="woocommerce-Input woocommerce-Input--text input-text" name="mpwd" id="mpwd" autocomplete="name" value="">
+
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <hr />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Street 1&nbsp;<span class="required">*</span></label>
+                                                        <input type="text" required class="woocommerce-Input woocommerce-Input--text input-text" name="maddress1" id="reg_address1" autocomplete="off" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Street 2</label>
+                                                        <input type="text"  class="woocommerce-Input woocommerce-Input--text input-text" name="maddress2" id="reg_address2" autocomplete="off" value="">
+                                                    </p>
+                                                </div>
+                                                
+                                                <div class="col-md-4">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">City/Town&nbsp;<span class="required">*</span></label>
+                                                        <input type="text" required class="woocommerce-Input woocommerce-Input--text input-text" name="mcity" id="reg_city" autocomplete="off" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Postcode&nbsp;<span class="required">*</span></label>
+                                                        <input type="text" required class="woocommerce-Input woocommerce-Input--text input-text" name="mpostcode" id="reg_postcode" autocomplete="off" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Country&nbsp;<span class="required">*</span></label>
+                                                        <input type="text" required class="woocommerce-Input woocommerce-Input--text input-text" name="mcountry" id="reg_country" autocomplete="off" value="">
+                                                    </p>
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Phone Number&nbsp;<span class="required">*</span></label>
+                                                        <input type="text" required class="woocommerce-Input woocommerce-Input--text input-text" name="mphone" id="reg_phone" autocomplete="name" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Website</label>
+                                                        <input type="text"  class="woocommerce-Input woocommerce-Input--text input-text" name="mwebsite" id="reg_website" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <hr />
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide" style="padding:10px;margin-bottom:0px;">
+                                                        <label class="form-label" style="width:100%">
+                                                            More Contacts
+                                                            <button type="button" ng-click="addRow()" class="btn btn-link pull-right" style="padding:0px 5px!important;background:transparent; float:right;">Add More</button>
+                                                        </label>
+                                                        <div class="col-md-12 no-margin p-0" >
+                                                            <hr />
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                    <div ng-repeat="input in MoreContacts| limitTo:5 track by $index">
+                                                        <div class="w-100"></div>
+                                                        <div class="box-shadow-1 woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                            <div class="col-md-6">
+                                                                <!-- Input -->
+                                                                <div class="js-form-message mb-2">
+                                                                    <label class="form-label">
+                                                                        Name
+                                                                    </label>
+                                                                    <input type="text" maxlength="100" class="form-control" ng-model="input.susername" name="CName[]" placeholder="Name" />
+
+                                                                </div>
+                                                                <!-- End Input -->
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <!-- Input -->
+                                                                <div class="js-form-message mb-2">
+                                                                    <label class="form-label">
+                                                                        Position
+                                                                    </label>
+                                                                    <input type="text" maxlength="100" class="form-control" ng-model="input.sposition" name="CPosition[]" placeholder="Position">
+
+                                                                </div>
+                                                                <!-- End Input -->
+                                                            </div>
+                                                            <div class="w-100"></div>
+                                                            <div class="col-md-6">
+                                                                <!-- Input -->
+                                                                <div class="js-form-message mb-2">
+                                                                    <label class="form-label">
+                                                                        Phone
+
+                                                                    </label>
+                                                                    <input type="text" maxlength="20" class="form-control" ng-model="input.sphone" name="CPhone[]" placeholder="Phone">
+
+                                                                </div>
+                                                                <!-- End Input -->
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <!-- Input -->
+                                                                <div class="js-form-message mb-2">
+                                                                    <label class="form-label">
+                                                                        Email Address
+
+                                                                    </label>
+                                                                    <input type="text" maxlength="150" class="form-control" ng-model="input.semailaddress" name="CEmail1[]" placeholder="Email address">
+
+                                                                </div>
+                                                                <!-- End Input -->
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <button type="button" ng-click="deleteRow($index)" class="btn btn-link pull-right" style="padding:0px 5px!important;">Delete Data</button>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                <hr />
+                                                            </div>
+                                                            <div class="w-100"></div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <hr />
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Type Of Equipment sold</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mequipment" id="reg_equipment" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Brands of Equipment</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mebrand" id="reg_ebrand" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Length of warranty provided</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mwarranty" id="reg_warranty" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Warranty Provided By</label>
+                                                        <select name="org_wprovider" id="org_wprovider" class="form-control">
+                                                            <option value="Manufacturer">Manufacturer</option>
+                                                            <option value="Supplier">Supplier</option>
+                                                            <option value="Other">Other</option>
+
+
+                                                        </select>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <hr />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Monthly Education Sales</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mequipment" id="reg_msales" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Monthly Lease Business</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mebrand" id="reg_mlease" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Education</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mwarranty" id="reg_education" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Commercial</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mwarranty" id="reg_commercial" value="">
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                        <label for="reg_email">Public Sector</label>
+                                                        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="mwarranty" id="reg_publicsector" value="">
+                                                    </p>
+                                                </div>
+
+
+                                                <!--<div class="woocommerce-privacy-policy-text">
+                <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our.</p>
+            </div>-->
+                                        
+                                            <p class="woocommerce-FormRow form-row">
+                                                <input type="hidden" id="woocommerce-register-nonce" name="woocommerce-register-nonce" value="3c56195d4d">
+                                                <input type="hidden" name="_wp_http_referer" value="/electro-wide/my-account/">
+                                                <button type="submit" class="woocommerce-Button button" name="register" value="Register">Register</button>
+                                            </p>
+                                        
+                                            </form>
+                                            <div class="form-footer">
+                                                Already have account? <a href="/LeaseAdmin/Home/Suppliers"> Sign in</a>
+                                            </div>
+                                        </div>
+                                        <div class="thankyou-form" style="display:none;">
+                                            <h2>Thank you for regestring with us.<br/>We will get back you soon!</h2>
+                                            <div class="form-footer" style="border:none;">
+                                                Continue <a href="/Leasing">Shopping</a>!
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div><!-- /.customer-login-form -->
+                            </div>
+                        </div><!-- .entry-content -->
+
+                    </article><!-- #post-## -->
+
+                </main><!-- #main -->
+            </div><!-- #primary -->
+
+        </div>
+    </div><!-- .col-full -->
+</div>
+<div id="loader2"></div>
+@section scripts{
+<script src="~/Content/js/validation/additional-methods.min.js"></script>
+<script src="~/Content/js/validation/jquery.validate.min.js"></script>
+<script src="~/Content/bootstrap/bootstrap-datepicker.js"></script>
+<script src="~/Content/js/customjs/login.js"></script>
+    <script>
+        jQuery(function () {
+            
+        });
+    </script>
+    
+}

@@ -1,0 +1,1018 @@
+﻿
+@{
+    ViewBag.Title = "ViewProduct";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    var product = ViewBag.Product;
+    var update = ViewBag.ProductUpdate;
+}
+<style>
+    .term-add-to-cart {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+        .term-add-to-cart .form-control {
+            font-size: 0.875em;
+            border: 1px solid #a7a7a7;
+            border-radius: 3px;
+        }
+
+    div.cart .product-thumbnail img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        max-width: 100px;
+        margin: auto;
+        height: 92px;
+        width: auto;
+        border: 1px solid #ddd;
+        padding: 4px;
+    }
+
+    table.cart thead th {
+        text-align: center;
+    }
+
+    .customisecart .cart {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+        .customisecart .cart aside {
+            padding-left: 10px;
+            padding-right: 10px;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+        }
+
+    .customisecart .cart {
+        margin-bottom: 5px;
+    }
+
+        .customisecart .cart .product-remove a {
+            color: #a7a7a7;
+            font-size: 1.5em;
+        }
+
+        .customisecart .cart .btn {
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+    .pricing {
+        width: 100%;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .pricingsub div {
+        float: left;
+        display: inline;
+        width: 50%;
+    }
+
+    .pricingsub .qty {
+        border-radius: 3px;
+    }
+    .table td, .table th{
+        color:#fff;
+        border-top:none;
+    }
+    .vp table td{
+        color:#333;
+        
+    }
+    .compare .table td, .compare .table th{
+        color:#333;
+        border-top:none;
+    }
+    div.comparediv > :first-child {
+        border:1px solid #ddd;
+    }
+</style>
+<div class="se-pre-con" ng-show="loader">
+
+</div>
+<div id="content" class="site-content" tabindex="-1" ng-controller="ShoppingCart1Controller">
+    <div class="container">
+        <div id="confirmation-dialog">
+            <div class="modal fade confirmation-dialog" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{confirmationDialogConfig.title}}</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="span5" ng-bind-html="confirmationDialogConfig.message"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-repeat="button in confirmationDialogConfig.buttons" ng-click="executeDialogAction(button.action,button.item,button.qty,button.event)" class="btn btn-primary">{{button.label}}</button>
+                            <button type="button" ng-repeat="button in confirmationDialogConfig.buttons2" ng-click="executeDialogAction(button.action,button.item,button.qty,button.event)" class="btn btn-warning">{{button.label}}</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav style="display:none;" class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Leasing")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Cart</nav><div class="site-content-inner">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main" ng-if="!loader">
+
+
+                    <article id="post-3134" class="post-3134 page type-page status-publish hentry">
+
+                       
+                        <div class="entry-content">
+                            <div class="woocommerce" ng-show="shoppingCart.length>0">
+                                <div class="woocommerce-notices-wrapper"></div>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-7 mb-lg-0" style="padding-left:0px;padding-right:0px;">
+                                        <div class="alert alert-success">
+                                            <strong>Success!</strong> Product Added to the Your Basket.
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row" style="border:2px solid #ddd">
+                                    <div class="col-lg-7 order-lg-1 mb-7 mb-lg-0" style="border-right:1px solid #082044;background:#fff;color:#333;">
+                                        <div class="">
+                                            <div class="rounded-lg">
+                                                <!-- Order Summary -->
+                                                <div class="p-3 vp checkout-table" style="padding-left:0px!important;padding-right:0px!important;">
+                                                    <!-- Product Content -->
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr class="cart_item" ng-repeat="item in shoppingCart | filter:myFilter| orderBy:item.Id:true | limitTo:1 ">
+                                                                <td><img ng-src="/LeaseAdmin/Content/images/product/{{item.Product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:auto;height:100px;"></td>
+                                                                <td>{{item.Product.mprodname}}<br /><span style="font-size:12px;">Supplier: {{item.Product.suppliername}}</span></td>
+                                                                <td><span class="woocommerce-Price-amount amount">{{ getTerms(item.Product.mtermf,item.Product.mtermp) }}</span></td>
+                                                                <td style="white-space:nowrap;"><span class="price-color-bold"><span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice | number:2}}</span> <span class="pm"><span class="pmVAT">+VAT </span><span class="pmper">{{ getNewTerms(item.Product.mtermf,item.Product.mtermp) }}</span></span><br/>
+                                                                    
+                                                                    <span class="woocommerce-Price-currencySymbol" style="font-size:14px;">Qty {{item.Quantity}}</span>
+                                                                </td>
+                                                            </tr>
+                                                           
+                                                        </tbody>
+                                                        
+                                                    </table>
+                                                    <!-- End Product Content -->
+                                                   
+                                                </div>
+                                                <!-- End Order Summary -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 order-lg-1 bg-gray-1">
+                                        <div class="pl-lg-3 ">
+                                            <div class="bg-gray-1 rounded-lg">
+                                                <div class="col-lg-6 mt-6 mb-4 p-0">
+                                                    <a href="/Leasing/ViewCart"><h6 style="color:#333">Your Basket ({{shoppingCart.totalItems}} items)</h6></a>
+                                                </div>
+                                                <div class="col-lg-6 mt-2">
+                                                    <div class="col-lg-12 mb-4 p-0">
+                                                        <a href="/Leasing/ViewCart" class="btn btn-primary" style="width:100%;">View Your Basket</a>
+                                                    </div>
+                                                    <div class="col-lg-12 p-0">
+                                                        <a class="btn btn-secondary wc-backward" href="@Url.Action("Index","Home")" style="width:100%;">
+                                                            Continue Shopping <i class="fa fa-arrow-right"></i>
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <hr />
+                                        
+                                    </div>
+                                </div>
+                                <div class="row compare box-shadow-1" ng-show="GetCompareProductDatas.length>0">
+                                    <div class="col-lg-12">
+                                        <h5 class="section-title" style="color:#333;border-bottom:1px solid #ddd;margin-top:10px;">Items chosen for your reference quotation only</h5>   
+                                    </div>
+                                    <div class="col-lg-6 comparediv" ng-repeat="data in GetCompareProductDatas">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr class="cart_item">
+                                                    <td><img ng-src="/LeaseAdmin/Content/images/product/{{data.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:auto;height:50px;"></td>
+                                                    <td>{{data.mprodname}}<br/><span style="font-size:12px;">Supplier: {{data.msuppliername}}</span></td>
+                                                    <td><span class="woocommerce-Price-amount amount" style="font-size:14px;">{{ getTerms(data.mtermf,data.mtermp) }}</span></td>
+                                                    <td style="white-space:nowrap;font-size:14px;" >
+                                                        <span class="woocommerce-Price-currencySymbol" >£</span>{{data.mprice | number:2}}<br />
+                                                        <span class="pm"><span class="pmVAT">+VAT </span><span class="pmper">{{ getNewTerms(data.mtermf,data.mtermp) }}</span></span>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <hr />
+
+                                    </div>
+                                </div>
+                                <div  class="row related products border box-shadow-1" ng-show="islaptop">
+                                    <div class="col-lg-12">
+                                        <h5 class="section-title" style="color:#333;border-bottom:1px solid #ddd;margin-top:10px;">Frequently Bought Together</h5>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <ul data-view="grid" data-toggle="regular-products" class="products columns-5 columns__wide--5">
+
+                                            <li ng-cloak class="post-2706 product type-product status-publish has-post-thumbnail product_cat-tablets first instock shipping-taxable purchasable product-type-simple">
+                                                <div class="product-outer product-item__outer">
+                                                    <div class="product-inner product-item__inner">
+                                                        <div class="product-loop-header product-item__header">
+                                                            <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                                <h2 ng-cloak class="woocommerce-loop-product__title">Wireless Audio System Multiroom 360 degree Full base audio</h2>
+                                                                <div class="product-thumbnail product-item__thumbnail">
+                                                                    <img width="300" height="300" ng-src="/LeaseAdmin/Content/images/dummy/img1.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="height:150px;width:auto;">
+                                                                </div>
+                                                                <div class="product-rating">
+                                                                    <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                                                                    (3)
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-loop-body product-item__body">
+                                                            <div class="col-xs-12">
+                                                                <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                                    <h2 class="woocommerce-loop-product__title">Wireless Audio System Multiroom 360 degree Full base audio</h2>
+
+                                                                    <div class="product-sku"></div>
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="product-loop-footer product-item__footer">
+                                                            <div class="term-add-to-cart" style="display:block;width:100%;">
+                                                                <div class="col-xs-12">
+                                                                    <!--<label>Unit Rental <span class="excVAT">(exc. VAT)</span></label>-->
+
+                                                                </div>
+
+                                                                <div class="col-xs-6 term-freq">
+                                                                    <label>Frequency</label>
+                                                                    <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                                    <select ng-init="termdata = sizes[0]" ng-options="size as size.name for size in sizes track by size.code" class="form-control termselect termf{{product.mprodvarid}}" ng-model="termdata" ng-change1="updateterm(termdata,product,termperiod)"></select>
+
+                                                                </div>
+                                                                <div class="col-xs-6 term-period">
+                                                                    <label>Period</label>
+                                                                    <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                                    <select ng-init="termperiod = periods[0]" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect termp{{product.mprodvarid}}" ng-model="termperiod" ng-change1="updateterm(termdata,product,termperiod)"></select>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="price-add-to-cart">
+                                                                <span class="price">
+                                                                    <span class="electro-price">
+                                                                        
+                                                                        <span class="price-color-bold"><span class="woocommerce-Price-currencySymbol">£</span>1.2</span> <span class="pm">per month</span>
+                                                                    </span>
+                                                                </span>
+                                                                <div class="add-to-cart-wrap" data-toggle="tooltip" data-title=" Add to Basket" data-original-title="" title="">
+                                                                    <a href="javascript:;" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="2706" data-product_sku="5487FB8/35" aria-label="Add â€œTablet Air 3 WiFi 64GB  Goldâ€ to your cart" rel="nofollow" ng-click1="addToCart($event,product,1)"> Add to Basket</a>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li ng-cloak class="post-2706 product type-product status-publish has-post-thumbnail product_cat-tablets first instock shipping-taxable purchasable product-type-simple">
+                                                <div class="product-outer product-item__outer">
+                                                    <div class="product-inner product-item__inner">
+                                                        <div class="product-loop-header product-item__header">
+                                                            <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                                <h2 ng-cloak class="woocommerce-loop-product__title">Purple Solo 2 Wireless</h2>
+                                                                <div class="product-thumbnail product-item__thumbnail">
+                                                                    <img width="300" height="300" ng-src="/LeaseAdmin/Content/images/dummy/img3.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="height:150px;width:auto;">
+                                                                </div>
+                                                                <div class="product-rating">
+                                                                    <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                                                                    (3)
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-loop-body product-item__body">
+                                                            <div class="col-xs-12">
+                                                                <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                                    <h2 class="woocommerce-loop-product__title">>Purple Solo 2 Wireless</h2>
+
+                                                                    <div class="product-sku"></div>
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="product-loop-footer product-item__footer">
+                                                            <div class="term-add-to-cart" style="display:block;width:100%;">
+                                                                <div class="col-xs-12">
+                                                                    <!--<label>Unit Rental <span class="excVAT">(exc. VAT)</span></label>-->
+
+                                                                </div>
+
+                                                                <div class="col-xs-6 term-freq">
+                                                                    <label>Frequency</label>
+                                                                    <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                                    <select ng-init="termdata = sizes[0]" ng-options="size as size.name for size in sizes track by size.code" class="form-control termselect termf{{product.mprodvarid}}" ng-model="termdata" ng-change1="updateterm(termdata,product,termperiod)"></select>
+
+                                                                </div>
+                                                                <div class="col-xs-6 term-period">
+                                                                    <label>Period</label>
+                                                                    <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                                    <select ng-init="termperiod = periods[0]" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect termp{{product.mprodvarid}}" ng-model="termperiod" ng-change1="updateterm(termdata,product,termperiod)"></select>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="price-add-to-cart">
+                                                                <span class="price">
+                                                                    <span class="electro-price">
+                                                                        <span class="price-color-bold"><span class="woocommerce-Price-currencySymbol">£</span>1.5</span> <span class="pm">per month</span>
+                                                                        
+                                                                    </span>
+                                                                </span>
+                                                                <div class="add-to-cart-wrap" data-toggle="tooltip" data-title=" Add to Basket" data-original-title="" title="">
+                                                                    <a href="javascript:;" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="2706" data-product_sku="5487FB8/35" aria-label="Add â€œTablet Air 3 WiFi 64GB  Goldâ€ to your cart" rel="nofollow" ng-click1="addToCart($event,product,1)"> Add to Basket</a>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li ng-cloak class="post-2706 product type-product status-publish has-post-thumbnail product_cat-tablets first instock shipping-taxable purchasable product-type-simple">
+                                                <div class="product-outer product-item__outer">
+                                                    <div class="product-inner product-item__inner">
+                                                        <div class="product-loop-header product-item__header">
+                                                            <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                                <h2 ng-cloak class="woocommerce-loop-product__title">Laptop Leather Bag Black</h2>
+                                                                <div class="product-thumbnail product-item__thumbnail">
+                                                                    <img width="300" height="300" ng-src="/LeaseAdmin/Content/images/dummy/img4.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="height:150px;width:auto;">
+                                                                </div>
+                                                                <div class="product-rating">
+                                                                    <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                                                                    (3)
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-loop-body product-item__body">
+                                                            <div class="col-xs-12">
+                                                                <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                                    <h2 class="woocommerce-loop-product__title">>Laptop Leather Bag Black</h2>
+
+                                                                    <div class="product-sku"></div>
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="product-loop-footer product-item__footer">
+                                                            <div class="term-add-to-cart" style="display:block;width:100%;">
+                                                                <div class="col-xs-12">
+                                                                    <!--<label>Unit Rental <span class="excVAT">(exc. VAT)</span></label>-->
+
+                                                                </div>
+
+                                                                <div class="col-xs-6 term-freq">
+                                                                    <label>Frequency</label>
+                                                                    <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                                    <select ng-init="termdata = sizes[0]" ng-options="size as size.name for size in sizes track by size.code" class="form-control termselect termf{{product.mprodvarid}}" ng-model="termdata" ng-change1="updateterm(termdata,product,termperiod)"></select>
+
+                                                                </div>
+                                                                <div class="col-xs-6 term-period">
+                                                                    <label>Period</label>
+                                                                    <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                                    <select ng-init="termperiod = periods[0]" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect termp{{product.mprodvarid}}" ng-model="termperiod" ng-change1="updateterm(termdata,product,termperiod)"></select>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="price-add-to-cart">
+                                                                <span class="price">
+                                                                    <span class="electro-price">
+                                                                        <span class="price-color-bold"><span class="woocommerce-Price-currencySymbol">£</span>1.4</span> <span class="pm">per month</span>
+                                                                        
+                                                                    </span>
+                                                                </span>
+                                                                <div class="add-to-cart-wrap" data-toggle="tooltip" data-title=" Add to Basket" data-original-title="" title="">
+                                                                    <a href="javascript:;" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="2706" data-product_sku="5487FB8/35" aria-label="Add â€œTablet Air 3 WiFi 64GB  Goldâ€ to your cart" rel="nofollow" ng-click1="addToCart($event,product,1)"> Add to Basket</a>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li ng-cloak class="post-2706 product type-product status-publish has-post-thumbnail product_cat-tablets first instock shipping-taxable purchasable product-type-simple">
+                                                <div class="product-outer product-item__outer">
+                                                    <div class="product-inner product-item__inner">
+                                                        <div class="product-loop-header product-item__header">
+                                                            <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                                <h2 ng-cloak class="woocommerce-loop-product__title">Extended Warranty for 1 year</h2>
+                                                                <div class="product-thumbnail product-item__thumbnail">
+                                                                    <img width="300" height="300" ng-src="/LeaseAdmin/Content/images/product/leasenoimage.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="height:150px;width:auto;">
+                                                                </div>
+                                                                <div class="product-rating">
+                                                                    <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                                                                    (3)
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-loop-body product-item__body">
+                                                            <div class="col-xs-12">
+                                                                <a href="#" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                                    <h2 class="woocommerce-loop-product__title">>Laptop Leather Bag Black</h2>
+
+                                                                    <div class="product-sku"></div>
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="product-loop-footer product-item__footer">
+                                                            <div class="term-add-to-cart" style="display:block;width:100%;">
+                                                                <div class="col-xs-12">
+                                                                    <!--<label>Unit Rental <span class="excVAT">(exc. VAT)</span></label>-->
+
+                                                                </div>
+
+                                                                <div class="col-xs-6 term-freq">
+                                                                    <label>Frequency</label>
+                                                                    <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                                    <select ng-init="termdata = sizes[0]" ng-options="size as size.name for size in sizes track by size.code" class="form-control termselect termf{{product.mprodvarid}}" ng-model="termdata" ng-change1="updateterm(termdata,product,termperiod)"></select>
+
+                                                                </div>
+                                                                <div class="col-xs-6 term-period">
+                                                                    <label>Period</label>
+                                                                    <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                                    <select ng-init="termperiod = periods[0]" ng-options="period as period.name for period in periods track by period.code" class="form-control termselect termp{{product.mprodvarid}}" ng-model="termperiod" ng-change1="updateterm(termdata,product,termperiod)"></select>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="price-add-to-cart">
+                                                                <span class="price">
+                                                                    <span class="electro-price">
+                                                                        <span class="price-color-bold"><span class="woocommerce-Price-currencySymbol">£</span>0.8</span> <span class="pm">per month</span>
+                                                                        
+                                                                    </span>
+                                                                </span>
+                                                                <div class="add-to-cart-wrap" data-toggle="tooltip" data-title=" Add to Basket" data-original-title="" title="">
+                                                                    <a href="javascript:;" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="2706" data-product_sku="5487FB8/35" aria-label="Add â€œTablet Air 3 WiFi 64GB  Goldâ€ to your cart" rel="nofollow" ng-click1="addToCart($event,product,1)"> Add to Basket</a>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                                <section class="related products border" ng-show="islaptop" style="display:none;">
+                                    <h2 style="color:#333;border-bottom:1px solid #ddd;padding-left:15px;">Frequently Bought Together</h2>
+                                    <div class="row no-gutters fqproduct">
+                                        <div class="col mb-6 mb-md-0">
+                                            <ul class="row list-unstyled products-group no-gutters border-bottom border-md-bottom-0">
+                                                
+                                                
+                                                <li class="col-4 col-md-4 col-xl-2gdot5 product-item remove-divider-sm-down remove-divider">
+                                                    <div class="product-item__outer h-100">
+                                                        <div class="remove-prodcut-hover add-accessories product-item__inner px-xl-4 p-3">
+                                                            <div class="product-item__body pb-xl-2">
+                                                                <h5 class="mb-1 product-item__title d-none d-md-block"><a href="#" class="text-black">Purple Solo 2 Wireless</a></h5>
+                                                                <div class="mb-2">
+                                                                    <a href="#" class="d-block text-center"><img class="img-fluid" src="/LeaseAdmin/Content/images/dummy/img3.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="flex-center-between mb-1 d-none d-md-block">
+                                                                    <div class="prodcut-price">
+                                                                        <div class="text-gray-100">£5.6</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <div class="mr-xl-15">
+                                                <div class="mb-3">
+                                                    <div class="text-red font-size-26 text-lh-1dot2">£7.71</div>
+                                                    <div class="text-gray-6">for 2 item(s)</div>
+                                                </div>
+                                                <a href="#" class="btn btn-sm btn-block btn-primary-dark btn-wide transition-3d-hover">Add all to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                
+
+                            </div>
+
+
+                            
+                        </div><!-- .entry-content -->
+
+                    </article><!-- #post-## -->
+
+                </main><!-- #main -->
+            </div><!-- #primary -->
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        app.controller('ShoppingCart1Controller', ['$scope', '$http', '$rootScope', '$location', '$sce','$cookies', function ($scope, $http, $rootScope, $location, $sce,$cookies) {
+            $scope.isCheckoutPage = false;
+            $scope.loader = true;
+            $scope.cartdisable = true;
+            $scope.sameval = 1;
+            $scope.termfreq = [];
+            $scope.termperiod = [];
+            $scope.Session_Id = "";
+            $scope.GetProduct=@product;
+            $scope.GetUpdate="@update";
+            $scope.islaptop=false;
+            $scope.GetCompareProductDatas = [];
+            $rootScope.shoppingCart = $rootScope.shoppingCart || [];
+            $rootScope.shoppingCart.totalPrice = 0;
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 365);
+            $scope.sizes = [ {code: 1, name: 'Monthly'}, {code: 3, name: 'Quarterly'},{code:4,name:'Termly'},{code:6,name:'Bi-annually'},{code:12,name:'Annually'}]
+            $scope.periods = [ {code: 60, name: '5 years'}, {code: 48, name: '4 years'},{code:36,name:'3 years'},{code:24,name:'2 years'},{code:12,name:'1 years'}]
+            $scope.cartbutton = function () {
+                $scope.cartdisable = false;
+            }
+            if (!angular.isUndefined($cookies.get('leasebasket'))) {
+                var id = $cookies.getObject('leasebasket');
+                $scope.Session_Id = id;
+                $http.get('/api/CookieApi/GetCookieCart?id=' + id).success(function (data) {
+                    $rootScope.shoppingCart = data;
+                    console.log($rootScope.shoppingCart);
+
+                    $rootScope.shoppingCart.totalPrice = 0;
+                    $rootScope.shoppingCart.totalItems = 0;
+                    $scope.getTotalPrice();
+                    $scope.getTotalNoOfItems();
+                    $http.get('/api/ProductApi/GetCategory?id='+$scope.GetProduct).success(function(data){
+                        if(data=='Laptop'){
+                            $scope.islaptop=true;
+                        }
+                        else{
+                            $scope.islaptop=false;
+                        }
+                    });
+                    if(data.length>0)
+                        data.forEach(function(obj){
+                            if(obj.Product.mprodvarid === $scope.GetProduct){
+                                
+                                $http.post('/api/ProductApi/GetCompareProduct', obj.Product).success(function(data){
+                                    $scope.GetCompareProductDatas=data;
+                                    //alert($scope.GetUpdate);
+                                    if($scope.GetUpdate=="no" ){
+                                        if(data.length>0){
+                                            var newdata={"savecartid":obj.Id,"product":data};
+                                            $http.post('/api/CookieApi/SaveSubCookieCart', newdata).success(function(data){
+                                                if(data[0].success){
+                                                    alert(success);
+                                                }
+                                            });
+                                        }
+                                    }
+                                    console.log(data);
+                                });
+                
+                            
+                            }
+                        });
+                    
+                    $scope.loader = false;
+               
+                });
+                //$scope.loader = false;
+            }
+            else {
+                $scope.loader = false;
+            }
+            if (!angular.isUndefined($cookies.get('same'))) {
+                $scope.sameval = $cookies.getObject('same');
+            }
+        
+        
+            $scope.myFilter = function(item){
+                if(item.Product.mprodvarid === $scope.GetProduct){
+                    return item;
+                }
+            };
+            $scope.getNewTerms = function (mtermf, mtermp) {
+                var msg = "";
+                var p = "";
+
+                switch (mtermf) {
+                    case 1:
+                        msg = p + " per month";
+                        break;
+                    case 3:
+                        msg = p + " per quarter";
+                        break;
+                    case 4:
+                        msg = p + " per term";
+                        break;
+                    case 6:
+                        msg = p + " per bi-annual";
+                        break;
+                    case 12:
+                        msg = p + " per annum";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+            $scope.getTerms = function (mtermf,mtermp) {
+                var msg = "";
+                var p = "";
+                if (mtermp != null) {
+                    p = mtermp / 12;
+                }
+                console.log(mtermf, mtermp);
+                switch (mtermf) {
+                    case 1:
+                        msg = p+ " years monthly";
+                        break;
+                    case 3:
+                        msg = p+ " years quarterly";
+                        break;
+                    case 4:
+                        msg = p + " years termly";
+                        break;
+                    case 6:
+                        msg = p + " years bi-annually";
+                        break;
+                    case 12:
+                        msg = p + " years annually";
+                        break;
+                    default:
+                        msg = "";
+                        break;
+
+                }
+                //item.mprice=5;
+                return msg;
+            }
+            
+
+            $scope.$watch('shoppingCart', function () {
+                $rootScope.shoppingCart.totalPrice = 0;
+                $rootScope.shoppingCart.totalItems = 0;
+                $scope.getTotalPrice();
+
+                $scope.getTotalNoOfItems();
+
+                console.log('changed');
+            }, true);
+            
+            $scope.getTotalPrice = function () {
+                $rootScope.shoppingCart.forEach(function (itemObj) {
+                    $rootScope.shoppingCart.totalPrice = Number($rootScope.shoppingCart.totalPrice) + Number($scope.getItemPrice(itemObj));
+                });
+            };
+
+            $scope.getTotalNoOfItems = function () {
+                $rootScope.shoppingCart.forEach(function (itemObj) {
+                    $rootScope.shoppingCart.totalItems += $scope.getItemNo(itemObj);
+                });
+            };
+
+            $scope.getItemPrice = function (itemObj) {
+                var itemPrice = 0;
+                console.log("items");
+                itemPrice = (Number(itemObj.Product.mprice) * Number(itemObj.Quantity));
+                return itemPrice;
+            };
+
+            $scope.getItemNo = function (itemObj) {
+                return itemObj.Quantity;
+            };
+
+
+
+
+
+
+
+        }]);
+    app.controller('ShoppingCartController', ['$scope', '$http', '$rootScope', '$location', '$sce','$cookies', function ($scope, $http, $rootScope, $location, $sce,$cookies) {
+        $scope.isCheckoutPage = false;
+        $scope.loader = true;
+        $scope.cartdisable = true;
+        $scope.sameval = 1;
+        $scope.termfreq = [];
+        $scope.termperiod = [];
+        $scope.Session_Id = "";
+        $scope.GetProduct=@product;
+        $scope.GetCompareProductDatas = [];
+        $rootScope.shoppingCart = $rootScope.shoppingCart || [];
+        $rootScope.shoppingCart.totalPrice = 0;
+        var expireDate = new Date();
+        expireDate.setDate(expireDate.getDate() + 365);
+        $scope.sizes = [ {code: 1, name: 'Monthly'}, {code: 3, name: 'Quarterly'},{code:4,name:'Termly'},{code:6,name:'Bi-annually'},{code:12,name:'Annually'}]
+        $scope.periods = [ {code: 60, name: '5 years'}, {code: 48, name: '4 years'},{code:36,name:'3 years'},{code:24,name:'2 years'},{code:12,name:'1 years'}]
+        $scope.cartbutton = function () {
+            $scope.cartdisable = false;
+        }
+        if (!angular.isUndefined($cookies.get('leasebasket'))) {
+            var id = $cookies.getObject('leasebasket');
+            $scope.Session_Id = id;
+            $http.get('/api/CookieApi/GetCookieCart?id=' + id).success(function (data) {
+                $rootScope.shoppingCart = data;
+                console.log($rootScope.shoppingCart);
+
+                $rootScope.shoppingCart.totalPrice = 0;
+                $rootScope.shoppingCart.totalItems = 0;
+                $scope.getTotalPrice();
+                $scope.getTotalNoOfItems();
+                $scope.loader = false;
+               
+            });
+            //$scope.loader = false;
+        }
+        else {
+            $scope.loader = false;
+        }
+        if (!angular.isUndefined($cookies.get('same'))) {
+            $scope.sameval = $cookies.getObject('same');
+        }
+        
+        
+        $scope.myFilter = function(item){
+            if(item.Product.mprodvarid === $scope.GetProduct){
+                return item;
+            }
+        };
+        $scope.updateterm = function (termfreq, item, termperiod,qty,index) {
+            if ($scope.sameval == 3 && ($rootScope.shoppingCart[0].Product.mtermf !== termfreq.code || $rootScope.shoppingCart[0].Product.mtermp !== termperiod.code)) {
+                $scope.termfreq = termfreq;
+                $scope.termperiod = termperiod;
+                $scope.confirmationDialogConfig = {
+                    title: "Warning!!!",
+                    message: "Lease term defined differs from that of previous item put in basket",
+                    buttons: [{
+                        label: "Proceed with this new lease term for this item",
+                        action: "yes",
+                        item: item,
+                        qty: qty,
+                        event: index
+                    }],
+                    buttons2: [{
+                        label: "Set to prev item lease terms (" + $scope.getTerms($rootScope.shoppingCart[0].Product.mtermf, $rootScope.shoppingCart[0].Product.mtermp) + ")",
+                        action: "no",
+                        item: item,
+                        qty: qty,
+                        event: ""
+                    }]
+                };
+                $scope.showDialog(true);
+            } else {
+
+            var freq = termfreq.code;
+            var period = termperiod.code;
+            var oldf = item.mtermf;
+            var oldp = item.mtermp;
+            var mbaseprice = (item.mprice * oldp * 0.9)/ oldf;
+            console.log(mbaseprice);
+            item.mtermf = freq;
+            item.mtermp = period;
+
+            item.mprice = (mbaseprice * freq) / (period * 0.9);
+            $scope.UpdateCart(item, qty,index);
+            console.log(item.mtermp);
+            }
+        }
+        $scope.getTerms = function (mtermf,mtermp) {
+            var msg = "";
+            var p = "";
+            if (mtermp != null) {
+                p = mtermp / 12;
+            }
+            console.log(mtermf, mtermp);
+            switch (mtermf) {
+                case 1:
+                    msg = p+ " years monthly";
+                    break;
+                case 3:
+                    msg = p+ " years quaterly";
+                    break;
+                case 4:
+                    msg = p + " years termly";
+                    break;
+                case 6:
+                    msg = p + " years bi-annually";
+                    break;
+                case 12:
+                    msg = p + " years annually";
+                    break;
+                default:
+                    msg = "";
+                    break;
+
+            }
+            //item.mprice=5;
+            return msg;
+        }
+        /*********************************************/
+        $scope.confirmationDialogConfig = {
+            title: "Warning!!!",
+            message: "Lease Term selected for this product is different with selected previous products,do you want to continue?",
+            buttons: [{
+                label: "Yes",
+                action: "yes"
+            }],
+            buttons2: [{
+                label: "Set to prev item lease terms",
+                action: "no",
+
+            }]
+        };
+        $scope.executeDialogAction = function (action, item,qty ,index) {
+            if (typeof $scope[action] === "function") {
+                $scope[action](item,qty,index);
+            }
+        };
+        $scope.showDialog = function (flag) {
+            jQuery("#confirmation-dialog .modal").modal(flag ? 'show' : 'hide');
+        };
+        $scope.yes = function (item, qty, index) {
+            $scope.sameval = 0;
+
+            $scope.showDialog(false);
+            var freq = $scope.termfreq.code;
+            var period = $scope.termperiod.code;
+            var oldf = item.mtermf;
+            var oldp = item.mtermp;
+            var mbaseprice = (item.mprice * oldp * 0.9) / oldf;
+            console.log("mbase:"+mbaseprice);
+            item.mtermf = freq;
+            item.mtermp = period;
+
+            item.mprice = (mbaseprice * freq) / (period * 0.9);
+            $scope.UpdateCart(item, qty, index);
+            //toastr.success("Product updated in Your Basket", "Success");
+            //jQuery(event).addClass("added");
+        };
+        $scope.no = function (item, qty, index) {
+            console.log(item);
+            var termf = ".termf" + item.mprodvarid;
+            var termp = ".termp" + item.mprodvarid;
+
+            jQuery(termf).val(item.mtermf);
+            jQuery(termp).val(item.mtermp);
+            $scope.showDialog(false);
+        };
+        /*******************************************/
+
+
+           $scope.$watch('shoppingCart', function () {
+               $rootScope.shoppingCart.totalPrice = 0;
+               $rootScope.shoppingCart.totalItems = 0;
+               $scope.getTotalPrice();
+
+               $scope.getTotalNoOfItems();
+
+               console.log('changed');
+           }, true);
+           $scope.UpdateCart = function (item, no,index) {
+               var items = { Product: item, Quantity: no };
+               var lessitem = {
+                   Session_Id: $scope.Session_Id,
+                   mprodid: item.mprodid,
+                   mprodvarid: item.mprodvarid,
+                   mprodname: item.mprodname,
+                   msubpicname: item.msubpicname,
+                   msupplierid: item.msupplierid,
+                   mproducturl: item.mproducturl,
+                   mprice: item.mprice,
+                   mtermf: item.mtermf,
+                   mtermp: item.mtermp,
+                   mqty: no,
+               };
+               var d = [];
+               d.push(lessitem)
+               var datas = lessitem;
+               $http.post("api/CookieApi/UpdateCookieFromCart", datas).success(function (data, status) {
+
+                   if (data.length > 0 && data[0] == "Success") {
+                       $scope.loader = false;
+                           $rootScope.shoppingCart[index].Quantity = no;
+                           $scope.count = "showing " + $rootScope.shoppingCart.length + " results";
+
+                           $cookies.putObject('leasebasket', data[1], { 'expires': expireDate,'path':'/' });
+                       $scope.total += parseFloat(items.Product.mprice);
+                       $cookies.put('same', $scope.sameval, { 'expires': expireDate });
+
+                       $scope.count = "showing " + data.length + " results";
+                       toastr.success("Product added in your basket", "Success");
+                   }
+
+               });
+
+
+
+           };
+           $scope.checkout = function () {
+               $location.path('/checkout');
+               $scope.isCheckoutPage = true;
+           };
+
+           $scope.deleteFromCart = function (index) {
+               var id = $cookies.getObject('leasebasket');
+               $http.get('/api/CookieApi/GetCartDelete?id=' + $rootScope.shoppingCart[index].Id).success(function (data) {
+                   if (data == "delete") {
+                       $rootScope.shoppingCart.splice(index, 1);
+                       if ($rootScope.shoppingCart.length <= 0) {
+                           $cookies.remove("leasebasket", { path: '/' });
+
+                       }
+                       else {
+                           $cookies.putObject('leasebasket', id, { 'expires': expireDate,'path':'/' });
+                       }
+                       toastr.success("Product remove from your basket", "Success");
+                   }
+
+               });
+           };
+
+           $scope.clearShoppingCart = function (index) {
+               /*$http.post('/Product/Empty').success(function (data) {
+                   //console.log(data);
+                   $scope.loader = false;
+                   $scope.count = "showing " + data.length + " results";
+               });*/
+               $rootScope.shoppingCart = [];
+               $cookies.remove("leasebasket", { path: '/' });
+
+           };
+
+           $scope.backToList = function () {
+               $location.path('/list');
+               $scope.isCheckoutPage = false;
+           };
+
+           $scope.getTotalPrice = function () {
+               $rootScope.shoppingCart.forEach(function (itemObj) {
+                   $rootScope.shoppingCart.totalPrice = Number($rootScope.shoppingCart.totalPrice) + Number($scope.getItemPrice(itemObj));
+               });
+           };
+
+           $scope.getTotalNoOfItems = function () {
+               $rootScope.shoppingCart.forEach(function (itemObj) {
+                   $rootScope.shoppingCart.totalItems += $scope.getItemNo(itemObj);
+               });
+           };
+
+           $scope.getItemPrice = function (itemObj) {
+               var itemPrice = 0;
+               console.log("items");
+               itemPrice = (Number(itemObj.Product.mprice) * Number(itemObj.Quantity));
+               return itemPrice;
+           };
+
+           $scope.getItemNo = function (itemObj) {
+               return itemObj.Quantity;
+           };
+
+
+
+
+
+
+
+        }]);
+    </script>
+}

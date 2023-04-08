@@ -1,0 +1,1341 @@
+﻿@using LeasingPortalApi.Models;
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    Page.Title = "SingleProduct";
+    var id = ViewBag.Id;
+    var productname = ViewBag.product;
+    var prodvarid = int.Parse(id);
+    List<ProductSubPicViewModel> gallery = ProductDao.GetProductImages(prodvarid);
+    // var productdetaildata=
+}
+<style>
+  .moreseller table td,.moreseller table th{
+      padding:0px;
+      border-top:0px;
+  }
+ .nav-tab {
+  border-color: #dddddd;
+}
+
+.nav-tab .nav-link {
+  margin-bottom: -1px;
+  border-width: 2px;
+  padding: .5rem .3rem;
+  font-size: 1.125rem;
+  color: #343f49;
+}
+
+.nav-tab .nav-link:hover {
+  color: #343f49;
+}
+
+.nav-tab .nav-link.active {
+  font-weight: 700;
+  color: #343f49;
+  position: relative;
+}
+    .text-warning {
+    color: #03194f !important;
+    }
+
+.nav-classic .nav-link.active{
+    border-bottom-color: transparent;
+}
+.nav-tab .nav-link.active::after {
+  content: ' ';
+  height: 4px;
+  width: 10px;
+  display: block;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  border-radius: 0 0 10px 10px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color:#03194f;
+}
+.nav-tab .nav-link.active::before {
+  content: ' ';
+    border-bottom: 2px solid transparent;
+    display: block;
+    position: absolute;
+    bottom: -1px;
+    width: 93%;
+    z-index: 2;
+    border-color: #03194f;
+}
+.nav-tab-sm .nav-link {
+  font-size: 0.938rem;
+}
+
+@@media (max-width: 991.98px) {
+  .nav-tab-sm::after {
+    content: ' ';
+    border-bottom: 1px solid #dddddd;
+    display: block;
+    position: absolute;
+    bottom: 3px;
+    width: 100%;
+    z-index: -1;
+    right: 0;
+    left: 0;
+  }
+}
+
+.nav-tab-lg.nav .nav-item:not(:first-child) {
+  margin-left: 1.15rem;
+}
+
+.nav-tab-lg.nav .nav-item:not(:last-child) {
+  margin-right: 1.15rem;
+}
+
+.nav-tab-lg.nav .nav-item:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.nav-tab-lg.nav .nav .nav-item:not(:last-child) {
+  margin-right: 1rem;
+}
+
+@@media (max-width: 1199.98px) {
+  .nav-tab-lg::after {
+    content: ' ';
+    border-bottom: 1px solid #dddddd;
+    display: block;
+    position: absolute;
+    bottom: 3px;
+    width: 100%;
+    right: 0;
+    left: 0;
+  }
+}
+
+.nav-tab-shop .nav-link {
+  color: #d6dbe1;
+  padding: 0;
+  font-size: 1.12525rem;
+}
+
+.nav-tab-shop .nav-link.active, .nav-tab-shop .nav-link:hover {
+  color: #575560;
+}
+
+.nav .nav-item:not(:first-child) {
+  margin-left: .4rem;
+}
+
+.nav .nav-item:not(:last-child) {
+  margin-right: .4rem;
+}
+
+.nav-tab-pill .nav-link {
+  color: #7b8186;
+  border: 2px solid transparent;
+  padding: 2px 20px;
+}
+
+.nav-tab-pill .nav-link.active {
+  background-color: transparent;
+  border-color: #ffed28;
+  color: #333e48;
+}
+
+.nav-tab-pill-fill .nav-link.active {
+  background-color: #ffed28;
+  font-weight: 700;
+}
+
+/* Box */
+.nav-box-custom .nav-item {
+  width: 100%;
+}
+
+.nav-box-custom .nav-link {
+  color: #1e2022;
+  position: relative;
+  display: block;
+}
+
+.nav-box-custom .nav-link.active {
+  color: #1e2022;
+  background-color: #ffed28;
+  font-weight: 700;
+}
+
+.nav-box-custom .nav-link.active::before {
+  content: " ";
+  display: block;
+  border-top: 18px solid transparent;
+  border-right: 18px solid #ffed28;
+  border-bottom: 18px solid transparent;
+  position: absolute;
+  top: 0;
+  right: 100%;
+}
+
+.list-divider li:not(:last-child)::after {
+  content: "/";
+  display: inline-block;
+  color: #b9b9b9;
+  margin: 0 .6rem;
+}
+
+.ec-store-directory > ul,
+.ec-store-directory > ul ul {
+  margin: 0 0 0 0.438rem;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.ec-store-directory > ul::before,
+.ec-store-directory > ul ul::before {
+  content: "";
+  display: block;
+  width: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid #dddddd;
+}
+
+.ec-store-directory a {
+  font-weight: 700;
+  color: #333e48;
+}
+
+.ec-store-directory > ul {
+  margin-left: 0;
+}
+
+.ec-store-directory > ul ul a {
+  font-weight: 400;
+}
+
+.ec-store-directory > ul li {
+  margin: 0;
+  padding: 0 1.313rem;
+  line-height: 1.75rem;
+  position: relative;
+}
+
+.ec-store-directory > ul li::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 0;
+  border-top: 1px solid #dddddd;
+  margin-top: -1px;
+  position: absolute;
+  top: 1.25rem;
+  left: 0;
+}
+
+.ec-store-directory > ul > li::before {
+  top: 1.25rem;
+}
+
+.ec-store-directory > ul li:last-child:before {
+  background-color: #fff;
+  height: auto;
+  top: 1.313rem;
+  bottom: 0;
+}
+
+.ec-store-directory > ul ul li:last-child:before {
+  top: 1.25rem;
+}
+
+.ec-store-directory > ul li > a {
+  padding: 0.35rem 0;
+}
+
+.ec-store-directory ul li > a {
+  display: inline-block;
+}
+
+.cart-dropdown {
+  min-width: 20.75rem;
+}
+.borders-radius-17 {
+  border-radius: 1.063rem;
+}
+@@media (min-width: 992px){
+.woocommerce-loop-product__title {
+    height: 3.7em;
+}
+
+    }
+select.form-control{
+    border-width:1px;
+}
+.mylabel{
+        color:#878787;
+    }
+.single-product .electro-wc-product-gallery img, .single-product .woocommerce-product-gallery img{
+                width: auto;
+                max-height: 330px;
+            }
+.single-product .electro-wc-product-gallery .electro-wc-product-gallery__wrapper .electro-wc-product-gallery__image.flex-active-slide img{
+    border-bottom-color:transparent;
+}
+.single-product .electro-wc-product-gallery .electro-wc-product-gallery__wrapper .electro-wc-product-gallery__image.flex-active-slide{
+    border: solid #03194f 1px;
+}
+.single-product .electro-wc-product-gallery .electro-wc-product-gallery__wrapper .electro-wc-product-gallery__image{
+    box-sizing: border-box;
+    border: solid #b9b9b9 1px;
+    padding: 5px;
+    height:100px;
+    margin-left:5px;
+    box-shadow: 3px 0px 3px -1px #88888B;
+    border-radius:2px;
+ }
+.single-product .electro-wc-product-gallery .electro-wc-product-gallery__wrapper .electro-wc-product-gallery__image img{
+    width:auto;
+    
+    max-height:100%;
+}
+.moreseller,.single-product .woocommerce-product-details__short-description{
+    color: #4d4c4c;
+}
+.related > .product .product-outer, .section-onsale-product .onsale-product .product-outer, .section-onsale-product-carousel .onsale-product-carousel .onsale-product-content .product-outer, li.product .product-outer {
+        height: auto;
+    }
+
+    .related > .product .product-inner, .section-onsale-product .onsale-product .product-inner, .section-onsale-product-carousel .onsale-product-carousel .onsale-product-content .product-inner, li.product .product-inner {
+        height: auto;
+    }
+
+    .related > .product .product-thumbnail, .products > .product .product-thumbnail {
+        width: 100%;
+        height: 170px;
+        margin: 10px auto .714em;
+        vertical-align: middle;
+    }
+
+    @@media(min-width:1200px) {
+        .deal-products-carousel {
+            padding-top: 1.857em;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+        }
+
+        .related > .product .product-thumbnail > img, .related > .product .wp-post-image, .products > .product .product-thumbnail > img, .products > .product .wp-post-image {
+            height: auto;
+            max-height: 170px;
+            margin-bottom: 20px;
+        }
+    }
+
+    @@media(max-width:1199px) and (min-width:768px) {
+        .related > .product .product-thumbnail > img, .related > .product .wp-post-image, .products > .product .product-thumbnail > img, .products > .product .wp-post-image {
+            height: 170px;
+            margin-bottom: 20px;
+        }
+    }
+
+    @@media(max-width:767px) {
+        .related > .product .product-thumbnail > img, .related > .product .wp-post-image, .products > .product .product-thumbnail > img, .products > .product .wp-post-image {
+            height: 150px;
+            margin-bottom: 20px;
+        }
+    }
+
+    @@media(max-width:991px) {
+        .home-categories-block .category {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 1.214em;
+        }
+    }
+</style>
+<link rel='stylesheet' id='photoswipe-css' href='~/Content/css/photoswipe.css?ver=3.5.7' type='text/css' media='all' />
+<link rel='stylesheet' id='photoswipe-default-skin-css' href='~/Content/css/default-skin.css?ver=3.5.7' type='text/css' media='all' />
+<style>
+    .ec-tabs li a{
+       cursor:pointer;
+    }
+
+</style>
+
+<div class="se-pre-con" ng-show="loader" style="z-index:100">
+    
+</div>
+<div class="m-app-loading" ng-animate-children>
+    <style type="text/css">
+        div.m-app-loading {
+            position: fixed;
+            z-index: 99999999;
+        }
+
+            div.m-app-loading div.animated-container {
+                background-color: #ffffff;
+                bottom: 0px;
+                left: 0px;
+                opacity: 1.0;
+                position: fixed;
+                right: 0px;
+                top: 500px;
+                margin-top:100px;
+                width:100%;
+                height:100%;
+                z-index: 99999999;
+            }
+                /* Used to initialize the ng-leave animation state. */
+                div.m-app-loading div.animated-container.ng-leave {
+                    opacity: 1.0;
+                    transition: all linear 200ms;
+                    -webkit-transition: all linear 200ms;
+                }
+                /* Used to set the end properties of the ng-leave animation state. */
+                div.m-app-loading div.animated-container.ng-leave-active {
+                    opacity: 0;
+                }
+
+            div.m-app-loading div.messaging {
+                color: #FFFFFF;
+                font-family: monospace;
+                left: 0px;
+                margin-top: -37px;
+                position: absolute;
+                right: 0px;
+                text-align: center;
+                top: 50%;
+                z-index: 10000000;
+            }
+
+            div.m-app-loading h1 {
+                font-size: 26px;
+                line-height: 35px;
+                margin: 0px 0px 20px 0px;
+            }
+
+            div.m-app-loading p {
+                font-size: 18px;
+                line-height: 14px;
+                margin: 0px 0px 0px 0px;
+            }
+            
+    </style>
+
+
+    <!-- BEGIN: Actual animated container. -->
+    <div class="animated-container">
+
+        <div class="messaging">
+            <div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>
+            <h1>
+             </h1>
+
+            <p>
+             </p>
+
+        </div>
+
+    </div>
+    <!-- END: Actual animated container. -->
+
+</div>
+
+
+
+@*ng-loading="Products"*@
+<div ng-cloak  id="content" class="site-content" tabindex="-1"  ng-controller="SingleProductController">
+    <div  class="container">
+        <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Home")">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>
+        <a href="/Leasing/Products?{{Products.mproducturl}}">{{Products.mprodcatname}}</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>{{Products.mprodname}} </nav>
+        <div class="site-content-inner">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    <div class="woocommerce-notices-wrapper"></div>
+                    <div id="product-2439" class="post-2439 product type-product status-publish has-post-thumbnail product_cat-headphones product_tag-fast product_tag-gaming product_tag-strong first instock shipping-taxable purchasable product-type-simple">
+                        <div class="single-product-wrapper">
+                            <div class="product-images-wrapper">
+                                <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-5 images electro-carousel-loaded" data-columns="5" style="opacity: 0; transition: opacity .25s ease-in-out;">
+                                    <figure class="woocommerce-product-gallery__wrapper">
+                                        @{
+                                            if (gallery.Any())
+                                            {
+                                                foreach (var a in gallery)
+                                                {
+                                                    <div data-thumb="/LeaseAdmin/Content/images/product/@a.msubprodpicname" class="woocommerce-product-gallery__image">
+                                                        <a href="/LeaseAdmin/Content/images/product/@a.msubprodpicname">
+                                                            <img width="600" height="550" src="/LeaseAdmin/Content/images/product/@a.msubprodpicname" class="wp-post-image" alt="" title="1" data-caption="" data-src="../../Content/images/product/@a.msubprodpicname" data-large_image="../../Content/images/product/@a.msubprodpicname" data-large_image_width="720" data-large_image_height="660" />
+                                                        </a>
+                                                    </div>
+                                                }
+
+                                            }
+                                        }
+                                        <!--
+                                        <div data-thumb="~/Content/images/single-product/4.jpg" class="woocommerce-product-gallery__image"><a href="~/Content/images/single-product/4.jpg"><img width="600" height="550" src="~/Content/images/single-product/4-600x550.jpg" class="" alt="" title="4" data-caption="" data-src="../../Content/images/single-product/4-600x550.jpg" data-large_image="~/Content/images/single-product/4.jpg" data-large_image_width="720" data-large_image_height="660" /></a></div>
+                                        <div data-thumb="~/Content/images/single-product/5.jpg" class="woocommerce-product-gallery__image"><a href="~/Content/images/single-product/5.jpg"><img width="600" height="550" src="~/Content/images/single-product/5-600x550.jpg" class="" alt="" title="5" data-caption="" data-src="../../Content/images/single-product/5-600x550.jpg" data-large_image="~/Content/images/single-product/5.jpg" data-large_image_width="720" data-large_image_height="660" /></a></div>
+                                        <div data-thumb="~/Content/images/single-product/3.jpg" class="woocommerce-product-gallery__image"><a href="~/Content/images/single-product/3.jpg"><img width="600" height="550" src="~/Content/images/single-product/3-600x550.jpg" class="" alt="" title="3" data-caption="" data-src="../../Content/images/single-product/3-600x550.jpg" data-large_image="~/Content/images/single-product/3.jpg" data-large_image_width="720" data-large_image_height="660" /></a></div>
+                                        <div data-thumb="~/Content/images/single-product/2.jpg" class="woocommerce-product-gallery__image"><a href="~/Content/images/single-product/2.jpg"><img width="600" height="550" src="~/Content/images/single-product/2-600x550.jpg" class="" alt="" title="2" data-caption="" data-src="../../Content/images/single-product/2-600x550.jpg" data-large_image="~/Content/images/single-product/2.jpg" data-large_image_width="720" data-large_image_height="660" /></a></div>-->
+                                    </figure>
+                                </div>
+                                <div id="electro-wc-product-gallery-5de935f6ca784" class="electro-wc-product-gallery electro-wc-product-gallery--with-images electro-wc-product-gallery--columns-5 images" data-columns="5">
+                                    <figure class="electro-wc-product-gallery__wrapper">
+                                        @{
+                                            if (gallery.Any())
+                                            {
+                                                foreach (var a in gallery)
+                                                {
+                                                    <figure data-thumb="/LeaseAdmin/Content/images/product/@(a.msubprodpicname)" class="electro-wc-product-gallery__image">
+                                                        <a href="/LeaseAdmin/Content/images/product/@(a.msubprodpicname)">
+                                                        <img width="100" height="100" src="/LeaseAdmin/Content/images/product/@a.msubprodpicname" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="" title="" data-large-image="~/Content/images/product/@a.msubprodpicname" data-large-image-width="720" data-large-image-height="660" /></a>
+                                                    </figure>
+                                                }
+
+                                            }
+                                        }
+
+                                        <!--
+                                        <figure data-thumb="~/Content/images/single-product/4.jpg" class="electro-wc-product-gallery__image"><a href="~/Content/images/single-product/4.jpg"><img width="100" height="100" src="~/Content/images/single-product/4.jpg" class="attachment-shop_thumbnail size-shop_thumbnail" alt="" title="" data-large-image="~/Content/images/single-product/4.jpg" data-large-image-width="720" data-large-image-height="660" /></a></figure>
+                                        <figure data-thumb="~/Content/images/single-product/5.jpg" class="electro-wc-product-gallery__image"><a href="~/Content/images/single-product/5.jpg"><img width="100" height="100" src="~/Content/images/single-product/5.jpg" class="attachment-shop_thumbnail size-shop_thumbnail" alt="" title="" data-large-image="~/Content/images/single-product/5.jpg" data-large-image-width="720" data-large-image-height="660" /></a></figure>
+                                        <figure data-thumb="~/Content/images/single-product/3.jpg" class="electro-wc-product-gallery__image"><a href="~/Content/images/single-product/3.jpg"><img width="100" height="100" src="~/Content/images/single-product/3.jpg" class="attachment-shop_thumbnail size-shop_thumbnail" alt="" title="" data-large-image="~/Content/images/single-product/3.jpg" data-large-image-width="720" data-large-image-height="660" /></a></figure>
+                                        <figure data-thumb="~/Content/images/single-product/2.jpg" class="electro-wc-product-gallery__image"><a href="~/Content/images/single-product/2.jpg"><img width="100" height="100" src="~/Content/images/single-product/2.jpg" class="attachment-shop_thumbnail size-shop_thumbnail" alt="" title="" data-large-image="~/Content/images/single-product/2.jpg" data-large-image-width="720" data-large-image-height="660" /></a></figure>-->
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="summary entry-summary">
+                                <span class="loop-product-categories"><a href="#" rel="tag">{{Products.mprodcatname}}</a></span>
+                                <h1 class="product_title entry-title">{{Products.mprodname}}</h1>
+                                <div class="woocommerce-product-rating">
+                                    <div class="star-rating"><span style="width:86.6%">Rated <strong class="rating">4.33</strong> out of 5 based on <span class="rating">3</span> customer ratings</span></div>
+                                    <a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<span class="count">3</span> customer reviews)</a>
+                                </div>
+                                <div class="brand"> 
+                                <a href="#/?taxonomy=pa_brands&#038;term=asus">
+                                    {{Products.mbrand}}
+                                </a>
+                                </div>
+                                <div class="woocommerce-product-details__short-description">
+                                   <ul>
+                                       <li ng-repeat="detail in details | filter:{mdetailvalue : ''}">{{detail.mdetailvalue}} {{detail.muname}} {{detail.mdetailhead}}</li>
+                                        
+                                    </ul>
+
+                                    <p><strong>SKU</strong>: {{Products.sellerskuid}}</p>
+                                    <div class="variationblock">
+                                        <ul>
+                                            <li ng-repeat="prodvar in variations | filter:{mprodvariationvalue : ''}">{{prodvar.mprodvariationvalue}} </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="moreseller">
+                                        
+                                        <table border="0">
+                                            <tr>
+                                                <td rowspan="2" style="width:70px;"><strong>Seller </strong>:</td>
+                                                <td>{{Products.msuppliername}}</td>
+                                                <td><div class="product-rating">
+    <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+    (3)
+</div>
+                                                </td>
+                                            </tr>
+                                            <tr ng-if="Products.moresupplier>0">
+                                                <td>
+                                               
+                                                <a href="/Leasing/MoreSupplier?getsuppliers=@(HttpUtility.UrlEncode(Encryption.Encrypt(id)))&product={{Products.mprodname}}&id=@id" style="color:#0000ff">View More Seller</a></td>
+                                            </tr>
+                                        </table>
+
+
+
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="product-actions-wrapper">
+                                <div class="product-actions">
+                                    <!--<div class="availability">
+                                        Availability:
+                                        <span class="electro-stock-availability">
+                                            <p class="stock in-stock">{{Products.mstock}} in stock</p>
+                                        </span>
+                                    </div>-->
+                                    <p class="price">
+                                        <del ng-if="Products.mvariationprice>0 && Products.mprice < Products.mrp" class="font-size-20 ml-2 text-gray-6" style="text-decoration:line-through">&pound;{{Products.mrp | number:2}}</del>
+                                        <span class="electro-price">
+                                        <span class="woocommerce-Price-amount amount">
+                                        <span class="woocommerce-Price-currencySymbol">&pound;</span>{{Products.mprice | number:2}}</span>
+                                        </span>
+                                        
+                                    </p>
+                                    <p class="stock in-stock">26 in stock</p>
+                                    <!--<form class="cart" action="#/product/ultra-wireless-s50-headphones-s50-with-bluetooth/" method="post" enctype='multipart/form-data'>-->
+                                    <div class="term-add-to-cart" style="display:block;width:100%;">
+                                        <div class="col-xs-12">
+                                            <label>Lease Term</label>
+
+                                        </div>
+
+                                        <div class="col-xs-6 term-freq">
+                                            <label>Freq</label>
+                                            <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                            <select ng-init="termdata = sizes[0]" ng-options="size as size.name for size in sizes " class="form-control termselect"  ng-model="termdata" ng-change="updateterm(termdata,Products,termperiod)"></select>
+
+                                        </div>
+                                        <div class="col-xs-6 term-period">
+                                            <label>Period</label>
+                                            <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                            <select ng-init="termperiod = periods[0]" ng-options="period as period.name for period in periods " class="form-control termselect"  ng-model="termperiod" ng-change="updateterm(termdata,Products,termperiod)"></select>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="quantity">
+                                            <label for="quantity_5de935f6cc2f5">Quantity</label> <input type="number"
+                                                                                                        id="quantity_5de935f6cc2f5"
+                                                                                                        class="input-text qty text"
+                                                                                                        step="1"
+                                                                                                        min="1"
+                                                                                                        max="26"
+                                                                                                        name="quantity"
+                                                                                                        
+                                                                                                        title="Qty"
+                                                                                                        size="4"
+                                                                                                        inputmode="numeric"
+                                                                                                        ng-init="noOfItem[0]=1"
+                                                                                                        ng-model="noOfItem[0]"
+                                                                                                        value="1"
+                                                                                                        aria-labelledby="{{Product.mprodname}}" />
+                                        </div>
+                                        <button type="submit" name="add-to-cart" value="2439" ng-click="addToCart(Products,noOfItem[0])" class="single_add_to_cart_button button alt"> Add to Basket</button>
+                                    
+                                    <div class="action-buttons">
+                                        <div class="yith-wcwl-add-to-wishlist add-to-wishlist-2439">
+                                            <div class="yith-wcwl-add-button show" style="display:block"> <a href="/electro-wide/product/ultra-wireless-s50-headphones-s50-with-bluetooth/?add_to_wishlist=2439" rel="nofollow" data-product-id="2439" data-product-type="simple" class="add_to_wishlist"> Wishlist</a> <img src="#/wp-content/plugins/yith-woocommerce-wishlist/assets/images/wpspin_light.gif" class="ajax-loading" alt="loading" width="16" height="16" style="visibility:hidden" /></div>
+                                            <div class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;"> <span class="feedback">Product added!</span> <a href="#/wishlist/" rel="nofollow"> Browse Wishlist </a></div>
+                                            <div class="yith-wcwl-wishlistexistsbrowse hide" style="display:none"> <span class="feedback">The product is already in the wishlist!</span> <a href="#/wishlist/" rel="nofollow"> Browse Wishlist </a></div>
+                                            <div style="clear:both"></div>
+                                            <div class="yith-wcwl-wishlistaddresponse"></div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <a href="#?action=yith-woocompare-add-product&id=2439" class="add-to-compare-link" data-product_id="2439">Compare</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="electro-tabs electro-tabs-wrapper wc-tabs-wrapper">
+
+                            <div class="electro-tab">
+                                <div class="container">
+                                    <div class="tab-content">
+
+
+
+                                        <ul class="ec-tabs  nav-classic nav-tab nav-tab-lg justify-content-xl-center flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble border-0 pb-1 pb-xl-0 mb-n1 mb-xl-0">
+                                            <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
+                                                <a class="nav-link active" id="Jpills-two-example1-tab" data-toggle="pill" href="#Jpills-two-example1" role="tab" aria-controls="Jpills-two-example1" aria-selected="false">Description</a>
+                                            </li>
+                                            <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
+                                                <a class="nav-link" id="Jpills-three-example1-tab" data-toggle="pill" href="#Jpills-three-example1" role="tab" aria-controls="Jpills-three-example1" aria-selected="false">Specification</a>
+                                            </li>
+                                            <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
+                                                <a class="nav-link" id="Jpills-four-example1-tab" data-toggle="pill" href="#Jpills-four-example1" role="tab" aria-controls="Jpills-four-example1" aria-selected="false">Reviews</a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="tab-pane fade active in" id="Jpills-two-example1" role="tabpanel" aria-labelledby="Jpills-two-example1-tab">
+                                            <div>
+                                                <p ng-bind-html="Products.mdescription"></p>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="Jpills-three-example1" role="tabpanel" aria-labelledby="Jpills-three-example1-tab">
+                                            <div class="mx-md-5 pt-1">
+                                                <div class="table-responsive mb-4">
+                                                    <table class="table table-hover">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Brand</td>
+                                                                <td>{{Products.mbrand}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Item Height</td>
+                                                                <td>{{Products.mheightcm}} cm</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Item Width</td>
+                                                                <td>{{Products.mwidthcm}} cm</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                        
+                                                    </table>
+                                                </div>
+                                                <h3 class="font-size-18 mb-4">Technical Specifications</h3>
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover">
+                                                        <tbody>
+                                                            <tr ng-repeat="detail in details | filter:{mdetailvalue : ''}">
+                                                                <td>{{detail.mdetailhead}}</td>
+                                                                <td>{{detail.mdetailvalue}} {{detail.muname}}</td>
+                                                            </tr>
+                                                        
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="Jpills-four-example1" role="tabpanel" aria-labelledby="Jpills-four-example1-tab">
+                                            <div class="row mb-8">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <h3 class="font-size-18 mb-6">Based on 3 reviews</h3>
+                                                        <h2 class="font-size-30 font-weight-bold text-lh-1 mb-0">4.3</h2>
+                                                        <div class="text-lh-1">overall</div>
+                                                    </div>
+
+                                                    <!-- Ratings -->
+                                                    <ul class="list-unstyled">
+                                                        <li class="py-1">
+                                                            <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
+                                                                <div class="col-auto mb-2 mb-md-0">
+                                                                    <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto mb-2 mb-md-0">
+                                                                    <div class="progress ml-xl-5" style="height: 10px; width: 200px;">
+                                                                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto text-right">
+                                                                    <span class="text-gray-90">205</span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="py-1">
+                                                            <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
+                                                                <div class="col-auto mb-2 mb-md-0">
+                                                                    <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto mb-2 mb-md-0">
+                                                                    <div class="progress ml-xl-5" style="height: 10px; width: 200px;">
+                                                                        <div class="progress-bar" role="progressbar" style="width: 53%;" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto text-right">
+                                                                    <span class="text-gray-90">55</span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="py-1">
+                                                            <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
+                                                                <div class="col-auto mb-2 mb-md-0">
+                                                                    <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto mb-2 mb-md-0">
+                                                                    <div class="progress ml-xl-5" style="height: 10px; width: 200px;">
+                                                                        <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto text-right">
+                                                                    <span class="text-gray-90">23</span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="py-1">
+                                                            <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
+                                                                <div class="col-auto mb-2 mb-md-0">
+                                                                    <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto mb-2 mb-md-0">
+                                                                    <div class="progress ml-xl-5" style="height: 10px; width: 200px;">
+                                                                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto text-right">
+                                                                    <span class="text-muted">0</span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="py-1">
+                                                            <a class="row align-items-center mx-gutters-2 font-size-1" href="javascript:;">
+                                                                <div class="col-auto mb-2 mb-md-0">
+                                                                    <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                                        <small class="fas fa-star"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto mb-2 mb-md-0">
+                                                                    <div class="progress ml-xl-5" style="height: 10px; width: 200px;">
+                                                                        <div class="progress-bar" role="progressbar" style="width: 1%;" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto text-right">
+                                                                    <span class="text-gray-90">4</span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <!-- End Ratings -->
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h3 class="font-size-18 mb-5">Add a review</h3>
+                                                    <!-- Form -->
+                                                    <form class="js-validate" novalidate="novalidate">
+                                                        <div class="row align-items-center mb-4">
+                                                            <div class="col-md-4 col-lg-3">
+                                                                <label for="rating" class="form-label mb-0">Your Review</label>
+                                                            </div>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <a href="#" class="d-block">
+                                                                    <div class="text-warning text-ls-n2 font-size-16">
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                        <small class="far fa-star text-muted"></small>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="js-form-message form-group mb-3 row">
+                                                            <div class="col-md-4 col-lg-3">
+                                                                <label for="descriptionTextarea" class="form-label">Your Review</label>
+                                                            </div>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <textarea class="form-control" rows="3" id="descriptionTextarea" data-msg="Please enter your message." data-error-class="u-has-error" data-success-class="u-has-success"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="js-form-message form-group mb-3 row">
+                                                            <div class="col-md-4 col-lg-3">
+                                                                <label for="inputName" class="form-label">Name <span class="text-danger">*</span></label>
+                                                            </div>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <input type="text" class="form-control" name="name" id="inputName" aria-label="Alex Hecker" required="" data-msg="Please enter your name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                            </div>
+                                                        </div>
+                                                        <div class="js-form-message form-group mb-3 row">
+                                                            <div class="col-md-4 col-lg-3">
+                                                                <label for="emailAddress" class="form-label">Email <span class="text-danger">*</span></label>
+                                                            </div>
+                                                            <div class="col-md-8 col-lg-9">
+                                                                <input type="email" class="form-control" name="emailAddress" id="emailAddress" aria-label="alexhecker@pixeel.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="offset-md-4 offset-lg-3 col-auto">
+                                                                <button type="submit" class="btn btn-primary-dark btn-wide transition-3d-hover">Add Review</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <!-- End Form -->
+                                                </div>
+                                            </div>
+                                            <!-- Review -->
+                                            <div class="border-bottom border-color-1 pb-4 mb-4">
+                                                <!-- Review Rating -->
+                                                <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
+                                                    <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="far fa-star text-muted"></small>
+                                                        <small class="far fa-star text-muted"></small>
+                                                    </div>
+                                                </div>
+                                                <!-- End Review Rating -->
+
+                                                <p class="text-gray-90">Fusce vitae nibh mi. Integer posuere, libero et ullamcorper facilisis, enim eros tincidunt orci, eget vestibulum sapien nisi ut leo. Cras finibus vel est ut mollis. Donec luctus condimentum ante et euismod.</p>
+
+                                                <!-- Reviewer -->
+                                                <div class="mb-2">
+                                                    <strong>John Doe</strong>
+                                                    <span class="font-size-13 text-gray-23">- April 3, 2019</span>
+                                                </div>
+                                                <!-- End Reviewer -->
+                                            </div>
+                                            <!-- End Review -->
+                                            <!-- Review -->
+                                            <div class="border-bottom border-color-1 pb-4 mb-4">
+                                                <!-- Review Rating -->
+                                                <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
+                                                    <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                    </div>
+                                                </div>
+                                                <!-- End Review Rating -->
+
+                                                <p class="text-gray-90">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse eget facilisis odio. Duis sodales augue eu tincidunt faucibus. Etiam justo ligula, placerat ac augue id, volutpat porta dui.</p>
+
+                                                <!-- Reviewer -->
+                                                <div class="mb-2">
+                                                    <strong>Anna Kowalsky</strong>
+                                                    <span class="font-size-13 text-gray-23">- April 3, 2019</span>
+                                                </div>
+                                                <!-- End Reviewer -->
+                                            </div>
+                                            <!-- End Review -->
+                                            <!-- Review -->
+                                            <div class="pb-4">
+                                                <!-- Review Rating -->
+                                                <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
+                                                    <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="far fa-star text-muted"></small>
+                                                    </div>
+                                                </div>
+                                                <!-- End Review Rating -->
+
+                                                <p class="text-gray-90">Sed id tincidunt sapien. Pellentesque cursus accumsan tellus, nec ultricies nulla sollicitudin eget. Donec feugiat orci vestibulum porttitor sagittis.</p>
+
+                                                <!-- Reviewer -->
+                                                <div class="mb-2">
+                                                    <strong>Peter Wargner</strong>
+                                                    <span class="font-size-13 text-gray-23">- April 3, 2019</span>
+                                                </div>
+                                                <!-- End Reviewer -->
+                                            </div>
+                                            <!-- End Review -->
+                                        </div>
+                                        <!--<div class="product_meta"> <span class="sku_wrapper">SKU: <span class="sku">FW511948218</span></span> <span class="posted_in">Category: <a href="#/product-category/accessories/headphones/" rel="tag">Headphones</a></span> <span class="tagged_as">Tags: <a href="#/product-tag/fast/" rel="tag">Fast</a>, <a href="#/product-tag/gaming/" rel="tag">Gaming</a>, <a href="#/product-tag/strong/" rel="tag">Strong</a></span></div>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                     <section class="related products">
+                            <h2>Related products</h2>
+                            <ul data-view="grid" data-toggle="regular-products" class="products columns-5 columns__wide--5">
+                                
+                                <li ng-cloak ng-repeat="product in Related " class="post-2706 product type-product status-publish has-post-thumbnail product_cat-tablets first instock shipping-taxable purchasable product-type-simple">
+                                    <div class="product-outer product-item__outer">
+                                        <div class="product-inner product-item__inner">
+                                            <div class="product-loop-header product-item__header">
+                                                <a href="/Leasing/ProductDetail?{{product.mproducturl}}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                    <h2 ng-cloak class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
+                                                    <div class="product-thumbnail product-item__thumbnail">
+                                                        <img width="300" height="300" ng-src="/LeaseAdmin/Content/images/product/{{product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
+                                                    </div>
+                                                    <div class="product-rating">
+                                                        <div class="star-rating"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                                                        (3)
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="product-loop-body product-item__body">
+                                                <div class="col-xs-12">
+                                                    <!--<span class="loop-product-categories"><a href="/Leasing/ProductDetail?{{product.mproducturl}}" rel="tag">{{product.mprodcatname}}</a></span>-->
+                                                    <a href="/Leasing/ProductDetail?{{product.mproducturl}}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                                                        <h2 class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
+
+                                                        <div class="product-short-description" ng-show="product.msuppliername!=null">
+                                                            Supplier: {{product.msuppliername}}
+                                     
+                                                        </div>
+                                                        <div class="product-sku"></div>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="product-loop-footer product-item__footer">
+                                                <div class="term-add-to-cart" style="display:block;width:100%;">
+                                                    <div class="col-xs-12">
+                                                        <label>Lease Term</label>
+
+                                                    </div>
+
+                                                    <div class="col-xs-6 term-freq">
+                                                        <label>Freq</label>
+                                                        <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                        <select ng-init="termdata = sizes[0]" ng-options="size as size.name for size in sizes " class="form-control termselect" ng-model="termdata" ng-change="updateterm(termdata,product,termperiod)"></select>
+
+                                                    </div>
+                                                    <div class="col-xs-6 term-period">
+                                                        <label>Period</label>
+                                                        <!--<select ng-options="size as size.name for size in sizes" ng-model="itemss" ng-change="update2(itemss)"></select>-->
+
+                                                        <select ng-init="termperiod = periods[0]" ng-options="period as period.name for period in periods " class="form-control termselect" ng-model="termperiod" ng-change="updateterm(termdata,product,termperiod)"></select>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="price-add-to-cart">
+                                                    <span class="price">
+                                                        <span class="electro-price">
+                                                            <span ng-cloak class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span> {{product.mprice | number:2 }}</span>
+                                                        </span>
+                                                    </span>
+                                                    <div class="add-to-cart-wrap" data-toggle="tooltip" data-title=" Add to Basket" data-original-title="" title="">
+                                                        <a href="/electro-wide/product-category/smart-phones-tablets/?add-to-cart=2706" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="2706" data-product_sku="5487FB8/35" aria-label="Add “Tablet Air 3 WiFi 64GB  Gold” to your cart" rel="nofollow" ng-click="addToCart(product,1)"> Add to Basket</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+                               {
+    <script>
+        var pdatas=[];
+        @*jQuery(function(){
+            jQuery.ajax({
+                url: '/Product/GetProductById',
+                type: "get",
+                data: { getid: @id},
+                success: function (data) {
+                    console.log(data);
+
+                    data["products"].mprice=((data["products"].mprice*1)/(60*0.9)).toFixed(2);
+                    data["products"].mrp=((data["products"].mrp*1)/(60*0.9)).toFixed(2);
+                    data["products"].mtermid=1;
+                    pdatas=data;
+                }
+            });
+        })*@
+        app.directive(
+            "mAppLoading",
+            function( $animate ) {
+                // Return the directive configuration.
+                return({
+                    link: link,
+                    restrict: "C"
+                });
+                // I bind the JavaScript events to the scope.
+                function link( scope, element, attributes ) {
+                    // Due to the way AngularJS prevents animation during the bootstrap
+                    // of the application, we can't animate the top-level container; but,
+                    // since we added "ngAnimateChildren", we can animated the inner
+                    // container during this phase.
+                    // --
+                    // NOTE: Am using .eq(1) so that we don't animate the Style block.
+                    $animate.leave( element.children().eq( 1 ) ).then(
+                        function cleanupAfterAnimation() {
+                            // Remove the root directive element.
+                            element.remove();
+                            // Clear the closed-over variable references.
+                            scope = element = attributes = null;
+                        }
+                    );
+                }
+            }
+        );
+        app.service('productService', function ($http) {
+            this.get = function () {
+                var response = $http.get("/Api/SingleProductApi/GetProductById?getid="+ @id);
+                return response;
+            };
+        });
+
+        //3.
+        app.service('detailsService', function ($http) {
+            this.get = function (id) {
+                var response = $http.get("/Api/SingleApi/GetProductDetail?getid2="+ id);
+                return response;
+            };
+        });
+        app.service('variationService', function ($http) {
+            this.get = function () {
+                var response = $http.get("/api/SingleApi/GetVariationDetail");
+                return response;
+            };
+        });
+        app.controller('SingleProductController', ['$scope', '$http', '$rootScope','$location','$window','$cookies','$q','productService','detailsService','variationService',
+    function ($scope, $http, $rootScope,$location,$window,$cookies,$q,productService,detailsService,variationService) {
+
+        //$rootScope.shoppingcart = [];
+        $scope.listOrder = 'mprodname'
+        $scope.getcount=0;
+        $scope.Products = [];
+        $scope.Related=[];
+        $scope.loader=true;
+        $scope.count = "";
+        $scope.loader = true;
+        $scope.catid=0;
+        $scope.mpid=1014;
+        $scope.sizes = [ {code: 1, name: 'Monthly'}, {code: 3, name: 'Quaterly'},{code:4,name:'Termly'},{code:6,name:'Bi-annually'},{code:12,name:'Annually'}]
+        $scope.periods = [ {code: 60, name: '5 year'}, {code: 48, name: '4 year'},{code:36,name:'3 year'},{code:24,name:'2 year'},{code:12,name:'1 year'}]
+        $scope.search = '';
+        jQuery.ajax({
+            url: '/Api/SingleApi/GetProductById2',
+            type: "get",
+            data: { getid: @id},
+            success: function (data) {
+                console.log(data);
+                $scope.details=data["productdetail"];
+                $scope.variations=data["productvariation"];
+                data["products"].mprice=((data["products"].mprice*1)/(60*0.9)).toFixed(2);
+                data["products"].mrp=((data["products"].mrp*1)/(60*0.9)).toFixed(2);
+                data["products"].mtermid=1;
+                $scope.Products = data["products"];
+                console.log(data["products"]);
+                $scope.catid=data["products"].mprodcatid;
+                $scope.loader = false;
+                $scope.getcount=$scope.Products.length;
+                $scope.count = "showing " + data.length + " results";
+                var catid=data["products"].mprodcatid;
+                $http.get('/Api/ProductApi/GetRelatedProductById?getid=' + catid+'&exceptid='+@id).success(function (data) {
+                    for(var i=0;i<data.length;i++){
+                        data[i].mprice=((data[i].mprice*1)/(60*0.9)).toFixed(2);
+                    }
+                    $scope.Related = data;
+                });
+            }
+        });
+
+        //loadData();
+        function loadData() {
+            var promiseCourse = productService.get();
+            promiseCourse.then(function(resp){
+                console.log(resp);
+                $scope.mpid=resp.data["products"].mprodid;
+                $scope.Products= resp.data["products"];
+                $scope.Products.mprice=(($scope.Products.mprice*1)/(60*0.9)).toFixed(2);
+                $scope.Products.mrp=(($scope.Products.mrp*1)/(60*0.9)).toFixed(2);
+                $scope.Products.mtermid=1;
+                $scope.loader=false;
+            })
+            //var pid=promiseCourse[0].data["products"].mprodid;
+           // var promiseStudent = detailsService.get($scope.mpid);
+
+            /*$scope.combineResult = $q.all([
+                promiseCourse
+              //  promiseStudent
+            ]).then(function (resp) {
+                $scope.Products= resp[0].data["products"];
+                $scope.Products.mprice=(($scope.Products.mprice*1)/(60*0.9)).toFixed(2);
+                $scope.Products.mrp=(($scope.Products.mrp*1)/(60*0.9)).toFixed(2);
+                $scope.Products.mtermid=1;
+                $scope.loader=false;
+                // $scope.Students= resp[1].data;
+            });*/
+        }
+
+        /*$http.get('/Api/SingleApi/GetProductDetail?getid2=' + $scope.mpid).success(function (data) {
+            $scope.details=data["productdetail"];
+        });*/
+        $scope.$on('$viewContentLoaded', function(){
+            @*$http.get('/Api/ProductApi/GetRelatedProductById?getid=' + $scope.catid+'&exceptid='+@id).success(function (data) {
+                for(var i=0;i<data.length;i++){
+                    data[i].mprice=((data[i].mprice*1)/(60*0.9)).toFixed(2);
+                }
+                $scope.Related = data;
+            });
+                *@
+        //Here you can hide your pre-loader
+        });
+        $scope.updateterm = function(termfreq,item,termperiod) {
+            var freq=termfreq.code;
+            var period=termperiod.code;
+            console.log("F:"+freq+" P:"+period);
+            item.mtermf=freq;
+            item.mtermp=period;
+            item.mprice = (item.mbasicprice*freq)/(period*0.9);
+            item.mrp=(item.mmrpbasicprice*freq)/(period*0.9);
+        }
+        $scope.scrollTo = function(id) {
+            $location.hash(id);
+            console.log($location.hash());
+            $anchorScroll();
+        };
+        if (!angular.isUndefined($cookies.get('leasebasket'))) {
+            $rootScope.shoppingCart =  $cookies.getObject('leasebasket');
+        }
+        $scope.addToCart = function (item, no) {
+            var lessitem={
+
+                mprodid:item.mprodid,
+                mprodvarid:item.mprodvarid,
+                mprodname:item.mprodname,
+                msubpicname:item.msubpicname,
+                msupplierid: item.msupplierid,
+                mprice:item.mprice,
+                mproducturl:item.mproducturl,
+                mtermf:item.mtermf,
+                mtermp:item.mtermp
+            };
+            var items = {Product:lessitem,Quantity:no};
+
+            if ($rootScope.shoppingCart.length === 0){
+                $rootScope.shoppingCart.push(items);
+                $scope.count = "showing " + $rootScope.shoppingCart.length + " results";
+            } else {
+                var repeat = false;
+                for(var i = 0; i< $rootScope.shoppingCart.length; i++){
+                    console.log($rootScope.shoppingCart[i].Product.mprodvarid);
+                    if($rootScope.shoppingCart[i].Product.mprodvarid === items.Product.mprodvarid && $rootScope.shoppingCart[i].Product.msupplierid===items.Product.msupplierid){
+                        repeat = true;
+                        $rootScope.shoppingCart[i].Quantity +=1;
+                    }
+                }
+                if (!repeat) {
+                    $rootScope.shoppingCart.push(items);
+                }
+                $scope.count = "showing " + $rootScope.shoppingCart.length + " results";
+            }
+            console.log(items);
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 1);
+            $cookies.putObject('leasebasket', $rootScope.shoppingCart,  {'expires': expireDate,'path':'/'});
+            $rootScope.shoppingCart = $cookies.getObject('leasebasket');
+
+            $scope.total += parseFloat(items.Product.mprice);
+            $cookies.put('total', $scope.total,  {'expires': expireDate});
+
+            /*$.ajax({
+                url: '/Api/ProductApi/AddToCart/',
+                type: "post",
+                data: { item: item, no: no },
+                success: function (data) {
+                    console.log(data);
+                    $scope.loader = false;
+                    $scope.count = "showing " + data.length + " results";
+                }
+            });*/
+
+            /*$http.post('/Product/Buy/', items).success(function (data) {
+                console.log(data);
+                $scope.loader = false;
+                $scope.count = "showing " + data.length + " results";
+            });*/
+            console.log("Shopping Cart");
+            console.log($rootScope.shoppingCart);
+            //$rootScope.shoppingCart.push({ item, no });
+            toastr.success("Product added in Your Basket","Success");
+        };
+        }
+
+        ]);
+        app.controller('ShoppingCartController', ['$scope', '$http', '$rootScope', '$location', '$sce','$cookies', function ($scope, $http, $rootScope, $location, $sce,$cookies) {
+            $scope.isCheckoutPage = false;
+            $rootScope.shoppingCart = $rootScope.shoppingCart || [];
+            $rootScope.shoppingCart.totalPrice = 0;
+            if (!angular.isUndefined($cookies.get('leasebasket'))) {
+                $rootScope.shoppingCart =  $cookies.getObject('leasebasket');
+            }
+            /*$http.get('/Product/GetCart').success( function (data) {
+                $rootScope.shoppingCart = $cookies.getObject('leasebasket');;
+
+                console.log($scope.shoppingCart);
+                $scope.loader = false;
+            });
+            */
+            $rootScope.$on('itemList', function (event, itemList) {
+                $scope.itemList = itemList;
+            });
+
+            $scope.$watch('shoppingCart', function () {
+                $rootScope.shoppingCart.totalPrice = 0;
+                $rootScope.shoppingCart.totalItems = 0;
+                $scope.getTotalPrice();
+                $scope.getTotalNoOfItems();
+                console.log('changed');
+            }, true);
+
+            $scope.checkout = function () {
+                $location.path('/checkout');
+                $scope.isCheckoutPage = true;
+            };
+
+            $scope.deleteFromCart = function (index) {
+                $rootScope.shoppingCart.splice(index, 1);
+                expireDate = new Date();
+                expireDate.setDate(expireDate.getDate() + 1);
+                $cookies.putObject('leasebasket', $rootScope.shoppingCart, {'expires': expireDate,'path':'/'});
+            };
+
+            $scope.clearShoppingCart = function (index) {
+                $rootScope.shoppingCart = [];
+            };
+
+            $scope.backToList = function () {
+                $location.path('/list');
+                $scope.isCheckoutPage = false;
+            };
+
+            $scope.getTotalPrice = function () {
+                $rootScope.shoppingCart.forEach(function (itemObj) {
+                    $rootScope.shoppingCart.totalPrice = Number($rootScope.shoppingCart.totalPrice)+ Number($scope.getItemPrice(itemObj));
+                });
+            };
+
+            $scope.getTotalNoOfItems = function () {
+                $rootScope.shoppingCart.forEach(function (itemObj) {
+                    $rootScope.shoppingCart.totalItems += $scope.getItemNo(itemObj);
+                });
+            };
+
+            $scope.getItemPrice = function (itemObj) {
+                var itemPrice = 0;
+                console.log("items");
+                itemPrice = (Number(itemObj.Product.mprice) * Number(itemObj.Quantity)).toFixed(2);
+                return itemPrice;
+            };
+
+            $scope.getItemNo = function (itemObj) {
+                return itemObj.Quantity;
+            };
+
+            $scope.confirmCheckout = function () {
+                $location.path('/checkoutsuccess');
+                $scope.message = $sce.trustAsHtml($rootScope.shoppingCart.length + ' Items' + ' @@ $' + $rootScope.shoppingCart.totalPrice);
+                console.log($scope.successMsg);
+                $rootScope.shoppingCart = [];
+            };
+        }]);
+    </script>
+    <script type='text/javascript'>
+jQuery(document).ready( function($){
+				var flex = $( '#electro-wc-product-gallery-5de935f6ca784' );
+				var flex_args = {"selector":".electro-wc-product-gallery__wrapper > .electro-wc-product-gallery__image","animation":"slide","controlNav":true,"directionNav":false,"animationLoop":false,"slideshow":false,"asNavFor":".woocommerce-product-gallery","itemMargin":6,"itemWidth":90};
+				flex_args.asNavFor = flex.siblings( flex_args.asNavFor );
+				flex.flexslider( flex_args );
+			} );
+    </script>
+}

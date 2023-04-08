@@ -1,0 +1,395 @@
+﻿@{
+    Layout = null;
+    var pageName = (string)(Page.Title);
+    var classes = "";
+
+    switch (pageName)
+    {
+        case "index":
+            classes = "page-template page-template-template-homepage-v4 page-template-template-homepage-v4-php page page-id-4726 woocommerce-no-js electro-compact electro-wide wpb-js-composer js-comp-ver-5.7 vc_responsive";
+            break;
+        case "Category":
+            classes = "archive tax-product_cat term-106 woocommerce woocommerce-page woocommerce-no-js left-sidebar electro-compact electro-wide wpb-js-composer js-comp-ver-5.7 vc_responsive";
+            break;
+        case "AllProduct":
+            classes = "archive tax-product_cat term-126 woocommerce woocommerce-page woocommerce-js left-sidebar electro-compact electro-wide wpb-js-composer js-comp-ver-5.7 vc_responsive  pace-done";
+            break;
+        case "SingleProduct":
+            classes = "product-template-default single single-product postid-2439 woocommerce woocommerce-page woocommerce-js full-width extended electro-compact electro-wide wpb-js-composer js-comp-ver-5.7 vc_responsive  pace-done";
+            break;
+        default:
+            classes = "page-template page-template-template-homepage-v4 page-template-template-homepage-v4-php page page-id-4726 woocommerce-no-js electro-compact electro-wide wpb-js-composer js-comp-ver-5.7 vc_responsive";
+            break;
+    }
+
+    
+    }
+
+<html lang="en-US">
+<head>
+    <script>document.documentElement.className = document.documentElement.className + ' yes-js js_active js'</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@Page.title</title>
+    <base href="/" />
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel="stylesheet" id="wp-block-library-css" href="~/Content/css/style.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="jquery-selectBox-css" href="~/Content/css/jquery.selectBox.css" type="text/css" media="all">
+    <link rel="stylesheet" id="yith-wcwl-font-awesome-css" href="~/Content/css/font-awesome.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="yith-wcwl-main-css" href="~/Content/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" id="contact-form-7-css" href="~/Content/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" id="rs-plugin-settings-css" href="~/Content/css/settings.css" type="text/css" media="all">
+    <style id='rs-plugin-settings-inline-css' type='text/css'>
+        #rs-demo-id {
+        }
+    </style>
+    <style id='woocommerce-inline-inline-css' type='text/css'>
+        .woocommerce form .form-row .required {
+            visibility: visible;
+        }
+    </style>
+    <style>
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            background: url('http://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif')center no-repeat #fff;
+        }
+        .spinner {
+  width: 40px;
+  height: 40px;
+
+  position: relative;
+  margin: 100px auto;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+    </style>
+    <link rel="stylesheet" id="jquery-colorbox-css" href="~/Content/css/colorbox.css" type="text/css" media="all">
+    <link rel="stylesheet" id="electro-fonts-css" href="~/Content/css/css" type="text/css" media="all">
+    <link rel="stylesheet" id="bootstrap-css" href="~/Content/css/bootstrap.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="fontawesome-css" href="~/Content/css/font-awesome.min(1).css" type="text/css" media="all">
+    <link rel="stylesheet" id="animate-css" href="~/Content/css/animate.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="font-electro-css" href="~/Content/css/font-electro.css" type="text/css" media="all">
+    <link rel="stylesheet" id="jquery-mCustomScrollbar-css" href="~/Content/css/jquery.mCustomScrollbar.css" type="text/css" media="all">
+    <link rel="stylesheet" id="electro-style-css" href="~/Content/css/style.min(1).css" type="text/css" media="all">
+    <link rel="stylesheet" id="electro-style-v2-css" href="~/Content/css/v2.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="electro-color-css" href="~/Content/css/yellow.min.css" type="text/css" media="all">
+    <script type="text/javascript" src="~/Content/js/jquery.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery-migrate.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery.blockUI.min.js"></script>
+    <script type="text/javascript">/* <![CDATA[ */ var wc_add_to_cart_params = {"ajax_url":"","wc_ajax_url":"","i18n_view_cart":"View cart","cart_url":"/Leasing/ViewCart","is_cart":"","cart_redirect_after_add":"no"}; /* ]]> */</script>
+    <script type="text/javascript" src="~/Content/js/add-to-cart.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/woocommerce-add-to-cart.js"></script>
+    <noscript>
+        <style>
+            .woocommerce-product-gallery {
+                opacity: 1 !important;
+            }
+        </style>
+    </noscript>
+    <script type="text/javascript">
+function setREVStartSize(e){
+         try{ e.c=jQuery(e.c);var i=jQuery(window).width(),t=9999,r=0,n=0,l=0,f=0,s=0,h=0;
+         	if(e.responsiveLevels&&(jQuery.each(e.responsiveLevels,function(e,f){f>i&&(t=r=f,l=e),i>f&&f>r&&(r=f,n=e)}),t>r&&(l=n)),f=e.gridheight[l]||e.gridheight[0]||e.gridheight,s=e.gridwidth[l]||e.gridwidth[0]||e.gridwidth,h=i/s,h=h>1?1:h,f=Math.round(h*f),"fullscreen"==e.sliderLayout){var u=(e.c.width(),jQuery(window).height());if(void 0!=e.fullScreenOffsetContainer){var c=e.fullScreenOffsetContainer.split(",");if (c) jQuery.each(c,function(e,i){u=jQuery(i).length>0?u-jQuery(i).outerHeight(!0):u}),e.fullScreenOffset.split("%").length>1&&void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0?u-=jQuery(window).height()*parseInt(e.fullScreenOffset,0)/100:void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0&&(u-=parseInt(e.fullScreenOffset,0))}f=u}else void 0!=e.minHeight&&f<e.minHeight&&(f=e.minHeight);e.c.closest(".rev_slider_wrapper").css({height:f})
+         }catch(d){console.log("Failure at Presize of Slider:"+d)}
+         };
+    </script>
+    <style type="text/css" id="wp-custom-css">
+        .handheld-footer .handheld-footer-bar .footer-logo svg path {
+            fill: #FFF;
+        }
+
+        .handheld-footer .handheld-footer-bar .handheld-footer-bar-inner {
+            flex-direction: row;
+        }
+    </style>
+    <noscript>
+        <style type="text/css">
+            .wpb_animate_when_almost_visible {
+                opacity: 1;
+            }
+        </style>
+    </noscript>
+    <noscript>
+        <style id="rocket-lazyload-nojs-css">
+            .rll-youtube-player, [data-lazy-src] {
+                display: none !important;
+            }
+        </style>
+    </noscript>
+    <script src="~/Content/js/jquery.mousewheel.min.js"></script>
+
+
+    <style>
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1111;
+        }
+
+            .sticky .electro-navigation-v5 {
+                display: none;
+            }
+            /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+            .sticky + .content {
+                padding-top: 60px;
+            }
+
+
+        #payment .place-order button[type=submit], .button:hover::before, .category-icons-carousel .category a:hover .category-icon, .columns-6-1 > ul.products.product-main-6-1 > li.product .electro-wc-product-gallery .flex-control-nav li a.flex-active, .da .da-action > a::after, .da-block .da-action::after, .deal-products-with-featured header, .deal-products-with-featured ul.products > li.product.product-featured .savings, .deal-progress .progress-bar, .demo_store, .departments-menu-v2-title, .ec-tabs > li.active a::before, .electro-handheld-footer-bar ul li a .count, .electro-navbar, .electro-navbar-primary, .footer-newsletter, .full-color-background .header-v3, .full-color-background .header-v4, .full-color-background .top-bar, .handheld-header-v2, .handheld-header-v2.stuck, .handheld-navigation-wrapper .stuck .navbar-toggler, .handheld-navigation-wrapper .stuck button, .handheld-navigation-wrapper.toggled .stuck .navbar-toggler, .handheld-navigation-wrapper.toggled .stuck button, .header-icon-counter, .header-v1 .navbar-search .input-group .btn, .header-v3 .navbar-search .input-group .btn, .header-v5, .header-v5 .header-top, .header-v5 .stuck, .header-v6 .navbar-search .input-group .btn, .header-v7 .masthead, .header-v8 .navbar-search .input-group .btn, .home-mobile-v2-features-block, .mobile-header-v2, .mobile-header-v2.stuck, .navbar-compare .count, .navbar-mini-cart .cart-items-count, .navbar-primary, .navbar-search-input-group .navbar-search-button, .navbar-wishlist .count, .owl-dots .owl-dot.active, .owl-item .product:hover .added_to_cart::before, .owl-item .product:hover .button::before, .pace .pace-progress, .pagination ul.page-numbers > li a.current, .pagination ul.page-numbers > li span.current, .product-categories-list-with-header.v2 header .caption .section-title, .products-2-1-2 .nav-link.active::before, .products-2-1-2 .nav-link:hover::before, .products-4-1-4 .nav-link.active::before, .products-4-1-4 .nav-link:hover::before, .products-6-1 header.show-nav ul.nav .nav-item.active .nav-link, .products-carousel-banner-vertical-tabs .banners-tabs > .nav a.active, .products-carousel-tabs .nav-link.active::before, .products-carousel-tabs-v5 header ul.nav-inline .nav-link.active, .products-carousel-tabs-with-deal header ul.nav-inline .nav-link.active, .products-carousel-with-timer .deal-countdown-timer, .products.show-btn > li.product .added_to_cart, .products.show-btn > li.product .button, .section-onsale-product .savings, .section-onsale-product-carousel .onsale-product-carousel .onsale-product .onsale-product-content .deal-cart-button .added_to_cart, .section-onsale-product-carousel .onsale-product-carousel .onsale-product .onsale-product-content .deal-cart-button .button, .section-onsale-product-carousel .savings, .show-nav .nav .nav-item.active .nav-link, .single-product .product-images-wrapper .flex-control-nav li a.flex-active, .single_add_to_cart_button, .vertical-menu > li:first-child, .wc-tabs > li.active a::before, .widget.widget_tag_cloud .tagcloud a:focus, .widget.widget_tag_cloud .tagcloud a:hover, .widget_electro_products_carousel_widget .section-products-carousel .owl-nav .owl-next:hover, .widget_electro_products_carousel_widget .section-products-carousel .owl-nav .owl-prev:hover, .widget_price_filter .ui-slider .ui-slider-handle, .woocommerce-info, .woocommerce-noreviews, .woocommerce-pagination ul.page-numbers > li a.current, .woocommerce-pagination ul.page-numbers > li span.current, .wpb-accordion .vc_tta.vc_general .vc_tta-panel.vc_active .vc_tta-panel-heading .vc_tta-panel-title > a i, .yith-wcqv-button, li.product:hover .added_to_cart::before, li.product:hover .button::before, p.no-comments, section .deals-carousel-inner-block .onsale-product .onsale-product-content .deal-cart-button .added_to_cart, section .deals-carousel-inner-block .onsale-product .onsale-product-content .deal-cart-button .button, ul.products > li.product.list-view.list-view-small .button:active::after, ul.products > li.product.list-view.list-view-small .button:focus::after, ul.products > li.product.list-view.list-view-small .button:hover::after, ul.products > li.product.list-view:not(.list-view-small) .button:active, ul.products > li.product.list-view:not(.list-view-small) .button:focus, ul.products > li.product.list-view:not(.list-view-small) .button:hover, ul.products[data-view=list-view].columns-1 > li.product .product-loop-footer .button, ul.products[data-view=list-view].columns-2 > li.product .product-loop-footer .button, ul.products[data-view=list-view].columns-3 > li.product .product-loop-footer .button, ul.products[data-view=list-view].columns-4 > li.product .product-loop-footer .button, ul.products[data-view=list-view].columns-5 > li.product .product-loop-footer .button, ul.products[data-view=list-view].columns-6 > li.product .product-loop-footer .button, ul.products[data-view=list-view].columns-7 > li.product .product-loop-footer .button, ul.products[data-view=list-view].columns-8 > li.product .product-loop-footer .button {
+            background-color: #f6da3f;
+        }
+    </style>
+    @RenderSection("head", required: false)
+</head>
+<body ng-app="MyApp" class="@classes">
+    <div class="off-canvas-wrapper" style="margin:0 auto;text-align:center;">
+        <div id="page" class="hfeed site">
+            
+            <div class="header-logo-area" style="margin:0 auto;text-align:center;">
+                <div class="header-site-branding" style="margin:10px auto;text-align:center;">
+                    <a href="#/" class="header-logo-link">
+                        <img src="~/Content/images/logo/openstar-school-leasing-logo_footer2.png" style="width:200px;height:auto;"/>
+                    </a>
+                </div>
+                
+            </div>
+            @RenderBody()
+            <!-- #content -->
+            
+            <footer id="colophon" class="site-footer footer-v2">
+                <div class="desktop-footer container">
+                    <div class="copyright-bar">
+                        <div class="container">
+                            <div class="copyright">&copy; <a href="#"></a>All Rights Reserved</div>
+                            <div class="payment">
+                                <div class="footer-payment-logo">
+                                    <ul class="cash-card card-inline">
+                                        <!--<li class="card-item"><img src="~/Content/images/patment-icon.png" alt="" width="324" height="38"></li>-->
+                                    </ul>
+                                </div>
+                                <!-- /.payment-methods -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </footer>
+            <!-- #colophon -->
+        </div>
+        <!-- #page -->
+    </div>
+    <script type="text/javascript">
+         var c = document.body.className;
+         c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+         document.body.className = c;
+    </script>
+    <script type="text/javascript">
+         function revslider_showDoubleJqueryError(sliderID) {
+         	var errorMessage = "Revolution Slider Error: You have some jquery.js library include that comes after the revolution files js include.";
+         	errorMessage += "<br> This includes make eliminates the revolution slider libraries, and make it not work.";
+         	errorMessage += "<br><br> To fix it you can:<br>&nbsp;&nbsp;&nbsp; 1. In the Slider Settings -> Troubleshooting set option:  <strong><b>Put JS Includes To Body</b></strong> option to true.";
+         	errorMessage += "<br>&nbsp;&nbsp;&nbsp; 2. Find the double jquery.js include and remove it.";
+         	errorMessage = "<span style='font-size:16px;color:#BC0C06;'>" + errorMessage + "</span>";
+         		jQuery(sliderID).show().html(errorMessage);
+         }
+    </script>
+    <link rel='stylesheet' id='js_composer_front-css' href='~/Content/css/js_composer.min.css?ver=5.7' type='text/css' media='all' />
+    <script type='text/javascript' src='~/Content/js/jquery.selectBox.min.js?ver=1.2.0'></script>
+    <script type='text/javascript'>
+         /* <![CDATA[ */
+         var yith_wcwl_l10n = {"ajax_url":"\/electro-wide\/wp-admin\/admin-ajax.php","redirect_to_cart":"no","multi_wishlist":"","hide_add_button":"1","is_user_logged_in":"","ajax_loader_url":"https:\/\/#\/electro-wide\/wp-content\/plugins\/yith-woocommerce-wishlist\/assets\/images\/ajax-loader.gif","remove_from_wishlist_after_add_to_cart":"yes","labels":{"cookie_disabled":"We are sorry, but this feature is available only if cookies are enabled on your browser.","added_to_cart_message":"<div class=\"woocommerce-message\">Product correctly added to cart<\/div>"},"actions":{"add_to_wishlist_action":"add_to_wishlist","remove_from_wishlist_action":"remove_from_wishlist","move_to_another_wishlist_action":"move_to_another_wishlsit","reload_wishlist_and_adding_elem_action":"reload_wishlist_and_adding_elem"}};
+         /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/jquery.yith-wcwl.js?ver=2.2.8'></script>
+    <script type='text/javascript'>
+         /* <![CDATA[ */
+         var wpcf7 = {"apiSettings":{"root":"https:\/\/#\/electro-wide\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"cached":"1"};
+         /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/scripts.js?ver=5.1.1'></script>
+    <script type='text/javascript' src='~/Content/js/js.cookie.min.js?ver=2.1.4'></script>
+    <script type='text/javascript'>
+         /* <![CDATA[ */
+         var woocommerce_params = {"ajax_url":"\/electro-wide\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/electro-wide\/?wc-ajax=%%endpoint%%"};
+         /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/woocommerce.min.js?ver=3.5.7'></script>
+    <script type='text/javascript'>
+         /* <![CDATA[ */
+         var wc_cart_fragments_params = {"ajax_url":"\/electro-wide\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/electro-wide\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_88effc316076f529e86d4cdd97a5ee51","fragment_name":"wc_fragments_88effc316076f529e86d4cdd97a5ee51"};
+         /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/cart-fragments.min.js?ver=3.5.7'></script>
+    <script type='text/javascript'>
+         /* <![CDATA[ */
+         var yith_woocompare = {"ajaxurl":"\/electro-wide\/?wc-ajax=%%endpoint%%","actionadd":"yith-woocompare-add-product","actionremove":"yith-woocompare-remove-product","actionview":"yith-woocompare-view-table","actionreload":"yith-woocompare-reload-product","added_label":"Added","table_title":"Product Comparison","auto_open":"yes","loader":"https:\/\/#\/electro-wide\/wp-content\/plugins\/yith-woocommerce-compare\/assets\/images\/loader.gif","button_text":"Compare","cookie_name":"yith_woocompare_list","close_label":"Close"};
+         /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/woocompare.min.js?ver=2.3.9'></script>
+    <script type='text/javascript' src='~/Content/js/jquery.colorbox-min.js?ver=1.4.21'></script>
+    <script type='text/javascript' src='~/Content/js/jquery.prettyPhoto.min.js?ver=3.1.6'></script>
+    <script type='text/javascript' src='~/Content/js/tether.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/bootstrap.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/jquery.waypoints.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/jquery.easing.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/scrollup.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/bootstrap-hover-dropdown.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/jquery.mCustomScrollbar.js?ver=2.3.1'></script>
+    <script type='text/javascript'>
+         /* <![CDATA[ */
+         var electro_options = {"rtl":"0","ajax_url":"https:\/\/#\/electro-wide\/wp-admin\/admin-ajax.php","ajax_loader_url":"https:\/\/#\/electro-wide\/wp-content\/themes\/electro\/assets\/images\/ajax-loader.gif","enable_sticky_header":"","enable_hh_sticky_header":"","enable_live_search":"","live_search_limit":"10","live_search_template":"<a href=\"{{url}}\" class=\"media live-search-media\"><img src=\"{{image}}\" class=\"media-left media-object flip pull-left\" height=\"60\" width=\"60\"><div class=\"media-body\"><p>{{{value}}}<\/p><\/div><\/a>","live_search_empty_msg":"Unable to find any products that match the current query","deal_countdown_text":{"days_text":"Days","hours_text":"Hours","mins_text":"Mins","secs_text":"Secs"},"typeahead_options":{"hint":false,"highlight":true},"offcanvas_mcs_options":{"axis":"y","theme":"minimal-dark","contentTouchScroll":100,"scrollInertia":1500},"compare_page_url":"https:\/\/#\/electro-wide\/compare\/"};
+         /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/electro.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/owl.carousel.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/pace.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/wp-embed.min.js?ver=5.1.3'></script>
+    <script type='text/javascript' src='~/Content/js/js_composer_front.min.js?ver=5.7'></script>
+    @if (pageName == "SingleProduct")
+    {
+        <script type='text/javascript' src='~/Content/js/jquery.zoom.min.js?ver=1.7.21'></script>
+        <script type='text/javascript' src='~/Content/js/jquery.flexslider-min.js?ver=5.7'></script>
+        <script type='text/javascript' src='~/Content/js/photoswipe.min.js?ver=4.1.1'></script>
+        <script type='text/javascript' src='~/Content/js/photoswipe-ui-default.min.js?ver=4.1.1'></script>
+        <script type='text/javascript'>/* <![CDATA[ */ var wc_single_product_params = {"i18n_required_rating_text":"Please select a rating","review_rating_required":"yes","flexslider":{"rtl":false,"animation":"slide","smoothHeight":true,"directionNav":false,"controlNav":false,"slideshow":false,"animationSpeed":500,"animationLoop":false,"allowOneSlide":false},"zoom_enabled":"1","zoom_options":[],"photoswipe_enabled":"1","photoswipe_options":{"shareEl":false,"closeOnScroll":false,"history":false,"hideAnimationDuration":0,"showAnimationDuration":0},"flexslider_enabled":"1"}; /* ]]> */</script>
+        <script type='text/javascript' src='~/Content/js/single-product.min.js?ver=3.5.7'></script>
+    }
+    <script data-require="angular.js@1.0.x" src="~/Content/angular.min.js" data-semver="1.7.9"></script>
+    <script data-require="angular.js@1.0.x" src="~/Content/angular-route.min.js" data-semver="1.7.9"></script>
+    <script data-require="angular.js@1.0.x" src="~/Content/angular-animate.min.js" data-semver="1.7.9"></script>
+    <script data-require="underscore.js@@*" data-semver="1.8.3" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <script type="text/javascript">
+        var app = angular.module('MyApp', ['ngRoute'])
+        app.factory('ShoppingFactory', ['AccountsService', 'ItemsService', '$rootscope', function (AccountsService, ItemsService, $rootscope) {
+            return {
+                createCurrentUser: function () {
+                    this.username = '';
+                    this.password = '';
+                    this.shoppingcart = [];
+                    $rootscope.currentUser = this;
+                },
+                createShoppingCart: function () {
+                    $rootscope.shoppingcart = [];
+
+                    $rootscope.min = 0;
+                    $rootscope.max = 1000;
+                }
+            };
+        }]);
+        app.config(function($locationProvider) {
+            //$locationProvider.html5Mode(true); 
+        });
+        console.log('changed');
+        app.directive('ngLoading', function (Session,$compile) {
+
+            var loadingSpinner = '<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>';
+
+            return {
+                restrict: 'A',
+                link: function (scope, element, attrs) {
+                    var originalContent = element.html();
+                    element.html(loadingSpinner);
+                    scope.$watch(attrs.ngLoading, function (val) {
+                        if(val) {
+                            element.html(originalContent);
+                            $compile(element.contents())(scope);
+                        } else {
+                            element.html(loadingSpinner);
+                        }
+                    });
+                }
+            };
+        });
+        app.controller('MenuController', ['$scope', '$http',
+    function($scope, $http)
+    {
+        $scope.SiteMenu = [];
+        $http.get('/api/HomeApi/GelAllMainCategories').success(function (data)
+        {
+            $scope.SiteMenu = data;
+        });
+    }
+        ]);
+        
+    </script>
+    <script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("masthead");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    jQuery(navbar).addClass('sticky');
+  } else {
+    jQuery(navbar).removeClass('sticky');
+  }
+}
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

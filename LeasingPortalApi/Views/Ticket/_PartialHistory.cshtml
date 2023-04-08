@@ -1,0 +1,70 @@
+﻿
+@model List<EYS.Models.TicketReplyViewModel>
+@{var url = EYS.Models.SessionWrapper.UserUrl;}
+<style>
+    .section-head {
+        background-color: #3c8dbc;
+        color: #ffffff;
+        padding: 3px 15px;
+        margin: 10px 0 0 0;
+    }
+
+    .badge.mainhead {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #222d32;
+    }
+
+    label {
+        display: inline-block;
+        max-width: 100%;
+        margin: 5px 0;
+        font-weight: 700;
+    }
+
+    .badge.red {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #ff0000;
+    }
+
+    .badge.blue {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #3c8dbc;
+    }
+
+    .badge.green {
+        min-width: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #1aa531;
+    }
+    .cstbox{
+        padding:20px;
+        border:1px solid red;
+        margin:20px;
+        border-radius:10px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="cstbox">
+            @{ 
+                if(Model != null)
+            {
+                for
+            }
+            }
+            <p><strong>@Model.UserName (Reply On: @(Model.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString("dd/MM/yyyy hh:mm tt") : "Data Not Available"))</strong></p>
+            <p>@Model.Detail</p>
+        </div>
+    </div>
+</div>

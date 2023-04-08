@@ -1,0 +1,746 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    var todaydate = DateTime.UtcNow;
+    TimeZoneInfo IndianTime = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+    DateTime Now = TimeZoneInfo.ConvertTime(todaydate, IndianTime);
+}
+@{
+    var url = ""; //EYS.Models.SessionWrapper.UserUrl;
+}
+
+<style>
+    @@media (min-width: 992px) {
+        .modal-lg {
+            width: 800px;
+        }
+    }
+
+    label {
+        display: inline-block;
+        max-width: 100%;
+        margin: 5px 0;
+        font-weight: 700;
+    }
+
+    .mytab {
+        border: 1px solid #b9b9b9;
+        padding: 4px;
+        margin-bottom: 5px;
+        background-color: #ecf0f5;
+    }
+
+        .mytab label {
+            font-size: 16px;
+            padding-left: 5px;
+        }
+
+    .section-border {
+        border-bottom: 1px solid #dedede;
+        margin-bottom: 2px;
+    }
+
+    .memberredalert {
+        color: red;
+    }
+</style>
+@* Reply Model Start*@
+<div id="reply" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+       
+        <div class="modal-content">
+            <div class="modal-header">
+                <strong>Reply</strong>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="rformid">
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="exampleInputEmail1">Text<span class="text-red">*</span></label>
+                                <textarea id="r_text" rows="4" required class="form-control" name="r_text"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    @*button*@
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@* Reply Model End*@
+
+@* Delete Model Start*@
+<div id="confirm" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure to delete selected tickets?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="deletebtn">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* Delete Model End*@
+
+@* OpenTicket Model Start*@
+<div id="open" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure to open selected tickets?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="openbtn">Yes</button>
+                <button type="button" data-dismiss="modal" class="btn">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* OpenTicket Model End*@
+
+@* CloseTicket Model Start*@
+<div id="close" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure to close selected tickets?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="closebtn">Yes</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* CloseTicket Model End*@
+
+@* View Model Start*@
+<div id="PartialView" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-body">
+        </div>
+    </div>
+</div>
+@* View Model End*@
+
+@* Invoice Activities Model Start - Print Invoice Page *@
+<div id="PartialPrintActivity" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-body text-center">
+            <iframe id="invoice_frame" width="350" height="500"></iframe>
+            <button type="button" id="close" data-dismiss="modal" style="display:none;" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+</div>
+@* Invoice Activities Model End - Print Invoice Page *@
+
+@* PartialPrintSubscription Activities Model Start - _PrintActivities Page *@
+<div id="PartialPrintSubscription" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-body">
+
+        </div>
+    </div>
+</div>
+@* PartialPrintSubscription Activities Model End - _PrintActivities Page *@
+
+<div class="busy-holder hide">
+    <div class="busy">
+        <!--<span style="color:#7ca07d;font-size:40px;font-weight:700;"><i class="icon-home"></i></span>-->
+        <img id="loading" src="~/Content/common/img/loading.gif" />
+        <div class="loading-text">Loading...</div>
+    </div>
+</div>
+<link rel="stylesheet" href="~/Content/common/plugins/datepicker/datepicker3.css">
+<link rel="stylesheet" href="~/Content/common/plugins/select2/select2.min.css">
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" id="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="success"></div>
+                <div id="error"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Theme style -->
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Tickets
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@url/Dashboard/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Tickets</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+
+            <div class="col-md-12">
+                <!-- Custom Tabs (Pulled to the right) -->
+                <div class="nav-tabs-custom">
+
+                    <div class="tab-content">
+
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" onclick="LoadDataTable('openticket')" class="active activetab" id="tab1"><a href="#opentab" aria-controls="example1-tab1" role="tab" data-toggle="tab">Open Ticket</a></li>
+                            <li role="presentation" onclick="LoadDataTable('closeticket')" id="tab2"><a href="#closetab" aria-controls="example1-tab1" role="tab" data-toggle="tab">Close Ticket</a></li>
+                            <li role="presentation" id="tab3"><a href="#newtab" aria-controls="example1-tab1" role="tab" data-toggle="tab">New Ticket</a></li>
+                        </ul>
+                        <div role="tabpanel" class="box box-success tab-pane fade in active" id="opentab">
+                            <div class="box-header with-border">
+                                <a href="javascript:" onclick="ReplyTicket('openticket')" class="btn btn-primary btn-sm">Reply</a>
+                                <a href="javascript:" onclick="CloseTicket('openticket')" class="btn btn-primary btn-sm">Close Ticket</a>
+                                <a href="javascript:" onclick="DeleteTicket('openticket')" class="btn btn-primary btn-sm">Delete</a>
+                            </div>
+                            <div class="box-body">
+                                <table id="openticket" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="vertical-align:middle;">Id</th>
+                                            <th style="vertical-align:middle" width="5"></th>
+                                            <th style="vertical-align:middle">Full Name</th>
+                                            <th style="vertical-align:middle">Departments</th>
+                                            <th style="vertical-align:middle">Subject</th>
+                                            <th style="vertical-align:middle">Actions</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="box box-success tab-pane fade in" id="closetab">
+                            <div class="box-header with-border">
+                                <a href="javascript:" onclick="OpenTicket('closeticket')" class="btn btn-primary btn-sm">Re-Open</a>
+                                <a href="javascript:" onclick="DeleteTicket('closeticket')" class="btn btn-primary btn-sm">Delete</a>
+                            </div>
+                            <div class="box-body">
+                                <table id="closeticket" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="vertical-align:middle">Id</th>
+                                            <th style="vertical-align:middle" width="5"></th>
+                                            <th style="vertical-align:middle">Full Name</th>
+                                            <th style="vertical-align:middle">Departments</th>
+                                            <th style="vertical-align:middle">Subject</th>
+                                            <th style="vertical-align:middle">Actions</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="box box-success tab-pane fade in" id="newtab">
+                            <div class="box-header with-border">
+                            </div>
+                            <div class="box-body">
+                                <form role="form" id="formid">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="exampleInputEmail1">Full Name</label>
+                                            <input type="text" class="form-control" id="full_name" name="full_name" required placeholder="Enter Full Name">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="exampleInputEmail1">Reply To Email</label>
+                                            <input type="email" class="form-control" id="reply_to_email" name="reply_to_email" required placeholder="Enter Email">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="exampleInputEmail1">Mobile No</label>
+                                            <input type="text" class="form-control" id="mobile" name="mobile" required placeholder="Enter Mobile No">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="exampleInputEmail1">Departments</label>
+                                            <select class="form-control select2" style="width:100%;" name="department" id="department" required>
+                                                <option value="">Select</option>
+                                                <option value="Sales">Sales</option>
+                                                <option value="Purchase">Purchase</option>
+                                                <option value="Support">Support</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="exampleInputEmail1">Priority</label>
+                                            <select class="form-control select2" style="width:100%;" name="priority" id="priority" required>
+                                                <option value="">Select</option>
+                                                <option value="Normal">Normal</option>
+                                                <option value="Medium">Medium</option>
+                                                <option value="High">High</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="exampleInputEmail1">Attachment</label>
+                                            <input type="file" class="form-control" accept=".jpg," id="attachment" name="attachment" required>
+                                            <span id="attachmentmsg" class="text-red"></span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="exampleInputEmail1">Subject</label>
+                                            <input type="text" class="form-control" id="subject" name="subject" required placeholder="Enter Subject">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h4 class="mb-0"><strong>Your detailed explanation</strong></h4>
+                                            <label for="exampleInputEmail1">Please provide us with as much infornation as you can about your question</label>
+                                            <textarea rows="5" class="form-control" id="detail" name="detail" required placeholder="Enter Message"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-10">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+@section Scripts{
+
+
+    <script>
+        var url = "@url";
+
+        $(document).ready(function () {
+            LoadDataTable("openticket");
+        });
+
+        function LoadDataTable(tab_name) {
+            $("#" + tab_name).DataTable({
+                "destroy": true,
+                "pageLength": 10,
+                "lengthMenu": [[10, 25, 50, 100, 1000], [10, 25, 50, 100, 1000]],
+
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": true, // for disable multiple column at once
+
+                "ajax": {
+                    "url": url + "/Ticket/LoadDataTable",
+                    "data": { "tab": tab_name },
+                    "type": "POST",
+                    "datatype": "json",
+                },
+
+                "language": {
+                    processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading..n.</span> '
+                },
+
+                'order': [[0, 'desc']],
+
+                columnDefs: [{
+                    targets: 5,
+                },
+                {
+                    "targets": [0],
+                    "visible": false
+                },
+                    {
+                        targets: [0,1,5],
+                        orderable: false
+                    },
+                ],
+
+                "columns": [
+
+                    { "data": "Id", "name": "Id" },
+
+                    {
+                        "render": function (data, type, full, meta) {
+                            var html = '<input type="checkbox" value="' + full.Id + '" />';
+                            return html;
+                        }
+                    },
+
+                    { "data": "FullName", "name": "FullName" },
+
+                    { "data": "Department", "name": "Department" },
+
+                    { "data": "Subject", "name": "Subject" },
+
+                    {
+                        "render": function (data, type, full, meta) {
+                            var html = "";
+                            if (tab_name != "closeticket") {
+                                html = html + '<a onclick="PartialView(this)" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill mylink" data-id="' + full.Id + '" title="View">' +
+                                    '<i class="fa fa-eye"></i>' +
+                                    '</a>';
+                            }
+                            return html;
+                        }
+                    },
+                ],
+            });
+        }
+
+        var ticket_data = [];
+        var ref_tbl = [];
+        function OpenTicket(tab_name) {
+            ticket_data = [];
+            ref_tbl = tab_name;
+            var flag = "false";
+            $('#' + tab_name + ' input[type="checkbox"]').each(function () {
+                if (this.checked) {
+                    ticket_data.push({
+                        "Id": $(this).val(),
+                        "Status": 1,
+                    });
+                    flag = "true";
+                }
+            });
+            if (flag == 'false') {
+                toastr.info("Please Select at least one checkbox", "Info");
+                return false;
+            }
+            else {
+                $('#open').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            }
+        }
+
+        function CloseTicket(tab_name) {
+            ticket_data = [];
+            ref_tbl = tab_name;
+            var flag = "false";
+            $('#' + tab_name + ' input[type="checkbox"]').each(function () {
+                if (this.checked) {
+                    ticket_data.push({
+                        "Id": $(this).val(),
+                        "Status": 0,
+                    });
+                    flag = "true";
+                }
+            });
+            if (flag == 'false') {
+                toastr.info("Please Select at least one checkbox", "Info");
+                return false;
+            }
+            else {
+                console.log("End");
+                $('#close').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                console.log("End1");
+            }
+        }
+        
+        function DeleteTicket(tab_name) {
+            ticket_data = [];
+            ref_tbl = tab_name;
+            var flag = "false";
+            $('#' + tab_name + ' input[type="checkbox"]').each(function () {
+                if (this.checked) {
+                    ticket_data.push({
+                        "Id": $(this).val(),
+                        "Status": 1,
+                    });
+                    flag = "true";
+                }
+            });
+            if (flag == 'false') {
+                toastr.info("Please Select at least one checkbox", "Info");
+                return false;
+            }
+            else {
+                $('#confirm').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            }
+        }
+
+        function ReplyTicket(tab_name) {
+            ticket_data = [];
+            ref_tbl = tab_name;
+            var flag = "false";
+            $('#' + tab_name + ' input[type="checkbox"]').each(function () {
+                if (this.checked) {
+                    ticket_data.push({
+                        "TicketId": $(this).val(),
+                        "UserId": $(this).attr("data-user"),
+                    });
+                    flag = "true";
+                }
+            });
+            if (flag == 'false') {
+                toastr.info("Please Select at least one checkbox", "Info");
+                return false;
+            }
+            else {
+                $('#reply').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            }
+        }
+
+        //Update Data Start //OnClick
+        //Open
+        $(document).on('click', '#openbtn', function (e) {
+            inload();
+            $.ajax({
+                url: url + '/Ticket/UpdateActionData',
+                type: 'POST',
+                data: { "TicketData": ticket_data, "Action": "open" },
+                success: function (doc) {
+                    outload();
+                    if (doc == 'Success') {
+                        $('#open').modal('hide');
+                        toastr.success("tickets opened successfully...", "Success");
+                        RefreshAllTable();
+                    }
+                    else {
+                        $('#open').modal('hide');
+                        toastr.error("Something went wrong. Please try again.", "Warning!");
+                    }
+                },
+                error: function () {
+                    outload();
+                    $('#open').modal('hide');
+                    toastr.error("Something went wrong. Please try again.", "Warning!");
+                }
+            });
+        });
+
+        //Close
+        $(document).on('click', '#closebtn', function (e) {
+            inload();
+            $.ajax({
+                url: url + '/Ticket/UpdateActionData',
+                type: 'POST',
+                data: { "TicketData": ticket_data, "Action": "close" },
+                success: function (doc) {
+                    outload();
+                    if (doc == 'Success') {
+                        $('#close').modal('hide');
+                        toastr.success("tickets closed successfully...", "Success");
+                        RefreshAllTable();
+                    }
+                    else {
+                        $('#close').modal('hide');
+                        toastr.error("Something went wrong. Please try again.", "Warning!");
+                    }
+                },
+                error: function () {
+                    outload();
+                    $('#close').modal('hide');
+                    toastr.error("Something went wrong. Please try again.", "Warning!");
+                }
+            });
+        });
+        //Update Data End
+
+        //Delete Data Start //OnClick
+        $(document).on('click', '#deletebtn', function (e) {
+            inload();
+            $.ajax({
+                url: url + '/Ticket/UpdateActionData',
+                type: 'POST',
+                data: { "TicketData": ticket_data, "Action": "delete" },
+                success: function (doc) {
+                    outload();
+                    if (doc == 'Success') {
+                        $('#confirm').modal('hide');
+                        toastr.success("Record deleted successfully...", "Success");
+                        RefreshAllTable();
+                    }
+                    else {
+                        $('#confirm').modal('hide');
+                        toastr.error("Something went wrong. Please try again.", "Warning!");
+                    }
+                },
+                error: function () {
+                    outload();
+                    $('#confirm').modal('hide');
+                    toastr.error("Something went wrong. Please try again.", "Warning!");
+                }
+            });
+        });
+        //Delete Data End
+
+        //Reply Data Start //OnClick
+        $(function () {
+            $("#rformid").on("submit", function (event) {
+                event.preventDefault();
+                inload();
+                $.ajax({
+                    url: url + '/Ticket/SaveReply',
+                    type: 'POST',
+                    data: { "records": ticket_data, "details" : $("#r_text").val() },
+                    success: function (doc) {
+                        outload();
+                        $("#r_text").val("");
+                        if (doc == 'Success') {
+                            $('#reply').modal('hide');
+                            toastr.success("Reply send successfully...", "Success");
+                            RefreshAllTable();
+                        }
+                        else {
+                            $('#reply').modal('hide');
+                            toastr.error("Something went wrong. Please try again.", "Warning!");
+                        }
+                    },
+                    error: function () {
+                        $("#r_text").val("");
+                        outload();
+                        $('#reply').modal('hide');
+                        toastr.error("Something went wrong. Please try again.", "Warning!");
+                    }
+                });
+            });
+        });
+        //Reply Data End
+
+        function RefreshAllTable() {
+            var table = $('#' + ref_tbl ).DataTable();
+            table.ajax.reload(null, false);
+        }
+
+        //Add Data Start
+        var uploadalert = "";
+
+        $(function () {
+            $('#attachment').change(function () {
+                var ValidFileExtension = ['jpg', 'JPG', 'png', 'PNG', 'jpeg', 'JPEG'];
+                if ($.inArray($(this).val().split('.').pop().toLowerCase(), ValidFileExtension) == -1) {
+                    attachmentmsg.innerHTML = "Sorry!!! Only jpg, jpeg & png formats allowed";
+                    uploadalert = "0";
+                }
+                else {
+                    uploadalert = "1";
+                }
+            })
+        })
+
+        $(function () {
+            $("#formid").on("submit", function (event) {
+                event.preventDefault();
+                attachmentmsg.innerHTML = "";
+                if (uploadalert == "0") {
+                    attachmentmsg.innerHTML = "Sorry!!! Only jpg, jpeg & png formats allowed";
+                    attachment.focus();
+                    return false;
+                }
+
+                inload();
+
+
+                if (window.FormData !== undefined) {
+                    var fileUpload = $("#attachment").get(0);
+                    var files = fileUpload.files;
+                    // Create FormData object
+                    var fileData = new FormData();
+                    // Looping over all files and add it to FormData object
+                    for (var i = 0; i < files.length; i++) {
+                        fileData.append(files[i].name, files[i]);
+                    }
+
+                    $.ajax({
+                        url: url + '/Ticket/Attachment',
+                        type: "POST",
+                        contentType: false, // Not to set any content header
+                        processData: false, // Not to process data
+                        data: fileData,
+                        success: function (res) {
+
+                            var data1 = {
+                                "FullName": $("input[name='full_name']").val(),
+                                "ReplyEmail": $("input[name='reply_to_email']").val(),
+                                "Mobile": $("input[name='mobile']").val(),
+                                "Attachment": res,
+                                "Department": $("#department option:selected").val(),
+                                "Subject": $("input[name='subject']").val(),
+                                "Detail": $("textarea[name='detail']").val(),
+                                "Priority": $("#priority option:selected").val(),
+                            };
+
+                            //inload();
+                            $.ajax({
+                                url: url + '/Ticket/SaveData',
+                                type: 'POST',
+                                data: { "TicketData": data1 },
+                                success: function (doc) {
+                                    outload();
+                                    if (doc == 'Success') {
+                                        document.getElementById('formid').reset();
+                                        toastr.success("Record added successfully...", "Success");
+                                    }
+                                    else {
+                                        document.getElementById('formid').reset();
+                                        toastr.error("Something went wrong! Please try again", "Warning!");
+                                    }
+                                },
+                                error: function () {
+                                    outload();
+                                    document.getElementById('formid').reset();
+                                    toastr.error("Something went wrong! Please try again", "Warning!");
+                                }
+                            });
+                        },
+                        error: function () {
+                            outload();
+                            document.getElementById('formid').reset();
+                            toastr.error("Something went wrong! Please try again", "Warning!");
+                        }
+                    });
+                }
+                else {
+                    outload();
+                    document.getElementById('formid').reset();
+                    toastr.error("Something went wrong! Please try again", "Warning!");
+                }
+            });
+        });
+        //Add Data End
+
+        //View Button Code Start
+        function PartialView(e) {
+            inload();
+            dataid = $(e).attr('data-id');
+            $.ajax({
+                type: "POST",
+                url: url + "/Ticket/_ViewDetails",
+                data: { "Id": dataid },
+                success: function (doc) {
+                    outload();
+                    $('#PartialView .modal-body').html(doc);
+                    $('#PartialView').modal({
+                        backdrop: 'static',
+                        show: 'true',
+                        keyboard: false
+                    })
+                }, error: function () {
+                    outload();
+                    toastr.error("Something went wrong. Please try again.", "Warning!");
+                }
+            });
+        }
+        //View Button Code End
+
+      $(function () {
+          $(".select2").select2();
+      });
+
+    </script>
+}

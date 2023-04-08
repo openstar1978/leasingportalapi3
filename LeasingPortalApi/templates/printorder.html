@@ -1,0 +1,222 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+
+</head>
+
+<body>
+    <div class="invoice-box">
+        <style>
+            .invoice-box {
+                max-width: 800px;
+                height:93%;
+                margin: auto;
+                padding: 10px;
+                /*border: 1px solid #eee;
+                box-shadow: 0 0 10px rgba(0, 0, 0, .15);*/
+                font-size: 16px;
+                line-height: 24px;
+                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                color: #555;
+            }
+
+                .invoice-box table {
+                    width: 100%;
+                    line-height: inherit;
+                    text-align: left;
+                }
+
+                    .invoice-box table td {
+                        padding: 5px;
+                        vertical-align: top;
+                    }
+
+                    .invoice-box table tr td:nth-child(2) {
+                        text-align: right;
+                    }
+
+                    .invoice-box table tr.top table td {
+                        padding-bottom: 20px;
+                    }
+
+                        .invoice-box table tr.top table td.title {
+                            font-size: 45px;
+                            line-height: 45px;
+                            color: #333;
+                        }
+
+                    .invoice-box table tr.information table td {
+                        padding-bottom: 40px;
+                    }
+
+                    .invoice-box table tr.heading td {
+                        background: #eee;
+                        border-bottom: 1pt solid #ddd;
+                        
+                    }
+
+                    .invoice-box table tr.details td {
+                        padding-bottom: 20px;
+                    }
+                    .invoice-box .footer table tr.details td {
+                        padding-bottom: 5px;
+                    }
+                    .invoice-box table tr.item td {
+                        border-bottom: 1px solid #eee;
+                    }
+
+                    .invoice-box table tr.item.last td {
+                        border-bottom: none;
+                    }
+
+                    .invoice-box table tr.total td:nth-child(5) {
+                        border-top: 2px solid #eee;
+                        font-weight: bold;
+                    }
+            table, tbody, tr, td {
+                border-collapse: collapse;
+            }
+            @media only screen and (max-width: 600px) {
+                .invoice-box table tr.top table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+
+                .invoice-box table tr.information table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+            }
+
+            /** RTL **/
+            .rtl {
+                direction: rtl;
+                font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            }
+
+                .rtl table {
+                    text-align: right;
+                }
+
+                    .rtl table tr td:nth-child(2) {
+                        text-align: left;
+                    }
+            @media print {
+                table, tbody, tr, td {
+                    border-collapse: collapse;
+                }
+            }
+        </style>
+        
+        <table cellpadding="0" cellspacing="0" style="border-collapse:separate;">
+            <tr class="top">
+                <td colspan="5">
+                    <table>
+                        <tr>
+                            <td>
+                                <span style="color:#333">Order #:</span><span style="color:#101010"><strong>{{print.mleaseno}}</strong></span> 
+
+                            </td>
+                            
+                            <td>
+                                <span style="color:#333">Purchase Order#:</span> <span style="color:#101010"><strong>{{print.msorderref}}</strong></span><br />
+    <span style="color:#333">Order Date:</span><span style="color:#101010"> <strong>{{print.displaydate}}</strong></span><br>
+
+</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td colspan="5">
+                    Lease Term : <strong>{{getTerms(print.Product[0].mtermf,print.Product[0].mtermp)}}</strong>
+                </td>
+                
+            </tr>
+            <tr class="details">
+                <td colspan="5"></td>
+            </tr>
+            <tr class="heading">
+                <td style="width:350px;" class="product-name">Product Detail</td>
+                <td style="width:80px;" align="center">Unit Price</td>
+                <td style="width:20px;" align="center">Qty</td>
+                <td style="width:250px;" align="right">Rental</td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+            <tr ng-repeat="print2 in print.Product track by $index" class="item" ng-class="$index==(print.Product.length-1)?'item last':'item'">
+
+            
+                <td style="word-wrap: break-word;white-space:normal;border-top:1pt solid #333;width:100px;" data-title="Product">
+                    {{print2.mproductname}}<br/>
+                    <span style="font-size:12px;" ng-if="print2.warrantydetails!=null">With Extended {{print2.warrantydetails.mprodname}}</span>
+                </td>
+                <td data-title="Price" align="center" style="border-top:1pt solid #333;">
+                    <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{print2.mprice | number:2}}</span>
+
+                </td>
+
+                <td data-title="Quantity" align="center" style="border-top:1pt solid #333;">
+                    <div class="quantity" style="margin:0 auto;">
+                        <span class="woocommerce-Price-amount amount">{{print2.quantity}}</span>
+
+                    </div>
+                </td>
+                <td data-title="Total" align="right" style="border-top:1pt solid #333;">
+                    <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{print2.mprice*print2.quantity | number:2}}</span><br/>
+                    <label ng-show="print2.minstallationflag=='yes'" class="installtext" style="text-align: left;{{print2.minstallationflag=='yes'?'':'display:none'}}">Installation included</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+            </tr>
+
+            <tr class="total" style="margin-top:30px;">
+                <td></td>
+                
+                <td colspan="2" align="right" style="border-top:1pt solid #333;border-collapse:separate;">Total Rental:</td>
+                <td align="right"  style="border-top: 1pt solid #333; border-collapse: separate;">
+                     £{{print.total}}
+                </td>
+            </tr>
+            
+        </table>
+        <div class="footer" style="position:fixed;bottom:50px;width:738px;">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="heading">
+                    <td colspan="1">
+                        Payment Method : <strong>{{print.mpayment=='2'?'Direct Debit':'On Invoice'}}</strong>
+                    </td>
+
+                </tr>
+                <tr class="details" ng-if="print.mpayment=='1'">
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="details" ng-if="print.mpayment=='2'">
+                    <td style="color:#333;">Bank Name : <label class="form-label">{{bank.mbankname}}</label></td>
+                </tr>
+                <tr class="details" ng-if="print.mpayment=='2'">
+                    <td style="color:#333;">Account No. : <label class="form-label">{{bank.mbankaccount}}</label></td>
+
+                </tr>
+                <tr class="details" ng-if="print.mpayment=='2'">
+                    <td style="color:#333;">Sort Code : <label class="form-label">{{bank.mbankshort}}</label></td>
+                </tr>
+                <tr class="details" ng-if="print.mpayment=='2'">
+                    <td style="color:#333;">Account Holder : <label class="form-label">{{bank.maccountholder}}</label></td>
+                </tr>
+            </table>
+</div>
+    </div>
+</body>
+</html>

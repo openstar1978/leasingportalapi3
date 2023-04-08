@@ -1,0 +1,387 @@
+﻿<div class="header-icon wologin" ng-show="!IsUserLogedIn">
+    <a href="javascript:;">
+        <span class="span1"><i class="ec ec-user" style="font-weight: bold;"></i></span>
+    </a>
+    <span class="span2">
+
+        <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link"
+           aria-controls="sidebarContent"
+           aria-haspopup="true"
+           aria-expanded="false"
+           data-unfold-event="click"
+           data-unfold-hide-on-scroll="false"
+           data-unfold-target="#sidebarContent"
+           data-unfold-type="css-animation"
+           data-unfold-animation-in="fadeInRight"
+           data-unfold-animation-out="fadeOutRight"
+           data-unfold-duration="500">
+            <span style="display:block;">Sign In</span>
+
+        </a>
+        <a href="/Leasing/Registration" class="u-header-topbar__nav-link" style=""> Register Free</a>
+
+    </span>
+    <!--<span ng-show="IsUserLogedIn" style="font-size:10px;position: absolute;top: 17px;left: 30px;" ng-bind-html="morgname"></span>-->
+    <aside ng-show="!IsUserLogedIn" id="sidebarContent" class="u-sidebar u-sidebar__lg" aria-labelledby="sidebarNavToggler">
+        <div class="u-sidebar__scroller">
+            <div class="u-sidebar__container">
+                <div class="js-scrollbar u-header-sidebar__footer-offset pb-3">
+                    <!-- Toggle Button -->
+                    <div class="d-flex align-items-center pt-4 px-7">
+                        <button type="button" class="close ml-auto"
+                                aria-controls="sidebarContent"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                data-unfold-event="click"
+                                data-unfold-hide-on-scroll="false"
+                                data-unfold-target="#sidebarContent"
+                                data-unfold-type="css-animation"
+                                data-unfold-animation-in="fadeInRight"
+                                data-unfold-animation-out="fadeOutRight"
+                                data-unfold-duration="500">
+                            <i class="ec ec-close-remove"></i>
+                        </button>
+                    </div>
+                    <!-- End Toggle Button -->
+                    <!-- Content -->
+                    <div class="js-scrollbar u-sidebar__body">
+                        <div class="u-sidebar__content u-header-sidebar__content">
+                            <form name="loginfield" ng-submit="MenuLogin()" class="js-validate">
+                                <!-- Login -->
+                                <div id="login" data-target-group="idForm">
+                                    <!-- Title -->
+                                    <header class="text-center mb-7">
+                                        <h2 class="h4 mb-0">Welcome Back!</h2>
+                                        <p>Login to manage your account.</p>
+                                    </header>
+                                    <!-- End Title -->
+                                    <!-- Form Group -->
+                                    <div class="form-group" ng-show="IsError">
+                                        <div class="alert alert-warning">{{invalidlogin}}</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="js-form-message js-focus-state">
+                                            <label class="sr-only" for="signinEmail">Email</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="signinEmailLabel">
+                                                        <span class="fas fa-user"></span>
+                                                    </span>
+                                                </div>
+                                                <input type="email" ng-model="MenuLoginData.museridemail" name="museridemail" ng-class="MSubmitted?'form-control ng-dirty':'form-control'" required id="signinSrEmailExample3" placeholder="Email address" aria-label="Email address"
+                                                       data-msg="Please enter a valid email address."
+                                                       data-error-class="u-has-error"
+                                                       data-success-class="u-has-success">
+                                                <span class="loginerror" ng-show="(loginfield.museridemail.$dirty || MSubmitted) && loginfield.museridemail.$error.required">Username required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Form Group -->
+                                    <!-- Form Group -->
+                                    <div class="form-group">
+                                        <div class="js-form-message js-focus-state">
+                                            <label class="sr-only" for="signinPassword">Password</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="signinPasswordLabel">
+                                                        <span class="fas fa-lock"></span>
+                                                    </span>
+                                                </div>
+                                                <input type="password" ng-model="MenuLoginData.mpwd" name="mpwd" ng-class="MSubmitted?'form-control ng-dirty':'form-control'" required id="signinSrPasswordExample2" placeholder="********" aria-label="********"
+                                                       data-msg="Your password is invalid. Please try again."
+                                                       data-error-class="u-has-error"
+                                                       data-success-class="u-has-success">
+                                                <span class="loginerror" ng-show="(loginfield.mpwd.$dirty || MSubmitted) && loginfield.mpwd.$error.required">Password required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Form Group -->
+
+                                    <div class="d-flex justify-content-end mb-4">
+                                        <a class="js-animation-link small link-muted" href="javascript:;"
+                                           data-target="#forgotPassword"
+                                           data-link-group="idForm"
+                                           data-animation-in="slideInUp">Forgot Password?</a>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <button type="submit" ng-disabled="MSubmitted" class="btn btn-block btn-sm btn-primary transition-3d-hover">Login</button>
+                                    </div>
+
+                                    <div class="text-center mb-4">
+                                        <span class="small text-muted">Do not have an account?</span>
+                                        <a class="js-animation-link small text-dark" href="/Leasing/Registration/">
+                                            Signup
+                                        </a>
+                                    </div>
+
+                                    @*<div class="text-center">
+                                        <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>
+                                    </div>
+
+                                    <!-- Login Buttons -->
+                                    <div class="d-flex">
+                                        <a class="btn btn-block btn-sm btn-soft-facebook transition-3d-hover mr-1" href="#">
+                                            <span class="fab fa-facebook-square mr-1"></span>
+                                            Facebook
+                                        </a>
+                                        <a class="btn btn-block btn-sm btn-soft-google transition-3d-hover ml-1 mt-0" href="#">
+                                            <span class="fab fa-google mr-1"></span>
+                                            Google
+                                        </a>
+                                    </div>*@
+                                    <!-- End Login Buttons -->
+                                </div>
+                            </form>
+                            <form name="menulogin">
+                                <!-- Signup -->
+                                <div id="signup" style="display: none; opacity: 0;" data-target-group="idForm">
+                                    <!-- Title -->
+                                    <header class="text-center mb-7">
+                                        <h2 class="h4 mb-0">Welcome to Electro.</h2>
+                                        <p>Fill out the form to get started.</p>
+                                    </header>
+                                    <!-- End Title -->
+                                    <!-- Form Group -->
+                                    <div class="form-group">
+                                        <div class="js-form-message js-focus-state">
+                                            <label class="sr-only" for="signupEmail">Email</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="signupEmailLabel">
+                                                        <span class="fas fa-user"></span>
+                                                    </span>
+                                                </div>
+                                                <input type="email" class="form-control" name="email" id="signupEmail" placeholder="Email" aria-label="Email" aria-describedby="signupEmailLabel" required
+                                                       data-msg="Please enter a valid email address."
+                                                       data-error-class="u-has-error"
+                                                       data-success-class="u-has-success">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Input -->
+                                    <!-- Form Group -->
+                                    <div class="form-group">
+                                        <div class="js-form-message js-focus-state">
+                                            <label class="sr-only" for="signupPassword">Password</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="signupPasswordLabel">
+                                                        <span class="fas fa-lock"></span>
+                                                    </span>
+                                                </div>
+                                                <input type="password" class="form-control" name="password" id="signupPassword" placeholder="Password" aria-label="Password" aria-describedby="signupPasswordLabel" required
+                                                       data-msg="Your password is invalid. Please try again."
+                                                       data-error-class="u-has-error"
+                                                       data-success-class="u-has-success">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Input -->
+                                    <!-- Form Group -->
+                                    <div class="form-group">
+                                        <div class="js-form-message js-focus-state">
+                                            <label class="sr-only" for="signupConfirmPassword">Confirm Password</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="signupConfirmPasswordLabel">
+                                                        <span class="fas fa-key"></span>
+                                                    </span>
+                                                </div>
+                                                <input type="password" class="form-control" name="confirmPassword" id="signupConfirmPassword" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="signupConfirmPasswordLabel" required
+                                                       data-msg="Password does not match the confirm password."
+                                                       data-error-class="u-has-error"
+                                                       data-success-class="u-has-success">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Input -->
+
+                                    <div class="mb-2">
+                                        <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Get Started</button>
+                                    </div>
+
+                                    <div class="text-center mb-4">
+                                        <span class="small text-muted">Already have an account?</span>
+                                        <a class="js-animation-link small text-dark" href="javascript:;"
+                                           data-target="#login"
+                                           data-link-group="idForm"
+                                           data-animation-in="slideInUp">
+                                            Login
+                                        </a>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <span class="u-divider u-divider--xs u-divider--text mb-4">OR</span>
+                                    </div>
+
+                                    <!-- Login Buttons -->
+                                    @*<div class="d-flex">
+                                        <a class="btn btn-block btn-sm btn-soft-facebook transition-3d-hover mr-1" href="#">
+                                            <span class="fab fa-facebook-square mr-1"></span>
+                                            Facebook
+                                        </a>
+                                        <a class="btn btn-block btn-sm btn-soft-google transition-3d-hover ml-1 mt-0" href="#">
+                                            <span class="fab fa-google mr-1"></span>
+                                            Google
+                                        </a>
+                                    </div>*@
+                                    <!-- End Login Buttons -->
+                                </div>
+                                <!-- End Signup -->
+                                <!-- Forgot Password -->
+                                <div id="forgotPassword" style="display: none; opacity: 0;" data-target-group="idForm">
+                                    <!-- Title -->
+                                    <header class="text-center mb-7">
+                                        <h2 class="h4 mb-0">Recover Password.</h2>
+                                        <p>Enter your email address and an email with instructions will be sent to you.</p>
+                                    </header>
+                                    <!-- End Title -->
+                                    <!-- Form Group -->
+                                    <div class="form-group">
+                                        <div class="js-form-message js-focus-state">
+                                            <label class="sr-only" for="recoverEmail">Your email</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="recoverEmailLabel">
+                                                        <span class="fas fa-user"></span>
+                                                    </span>
+                                                </div>
+                                                <input type="email" class="form-control" name="email" id="recoverEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmailLabel" required
+                                                       data-msg="Please enter a valid email address."
+                                                       data-error-class="u-has-error"
+                                                       data-success-class="u-has-success">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Form Group -->
+
+                                    <div class="mb-2">
+                                        <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Recover Password</button>
+                                    </div>
+
+                                    <div class="text-center mb-4">
+                                        <span class="small text-muted">Remember your password?</span>
+                                        <a class="js-animation-link small" href="javascript:;"
+                                           data-target="#login"
+                                           data-link-group="idForm"
+                                           data-animation-in="slideInUp">
+                                            Login
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- End Forgot Password -->
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+        </div>
+    </aside>
+    
+</div>
+<div ng-show="IsUserLogedIn" class="header-icon animate-dropdown dropdown userdropdown ng-hide wlogin">
+    <a href="javascript:;" data-toggle="dropdown">
+        <span class="span1"><i class="ec ec-user" style="font-weight: bold;font-size: 1.729em;"></i></span>
+
+        <span ng-show="IsUserLogedIn" class="span2" style="">
+            <span style="display:block;">Hello, <span ng-bind-html="musername"></span></span>
+            <span ng-show="IsUserLogedIn" class="span3">My account</span>
+        </span>
+        <!--<span ng-show="IsUserLogedIn" style="font-size:10px;position: absolute;top: 17px;left: 30px;" ng-bind-html="morgname"></span>-->
+
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-account">
+        <li ng-show="IsUserLogedIn" style="background:#082044;color:#fff;"><a href="javascript:;" style="cursor:none;background:#082044;color:#fff"><span ng-bind-html="morgname"></span></a></li>
+        <li ng-show="!IsUserLogedIn">
+            <a id="sidebarNavToggler2" href="javascript:;" style="display:inline;float: left;padding: .25rem 0 .25rem 1.5rem;width:44%" role="button" class="u-header-topbar__nav-link"
+               aria-controls="sidebarContent"
+               aria-haspopup="true"
+               aria-expanded="false"
+               data-unfold-event="click"
+               data-unfold-hide-on-scroll="false"
+               data-unfold-target="#sidebarContent"
+               data-unfold-type="css-animation"
+               data-unfold-animation-in="fadeInRight"
+               data-unfold-animation-out="fadeOutRight"
+               data-unfold-duration="500">
+                Sign In <span class="text-gray-50">or</span>
+            </a>
+            <a href="/Leasing/Registration" class="u-header-topbar__nav-link" style="display:inline-block;width:50%;padding:.25rem 0;"> Register</a>
+        </li>
+        <li ng-show="IsUserLogedIn">
+            <a href="/MyAccount/Index?tab=yourleaseorder&content=3">Your Lease Order</a>
+            <a href="/MyAccount/Index?tab=youractivelease&content=4">Active Lease</a>
+            <a href="javascript:;" ng-click="Logout()">Logout</a>
+        </li>
+    </ul>
+    <!-----------------SideBar Content----------------->
+    <!-- End Account Sidebar Navigation -->
+
+
+</div>
+<!--<div class="header-icon" data-placement="bottom" data-toggle="tooltip" data-title="Compare">
+    <a href="/Leasing/#/compare/">
+        <i class="ec ec-compare"></i>
+    </a>
+</div>
+<div class="header-icon" data-toggle="tooltip" data-placement="bottom" data-title="Wishlist">
+    <a href="/Leasing/#/wishlist/">
+        <i class="ec ec-favorites"></i>
+    </a>
+</div>-->
+<div class="header-icon" ng-show="IsUserLogedIn" data-toggle="tooltip" data-placement="bottom" data-title="Notification">
+    <a href="/Leasing/#/wishlist/">
+        <i class="fa fa-bell"></i>
+        <span ng-cloak class="bell-icon count header-icon-counter">0</span>
+    </a>
+</div>
+<div ng-controller="ShoppingCartController" class="header-icon animate-dropdown dropdown">
+
+    <a href="/Leasing/ViewCart/" title="View Your Basket">
+        <!--<i class="ec ec-shopping-bag"></i>-->
+        <i class="ec ec-add-to-cart" style="font-size:2em"></i>
+        <span ng-cloak class="cart-items-count count header-icon-counter">{{shoppingCart.totalItems}}</span>
+        <span class="cart-items-total-price total-price" ng-cloak><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>{{shoppingCart.totalPrice | number:2 }}</span></span>
+    </a>
+    <!--<a href="/Leasing/#/cart/" data-toggle="dropdown">
+        <i class="ec ec-shopping-bag"></i>
+        <span ng-cloak class="cart-items-count count header-icon-counter">{{shoppingCart.totalItems}}</span>
+        <span class="cart-items-total-price total-price" ng-cloak><span class="woocommerce-Price-amount amount" ><span class="woocommerce-Price-currencySymbol">&pound;</span>{{shoppingCart.totalPrice | number:2 }}</span></span>
+    </a>-->
+    <ul ng-show="shoppingCart.length<=0" class="dropdown-menu dropdown-menu-mini-cart">
+        <li>
+            <div class="widget_shopping_cart_content">
+                <p class="woocommerce-mini-cart__empty-message">No products in your basket.</p>
+            </div>
+        </li>
+    </ul>
+    <ul ng-show="shoppingCart.length>0" class="dropdown-menu dropdown-menu-mini-cart">
+        <li>
+            <div class="widget_shopping_cart_content" style="opacity: 1;">
+
+                <ul class="woocommerce-mini-cart cart_list product_list_widget ">
+                    <li ng-repeat="item in shoppingCart track by $index" class="woocommerce-mini-cart-item mini_cart_item">
+                        <a style="cursor:pointer" ng-click="deleteFromCart($index)" class="remove">×</a>
+                        <a>
+                            <img ng-src="/LeaseAdmin/Content/images/product/{{item.Product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">{{item.Product.mprodname}}
+                        </a>
+                        <span class="quantity">{{item.Quantity}} × <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice | number:2}}</span></span>
+                    </li>
+                </ul>
+
+                <p class="woocommerce-mini-cart__total total"><strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{shoppingCart.totalPrice | number:2}}</span></p>
+
+                <!--<button ng-disabled="!shoppingCart.length" ng-show="!isCheckoutPage" ng-click="checkout()" class="btn btn-success"> Checkout</button>
+                <button ng-disabled="!shoppingCart.length" ng-click="clearShoppingCart()" class="btn btn-warning">Clear</button>-->
+                <p class="woocommerce-mini-cart__buttons buttons">
+                    <a href="/Leasing/ViewCart" class="button wc-forward">View Your Basket</a><a ng-disabled="!shoppingCart.length" ng-show="!isCheckoutPage" href="/Leasing/Checkout" class="button checkout wc-forward">Checkout</a>
+                </p>
+
+
+            </div>
+        </li>
+    </ul>
+</div>

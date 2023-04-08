@@ -1,0 +1,395 @@
+﻿@using LeasingPortalApi.Models;
+@using System.Net.Mail;
+@using System.Net;
+@using System.Text.RegularExpressions;
+@using System.Globalization;
+@{
+    float r=0;
+    @(float.Parse("50.506098",CultureInfo.InvariantCulture.NumberFormat));
+    @((float)(Convert.ToDouble("50.506098")));
+    int age = 0;
+    DateTime dateOfBirth = Convert.ToDateTime("2004-01-19");
+    age = DateTime.Now.Year - dateOfBirth.Year;
+
+    if (DateTime.Now.DayOfYear < dateOfBirth.DayOfYear)
+    {
+        age = age - 1;
+    }
+    //const Regex regex = new Regex(":.*:", RegexOptions.IgnoreCase);
+    string[] operands = Regex.Split(":relevance:category:MSH1507103:inStockFlag:true:brand:MBH12B10425:colour:Blue_0000FF:discountFlag:30%25+-+50%25", @"^relevance\w*?:\w+");
+
+    foreach (string operand in operands)
+    {
+        @Html.Raw(operand + "<br/>");
+    }
+    @Html.Raw("<br/><br/>");
+    @age;
+    ViewBag.Title = "Index2";
+    //Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    @DateTime.Now.Ticks.ToString().Take(15);
+    @Guid.NewGuid().ToString();
+    List<string> prodlist = new List<string>();
+    prodlist.Add("p");
+    prodlist.Add("s");
+    @prodlist.ToString();
+    @Html.Raw("<br/>");
+    var d3 = DateTime.Now;
+    var d2 = Convert.ToDateTime("2021-06-29 17:57:20.610");
+    var s = (d3 - d2).TotalMinutes;
+    @s;
+    @Html.Raw("<br/>");
+    var url = HttpContext.Current.Server.MapPath("/leaseadmin");
+    @url;
+    @HttpUtility.UrlEncode(Encryption.Encrypt("LM-00913"));
+    @("Password: ");
+
+    @Encryption.Decrypt("9F78AR6CZYjHHlAmhmHMzA==");
+    @Html.Raw("<br/>");
+    @HttpUtility.UrlEncode("zIDImz5L3saK81Nmzs+Q7HCph06U512Q2dF+5bgAvTM=");
+    @HttpUtility.UrlDecode("zIDImz5L3saK81Nmzs%2bQ7HCph06U512Q2dF%2b5bgAvTM%3d");
+    @(" End Password");
+    var sessionid = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).TrimEnd('=');
+    @(DateTime.Now.Ticks + "-" + sessionid);
+    //SingleProductDisplayViewModel products = null;
+    var ctx = new LeasingDbEntities();
+    var id = 23;
+    var d = new List<SubCartDisplayViewModel>();
+
+
+    id = 29;
+    var seed = string.Empty;
+    List<LeaseAggreementViewModel> products = null;
+    ctx = new LeasingDbEntities();
+    /*products = (from ag in ctx.GetAgreementViews
+                where ag.muserid==29 && ag.magreementno > 0
+                group new
+                {
+                    ag.mest,
+                    ag.msorderref,
+                    ag.mpayment,
+                    ag.mleaseid,
+                    ag.msend,
+                    ag.total,
+                    ag.mname,
+                    ag.mleaseno,
+                    ag.mprintdate,
+                    ag.morgname,
+                    ag.mcity,
+                    ag.mtown,
+                    ag.createddate,
+                    ag.magreementno,
+                    ag.morderno,
+                    ag.type,
+                    ag.mprodname,
+                    ag.mprice,
+                    ag.msubquoteid,
+                    ag.mtermf,
+                    ag.mtermp,
+                    ag.mvat,
+                    ag.quantity,
+                    ag.mprodvarid,
+                    ag.mnotes,
+                    ag.mstatus
+                }
+                       by new
+                       {
+                           ag.mleaseno,
+                       } into y
+                select new LeaseAggreementViewModel
+                {
+                    mest = y.FirstOrDefault().mest,
+                    msorderref = y.FirstOrDefault().msorderref,
+                    mpayment = y.FirstOrDefault().mpayment,
+                    mprintby = y.FirstOrDefault().mname,
+                    mprintdate = y.FirstOrDefault().mprintdate,
+                    mleaseid = y.FirstOrDefault().mleaseid,
+                    mleaseno = y.Key.mleaseno,
+                    total = y.FirstOrDefault().total,
+
+                    createddate = y.FirstOrDefault().createddate,
+                    msend = (byte)(y.FirstOrDefault().msend.HasValue ? y.FirstOrDefault().msend.Value : 0),
+                    Product = y.Select(x => new UserQuotationViewModel
+                    {
+
+                        morderno = x.morderno,
+                        magreementno = x.magreementno,
+                        type = x.type,
+                        mproductname = x.mprodname,
+                        mprice = x.mprice,
+                        msubquoteid = x.msubquoteid,
+                        mtermf = x.mtermf,
+                        mtermp = x.mtermp,
+                        mvat = x.mvat.HasValue ? x.mvat.Value : 0,
+                        quantity = x.quantity,
+                        mprodvarid = x.mprodvarid,
+                        mquotestatus = x.mstatus,
+                        mnotes = x.mnotes,
+                        suppliername = x.morgname + (x.mtown != null ? ", " + x.mtown : "") + (x.mcity != null ? " - " + x.mcity : ""),
+                    }).ToList(),
+                }).ToList();
+                */
+
+
+    String FROM = "info@equipyourschool.co.uk";
+    String FROMNAME = "Ticklease";
+
+    // Replace recipient@example.com with a "To" address. If your account
+    // is still in the sandbox, this address must be verified.
+    var db = new LeasingDbEntities();
+    String TO = "shahpalakh@gmail.com";
+    string Host = "email-smtp.eu-west-2.amazonaws.com";
+    int Port = 587;
+    bool EnableSsl = true;
+    var smtpuser = "";
+    var smtppwd = "";
+    var getmailsetting = db.mailsettings.FirstOrDefault();
+    if (getmailsetting != null)
+    {
+        Host = getmailsetting.host;
+        smtpuser = getmailsetting.smtpu;
+        smtppwd = getmailsetting.smtpp;
+        Port = getmailsetting.port.Value;
+        EnableSsl = getmailsetting.enablessl == 1 ? true : false;
+    }
+    @Html.Raw("<br/>su : " + smtpuser + " smtppw :" + smtppwd + "Host : " + Host + " port: " + Port + " Enabless : " + EnableSsl + "<br/>");
+    // Replace smtp_username with your Amazon SES SMTP user name.
+    String SMTP_USERNAME = smtpuser; //"info@equipyourschool.co.uk";
+
+    // Replace smtp_password with your Amazon SES SMTP user name.
+    String SMTP_PASSWORD = smtppwd;//"Saibaba55%%";
+
+    // (Optional) the name of a configuration set to use for this message.
+    // If you comment out this line, you also need to remove or comment out
+    // the "X-SES-CONFIGURATION-SET" header below.
+
+    // If you're using Amazon SES in a region other than US West (Oregon),
+    // replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP
+    // endpoint in the appropriate AWS Region.
+    String HOST = Host;
+
+    // The port you will connect to on the Amazon SES SMTP endpoint. We
+    // are choosing port 587 because we will use STARTTLS to encrypt
+    // the connection.
+    int PORT = Port;
+
+    // The subject line of the email
+    String SUBJECT =
+        "Amazon SES test (SMTP interface accessed using C#)";
+
+    // The body of the email
+    String BODY =
+        "<h1>Amazon SES Test</h1>" +
+        "<p>This email was sent through the " +
+        "<a href='https://aws.amazon.com/ses'>Amazon SES</a> SMTP interface " +
+        "using the .NET System.Net.Mail library.</p>";
+
+    var body = "";
+    body += "<table><tr height=50></tr></table>";
+    body += "<table width=100%><tr>";
+    body += "<td align=center>  <img src='https://equipyourschool.co.uk/Content/images/logo/openstar-school-leasing-log.png' id='eyslogo'  height='60' border='0' alt='' align='center'></td></tr>";
+    body += "<tr height=10></tr></table>";
+    body += "<table width=100%><tr align=center><td ><font size='4' color='' face=calibri>Below are the details for callback request.</font></td></tr>";
+    body += "<tr align=center><td><font size='3' color='#9900ff' face=calibri><strong>A portal strictly for Education only</strong></font></td>";
+    body += "</tr><tr height=20></tr></table>";
+    body += "<table width=100%>";
+    body += "<tr align=center><td><font size='3' color='' face=calibri>Name: <strong>Palak</strong></font></b></td></tr>";
+    body += "<tr align=center><td><font size='3' color='' face=calibri>Contact No: <strong>7989956</strong></font></b></td></tr>";
+    body += "<tr align=center><td><font size='3' color='' face=calibri>Contact Email: <strong>shahpalakh@gmail.com</strong></font></b></td></tr>";
+    body += "<tr align=center><td><font size='3' color='' face=calibri>Message: <strong>Test</strong></font></b></td></tr>";
+    body += "</table>";
+    // Create and build a new MailMessage object
+    MailMessage message = new MailMessage();
+    message.IsBodyHtml = true;
+    message.From = new MailAddress(FROM, FROMNAME);
+    message.To.Add(new MailAddress(TO));
+    //message.To.Add(new MailAddress("palak@saicomputer.com"));
+    message.Subject = SUBJECT;
+    message.Body = body;
+    // Comment or delete the next line if you are not using a configuration set
+    //    message.Headers.Add("X-SES-CONFIGURATION-SET", CONFIGSET);
+
+    using (var client = new System.Net.Mail.SmtpClient(HOST, PORT))
+    {
+
+        // Pass SMTP credentials
+        client.Credentials =
+            new NetworkCredential(SMTP_USERNAME, SMTP_PASSWORD);
+
+        // Enable SSL encryption
+        client.EnableSsl = true;
+
+        // Try to send the message. Show status in console.
+        try
+        {
+            //Console.WriteLine("Attempting to send email...");
+            client.Send(message);
+            @("Mail Send");
+            Console.WriteLine("Email sent!");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("The email was not sent.");
+            Console.WriteLine("Error message: " + ex.Message);
+            @(ex.Message);
+        }
+    }
+    var getdetaildata = (from ps in ctx.productsubtwoes
+                         group new
+                         {
+                             ps.mprodusubtwoid,
+                             ps.mprodid
+                         }
+                         by new
+                         {
+                             ps.mprodid,
+                             ps.mdetailheadid
+                         } into y
+                         where y.Count() > 1
+                         select new
+                         {
+                             y.Key.mdetailheadid,
+                             y.Key.mprodid,
+                             pdatas = y.Select(x => new
+                             {
+                                 x.mprodusubtwoid
+                             }).ToList()
+                         }).ToList();
+    //var getdetaildata = db.productsubtwoes.Where(x => x.mdetailheadid == 1048).ToList();
+    foreach (var ab in getdetaildata.OrderBy(x=>x.mprodid).ToList())
+    {
+        var i = 0;
+        ////var ptype = new productsubtwo
+        ////{
+        ////    mdetailheadid=1300,
+        ////    mdetailvalue=ab.mdetailvalue,
+        ////    mdetailunit=ab.mdetailunit,
+        ////    mprodid=ab.mprodid
+        ////};
+        ////db.productsubtwoes.Add(ptype);
+        ////db.SaveChanges();
+        foreach (var abc in ab.pdatas)
+        {
+            if (i != 0)
+            {
+                ctx.productsubtwoes.Remove(ctx.productsubtwoes.FirstOrDefault(x => x.mprodusubtwoid == abc.mprodusubtwoid));
+                ctx.SaveChanges();
+            }
+            i++;
+
+        }
+        @Html.Raw("ID " + ab.mprodid + " Subid : " + ab.mdetailheadid);
+    }
+    //db.productsubtwoes.RemoveRange(getdetaildata);
+    //db.SaveChanges();
+}
+<html>
+<head>
+    <link rel="stylesheet" id="bootstrap-css" href="~/Content/css/bootstrap.min.css" type="text/css" media="all">
+</head>
+<body>
+    <h2>Index2</h2>
+    <div class="row">
+        <div class="form-group col-md-5"> <input type="text" id="search" class="form-control" /> </div>
+        <div class="form-group col-md-5"> <input type="text" id="update" disabled class="form-control" /> </div>
+    </div>
+    <table>
+        <tbody>
+        </tbody>
+    </table>
+
+
+    <script type="text/javascript" src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap3-typeahead.min.js"></script>
+    <script>
+        jQuery(function () {
+            jQuery.ajax({
+                url: '/Product/GetProductById',
+                type: "get",
+                data: { getid: 3046 },
+                success: function (data) {
+                    console.log(data);
+
+                    data["products"].mprice = ((data["products"].mprice * 1) / (60 * 0.9)).toFixed(2);
+                    data["products"].mrp = ((data["products"].mrp * 1) / (60 * 0.9)).toFixed(2);
+                    data["products"].mtermid = 1;
+                    //pdatas=data;
+                }
+            });
+            var param = {
+                    "getid":5,
+                    "row": 0,
+                    "rowperpage": 15,
+                    "filter": true,
+                "filterdata": [
+                    {
+                        "FilterId": 0,
+                        "FilterValue": "",
+                        "FilterUrl": ""
+                    }
+                ],
+                    "max": 0,
+                    "min": 0,
+                    "sortby": 0,
+                };
+            jQuery.ajax({
+                url: '/alpha/Home/GetAllProductById',
+                type: "post",
+                data: { param:param },
+                success: function (data) {
+                    console.log(data);
+
+
+                    //pdatas=data;
+                }
+            });
+        })
+
+        jQuery("#search").typeahead({
+            minLength: 1,
+            scrollBar: true,
+            alignWidth: true,
+            autoSelect: true,
+
+            menu: '<ul class="typeahead dropdown-menu"></ul>',
+            item: '<li><a href="#"></a></li>',
+
+            source: function (request, response) {
+                jQuery.ajax({
+                    url: "/api/ProductApi/GetSearchList",
+                    data: {
+                        "name": request
+                    },
+                    type: "GET",
+                    contentType: "json",
+                    success: function (data) {
+                        items = [];
+                        map = {};
+                        jQuery.each(data, function (i, item) {
+                            var id = item.mprodname;
+                            var name = item.mprodname;
+                            map[name] = {
+                                id: id,
+                                name: name
+                            };
+                            items.push(name);
+                        });
+                        response(items);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            updater: function (item) {
+                jQuery("#search").val(map[item].id);
+                return item;
+                //If simultaneously want to update value somewhere else $("#update").val(map[item].id); return item; } });
+            }
+        });
+    </script>
+
+</body>
+</html>

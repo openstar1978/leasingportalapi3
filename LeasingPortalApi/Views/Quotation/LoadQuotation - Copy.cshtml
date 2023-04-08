@@ -1,0 +1,369 @@
+﻿@using LeasingPortalApi.Models
+@{
+    Layout = null;
+    var dbdata = new LeasingDbEntities();
+    double? mcarttotal = 0;
+}
+@model LeasingPortalApi.Models.SingleQuotationViewModel
+<div class="se-pre-con ng-hide" ng-show="loader">
+
+</div>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<style>
+    html {
+        box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+
+    .hidecharge, .hideinsurance {
+        position: absolute;
+        top: 0px;
+    }
+</style>
+<body>
+    <script src="~/Content/js/pdf/jspdf.debug.js"></script>
+    <script src="~/Content/js/pdf/jspdf.plugin.autotable.min.js"></script>
+
+    @{
+        var imgStr = "";
+        imgStr = QuotationDAO.ImageToBase64(1);
+    }
+    <div id="grid">
+        <span id="imgstr" style="display:none">@imgStr</span>
+        <input type="hidden" id="pdfname" value="Quotation" />
+        <h6 style="text-align:center;">Your Quotation</h6>
+        <center>
+
+            <table id="maintable" border="1" style="width:100%;font-size:10px;font-family:Times New Roman,'Times', serif;text-align:left;margin:0px auto 0px;color:#181818;" cellpadding="2" cellspacing="0">
+                <tbody>
+                    @{ 
+                                    var user = UsersDao.GetUserById(Model.muserid);
+                                    var uname = "";
+                                    var uaddress = "";
+                                    if (user != null)
+                                    {
+                                        uname = user.morgname;
+                                        uaddress = user.maddress1;
+                                        if (user.maddress2 != null)
+                                        {
+                                            uaddress += "<br/>"+ user.maddress1;
+                                        }
+                                        uaddress += (user.mcity != null ? "<br/>" + user.mcity : "");
+                                        uaddress += (user.mlandmark != null ?"<br/>"+ user.mlandmark : "") + (user.mpostcode!=null? " - "+user.mpostcode:"");
+                                        uaddress+=(user.mphone!=null?"<br/> Phone : "+ user.mphone:"");
+                                        
+                                    }
+                                }
+                    <tr>
+                        <td align="left" rowspan="2"  style="line-height:2;width:500px;text-align:left;">
+                            <span id="compname">@uname</span><br>
+                            @Html.Raw(uaddress)
+                        </td>
+                        <td style="line-height:2;width:250px">
+                            Reference No : @Model.mquoteref  <br>
+
+                        </td>
+                        </tr>
+                    <tr>
+                        <td style="width:250px;">
+                            Dated: <span style="font-weight:bold;"> @(Model.mquotedate.HasValue?Model.mquotedate.Value.ToString("dd/MM/yyyy"):"")</span>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            @{
+                var productdetail = QuotationDAO.LoadQuotationDetails(Model.mquoteid);
+                var totalcnt = 0;
+
+                if (productdetail.Any())
+                {
+                    foreach (var ab in productdetail)
+                    {
+                        var suppliers = SupplierDao.GetSupplierById(ab.msuid.HasValue?ab.msuid.Value:0);
+                        var suname = "";
+                        var saddress = "";
+                        if (suppliers != null)
+                        {
+                            suname = suppliers.morgname;
+                            saddress = suppliers.maddress1;
+                            if (suppliers.maddress2 != null)
+                            {
+                                saddress += "<br/>" + suppliers.maddress1;
+                            }
+                            saddress += (suppliers.mcity != null ? "<br/>" + suppliers.mcity : "") + (suppliers.mpostcode != null ? " - " + suppliers.mpostcode : "");
+                            
+                            saddress += (suppliers.mphone != null ? "<br/> Phone : " + suppliers.mphone : "");
+
+                        }
+
+                        mcarttotal = 0;
+                        totalcnt++;
+                        <table id="secondtable@(totalcnt)" border="1" style="line-height:2;width:100%;font-size:10px;font-family:Times New Roman,'Times', serif;text-align:left;border-left:none;border-right:none; margin:0px auto 0px;border-collapse:unset;color:#181818;" cellpadding="2" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <td align="left" valign="top" colspan="6" style="line-height:2;width:500px">
+                                        Supplier<br>
+                                        <span style="font-weight:bold" id="supname">@suname</span><br>
+                                        @Html.Raw(saddress)
+
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th>
+                                        No.
+                                    </th>
+                                    <th width="300px">
+                                        Product
+                                    </th>
+                                    <th>
+                                        Terms
+                                    </th>
+                                    <th>Price</th>
+                                    <th>
+                                        Qty
+                                    </th>
+                                    <th style="text-align:right">
+                                        Amount<br />
+                                    </th>
+                                    <!--<th style="text-align:right">
+                                        Total<br /> Html.Raw(amnt)
+                                    </th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                            var j = 0;
+                                var productdata = ab.Product;
+                            if (ViewBag.subquoteid != null)
+                            {
+                                var listdata = (List<int>)(ViewBag.subquoteid);
+                                productdata = ab.Product.Where(x => listdata.Contains(x.msubquoteid)).ToList();
+                            }
+                            foreach (var invd in productdata)
+                            {
+
+
+                                        <tr>
+                                            <td>
+                                                @(j + 1)
+                                    </td>
+
+
+                                    <td>
+
+                                        <span style="font-weight:bold">@invd.mproductname</span>
+
+
+                                    </td>
+
+                                    <td>
+                                                @{
+                                    var msg = "";
+                            var p = invd.mtermp / 12;
+                                    switch (invd.mtermf)
+                                    {
+                                        case 1:
+                                            msg = p + " years monthly";
+                                            break;
+                                        case 3:
+                                            msg = p + " years quaterly";
+                                            break;
+                                        case 4:
+                                            msg = p + " years termly";
+                                            break;
+                                        case 6:
+                                            msg = p + " years bi-annually";
+                                            break;
+                                        case 12:
+                                            msg = p + " years annually";
+                                            break;
+                                        default:
+                                            msg = "";
+                                            break;
+
+                                    }
+                        @msg
+                                                }
+                                            </td>
+                                            <td>
+                                                @(invd.mprice)
+                                    </td>
+
+
+                                    <td>
+                                        @invd.quantity
+                                    </td>
+
+
+                                    <td style="text-align:right">
+                                                @{
+                                    var subtotal = invd.mprice * invd.quantity;
+                        mcarttotal = mcarttotal + subtotal;
+                                    @Math.Round(subtotal.HasValue ? subtotal.Value : 0, 2)
+                                                }
+                                            </td>
+
+                                        </tr>
+
+                                                        j++;
+                            }
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td align="right">@mcarttotal</td>
+
+                                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                                                        }
+
+                }
+            }
+            @*
+            <table id="secondtable" border="1" style="line-height:2;width:100%;font-size:10px;font-family:Times New Roman,'Times', serif;text-align:left;border-left:none;border-right:none; margin:0px auto 0px;border-collapse:unset;color:#181818;" cellpadding="2" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            No.
+                        </th>
+                        <th width="300px">
+                            Product
+                        </th>
+                        <th>
+                            Terms
+                        </th>
+                        <th>Price</th>
+                        <th>
+                            Qty
+                        </th>
+                        <th style="text-align:right">
+                            Amount<br />
+                        </th>
+                        <!--<th style="text-align:right">
+                            Total<br /> Html.Raw(amnt)
+                        </th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var j = 0;
+
+
+
+                        foreach (var invd in productdetail)
+                        {
+
+
+                            <tr>
+                                <td>
+                                    @(j + 1)
+                                </td>
+
+                                <td>
+                                    <span style="font-weight:bold">@invd.mproductname</span>
+
+                                </td>
+                                <td>
+                                    @{
+                                        var msg = "";
+                                        var p = invd.mtermp / 12;
+                                        switch (invd.mtermf)
+                                        {
+                                            case 1:
+                                                msg = p + " years monthly";
+                                                break;
+                                            case 3:
+                                                msg = p + " years quaterly";
+                                                break;
+                                            case 4:
+                                                msg = p + " years termly";
+                                                break;
+                                            case 6:
+                                                msg = p + " years bi-annually";
+                                                break;
+                                            case 12:
+                                                msg = p + " years annually";
+                                                break;
+                                            default:
+                                                msg = "";
+                                                break;
+
+                                        }
+                                        @msg
+                                    }
+                                </td>
+                                <td>
+                                    @(invd.mprice)
+                                </td>
+
+                                <td>
+                                    @invd.quantity
+                                </td>
+
+                                <td style="text-align:right">
+                                    @{
+                                        var subtotal = invd.mprice * invd.quantity;
+                                        mcarttotal = mcarttotal + subtotal;
+                                        @Math.Round(subtotal.HasValue ? subtotal.Value : 0, 2)
+                                    }
+                                </td>
+
+                            </tr>
+
+                                            j++;
+                                        }
+                    }
+                    }
+
+
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td align="right">@mcarttotal</td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+            *@
+
+
+        <input type="hidden" id="totalcnt" value="@totalcnt" />
+        </center>
+    </div>
+    <div style="display:none">
+
+        <form method="post" action="/Admin/Sales/Export" id="exportfrm">
+            <input type="hidden" name="GridHtml" />
+
+            <input type="hidden" id="invoiceno" value="" />
+            <input type="hidden" name="pageheaderHtml" />
+            <input type="submit" id="btnSubmit" value="Export" />
+        </form>
+    </div>
+
+
+
+
+
+</body>
+</html>
+

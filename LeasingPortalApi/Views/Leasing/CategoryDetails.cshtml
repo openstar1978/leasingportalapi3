@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "ShopByArea";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    Page.Title = "ShopByArea";
+    var db = new LeasingDbEntities();
+    var id = ViewBag.areaid;
+    var area = ViewBag.area;
+
+    var areaname = ViewBag.areaname;
+}
+<style>
+    .product-loop-categories .product-category img {
+        height: 100px;
+        width: auto;
+    }
+</style>
+
+
+<div id="content" class="site-content homecontent" tabindex="-1" ng-controller="ShopByAreaController">
+    <div class="se-pre-con" ng-show="loader" style="z-index:111100">
+
+    </div>
+    <div class="container">
+        <nav class="woocommerce-breadcrumb"><a href="@Url.Action("Index","Leasing")">Home</a>@Html.Raw(ViewBag.Category)</nav>
+        <div class="site-content-inner">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    <section class="section-product-categories">
+                        <header>
+                            <h2 class="h1" style="color: #333e48">Shop By Category</h2>
+                        </header>
+                        <div class="woocommerce columns-5">
+                            <ul class="product-loop-categories columns-8">
+                                <li class="product-category product mb-10" ng-class="$index==0?'first':''" ng-repeat="product in products">
+                                    <a href="{{product.mproducturl}}&aid=@(ViewBag.aid)">
+                                        <img src="/leaseadmin/Content/images/{{product.mcatpic || 'leasenoimage.png'}}" alt="{{product.mcatname}}" width="300" height="300">
+                                        <h2 class="woocommerce-loop-category__title">
+                                            {{product.mcatname}}
+                                        </h2>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </section>
+                </main>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Content/js/pdf/poscript.js"></script>
+    <script>
+        var pagetype="@area";
+        app.filter('priceFilter', function () {
+            return function(product,min,max) {
+
+                console.log(product);
+                if ((product.mprice <= max) && (product.mprice >= $min)){
+
+                    return product;
+                };
+            }
+            $window.scrollTo(0, angular.element('#ProductController').offsetTop);
+        });
+
+        app.controller('ShopByAreaController', ['$scope', '$http', '$rootScope','$location','$window','$cookies','CommonLeaseTerm',
+            function ($scope, $http, $rootScope, $location, $window, $cookies, CommonLeaseTerm) {
+
+                $scope.showforget = false;
+                if (!angular.isUndefined($cookies.get('userdata'))) {
+
+                    $scope.userid = true;
+                }
+                if (!angular.isUndefined($cookies.get('same'))) {
+                    $scope.sameval = $cookies.getObject('same');
+                }
+                $scope.row = 0;
+                $scope.rowperpage = 15;
+                $scope.products = [];
+                $scope.busy = false;
+                $scope.moreloading = false;
+                $scope.getCategory = function () {
+                    $http.get('/Api/ProductApi/GetCategoryByCategoryId?getid=' + @id).success(function (data) {
+
+                        if (data.length > 0 && data != "") {
+                            $scope.products = data;
+                        }
+                        else {
+                            $scope.loader = false;
+                        }
+                    });
+                }
+                $scope.getCategory();
+
+                $scope.leaseexists = function (item, list) {
+                    return list.indexOf(item) > -1;
+                };
+                $scope.priceFiltering = function () {
+
+                    $scope.priceFilter = function (product) {
+                        var i = 0;
+                        if ((product.mprice <= $scope.max) && (product.mprice >= $scope.min)) {
+                            return product;
+                        };
+                        //alert("change");
+                        $window.scrollTo(0, angular.element('#ProductController').offsetTop);
+
+                    }
+
+
+                }
+            }
+        ]);
+
+
+        //var woocommerce_price_slider_params = {"currency_format_num_decimals":"0","currency_format_symbol":"\u00a3","currency_format_decimal_sep":".","currency_format_thousand_sep":",","currency_format":"%s%v"};
+
+        //        jQuery(function(o){if("undefined"==typeof woocommerce_price_slider_params)return!1;function e(){o("input#min_price, input#max_price").hide(),o(".price_slider, .price_label").show();var e=o(".price_slider_amount #min_price").data("min"),r=o(".price_slider_amount #max_price").data("max"),i=o(".price_slider_amount #min_price").val(),c=o(".price_slider_amount #max_price").val();o(".price_slider:not(.ui-slider)").slider({range:!0,animate:!0,min:e,max:r,values:[i,c],create:function(){o(".price_slider_amount #min_price").val(i),o(".price_slider_amount #max_price").val(c),o(document.body).trigger("price_slider_create",[i,c])},slide:function(e,r){o("input#min_price").val(r.values[0]),o("input#max_price").val(r.values[1]),o(document.body).trigger("price_slider_slide",[r.values[0],r.values[1]])},change:function(e,r){o(document.body).trigger("price_slider_change",[r.values[0],r.values[1]])}})}o(document.body).bind("price_slider_create price_slider_slide",function(e,r,i){o(".price_slider_amount span.from").html(accounting.formatMoney(r,{symbol:woocommerce_price_slider_params.currency_format_symbol,decimal:woocommerce_price_slider_params.currency_format_decimal_sep,thousand:woocommerce_price_slider_params.currency_format_thousand_sep,precision:woocommerce_price_slider_params.currency_format_num_decimals,format:woocommerce_price_slider_params.currency_format})),o(".price_slider_amount span.to").html(accounting.formatMoney(i,{symbol:woocommerce_price_slider_params.currency_format_symbol,decimal:woocommerce_price_slider_params.currency_format_decimal_sep,thousand:woocommerce_price_slider_params.currency_format_thousand_sep,precision:woocommerce_price_slider_params.currency_format_num_decimals,format:woocommerce_price_slider_params.currency_format})),o(document.body).trigger("price_slider_updated",[r,i])}),e(),"undefined"!=typeof wp&&wp.customize&&wp.customize.selectiveRefresh&&wp.customize.widgetsPreview&&wp.customize.widgetsPreview.WidgetPartial&&wp.customize.selectiveRefresh.bind("partial-content-rendered",function(){e()})});
+    </script>
+}

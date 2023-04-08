@@ -1,0 +1,2597 @@
+﻿@{
+    Layout = null;
+    var pageName = (string)(Page.Title);
+    var classes = "";
+
+    switch (pageName)
+    {
+        case "index":
+            classes = "page-template page-template-template-homepage-v4 page-template-template-homepage-v4-php page page-id-4726 woocommerce-no-js electro-compact electro-wide wpb-js-composer js-comp-ver-5.7 vc_responsive";
+            break;
+        case "Category":
+            classes = "archive tax-product_cat term-106 woocommerce woocommerce-page woocommerce-no-js left-sidebar electro-compact electro-wide wpb-js-composer js-comp-ver-5.7 vc_responsive";
+            break;
+        case "AllProduct":
+            classes = "archive tax-product_cat term-126 woocommerce woocommerce-page woocommerce-js left-sidebar electro-compact electro-wide wpb-js-composer js-comp-ver-5.7 vc_responsive  pace-done";
+            break;
+        case "SingleProduct":
+            classes = "product-template-default single single-product postid-2439 woocommerce woocommerce-page woocommerce-js full-width extended electro-compact electro-wide wpb-js-composer js-comp-ver-5.7 vc_responsive  pace-done";
+            break;
+        default:
+            classes = "page-template page-template-template-homepage-v4 page-template-template-homepage-v4-php page page-id-4726 woocommerce-no-js electro-compact electro-wide wpb-js-composer js-comp-ver-5.7 vc_responsive";
+            break;
+    }
+
+
+}
+
+<html lang="en-US">
+<head>
+    <script>document.documentElement.className = document.documentElement.className + ' yes-js js_active js'</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title id="title2">View Ads. Get Discounts. Shop away!</title>
+
+    <meta name="description" content="View Ads. Get Discounts. Shop away!">
+    <meta name="keywords" content="View Ads. Get Discounts. Shop away!">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <meta content="2 days" name="revisit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta content="Global" name="distribution">
+    <meta content="General" name="rating">
+    <meta content="All" name="audience">
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+
+        .dropdowncontent {
+            position: absolute;
+            left: 0%;
+            background: #fff;
+            padding: 5px 5px;
+            width: 150px;
+            opacity: 0;
+            border: 1px solid #b3b3b3;
+        }
+
+        .mydropdownmenu:hover .dropdowncontent {
+            left: 0%;
+            opacity: 1;
+        }
+
+        .mydropdownmenu:hover ul li {
+            padding: 0px 20px !important;
+        }
+    </style>
+
+    <link rel="stylesheet" id="wp-block-library-css" href="~/Content/css/style.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="jquery-selectBox-css" href="~/Content/css/jquery.selectBox.css" type="text/css" media="all">
+    <link rel="stylesheet" id="yith-wcwl-font-awesome-css" href="~/Content/css/font-awesome.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="yith-wcwl-main-css" href="~/Content/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" id="contact-form-7-css" href="~/Content/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" id="rs-plugin-settings-css" href="~/Content/css/settings.css" type="text/css" media="all">
+    <!--<link rel="stylesheet" href="~/Content/css/datatables.min.css">-->
+    <style id='rs-plugin-settings-inline-css' type='text/css'>
+        #rs-demo-id {
+        }
+    </style>
+    <style id='woocommerce-inline-inline-css' type='text/css'>
+        .woocommerce form .form-row .required {
+            visibility: visible;
+        }
+    </style>
+    <style>
+        [ng-cloak] {
+            display: none !important;
+        }
+
+        .term-add-to-cart {
+            border-bottom: 1px solid #ddd;
+            height: auto;
+            padding-bottom: 11px;
+            float: left;
+            margin-bottom: 5px;
+        }
+
+            .term-add-to-cart .col-xs-6 {
+                padding-left: 0px;
+                padding-right: 5px;
+            }
+
+        .term-freq select, .term-period select {
+            padding: 5px;
+            height: 34px;
+            border-radius: 5px;
+        }
+
+        .no-js #loader {
+            display: none;
+        }
+
+        .js #loader {
+            display: block;
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            /*bottom: 200px;*/
+            width: 100%;
+            height: 100%;
+            z-index: 999 !important;
+            background: url('../Content/images/Preloader_11.gif')center center no-repeat #fff;
+        }
+
+        .se-pre-con2 {
+            left: 0px;
+            top: 0px;
+            /*bottom: 200px;*/
+            width: 100%;
+            height: 100%;
+            z-index: 998 !important;
+            background: url('../Content/images/preloader2.gif')center center no-repeat #fff;
+        }
+
+        .se-pre-con.sticky {
+            top: 93px;
+        }
+
+        #content {
+            position: relative;
+            display: block;
+            min-height: 300px;
+        }
+
+        .modal {
+            background: #00000094;
+            z-index: 1111111 !important;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            margin: 100px auto;
+        }
+
+        .double-bounce1, .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #333;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+            animation: sk-bounce 2.0s infinite ease-in-out;
+        }
+
+        .double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+
+        .add-to-compare-link1:before {
+            font: normal normal normal 14px/1 font-electro;
+            margin-right: 6px;
+            content: "\64";
+            vertical-align: middle;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        @@-webkit-keyframes sk-bounce {
+            0%, 100% {
+                -webkit-transform: scale(0.0);
+            }
+
+            50% {
+                -webkit-transform: scale(1.0);
+            }
+        }
+
+        @@keyframes sk-bounce {
+            0%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            }
+
+            50% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+        }
+    </style>
+    <link rel="stylesheet" id="jquery-colorbox-css" href="~/Content/css/colorbox.css" type="text/css" media="all">
+    <link rel="stylesheet" id="electro-fonts-css" href="~/Content/css/css" type="text/css" media="all">
+
+    <link rel="stylesheet" id="bootstrap-css" href="~/Content/css/bootstrap.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="fontawesome-css" href="~/Content/css/font-awesome.min(1).css" type="text/css" media="all">
+    <link rel="stylesheet" id="animate-css" href="~/Content/css/animate.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="font-electro-css" href="~/Content/css/font-electro.css" type="text/css" media="all">
+    <link rel="stylesheet" id="jquery-mCustomScrollbar-css" href="~/Content/css/jquery.mCustomScrollbar.css" type="text/css" media="all">
+    <link rel="stylesheet" id="electro-style-css" href="~/Content/css/style.min(1).css" type="text/css" media="all">
+    <link rel="stylesheet" id="electro-style-v2-css" href="~/Content/css/v2.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="electro-color-css" href="~/Content/css/yellow.min.css" type="text/css" media="all">
+
+    <link rel="stylesheet" href="~/Content/css/theme.css">
+    <link rel="stylesheet" href="~/Content/css/toastr.css">
+    <link rel="stylesheet" href="~/Content/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+
+    <script type="text/javascript" src="~/Content/js/jquery.js"></script>
+
+    <script type="text/javascript" src="~/Content/js/jquery-migrate.min.js"></script>
+    @if (pageName == "index")
+    {
+        <script type="text/javascript" src="~/Content/js/jquery.themepunch.tools.min.js"></script>
+        <script type="text/javascript" src="~/Content/js/jquery.themepunch.revolution.min.js"></script>
+    }
+
+    <script type="text/javascript" src="~/Content/js/jquery.blockUI.min.js"></script>
+    <script type="text/javascript">/* <![CDATA[ */ var wc_add_to_cart_params = { "ajax_url": "", "wc_ajax_url": "", "i18n_view_cart": "View your basket", "cart_url": "/Leasing/ViewCart", "is_cart": "", "cart_redirect_after_add": "no" }; /* ]]> */</script>
+    <script type="text/javascript" src="~/Content/js/add-to-cart.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/woocommerce-add-to-cart.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+    <style>
+        .woocommerce-product-gallery {
+            opacity: 1 !important;
+        }
+
+        .desktop-footer .footer-newsletter .newsletter-content {
+            flex: 0 0 52.333333%;
+            max-width: 52.333333%;
+        }
+
+        .u-sidebar {
+            z-index: 11001;
+        }
+    </style>
+
+    <noscript>
+    </noscript>
+    <script type="text/javascript">
+
+        function setREVStartSize(e) {
+            try {
+                e.c = jQuery(e.c); var i = jQuery(window).width(), t = 9999, r = 0, n = 0, l = 0, f = 0, s = 0, h = 0;
+                if (e.responsiveLevels && (jQuery.each(e.responsiveLevels, function (e, f) { f > i && (t = r = f, l = e), i > f && f > r && (r = f, n = e) }), t > r && (l = n)), f = e.gridheight[l] || e.gridheight[0] || e.gridheight, s = e.gridwidth[l] || e.gridwidth[0] || e.gridwidth, h = i / s, h = h > 1 ? 1 : h, f = Math.round(h * f), "fullscreen" == e.sliderLayout) { var u = (e.c.width(), jQuery(window).height()); if (void 0 != e.fullScreenOffsetContainer) { var c = e.fullScreenOffsetContainer.split(","); if (c) jQuery.each(c, function (e, i) { u = jQuery(i).length > 0 ? u - jQuery(i).outerHeight(!0) : u }), e.fullScreenOffset.split("%").length > 1 && void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 ? u -= jQuery(window).height() * parseInt(e.fullScreenOffset, 0) / 100 : void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 && (u -= parseInt(e.fullScreenOffset, 0)) } f = u } else void 0 != e.minHeight && f < e.minHeight && (f = e.minHeight); e.c.closest(".rev_slider_wrapper").css({ height: f })
+            } catch (d) { console.log("Failure at Presize of Slider:" + d) }
+        };
+    </script>
+    <style type="text/css" id="wp-custom-css">
+        .handheld-footer .handheld-footer-bar .footer-logo svg path {
+            fill: #FFF;
+        }
+
+        .handheld-footer .handheld-footer-bar .handheld-footer-bar-inner {
+            flex-direction: row;
+        }
+    </style>
+    <noscript>
+        <style type="text/css">
+            .wpb_animate_when_almost_visible {
+                opacity: 1;
+            }
+        </style>
+    </noscript>
+    <noscript>
+        <style id="rocket-lazyload-nojs-css">
+            .rll-youtube-player, [data-lazy-src] {
+                display: none !important;
+            }
+        </style>
+    </noscript>
+    <script src="~/Content/js/jquery.mousewheel.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="~/Content/css/custom.css?v=1.0.12" />
+    @RenderSection("head", required: false)
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5f6d9034f0e7167d0013a0a7/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+    </script>
+    <!--End of Tawk.to Script-->
+</head>
+<body ng-app="MyApp" class="@classes">
+
+    <div id="feedback-dialog" ng-controller="FeedBackController">
+        <div class="modal" id="feedback-modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header align-items-lg-center text-center">
+                        <button type="button" style="" class="close mdclose" data-dismiss="modal">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="feedbackfield" ng-submit="feedbackform()" class="js-validate">
+                            <!-- Login -->
+                            <div id="login" data-target-group="idForm">
+                                <!-- Form Group -->
+                                <div class="form-group" ng-show="!IsUserLogedIn">
+                                    <div class="js-form-message js-focus-state">
+                                        <label class="sr-only" for="signinEmail">Name</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="signinEmailLabel">
+                                                    <span class="fas fa-user"></span>
+                                                </span>
+                                            </div>
+                                            <input type="text" ng-model="feedbackdata.musername" name="musername" ng-class="MFSubmitted?'form-control ng-dirty':'form-control'" required id="" placeholder="Enter Name" aria-label="Enter Name"
+                                                   data-msg="Please enter a valid name."
+                                                   data-error-class="u-has-error"
+                                                   data-success-class="u-has-success">
+                                            <span class="loginerror" ng-show="(feedbackfield.musername.$dirty || MFSubmitted) && feedbackfield.musername.$error.required">name required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="!IsUserLogedIn">
+                                    <div class="js-form-message js-focus-state">
+                                        <label class="sr-only" for="signinEmail">Email</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="signinEmailLabel">
+                                                    <span class="fas fa-user"></span>
+                                                </span>
+                                            </div>
+                                            <input type="email" ng-model="feedbackdata.museremail" name="museremail" ng-class="MFSubmitted?'form-control ng-dirty':'form-control'" required id="" placeholder="Email address" aria-label="Email address"
+                                                   data-msg="Please enter a valid email address."
+                                                   data-error-class="u-has-error"
+                                                   data-success-class="u-has-success">
+                                            <span class="loginerror" ng-show="(feedbackfield.museremail.$dirty || MFSubmitted) && feedbackfield.museremail.$error.required">email required</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Form Group -->
+                                <!-- Form Group -->
+                                <div class="form-group">
+                                    <div class="js-form-message js-focus-state">
+                                        <label class="sr-only" for="signinPassword">Description</label>
+                                        <div class="input-group">
+                                            <textarea ng-model="feedbackdata.muserdescription" name="muserdescription" cols="20" ng-class="MFSubmitted?'form-control ng-dirty':'form-control'" maxlength="500" placeholder="Description"></textarea>
+                                            <span class="loginerror" ng-show="(feedbackdata.muserdescription.$dirty || MFSubmitted) && feedbackdata.muserdescription.$error.required">description required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Form Group -->
+
+                                <div class="mb-2">
+                                    <button type="submit" ng-disabled="MFSubmitted" class="btn btn-block btn-sm btn-primary transition-3d-hover">Submit</button>
+                                </div>
+
+
+
+                                <!-- End Login Buttons -->
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="off-canvas-wrapper">
+        <div id="mobilepage" style="display:none;margin:0 auto;padding-top:100px;padding-bottom:100px;text-align:center;background:#082044;min-height:700px;">
+            <img src="~/Content/images/logo/openstar-school-leasing-log.png" style="margin:0 auto;text-align:center;" />
+            <br /><br /><br />
+            <div class="alert alert-success" style="text-align:center;">
+
+                Mobile app is currently under construction.<br />
+                Please use laptop or pc for now
+            </div>
+        </div>
+        <div id="page" class="hfeed site">
+
+            <header id="masthead" class="site-header header-v5 u-header u-header-left-aligned-nav mb-4 u-scrolled">
+                <div ng-controller="MenuController" class="stick-this">
+
+
+
+                    <div class="container hidden-lg-down">
+
+                        <div class="masthead" data-ng-init="SiteMenu">
+                            <div class="header-logo-area">
+                                <div class="header-site-branding">
+                                    <a href="/" class="header-logo-link">
+                                        <img src="~/Content/images/logo/openstar-school-leasing-log.png" width="175.748px" height="42.52px" />
+
+                                    </a>
+                                </div>
+                                <button id="sidebarHeaderInvokerMenu" type="button" class="navbar-toggler d-block btn u-hamburger mr-3 mr-xl-0"
+                                        aria-controls="sidebarHeader"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                        data-unfold-event="click"
+                                        data-unfold-hide-on-scroll="false"
+                                        data-unfold-target="#sidebarHeader1"
+                                        data-unfold-type="css-animation"
+                                        data-unfold-animation-in="fadeInLeft"
+                                        data-unfold-animation-out="fadeOutLeft"
+                                        data-unfold-duration="500">
+                                    <span id="hamburgerTriggerMenu" class="u-hamburger__box">
+                                        <span class="u-hamburger__inner"></span>
+                                    </span>
+                                </button>
+
+                                <aside id="sidebarHeader1" class="u-sidebar u-sidebar--left" aria-labelledby="sidebarHeaderInvokerMenu">
+                                    <div class="u-sidebar__scroller">
+                                        <div class="u-sidebar__container">
+                                            <div class="u-header-sidebar__footer-offset pb-20">
+                                                <!-- Toggle Button -->
+                                                <div class="u-sidebar__head" style="background:#082044;">
+                                                    <div id="headerSidebarContent" class="u-header-sidebar__content">
+                                                        <a class="d-flex ml-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-vertical" href="/Home/index">
+                                                            <img src="~/Content/images/logo/openstar-school-leasing-log.png" width="175.748px" height="42.52px" />
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+                                                <div class="position-absolute top-0 right-0 z-index-2 pt-4 pr-7">
+                                                    <button type="button" class="close ml-auto"
+                                                            aria-controls="sidebarHeader"
+                                                            aria-haspopup="true"
+                                                            aria-expanded="false"
+                                                            data-unfold-event="click"
+                                                            data-unfold-hide-on-scroll="false"
+                                                            data-unfold-target="#sidebarHeader1"
+                                                            data-unfold-type="css-animation"
+                                                            data-unfold-animation-in="fadeInLeft"
+                                                            data-unfold-animation-out="fadeOutLeft"
+                                                            data-unfold-duration="500">
+                                                        <span aria-hidden="true"><i class="ec ec-close-remove text-gray-90 font-size-20"></i></span>
+                                                    </button>
+                                                </div>
+                                                <!-- End Toggle Button -->
+                                                <!-- Content -->
+                                                <div class="js-scrollbar u-sidebar__body">
+                                                    <div id="headerSidebarContent" class="u-sidebar__content u-header-sidebar__content">
+                                                        <!-- Logo -->
+                                                        <!-- End Logo -->
+                                                        <script type="text/ng-template" id="toptreeMenu2" class="main-navigation">
+                                                            <a ng-show="(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true). length > 0" href="javascript:;" data-target="#headerSidebarPagesCollapse{{menu.mprodcatid}}" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="headerSidebarPagesCollapse{{menu.mprodcatid}}" aria-haspopup="true" ng-class="{true: 'u-header-collapse__nav-link u-header-collapse__nav-pointer', false: ''}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0]">{{menu.mcatname}}</a>
+                                                            <a href="Leasing/Products?{{menu.mprodcaturl}}" data-toggle="dropdown" ng-show="(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true). length <= 0" aria-haspopup="true" ng-class="{true: 'u-header-collapse__nav-link u-header-collapse__nav-pointer', false: ''}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0]">{{menu.mcatname}}</a>
+                                                            @* We will create submenu only when available *@
+                                                            <div id="headerSidebarPagesCollapse{{menu.mprodcatid}}" class="collapse" data-parent="#headerSidebarContent">
+
+                                                                <ul ng-if="(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true). length > 0" role="menu" class="u-header-collapse__nav-list">
+                                                                    <li ng-repeat="menu in SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true"><a href="Leasing/Products?{{menu.mprodcaturl}}">{{menu.mcatname}}</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </script>
+                                                        <!-- List -->
+                                                        <ul id="headerSidebarList" class="u-header-collapse__nav">
+
+
+                                                            <li id="menu-item-4760" ng-repeat="menu in SiteMenu | filter:{mpreviouscat : 0 }:true" ng-class="{true: 'u-has-submenu u-header-collapse__submenu', false: 'u-header-collapse__nav-link'}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0]" ng-include="'toptreeMenu2'">
+
+                                                            </li>
+
+                                                            <!-- End Blog Pages -->
+                                                        </ul>
+                                                        <!-- End List -->
+                                                    </div>
+                                                </div>
+                                                <!-- End Content -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aside>
+
+                                <div class="off-canvas-navigation-wrapper " style="display:none;">
+                                    <div class="off-canvas-navbar-toggle-buttons clearfix">
+                                        <button class="navbar-toggler navbar-toggle-hamburger " type="button">
+                                            <i class="ec ec-menu"></i>
+                                        </button>
+                                        <button class="navbar-toggler navbar-toggle-close " type="button">
+                                            <i class="ec ec-close-remove"></i>
+                                        </button>
+                                    </div>
+                                    <div class="off-canvas-navigation" id="default-oc-header">
+
+                                        <ul id="menu-all-departments-menu" class="nav nav-inline yamm">
+
+                                            <li id="menu-item-4760" ng-repeat="menu in SiteMenu | filter:{mpreviouscat : 0 }:true" ng-class="{true: 'yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4760 dropdown', false: 'menu-item menu-item-type-post_type menu-item-object-page menu-item-4155'}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0]" ng-include="'toptreeMenu'">
+
+                                            </li>
+
+
+                                            <li ng-repeat="m in Sitemenu" class="highlight menu-item menu-item-type-post_type menu-item-object-page menu-item-4155"><a title="Value of the Day" href="#/home-v2/">{{m.mcatname}}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <form id="navbarsearch" class="navbar-search" method="get" action="Leasing/SearchProducts" autocomplete="off">
+                                <label class="sr-only screen-reader-text" for="search">Search for:</label>
+                                <span style="display:none;" id="demo"></span>
+                                <div class="input-group">
+                                    <div class="input-group-addon search-categories" style="border-radius: 2.571em;border-top-right-radius:0;border-bottom-right-radius:0;">
+                                        <select name='category' id='product_cat' class='postform resizeselect'>
+                                            <option value='0' selected='selected'>All Categories</option>
+                                            <!--<option  ng-repeat="menu in SiteMenu | filter:{mpreviouscat : 0}" ng-selected="menu.mprodcatid==category?'selected':''" class="level-{{$index+1}}" value="{{menu.mprodcatid}}">{{menu.mcatname}}</option>-->
+                                            <option ng-repeat="menu in SiteMenu | filter:{mpreviouscat : 0}" class="level-{{$index+1}}" value="{{menu.mprodcatid}}">{{menu.mcatname}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="input-search-field">
+                                        <input type="text" id="search" class="form-control search-field product-search-field searchproduct" dir="ltr" value="" name="searchproducts" placeholder="UK's No. 1 Education and School Leasing Portal" autocomplete="off" style="border-top-left-radius:0;border-bottom-left-radius:0;padding:.2em 1.134em;" />
+                                    </div>
+                                    <div class="input-group-btn">
+                                        <input type="hidden" id="search-param" name="post_type" value="product" />
+                                        <button type="submit" class="btn btn-secondary"><i class="ec ec-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="header-icons">
+                                <div class="header-icon wologin" ng-show="!IsUserLogedIn">
+                                    <a href="javascript:;">
+                                        <span class="span1"><i class="ec ec-user" style="font-weight: bold;"></i></span>
+                                    </a>
+                                    <span class="span2 ng-cloak" ng-show="!IsUserLogedIn">
+
+                                        <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link"
+                                           aria-controls="sidebarContent"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"
+                                           data-unfold-event="click"
+                                           data-unfold-hide-on-scroll="false"
+                                           data-unfold-target="#sidebarContent"
+                                           data-unfold-type="css-animation"
+                                           data-unfold-animation-in="fadeInRight"
+                                           data-unfold-animation-out="fadeOutRight"
+                                           data-unfold-duration="500">
+                                            <span style="display:block;">Sign In</span>
+
+                                        </a>
+                                        <a href="/Leasing/Registration" class="u-header-topbar__nav-link" style=""> Register Free</a>
+
+                                    </span>
+                                    <!--<span ng-show="IsUserLogedIn" style="font-size:10px;position: absolute;top: 17px;left: 30px;" ng-bind-html="morgname"></span>-->
+
+                                    <aside ng-show="!IsUserLogedIn" id="sidebarContent" class="u-sidebar u-sidebar__lg sidebarContent" aria-labelledby="sidebarNavToggler">
+                                        <div class="u-sidebar__scroller">
+                                            <div class="u-sidebar__container">
+                                                <div class="js-scrollbar u-header-sidebar__footer-offset pb-3">
+                                                    <!-- Toggle Button -->
+                                                    <div class="d-flex align-items-center pt-4 px-7">
+                                                        <button type="button" class="close ml-auto"
+                                                                aria-controls="sidebarContent"
+                                                                aria-haspopup="true"
+                                                                aria-expanded="false"
+                                                                data-unfold-event="click"
+                                                                data-unfold-hide-on-scroll="false"
+                                                                data-unfold-target="#sidebarContent"
+                                                                data-unfold-type="css-animation"
+                                                                data-unfold-animation-in="fadeInRight"
+                                                                data-unfold-animation-out="fadeOutRight"
+                                                                data-unfold-duration="500" ng-click="showforget=false;showmsg=''">
+                                                            <i class="ec ec-close-remove"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- End Toggle Button -->
+                                                    <!-- Content -->
+                                                    <div class="js-scrollbar u-sidebar__body">
+                                                        <div class="u-sidebar__content u-header-sidebar__content">
+
+                                                            <form name="forgetpwd" ng-show="showforget" ng-submit="forgetPassword()">
+
+                                                                <!-- Forgot Password -->
+                                                                <div id="forgotPassword" data-target-group="idForm">
+                                                                    <!-- Title -->
+                                                                    <header class="text-center mb-7">
+                                                                        <h2 class="h4 mb-0">Recover Password.</h2>
+                                                                        <p>Enter your email address and an email with instructions will be sent to you.</p>
+                                                                    </header>
+                                                                    <!-- End Title -->
+                                                                    <!-- Form Group -->
+                                                                    <div class="form-group" ng-show="IsFError">
+                                                                        <div class="alert alert-warning">{{invalidFlogin}}</div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="js-form-message js-focus-state">
+                                                                            <label class="sr-only" for="recoverEmail">Your email</label>
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text" id="recoverEmailLabel">
+                                                                                        <span class="fas fa-user"></span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <input type="email" class="form-control" name="recoveremail" ng-model="recoverEmail" id="recoverEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmailLabel" required
+                                                                                       data-msg="Please enter a valid email address."
+                                                                                       data-error-class="u-has-error"
+                                                                                       data-success-class="u-has-success">
+                                                                                <span class="loginerror" ng-show="(forgetpwd.recoveremail.$dirty || FSubmitted) && forgetpwd.recoveremail.$error.required">Username required</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- End Form Group -->
+
+                                                                    <div class="mb-2">
+                                                                        <button type="submit" ng-disabled="FSubmitted" class="btn btn-block btn-sm btn-primary transition-3d-hover">Recover Password</button>
+                                                                    </div>
+
+                                                                    <div class="text-center mb-4">
+                                                                        <span class="small text-dark">Remember your password?</span>
+                                                                        <a class="js-animation-link small" href="javascript:;"
+                                                                           data-target="#login"
+                                                                           data-link-group="idForm"
+                                                                           data-animation-in="slideInUp" ng-click="showforget=false;" style="color:#333!important;">
+                                                                            Login
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- End Forgot Password -->
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End Content -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </aside>
+                                </div>
+                                <div ng-show="IsUserLogedIn" class="header-icon animate-dropdown dropdown userdropdown ng-hide wlogin ng-cloak">
+                                    <a href="javascript:;" data-toggle="dropdown">
+                                        <span class="span1"><i class="ec ec-user" style="font-weight: bold;"></i></span>
+
+                                        <span ng-show="IsUserLogedIn" class="span2" style="">
+                                            <span style="display:block;">Hello, <span ng-bind-html="musername"></span></span>
+                                            <span ng-show="IsUserLogedIn" class="span3">My account</span>
+                                        </span>
+                                        <!--<span ng-show="IsUserLogedIn" style="font-size:10px;position: absolute;top: 17px;left: 30px;" ng-bind-html="morgname"></span>-->
+
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-account">
+                                        <li ng-show="IsUserLogedIn" style="background:#082044;color:#fff;"><a href="javascript:;" style="cursor:none;background:#082044;color:#fff"><span ng-bind-html="morgname"></span></a></li>
+                                        <li ng-show="!IsUserLogedIn">
+                                            <a id="sidebarNavToggler2" href="javascript:;" style="display:inline;float: left;padding: .25rem 0 .25rem 1.5rem;width:44%" role="button" class="u-header-topbar__nav-link"
+                                               aria-controls="sidebarContent"
+                                               aria-haspopup="true"
+                                               aria-expanded="false"
+                                               data-unfold-event="click"
+                                               data-unfold-hide-on-scroll="false"
+                                               data-unfold-target="#sidebarContent"
+                                               data-unfold-type="css-animation"
+                                               data-unfold-animation-in="fadeInRight"
+                                               data-unfold-animation-out="fadeOutRight"
+                                               data-unfold-duration="500">
+                                                Sign In <span class="text-gray-50">or</span>
+                                            </a>
+                                            <a href="/Leasing/Registration" class="u-header-topbar__nav-link" style="display:inline-block;width:50%;padding:.25rem 0;"> Register</a>
+                                        </li>
+                                        <li ng-show="IsUserLogedIn">
+                                            <a href="/Leasing/myaccount?tab=yourleaseorder&content=7">My Profile</a>
+                                            <a href="/Leasing/myaccount?tab=yourleaseorder&content=3">Your Lease Order</a>
+                                            <a href="/Leasing/myaccount?tab=youractivelease&content=4">Active Lease</a>
+                                            <a href="/Leasing/myaccount?tab=yourleaseorder&content=10">My Contacts</a>
+                                            <a href="/Leasing/myaccount?tab=yourleaseorder&content=8">My Addresses</a>
+                                            <a href="javascript:;" ng-click="Logout()">Logout</a>
+                                        </li>
+                                    </ul>
+                                    <!-----------------SideBar Content----------------->
+                                    <!-- End Account Sidebar Navigation -->
+
+
+                                </div>
+                                <!--<div class="header-icon" data-placement="bottom" data-toggle="tooltip" data-title="Compare">
+                                    <a href="/Leasing/#/compare/">
+                                        <i class="ec ec-compare"></i>
+                                    </a>
+                                </div>
+                                <div class="header-icon" data-toggle="tooltip" data-placement="bottom" data-title="Wishlist">
+                                    <a href="/Leasing/#/wishlist/">
+                                        <i class="ec ec-favorites"></i>
+                                    </a>
+                                </div>-->
+                                <div class="header-icon ng-cloak" ng-show="IsUserLogedIn" data-toggle="tooltip" data-placement="bottom" data-title="Notification">
+                                    <a href="/Leasing/#/wishlist/">
+                                        <i class="fa fa-bell"></i>
+                                        <span ng-cloak class="bell-icon count header-icon-counter">0</span>
+                                    </a>
+                                </div>
+                                <div ng-controller="ShoppingCartController" class="header-icon animate-dropdown dropdown">
+
+                                    <a href="/Leasing/ViewCart/" title="View Your Basket">
+                                        <!--<i class="ec ec-shopping-bag"></i>-->
+                                        <i class="ec ec-add-to-cart" style="font-size:2em"></i>
+                                        <span ng-cloak class="cart-items-count count header-icon-counter">{{shoppingCart.totalItems}}</span>
+                                        <span class="cart-items-total-price total-price" ng-cloak><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>{{shoppingCart.totalPrice | number:2 }}</span></span>
+                                    </a>
+                                    <!--<a href="/Leasing/#/cart/" data-toggle="dropdown">
+                                        <i class="ec ec-shopping-bag"></i>
+                                        <span ng-cloak class="cart-items-count count header-icon-counter">{{shoppingCart.totalItems}}</span>
+                                        <span class="cart-items-total-price total-price" ng-cloak><span class="woocommerce-Price-amount amount" ><span class="woocommerce-Price-currencySymbol">&pound;</span>{{shoppingCart.totalPrice | number:2 }}</span></span>
+                                    </a>-->
+                                    <ul ng-show="shoppingCart.length<=0" class="dropdown-menu dropdown-menu-mini-cart">
+                                        <li>
+                                            <div class="widget_shopping_cart_content">
+                                                <p class="woocommerce-mini-cart__empty-message">No products in your basket.</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul ng-show="shoppingCart.length>0" class="dropdown-menu dropdown-menu-mini-cart">
+                                        <li>
+                                            <div class="widget_shopping_cart_content" style="opacity: 1;">
+
+                                                <ul class="woocommerce-mini-cart cart_list product_list_widget ">
+                                                    <li ng-repeat="item in shoppingCart track by $index" class="woocommerce-mini-cart-item mini_cart_item">
+                                                        <a style="cursor:pointer" ng-click="deleteFromCart($index)" class="remove">×</a>
+                                                        <a>
+                                                            <img ng-src="/LeaseAdmin/Content/images/product/{{item.Product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">{{item.Product.mprodname}}
+                                                        </a>
+                                                        <span class="quantity">{{item.Quantity}} × <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{item.Product.mprice | number:2}}</span></span>
+                                                    </li>
+                                                </ul>
+
+                                                <p class="woocommerce-mini-cart__total total"><strong>Subtotal:</strong> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{shoppingCart.totalPrice | number:2}}</span></p>
+
+                                                <!--<button ng-disabled="!shoppingCart.length" ng-show="!isCheckoutPage" ng-click="checkout()" class="btn btn-success"> Checkout</button>
+                                                <button ng-disabled="!shoppingCart.length" ng-click="clearShoppingCart()" class="btn btn-warning">Clear</button>-->
+                                                <p class="woocommerce-mini-cart__buttons buttons">
+                                                    <a href="/Leasing/ViewCart" class="button wc-forward">View Your Basket</a><a ng-disabled="!shoppingCart.length" ng-show="!isCheckoutPage" href="/Leasing/Checkout" class="button checkout wc-forward">Checkout</a>
+                                                </p>
+
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.header-icons -->
+                        </div>
+
+                        <script type="text/ng-template" id="subtreeMenu1" class="main-navigation">
+                            <a href="Leasing/Products?{{submenu.mprodcaturl}}" data-hover="dropdown" data-pcat="{{submenu.mprodcatid}}" aria-haspopup="true" ng-class="{true: 'dropdown-toggle mydropdownmenu', false: 'nav-link u-header__sub-menu-nav-link'}[(SiteMenu | filter:{mpreviouscat : submenu.mprodcatid}:true).length > 0]">{{submenu.mcatname}}</a>
+                            @* We will create submenu only when available *@
+                            <ul ng-if="(SiteMenu | filter:{mpreviouscat : submenu.mprodcatid}:true).length > 0" role="menu" class="dropdowncontent">
+                                <li ng-repeat="submenu2 in SiteMenu | filter:{mpreviouscat : submenu.mprodcatid}:true"><a href="/Leasing/Products?{{submenu2.mprodcaturl}}">{{submenu2.mcatname}}</a></li>
+
+
+                            </ul>
+                        </script>
+
+                        <script type="text/ng-template" id="treeMenu1" class="main-navigation">
+
+                            <a href="Leasing/#" id="basicMegaMenu{{menu.mprodcatid}}" ng-show="(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true). length > 0" data-hover="dropdown" data-pcat="{{menu.mprodcatid}}" aria-haspopup="true" ng-class="{true: 'nav-link u-header__nav-link u-header__nav-link-toggle', false: ''}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0]">{{menu.mcatname}}</a>
+                            <a href="Leasing/Products?{{menu.mprodcaturl}}" ng-show="(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true). length <= 0" data-pcat="{{menu.mprodcatid}}" aria-haspopup="true" ng-class="{true: 'nav-link u-header__nav-link', false: ''}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length <= 0]">{{menu.mcatname}}</a>
+                            @* We will create submenu only when available *@
+                            <div class="hs-mega-menu vmm-tfw u-header__sub-menu" aria-labelledby="basicMegaMenu">
+                                <!--<div class="vmm-bg">
+                                    <img class="img-fluid" src="~/Content/assets/img/500X400/img1.png" alt="Image Description">
+                                </div>-->
+                                <div class="row u-header__mega-menu-wrapper">
+                                    <div class="col mb-3 mb-sm-0">
+                                        <span class="u-header__sub-menu-title">{{menu.mcatname}}</span>
+                                        <ul ng-if="(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true). length > 0" class="u-header__sub-menu-nav-group mb-3">
+                                            <li ng-include="'subtreeMenu1'" class="mydropdownmenu" ng-repeat="submenu in SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true">
+                                            </li>
+                                            <!--<li>
+                                                <a class="nav-link u-header__sub-menu-nav-link u-nav-divider border-top pt-2 flex-column align-items-start" href="#">
+                                                    <div class="">All Electronics</div>
+                                                    <div class="u-nav-subtext font-size-11 text-gray-30">Discover more products</div>
+                                                </a>
+                                            </li>-->
+                                        </ul>
+                                    </div>
+
+                                    <!--<div class="col mb-3 mb-sm-0">
+                                        <span class="u-header__sub-menu-title">Office & Stationery</span>
+                                        <ul class="u-header__sub-menu-nav-group">
+                                            <li><a class="nav-link u-header__sub-menu-nav-link" href="#">All Office & Stationery</a></li>
+                                        </ul>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <ul ng-if="(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true). length > 0" role="menu" class="dropdown-menu">
+                                <li id="menu-item-4116" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4116">
+                                    <div class="yamm-content">
+                                        <div class="vc_row wpb_row vc_row-fluid bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
+                                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                <div class="vc_column-inner">
+                                                    <div class="wpb_wrapper">
+                                                        <div class="wpb_single_image wpb_content_element vc_align_left">
+                                                            <figure class="wpb_wrapper vc_figure">
+                                                                <div class="vc_single_image-wrapper   vc_box_border_grey">
+                                                                    <!--<img width="540" height="460" src="/Content/images/megamenu-2.png" class="vc_single_image-img attachment-full" alt="" />-->
+                                                                </div>
+                                                            </figure>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="vc_row wpb_row vc_row-fluid">
+                                            <div class="wpb_column vc_column_container vc_col-sm-6">
+                                                <div class="vc_column-inner">
+                                                    <div class="wpb_wrapper">
+                                                        <div class="wpb_text_column wpb_content_element ">
+                                                            <div class="wpb_wrapper">
+                                                                <ul>
+                                                                    <li ng-include="'subtreeMenu'" class="mydropdownmenu" ng-repeat="submenu in SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true">
+                                                                        <a href="/Leasing/Products?{{submenu.mprodcaturl}}">{{submenu.mcatname}}</a>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </script>
+                        <div class="electro-navigation-v5">
+                            <div class="container">
+                                <div class="electro-navigation">
+
+                                    <div class="col-md-auto d-none d-xl-block align-self-center">
+                                        <div class="max-width-200 min-width-200">
+                                            <!-- Basics Accordion -->
+                                            <div id="basicsAccordion">
+                                                <!-- Card -->
+                                                <div class="card border-0">
+                                                    <div class="card-header card-collapse btn-remove-bg-hover border-0" id="basicsHeadingOne">
+                                                        <button type="button" class="btn-link btn-remove-bg-hover btn-block d-flex card-btn pyc-10 text-lh-1 pl-0 pr-4 shadow-none btn-primary bg-transparent rounded-top-lg border-0 font-weight-bold text-gray-90"
+                                                                data-toggle="collapse"
+                                                                data-target="#basicsCollapseOne"
+                                                                aria-expanded="true"
+                                                                aria-controls="basicsCollapseOne">
+                                                            <span class="text-gray-90">Product Categories</span>
+                                                            <span class="ml-2 text-gray-90">
+                                                                <span class="ec ec-arrow-down-search"></span>
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                    <div id="basicsCollapseOne" class="collapse vertical-menu v2"
+                                                         aria-labelledby="basicsHeadingOne"
+                                                         data-parent="#basicsAccordion">
+                                                        <div class="card-body p-0">
+                                                            <nav class="js-mega-menu navbar navbar-expand-xl u-header__navbar u-header__navbar--no-space hs-menu-initialized">
+                                                                <div id="navBar1" class="collapse navbar-collapse u-header__navbar-collapse">
+                                                                    <ul class="navbar-nav u-header__navbar-nav border-top-primary">
+
+                                                                        <li ng-repeat="menu in SiteMenu | filter:{mpreviouscat : 0}:true" ng-class="{true: 'nav-item hs-has-mega-menu u-header__nav-item', false: 'nav-item u-header__nav-item'}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0]" ng-include="'treeMenu1'" class=""
+                                                                            data-event="hover"
+                                                                            data-position="left">
+                                                                            <a href="#" class="nav-link u-header__nav-link font-weight-bold">Value of the Day</a>
+                                                                        </li>
+
+                                                                    </ul>
+                                                                </div>
+                                                            </nav>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Card -->
+                                            </div>
+                                            <!-- End Basics Accordion -->
+                                        </div>
+                                    </div>
+
+                                    <!---------Mobile Menu ---------------------------------------------------->
+
+                                    <div class="secondary-nav-menu electro-animate-dropdown">
+                                        <ul id="menu-secondary-nav" class="secondary-nav yamm">
+
+                                            <li id="menu-item-4150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4150"><a title="New Arrivals" href="/Leasing/NewArrivalProducts">New Arrivals</a></li>
+                                            <li id="menu-item-4147" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4147"><a title="Special Offer" href="/Leasing/SpecialOfferProducts">Special Offer</a></li>
+                                            <!--<li id="menu-item-4147" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4147"><a title="Virtual Tour" href="/Leasing/VirtualTour">Virtual Tour</a></li>-->
+                                            <li id="menu-item-4149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-4149 dropdown">
+                                                <a title="FAQs" href="/Leasing/#" class="dropdown-toggle" aria-haspopup="true" data-hover="dropdown">FAQs</a>
+                                                <ul role="menu" class=" dropdown-menu">
+                                                    <li id="menu-item-5027" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-5027">
+                                                        <div class="yamm-content">
+                                                            <div class="vc_row wpb_row vc_row-fluid">
+                                                                <div class="wpb_column vc_column_container vc_col-sm-12">
+                                                                    <div class="vc_column-inner">
+                                                                        <div class="wpb_wrapper">
+                                                                            <div class="vc_wp_custommenu wpb_content_element">
+                                                                                <div class="widget widget_nav_menu">
+                                                                                    <div class="menu-pages-menu-1-container">
+                                                                                        <ul id="menu-pages-menu-1" class="menu">
+                                                                                            <li id="menu-item-4126" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-4126"><a href="Leasing/SchoolFaqs">School FAQs</a></li>
+                                                                                            <li id="menu-item-4125" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4125"><a href="Leasing/SupplierFaqs">Supplier FAQs</a></li>
+
+
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li id="leasework" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4147 menu-item-has-children menu-item-4149 dropdown">
+                                                <a tabindex="0"
+                                                   class="dropdown-toggle"
+                                                   role="button"
+                                                   data-html="true"
+                                                   data-toggle="popover"
+                                                   data-placement="bottom"
+                                                   data-trigger="hover"
+                                                   title="<b><font color:#082044>How To Lease</font></b>"
+                                                   data-content="<div>1. Select product/s<br/>2. Add to lease cart<br/>3. Confirm Delivery Details<br/>4. Confirm Payment Method<br/>5. Print Agreement<br/>6. Send agreement to lessor<br/>6. Upon lease approval<br/>7. Delivery of product/s" style="color:#082044;">How To Lease</a>
+                                            </li>
+                                            <li id="menu-item-4147" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4147" ng-show="!IsUserLogedIn"><a target="_blank" title="Sell on ticklease" href="/Supplier">Sell on ticklease</a></li>
+                                            <li ng-show="pendingorder>0" id="menu-item-4147" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4147 ng-cloak"><a title="Pending Orders" href="/Leasing/myaccount/">Pending Orders({{pendingorder}})</a></li>
+                                            <li id="menu-item-4147" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4147"><a title="Feedback" href="javascript:;" data-toggle="modal" data-target="#feedback-modal">Feedback</a></li>
+                                            <!--<li id="menu-item-4147" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4147"><a title="Sell on ticklease" href="/LeaseAdmin/Home/Suppliers">Request a Product</a></li>-->
+                                            <!--<div>1. Generate Leasing Quotation<br/> 2. Mark Product final approval for Leasing<br/> 3. Generate Order and send to Leasing company for Approval<br/> 4. Get Product Delivered</p></div>-->
+                                            <!--<li id="menu-item-4148" class="pull-end menu-item menu-item-type-post_type menu-item-object-page menu-item-4148"><a title="Free Shipping on Orders $50+" href="#/blog-v2/">Free Shipping on Orders $50+</a></li>-->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="handheld-header-wrap container hidden-xl-up">
+                        <div class="handheld-header-v2 handheld-stick-this ">
+                            <button id="sidebar1HeaderInvokerMenu" type="button" class="navbar-toggler d-block btn u-hamburger mr-3 mr-xl-0"
+                                    aria-controls="sidebarHeader"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    data-unfold-event="click"
+                                    data-unfold-hide-on-scroll="false"
+                                    data-unfold-target="#sidebarHeader2"
+                                    data-unfold-type="css-animation"
+                                    data-unfold-animation-in="fadeInLeft"
+                                    data-unfold-animation-out="fadeOutLeft"
+                                    data-unfold-duration="500">
+                                <span id="hamburgerTriggerMenu" class="u-hamburger__box">
+                                    <span class="u-hamburger__inner"></span>
+                                </span>
+                            </button>
+
+                            <aside id="sidebarHeader2" ng-controller="MenuController" class="u-sidebar u-sidebar--left" aria-labelledby="sidebar1HeaderInvokerMenu">
+                                <div class="u-sidebar__scroller">
+                                    <div class="u-sidebar__container">
+                                        <div class="u-header-sidebar__footer-offset pb-20">
+                                            <!-- Toggle Button -->
+                                            <div class="u-sidebar__head" style="background:#082044;">
+                                                <div id="headerSidebarContent" class="u-header-sidebar__content">
+                                                    <a class="d-flex ml-0 navbar-brand u-header__navbar-brand u-header__navbar-brand-vertical" href="/Home/index">
+                                                        <img src="~/Content/images/logo/openstar-school-leasing-log.png" width="175.748px" height="42.52px" />
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                            <div class="position-absolute top-0 right-0 z-index-2 pt-4 pr-7">
+                                                <button type="button" class="close ml-auto"
+                                                        aria-controls="sidebarHeader"
+                                                        aria-haspopup="true"
+                                                        aria-expanded="false"
+                                                        data-unfold-event="click"
+                                                        data-unfold-hide-on-scroll="false"
+                                                        data-unfold-target="#sidebarHeader2"
+                                                        data-unfold-type="css-animation"
+                                                        data-unfold-animation-in="fadeInLeft"
+                                                        data-unfold-animation-out="fadeOutLeft"
+                                                        data-unfold-duration="500">
+                                                    <span aria-hidden="true"><i class="ec ec-close-remove text-gray-90 font-size-20"></i></span>
+                                                </button>
+                                            </div>
+                                            <!-- End Toggle Button -->
+                                            <!-- Content -->
+                                            <div class="js-scrollbar u-sidebar__body">
+                                                <div id="headerSidebarContent1" class="u-sidebar__content u-header-sidebar__content">
+                                                    <!-- Logo -->
+                                                    <!-- End Logo -->
+                                                    <script type="text/ng-template" id="toptreeMenu3" class="main-navigation">
+                                                        <a ng-show="(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true). length > 0" href="javascript:;" data-target="#headerSidebarPagesCollapse1{{menu.mprodcatid}}" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="headerSidebarPagesCollapse1{{menu.mprodcatid}}" aria-haspopup="true" ng-class="{true: 'u-header-collapse__nav-link u-header-collapse__nav-pointer', false: ''}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0]">{{menu.mcatname}}</a>
+                                                        <a href="Leasing/Products?{{menu.mprodcaturl}}" data-toggle="{{(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0?'dropdown':''}}" ng-show="(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true). length <= 0" aria-haspopup="true" ng-class="{true: 'u-header-collapse__nav-link u-header-collapse__nav-pointer', false: ''}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0]">{{menu.mcatname}}</a>
+                                                        @* We will create submenu only when available *@
+                                                        <div id="headerSidebarPagesCollapse1{{menu.mprodcatid}}" class="collapse" data-parent="#headerSidebarContent1">
+
+                                                            <ul ng-if="(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true). length > 0" role="menu" class="u-header-collapse__nav-list">
+                                                                <li ng-repeat="menu in SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true"><a href="Leasing/Products?{{menu.mprodcaturl}}">{{menu.mcatname}}</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </script>
+                                                    <!-- List -->
+                                                    <ul id="headerSidebarList1" class="u-header-collapse__nav">
+
+
+                                                        <li id="menu-item-4760" ng-repeat="menu in SiteMenu | filter:{mpreviouscat : 0 }:true" ng-class="{true: 'u-has-submenu u-header-collapse__submenu', false: 'u-header-collapse__nav-link'}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0]" ng-include="'toptreeMenu3'">
+
+                                                        </li>
+
+                                                        <!-- End Blog Pages -->
+                                                    </ul>
+                                                    <!-- End List -->
+                                                </div>
+                                            </div>
+                                            <!-- End Content -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+                            <div class="off-canvas-navigation-wrapper " style="display:none;">
+                                <div class="off-canvas-navbar-toggle-buttons clearfix">
+                                    <button class="navbar-toggler navbar-toggle-hamburger " type="button">
+                                        <i class="ec ec-menu"></i>
+                                    </button>
+                                    <button class="navbar-toggler navbar-toggle-close " type="button">
+                                        <i class="ec ec-close-remove"></i>
+                                    </button>
+                                </div>
+                                <div class="off-canvas-navigation" id="default-oc-header">
+                                    <ul id="menu-all-departments-menu-2" class="nav nav-inline yamm">
+                                        <li id="menu-item-4760" ng-repeat="menu in SiteMenu | filter:{mpreviouscat : 0}:true" ng-class="{true: 'yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4760 dropdown', false: 'menu-item menu-item-type-post_type menu-item-object-page menu-item-4155'}[(SiteMenu | filter:{mpreviouscat : menu.mprodcatid}:true).length > 0]" ng-include="'toptreeMenu'">
+
+                                        </li>
+
+
+                                        <li ng-repeat="m in Sitemenu" class="highlight menu-item menu-item-type-post_type menu-item-object-page menu-item-4155"><a title="Value of the Day" href="#/home-v2/">{{m.mcatname}}</a></li>
+
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="header-logo">
+                                <a href="/Home/index" class="header-logo-link">
+                                    <img src="~/Content/images/logo/openstar-school-leasing-log.png" width="175.748px" height="42.52px" />
+                                </a>
+                            </div>
+                            <aside ng-show="!IsUserLogedIn" id="sidebarContent3" class="u-sidebar u-sidebar__lg sidebarContent" aria-labelledby="sidebarNavToggler3">
+                                <div class="u-sidebar__scroller">
+                                    <div class="u-sidebar__container">
+                                        <div class="js-scrollbar u-header-sidebar__footer-offset pb-3">
+                                            <!-- Toggle Button -->
+                                            <div class="d-flex align-items-center pt-4 px-7">
+                                                <button type="button" class="close ml-auto"
+                                                        aria-controls="sidebarContent3"
+                                                        aria-haspopup="true"
+                                                        aria-expanded="false"
+                                                        data-unfold-event="click"
+                                                        data-unfold-hide-on-scroll="false"
+                                                        data-unfold-target="#sidebarContent3"
+                                                        data-unfold-type="css-animation"
+                                                        data-unfold-animation-in="fadeInRight"
+                                                        data-unfold-animation-out="fadeOutRight"
+                                                        data-unfold-duration="500">
+                                                    <i class="ec ec-close-remove"></i>
+                                                </button>
+                                            </div>
+                                            <!-- End Toggle Button -->
+                                            <!-- Content -->
+                                            <div class="js-scrollbar u-sidebar__body">
+                                                <div class="u-sidebar__content u-header-sidebar__content">
+                                                    <form name="loginfield" ng-hide="showforget" ng-submit="MenuLogin()" class="js-validate">
+                                                        <!-- Login -->
+                                                        <div id="login" data-target-group="idForm">
+                                                            <!-- Title -->
+                                                            <header class="text-center mb-7">
+                                                                <h2 class="h4 mb-0">Welcome Back!</h2>
+                                                                <p>Login to manage your account.</p>
+                                                            </header>
+                                                            <!-- End Title -->
+                                                            <!-- Form Group -->
+                                                            <div class="form-group" ng-show="IsError">
+                                                                <div class="alert alert-warning">{{invalidlogin}}</div>
+                                                            </div>
+                                                            <div class="form-group" ng-show="showmsg!='' && showmsg!=null">
+                                                                <div class="alert alert-success" ng-bind-html="showmsg"></div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="js-form-message js-focus-state">
+                                                                    <label class="sr-only" for="signinEmail">Email</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="signinEmailLabel">
+                                                                                <span class="fas fa-user"></span>
+                                                                            </span>
+                                                                        </div>
+                                                                        <input type="email" ng-model="MenuLoginData.museridemail" name="museridemail" ng-class="MSubmitted?'form-control ng-dirty':'form-control'" required id="signinSrEmailExample3" placeholder="Email address" aria-label="Email address"
+                                                                               data-msg="Please enter a valid email address."
+                                                                               data-error-class="u-has-error"
+                                                                               data-success-class="u-has-success">
+                                                                        <span class="loginerror" ng-show="(loginfield.museridemail.$dirty || MSubmitted) && loginfield.museridemail.$error.required">Username required</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- End Form Group -->
+                                                            <!-- Form Group -->
+                                                            <div class="form-group">
+                                                                <div class="js-form-message js-focus-state">
+                                                                    <label class="sr-only" for="signinPassword">Password</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="signinPasswordLabel">
+                                                                                <span class="fas fa-lock"></span>
+                                                                            </span>
+                                                                        </div>
+                                                                        <input type="password" ng-model="MenuLoginData.mpwd" name="mpwd" ng-class="MSubmitted?'form-control ng-dirty':'form-control'" required id="signinSrPasswordExample2" placeholder="********" aria-label="********"
+                                                                               data-msg="Your password is invalid. Please try again."
+                                                                               data-error-class="u-has-error"
+                                                                               data-success-class="u-has-success">
+                                                                        <span class="loginerror" ng-show="(loginfield.mpwd.$dirty || MSubmitted) && loginfield.mpwd.$error.required">Password required</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- End Form Group -->
+
+                                                            <div class="d-flex justify-content-end mb-4">
+                                                                <a class="js-animation-link small link-muted" href="javascript:;"
+                                                                   data-target="#forgotPassword"
+                                                                   data-link-group="idForm"
+                                                                   data-animation-in="slideInUp" ng-click="showforget=true;">Forgot Password?</a>
+                                                            </div>
+
+                                                            <div class="mb-2">
+                                                                <button type="submit" ng-disabled="MSubmitted" class="btn btn-block btn-sm btn-primary transition-3d-hover">Login</button>
+                                                            </div>
+
+                                                            <div class="text-center mb-4">
+                                                                <span class="small text-muted">Do not have an account?</span>
+                                                                <a class="js-animation-link small text-dark" href="/Leasing/Registration/">
+                                                                    Signup
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                    </form>
+                                                    <form name="forgetpwd" ng-show="showforget" ng-submit="forgetPassword()">
+
+                                                        <!-- Forgot Password -->
+                                                        <div id="forgotPassword" data-target-group="idForm">
+                                                            <!-- Title -->
+                                                            <header class="text-center mb-7">
+                                                                <h2 class="h4 mb-0">Recover Password.</h2>
+                                                                <p>Enter your email address and an email with instructions will be sent to you.</p>
+                                                            </header>
+                                                            <!-- End Title -->
+                                                            <!-- Form Group -->
+                                                            <div class="form-group" ng-show="IsFError">
+                                                                <div class="alert alert-warning">{{invalidFlogin}}</div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="js-form-message js-focus-state">
+                                                                    <label class="sr-only" for="recoverEmail">Your email</label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text" id="recoverEmailLabel">
+                                                                                <span class="fas fa-user"></span>
+                                                                            </span>
+                                                                        </div>
+                                                                        <input type="email" class="form-control" name="recoveremail" ng-model="recoverEmail" id="recoverEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmailLabel" required
+                                                                               data-msg="Please enter a valid email address."
+                                                                               data-error-class="u-has-error"
+                                                                               data-success-class="u-has-success">
+                                                                        <span class="loginerror" ng-show="(forgetpwd.recoveremail.$dirty || FSubmitted) && forgetpwd.recoveremail.$error.required">Username required</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- End Form Group -->
+
+                                                            <div class="mb-2">
+                                                                <button type="submit" ng-disabled="FSubmitted" class="btn btn-block btn-sm btn-primary transition-3d-hover">Recover Password</button>
+                                                            </div>
+
+                                                            <div class="text-center mb-4">
+                                                                <span class="small text-dark">Remember your password?</span>
+                                                                <a class="js-animation-link small" href="javascript:;"
+                                                                   data-target="#login"
+                                                                   data-link-group="idForm"
+                                                                   data-animation-in="slideInUp" ng-click="showforget=false;" style="color:#333!important;">
+                                                                    Login
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- End Forgot Password -->
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <!-- End Content -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+                            <div class="handheld-header-links">
+                                <ul class="columns-3">
+                                    <li class="search hidesearchicon">
+                                        <a href="">Search</a>
+                                        <div class="site-search">
+                                            <div class="widget woocommerce widget_product_search">
+                                                <form role="search" method="get" class="woocommerce-product-search" action="Leasing/SearchProducts">
+                                                    <label class="screen-reader-text" for="woocommerce-product-search-field-0">Search for:</label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-search-field">
+                                                            <input type="search" id="woocommerce-product-search-field-0" class="search-field searchproduct woocommerce-product-search-field-0" placeholder="Search products&hellip;" value="" name="searchproducts" placeholder="UK's No. 1 Education and School Leasing Portal" autocomplete="off" style="border-top-left-radius:0;border-bottom-left-radius:0" />
+                                                        </div>
+                                                        <div class="input-group-addon search-categories" style="display:none;">
+                                                            <select name='category' id='product_cat' class='postform resizeselect'>
+                                                                <option value='0' selected='selected'>All Categories</option>
+                                                                <option ng-repeat="menu in SiteMenu | filter:{mpreviouscat : 0}" class="level-{{$index+1}}" value="{{menu.mprodcatid}}">{{menu.mcatname}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="input-group-btn">
+                                                            <button type="submit" class="btn btn-secondary"><i class="ec ec-search"></i></button>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="my-account">
+                                        <div class="header-icon wologin" ng-show="!IsUserLogedIn">
+                                            <a href="javascript:;">
+                                                <span class="span1"><i class="ec ec-user" style="font-weight: bold;"></i></span>
+                                            </a>
+                                            <span class="span2 ng-cloak" ng-show="!IsUserLogedIn">
+
+                                                <a id="sidebarNavToggler3" href="javascript:;" role="button" class="u-header-topbar__nav-link"
+                                                   aria-controls="sidebarContent3"
+                                                   aria-haspopup="true"
+                                                   aria-expanded="false"
+                                                   data-unfold-event="click"
+                                                   data-unfold-hide-on-scroll="false"
+                                                   data-unfold-target="#sidebarContent3"
+                                                   data-unfold-type="css-animation"
+                                                   data-unfold-animation-in="fadeInRight"
+                                                   data-unfold-animation-out="fadeOutRight"
+                                                   data-unfold-duration="500">
+                                                    <span style="display:block;">Sign In</span>
+
+                                                </a>
+                                                <a href="/Leasing/Registration" class="u-header-topbar__nav-link" style=""> Register Free</a>
+
+                                            </span>
+                                            <!--<span ng-show="IsUserLogedIn" style="font-size:10px;position: absolute;top: 17px;left: 30px;" ng-bind-html="morgname"></span>-->
+
+
+                                        </div>
+                                        <div ng-show="IsUserLogedIn" class="header-icon animate-dropdown dropdown userdropdown ng-hide wlogin ng-cloak">
+                                            <a href="javascript:;" data-toggle="dropdown">
+                                                <span class="span1"><i class="ec ec-user" style="font-weight: bold;"></i></span>
+
+                                                <span ng-show="IsUserLogedIn" class="span2" style="">
+                                                    <span style="display:block;">Hello, <span ng-bind-html="musername"></span></span>
+                                                    <span ng-show="IsUserLogedIn" class="span3">My account</span>
+                                                </span>
+                                                <!--<span ng-show="IsUserLogedIn" style="font-size:10px;position: absolute;top: 17px;left: 30px;" ng-bind-html="morgname"></span>-->
+
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-account">
+                                                <li ng-show="IsUserLogedIn" style="background:#082044;color:#fff;"><a href="javascript:;" style="cursor:none;background:#082044;color:#fff"><span ng-bind-html="morgname"></span></a></li>
+                                                <li ng-show="!IsUserLogedIn">
+                                                    <a id="sidebarNavToggler2" href="javascript:;" style="display:inline;float: left;padding: .25rem 0 .25rem 1.5rem;width:44%" role="button" class="u-header-topbar__nav-link"
+                                                       aria-controls="sidebarContent"
+                                                       aria-haspopup="true"
+                                                       aria-expanded="false"
+                                                       data-unfold-event="click"
+                                                       data-unfold-hide-on-scroll="false"
+                                                       data-unfold-target="#sidebarContent"
+                                                       data-unfold-type="css-animation"
+                                                       data-unfold-animation-in="fadeInRight"
+                                                       data-unfold-animation-out="fadeOutRight"
+                                                       data-unfold-duration="500">
+                                                        Sign In <span class="text-gray-50">or</span>
+                                                    </a>
+                                                    <a href="/Leasing/Registration" class="u-header-topbar__nav-link" style="display:inline-block;width:50%;padding:.25rem 0;"> Register</a>
+                                                </li>
+                                                <li ng-show="IsUserLogedIn">
+                                                    <a href="/Leasing/myaccount?tab=yourleaseorder&content=7">My Profile</a>
+                                                    <a href="/Leasing/myaccount?tab=yourleaseorder&content=3">Your Lease Order</a>
+                                                    <a href="/Leasing/myaccount?tab=youractivelease&content=4">Active Lease</a>
+                                                    <a href="/Leasing/myaccount?tab=yourleaseorder&content=10">My Contacts</a>
+                                                    <a href="/Leasing/myaccount?tab=yourleaseorder&content=8">My Addresses</a>
+                                                    <a href="javascript:;" ng-click="Logout()">Logout</a>
+                                                </li>
+                                            </ul>
+                                            <!-----------------SideBar Content----------------->
+                                            <!-- End Account Sidebar Navigation -->
+
+
+                                        </div>
+
+                                    </li>
+                                    <li class="cart" ng-controller="ShoppingCartController">
+                                        <a class="footer-cart-contents ng-cloak" href="Leasing/ViewCart" title="View your basket">
+                                            <i class="ec ec-shopping-bag"></i>
+                                            <span class="cart-items-count count">{{shoppingCart.totalItems}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mobiletopsearch" style="">
+                                <div class="container">
+                                    <form class="navbar-search woocommerce-product-search-1 ng-pristine ng-valid" method="get" action="Leasing/SearchProducts" autocomplete="off">
+                                        <label class="sr-only screen-reader-text" for="search">Search for:</label>
+                                        <span style="display:none;" id="demo"></span>
+                                        <div class="input-group">
+                                            <div class="input-search-field">
+                                                <input type="text" id="woocommerce-product-search-field-1" class="form-control search-field product-search-field searchproduct woocommerce-product-search-field-0" dir="ltr" value="" name="searchproducts" placeholder="Search Products" autocomplete="off" style="border-top-left-radius:0;border-bottom-left-radius:0">
+                                            </div>
+                                            <div class="input-group-addon search-categories" style="display:none;">
+                                                <select name='category' id='product_cat' class='postform resizeselect'>
+                                                    <option value='0' selected='selected'>All Categories</option>
+                                                    <option ng-repeat="menu in SiteMenu | filter:{mpreviouscat : 0}" class="level-{{$index+1}}" value="{{menu.mprodcatid}}">{{menu.mcatname}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group-btn">
+                                                <input type="hidden" id="search-param" name="post_type" value="product" autocomplete="off">
+                                                <button type="submit" class="btn btn-secondary"><i class="ec ec-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            @RenderBody()
+            <!-- #content -->
+
+            <footer id="colophon" class="site-footer footer-v2">
+                <div class="desktop-footer container">
+                    <div class="footer-widgets columns-3" style="display:none;">
+                        <div class="widget-column">
+                            <aside id="woocommerce_products-3" class="widget clearfix woocommerce widget_products">
+                                <div class="body">
+                                    <h4 class="widget-title">Featured Products</h4>
+                                    <ul class="product_list_widget">
+                                        <li>
+                                            <a href="#/product/tablet-thin-elitebook-revolve-810-g6/">
+                                                <img width="300" height="300" src="#" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="images/Smartphone6-300x300.jpg 300w, images/Smartphone6-150x150.jpg 150w, images/Smartphone6-100x100.jpg 100w" sizes="(max-width: 300px) 100vw, 300px" />		<span class="product-title">Tablet Thin EliteBook  Revolve 810 G6</span>
+                                            </a>
+                                            <div class="star-rating"><span style="width:86.6%">Rated <strong class="rating">4.33</strong> out of 5</span></div>
+                                            <span class="electro-price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>1,300.00</span></span>
+                                        </li>
+                                        <li>
+                                            <a href="#/product/smartphone-6s-128gb-lte/">
+                                                <img width="300" height="300" src="#" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="images/Smartphone7-300x300.jpg 300w, images/Smartphone7-150x150.jpg 150w, images/Smartphone7-100x100.jpg 100w" sizes="(max-width: 300px) 100vw, 300px" />		<span class="product-title">Smartphone 6S 128GB LTE</span>
+                                            </a>
+                                            <span class="electro-price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>780.00</span></span>
+                                        </li>
+                                        <li>
+                                            <a href="#/product/smartphone-6s-32gb-lte/">
+                                                <img width="300" height="300" src="#" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="images/GoldPhone-300x300.jpg 300w, images/GoldPhone-150x150.jpg 150w, images/GoldPhone-100x100.jpg 100w" sizes="(max-width: 300px) 100vw, 300px" />		<span class="product-title">Smartphone 6S 32GB LTE</span>
+                                            </a>
+                                            <span class="electro-price"><ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>1,100.00</span></ins> <del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>1,215.00</span></del></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="widget-column">
+                            <aside id="woocommerce_products-4" class="widget clearfix woocommerce widget_products">
+                                <div class="body">
+                                    <h4 class="widget-title">Top Selling Products</h4>
+                                    <ul class="product_list_widget">
+                                        <li>
+                                            <a href="#/product/game-console-controller-usb-3-0-cable/">
+                                                <img width="300" height="300" src="#" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="images/GamePad-300x300.jpg 300w, images/GamePad-150x150.jpg 150w, images/GamePad-100x100.jpg 100w" sizes="(max-width: 300px) 100vw, 300px" />		<span class="product-title">Game Console Controller + USB 3.0 Cable</span>
+                                            </a>
+                                            <span class="electro-price"><ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>79.00</span></ins> <del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>99.00</span></del></span>
+                                        </li>
+                                        <li>
+                                            <a href="#/product/wireless-audio-system-multiroom-360/">
+                                                <img width="300" height="300" src="#" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="images/WirelessSound-300x300.jpg 300w, images/WirelessSound-150x150.jpg 150w, images/WirelessSound-100x100.jpg 100w" sizes="(max-width: 300px) 100vw, 300px" />		<span class="product-title">Wireless Audio System Multiroom 360</span>
+                                            </a>
+                                            <span class="electro-price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>2,299.00</span></span>
+                                        </li>
+                                        <li>
+                                            <a href="#/product/tablet-red-elitebook-revolve-810-g2/">
+                                                <img width="300" height="300" src="#" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="images/Ultrabooks-300x300.jpg 300w, images/Ultrabooks-150x150.jpg 150w, images/Ultrabooks-100x100.jpg 100w" sizes="(max-width: 300px) 100vw, 300px" />		<span class="product-title">Tablet Red EliteBook  Revolve 810 G2</span>
+                                            </a>
+                                            <div class="star-rating"><span style="width:66.6%">Rated <strong class="rating">3.33</strong> out of 5</span></div>
+                                            <span class="electro-price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>2,299.00</span></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="widget-column">
+                            <aside id="woocommerce_products-5" class="widget clearfix woocommerce widget_products">
+                                <div class="body">
+                                    <h4 class="widget-title">On-sale Products</h4>
+                                    <ul class="product_list_widget">
+                                        <li>
+                                            <a href="#/product/notebook-black-spire-v-nitro-vn7-591g/">
+                                                <img width="300" height="300" src="#" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="images/GoldPhone-300x300.jpg 300w, images/GoldPhone-150x150.jpg 150w, images/GoldPhone-100x100.jpg 100w" sizes="(max-width: 300px) 100vw, 300px" />		<span class="product-title">Notebook Black Spire V Nitro  VN7-591G</span>
+                                            </a>
+                                            <div class="star-rating"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
+                                            <span class="electro-price"><ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>1,999.00</span></ins> <del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>2,299.00</span></del></span>
+                                        </li>
+                                        <li>
+                                            <a href="#/product/gameconsole-destiny-special-edition-2/">
+                                                <img width="300" height="300" src="#" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="images/GameStation-300x300.jpg 300w, images/GameStation-150x150.jpg 150w, images/GameStation-100x100.jpg 100w" sizes="(max-width: 300px) 100vw, 300px" />		<span class="product-title">GameConsole Destiny  Special Edition</span>
+                                            </a>
+                                            <div class="star-rating"><span style="width:73.4%">Rated <strong class="rating">3.67</strong> out of 5</span></div>
+                                            <span class="electro-price"><ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>120.00</span></ins> <del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>150.00</span></del></span>
+                                        </li>
+                                        <li>
+                                            <a href="#/product/game-console-controller-usb-3-0-cable/">
+                                                <img width="300" height="300" src="#" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="images/GamePad-300x300.jpg 300w, images/GamePad-150x150.jpg 150w, images/GamePad-100x100.jpg 100w" sizes="(max-width: 300px) 100vw, 300px" />		<span class="product-title">Game Console Controller + USB 3.0 Cable</span>
+                                            </a>
+                                            <span class="electro-price"><ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>79.00</span></ins> <del><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>99.00</span></del></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="widget-column">
+                            <aside id="media_image-3" class="widget clearfix widget_media_image">
+                                <div class="body"><a href="#/shop"><img width="329" height="359" src="~/Content/images/footer-widget-img-01.jpg" class="image wp-image-5045  attachment-full size-full" alt="" style="max-width: 100%; height: auto;" srcset="images/footer-widget-img-01.jpg 329w, images/footer-widget-img-01-275x300.jpg 275w" sizes="(max-width: 329px) 100vw, 329px" /></a></div>
+                            </aside>
+                        </div>
+                    </div>
+                    <div class="footer-newsletter">
+                        <div class="container">
+                            <div class="footer-newsletter-inner">
+                                <div class="newsletter-content">
+                                    <h5 class="newsletter-title">Sign up to Newsletter</h5>
+                                    <span class="newsletter-marketing-text">...and receive <strong>£20 coupon for first shopping</strong></span>
+                                </div>
+                                <div class="newsletter-form">
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Enter your email address">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-secondary" type="button">Sign Up</button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom-widgets">
+                        <div class="container">
+                            <div class="footer-bottom-widgets-inner">
+                                <div class="footer-contact">
+                                    <div class="footer-logo">
+                                        <img src="~/Content/images/logo/openstar-school-leasing-logo_footer2.png" width="175.748px" height="42.52px" />
+
+                                    </div>
+                                    <div class="footer-call-us">
+                                        <div class="media">
+                                            <span class="media-left call-us-icon media-middle"><i class="ec ec-support"></i></span>
+                                            <div class="media-body">
+                                                <span class="call-us-text">Got Questions ? Call us!</span>
+                                                <span class="call-us-number">01625 415 400</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-address">
+                                        <strong class="footer-address-title">Contact Info</strong>
+                                        <address>Merlin House, 8 Grove Avenue, Wilmslow, SK9 5EG</address>
+                                    </div>
+                                    <div class="footer-social-icons">
+                                        <ul class="social-icons list-unstyled">
+                                            <li><a class="fab fa-facebook" target="_blank" href="/Leasing/#/"></a></li>
+                                            <li><a class="fab fa-whatsapp mobile" target="_blank" href="whatsapp://send?phone=63211898"></a></li>
+                                            <li><a class="fab fa-whatsapp desktop" target="_blank" href="https://web.whatsapp.com/send?phone=48522554"></a></li>
+                                            <li><a class="fab fa-pinterest" target="_blank" href="/Leasing/#/"></a></li>
+                                            <li><a class="fab fa-linkedin" target="_blank" href="/Leasing/#/"></a></li>
+                                            <li><a class="fab fa-instagram" target="_blank" href="/Leasing/#/"></a></li>
+                                            <li><a class="fab fa-youtube" target="_blank" href="/Leasing/#/"></a></li>
+                                            <li><a class="fas fa-rss" target="_blank" href="/Leasing/#/"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="footer-bottom-widgets-menu">
+                                    <div class="footer-bottom-widgets-menu-inner">
+                                        <div class="columns">
+                                            <aside id="nav_menu-1" class="widget clearfix widget_nav_menu">
+                                                <div class="body">
+                                                    <h4 class="widget-title">Find It Fast</h4>
+                                                    <div class="menu-footer-menu-1-container">
+                                                        <ul id="menu-footer-menu-1" class="menu">
+                                                            <li id="menu-item-5058" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-5058"><a href="/Leasing/Products?Category=Laptop&getproducts=cQubx6n1uoL%2bRHPThbJDQA%3d%3d">Laptops</a></li>
+                                                            <li id="menu-item-5062" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-5062"><a href="/Leasing/Products?Category=Desktop&getproducts=fJ3V2bsu5Cql0FRDjN7s1A%3d%3d">Desktop</a></li>
+                                                            <li id="menu-item-5059" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-5059"><a href="/Leasing/Products?Category=HD%20Camera&getproducts=BOtH1svEX1DjxDgb25zIVA%3d%3d">Cameras</a></li>
+                                                            <li id="menu-item-5060" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-5060"><a href="/Leasing/Products?Category=Vending&getproducts=q%2buzeLoORypfuHr0ZcJHEQ%3d%3d">Vending</a></li>
+                                                            <li id="menu-item-5061" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-5061"><a href="/Leasing/Products?Category=Whiteboard&getproducts=OMK9yerhwHngS8utgDzUgA%3d%3d">White board</a></li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </aside>
+                                        </div>
+                                        <div class="columns">
+                                            <aside id="nav_menu-2" class="widget clearfix widget_nav_menu">
+                                                <div class="body">
+                                                    <h4 class="widget-title"> </h4>
+                                                    <div class="menu-footer-menu-2-container">
+                                                        <ul id="menu-footer-menu-2" class="menu">
+                                                            <li id="menu-item-4859" ng-show="!IsUserLogedIn" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4859"><a href="/Supplier">Sell on ticklease</a></li>
+                                                            <li id="menu-item-4859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4859"><a href="/Leasing/#/">About</a></li>
+                                                            <li id="menu-item-4857" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4857"><a href="/ContactUs">Contact Us</a></li>
+                                                            <li id="menu-item-4874" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4874"><a href="/Leasing/#/">Wishlist</a></li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </aside>
+                                        </div>
+                                        <div class="columns">
+                                            <aside id="nav_menu-3" class="widget clearfix widget_nav_menu">
+                                                <div class="body">
+                                                    <h4 class="widget-title">Customer Care</h4>
+                                                    <div class="menu-footer-menu-3-container">
+                                                        <ul id="menu-footer-menu-3" class="menu">
+                                                            <!--<li id="menu-item-4110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4110"><a href="/Leasing/#/track-your-order/">Track your Order</a></li>
+                                                            <li id="menu-item-4112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4112"><a href="/Leasing/ReturnRefundPolicy/">Returns/Refund Policy </a></li>-->
+                                                            <li id="menu-item-4113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4113"><a href="/Leasing/SchoolFaqs/">School FAQs</a></li>
+                                                            <li id="menu-item-4113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4113"><a href="/Leasing/SupplierFaqs/">Supplier FAQs</a></li>
+                                                            <li id="menu-item-4114" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4114"><a href="/Leasing/PrivacyPolicy/">Privacy Policy</a></li>
+                                                            <li id="menu-item-4112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4112"><a href="/Leasing/Disclaimer/">Disclaimer </a></li>
+                                                            <li id="menu-item-4112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4112"><a href="/Leasing/TermsConditions/">Terms and Conditions</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </aside>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copyright-bar">
+                        <div class="container">
+                            <div class="copyright">&copy; <a href="#"></a>All Rights Reserved. Alpha 1.0.3</div>
+                            <div class="payment">
+                                <div class="footer-payment-logo">
+
+                                    <ul class="cash-card card-inline">
+
+                                        <!--<li class="card-item"><img src="~/Content/images/patment-icon.png" alt="" width="324" height="38"></li>-->
+                                    </ul>
+                                </div>
+                                <!-- /.payment-methods -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="handheld-footer v1 ">
+                    <div class="handheld-widget-menu">
+                        @*<div class="columns">
+                                <aside id="nav_menu-4" class="widget widget_nav_menu">
+                                    <div class="body">
+                                        <h4 class="widget-title">We Recommend</h4>
+                                        <div class="menu-home-v7-vertical-menu-container">
+                                            <ul id="menu-home-v7-vertical-menu" class="menu">
+                                                <li id="menu-item-4921" class="highlight menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-4921"><a href="#/">Value of the Day</a></li>
+                                                <li id="menu-item-4922" class="highlight menu-item menu-item-type-post_type menu-item-object-page menu-item-4922"><a href="#/home-v2/">Top 100 Offers</a></li>
+                                                <li id="menu-item-4923" class="highlight menu-item menu-item-type-post_type menu-item-object-page menu-item-4923"><a href="Leasing/#/">New Arrivals</a></li>
+                                                <li id="menu-item-4924" class="yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4924">
+                                                    <a href="#">Laptops &#038; Computers</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-4949" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4949"><a href="#/static_block/tv-audio/">TV &#038; Audio Megamenu Item</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-4925" class="yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4925">
+                                                    <a href="#">Cameras &#038; Photography</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-4950" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4950"><a href="#/static_block/mobiles-tablets-megamenu-item/">Mobiles &#038; Tablets Megamenu Item</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-4926" class="yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4926">
+                                                    <a href="#">Smart Phones &#038; Tablets</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-4935" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4935"><a href="#/static_block/cameras-audio-video-megamenu-item/">Cameras, Audio &#038; Video Megamenu Item</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-4927" class="yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4927">
+                                                    <a href="#">Video Games &#038; Consoles</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-4936" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4936"><a href="#/static_block/car-motorbike-industrial/">Car, Motorbike &#038; Industrial</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-4928" class="yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4928">
+                                                    <a href="#">TV &#038; Audio</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-4937" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4937"><a href="#/static_block/computers-accessories-megamenu-item/">Computers &#038; Accessories Megamenu Item</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-4929" class="yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4929">
+                                                    <a href="#">Gadgets</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-4947" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4947"><a href="#/static_block/mobiles-tablets-megamenu-item/">Mobiles &#038; Tablets Megamenu Item</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-4930" class="yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4930">
+                                                    <a href="#">Car Electronic &#038; GPS</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-4946" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4946"><a href="#/static_block/watches-eyewear-megamenu-item/">Watches &#038; Eyewear Megamenu Item</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-4931" class="yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4931">
+                                                    <a href="#">Printers &#038; Inks</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-4945" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4945"><a href="#/static_block/tv-audio/">TV &#038; Audio Megamenu Item</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-4932" class="yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4932">
+                                                    <a href="#">Portable Audio</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-4942" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4942"><a href="#/static_block/mobiles-tablets-megamenu-item/">Mobiles &#038; Tablets Megamenu Item</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-4933" class="yamm-tfw menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4933">
+                                                    <a href="#">Accesories</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-4944" class="menu-item menu-item-type-post_type menu-item-object-static_block menu-item-4944"><a href="#/static_block/movies-music-video-games-megamenu-item/">Movies, Music &#038; Video Games Megamenu Item</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </aside>
+                            </div>*@
+
+                        <div class="columns">
+                            <aside id="nav_menu-1" class="widget clearfix widget_nav_menu">
+                                <div class="body">
+                                    <h4 class="widget-title">Find It Fast</h4>
+                                    <div class="menu-footer-menu-1-container">
+                                        <ul id="menu-footer-menu-1" class="menu">
+                                            <li id="menu-item-5058" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-5058"><a href="/Leasing/Products?Category=Laptop&getproducts=cQubx6n1uoL%2bRHPThbJDQA%3d%3d">Laptops</a></li>
+                                            <li id="menu-item-5062" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-5062"><a href="/Leasing/Products?Category=Desktop&getproducts=fJ3V2bsu5Cql0FRDjN7s1A%3d%3d">Desktop</a></li>
+                                            <li id="menu-item-5059" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-5059"><a href="/Leasing/Products?Category=HD%20Camera&getproducts=BOtH1svEX1DjxDgb25zIVA%3d%3d">Cameras</a></li>
+                                            <li id="menu-item-5060" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-5060"><a href="/Leasing/Products?Category=Vending&getproducts=q%2buzeLoORypfuHr0ZcJHEQ%3d%3d">Vending</a></li>
+                                            <li id="menu-item-5061" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-5061"><a href="/Leasing/Products?Category=Whiteboard&getproducts=OMK9yerhwHngS8utgDzUgA%3d%3d">White board</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="columns">
+                            <aside id="nav_menu-2" class="widget clearfix widget_nav_menu">
+                                <div class="body">
+                                    <h4 class="widget-title">Quick Link </h4>
+                                    <div class="menu-footer-menu-2-container">
+                                        <ul id="menu-footer-menu-2" class="menu">
+                                            <li id="menu-item-4859" ng-show="!IsUserLogedIn" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4859"><a href="/Supplier">Sell on ticklease</a></li>
+                                            <li id="menu-item-4859" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4859"><a href="/Leasing/#/about/">About</a></li>
+                                            <li id="menu-item-4857" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4857"><a href="/ContactUs">Contact Us</a></li>
+                                            <li id="menu-item-4874" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4874"><a href="/Leasing/#/wishlist/">Wishlist</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="columns">
+                            <aside id="nav_menu-3" class="widget clearfix widget_nav_menu">
+                                <div class="body">
+                                    <h4 class="widget-title">Customer Care</h4>
+                                    <div class="menu-footer-menu-3-container">
+                                        <ul id="menu-footer-menu-3" class="menu">
+                                            <!--<li id="menu-item-4110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4110"><a href="/Leasing/#/track-your-order/">Track your Order</a></li>
+                                            <li id="menu-item-4112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4112"><a href="/Leasing/ReturnRefundPolicy/">Returns/Refund Policy </a></li>-->
+                                            <li id="menu-item-4113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4113"><a href="/Leasing/SchoolFaqs/">School FAQs</a></li>
+                                            <li id="menu-item-4113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4113"><a href="/Leasing/SupplierFaqs/">Supplier FAQs</a></li>
+                                            <li id="menu-item-4114" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4114"><a href="/Leasing/PrivacyPolicy/">Privacy Policy</a></li>
+                                            <li id="menu-item-4112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4112"><a href="/Leasing/Disclaimer/">Disclaimer </a></li>
+                                            <li id="menu-item-4112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4112"><a href="/Leasing/TermsConditions/">Terms and Conditions</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+
+                    </div>
+                    <div class="footer-social-icons">
+
+                        <ul class="social-icons-color">
+                            <li><a class="fab fa-facebook" target="_blank" href="/Leasing/#/"></a></li>
+                            <li><a class="fab fa-whatsapp mobile" target="_blank" href="whatsapp://send?phone=63211898"></a></li>
+                            <li><a class="fab fa-whatsapp desktop" target="_blank" href="https://web.whatsapp.com/send?phone=48522554"></a></li>
+                            <li><a class="fab fa-pinterest" target="_blank" href="/Leasing/#/"></a></li>
+                            <li><a class="fab fa-linkedin" target="_blank" href="/Leasing/#/"></a></li>
+                            <li><a class="fab fa-instagram" target="_blank" href="/Leasing/#/"></a></li>
+                            <li><a class="fab fa-youtube" target="_blank" href="/Leasing/#/"></a></li>
+                            <li><a class="fas fa-rss" target="_blank" href="/Leasing/#/"></a></li>
+                        </ul>
+                    </div>
+                    <div class="handheld-footer-bar">
+                        <div class="handheld-footer-bar-inner">
+                            <div class="footer-logo">
+                                <img src="~/Content/images/logo/openstar-school-leasing-log.png" width="175.748px" height="42.52px" />
+
+                            </div>
+                            <div class="footer-call-us">
+                                <div class="media">
+                                    <span class="media-left call-us-icon media-middle"><i class="ec ec-support"></i></span>
+                                    <div class="media-body">
+                                        <span class="call-us-text">Got Questions ? Call us 24/7!</span>
+                                        <span class="call-us-number">01625 415 400</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-address">
+                                <strong class="footer-address-title text-center">Contact Info</strong>
+                                <address>Merlin House, 8 Grove Avenue, Wilmslow, SK9 5EG</address>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="copyright-bar">
+                        <div class="container">
+                            <div class="copyright">&copy; <a href="#"></a>All Rights Reserved. Beta 1.0.0</div>
+                            <div class="payment">
+                                <div class="footer-payment-logo">
+
+                                    <ul class="cash-card card-inline">
+
+                                        <!--<li class="card-item"><img src="~/Content/images/patment-icon.png" alt="" width="324" height="38"></li>-->
+                                    </ul>
+                                </div>
+                                <!-- /.payment-methods -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- #colophon -->
+            <!-- ========== END SECONDARY CONTENTS ========== -->
+
+        </div>
+        <div ng-controller="CookieController">
+            <div id="tickcookie" role="banner" ng-cloak ng-show="cookienone" class="cn-bottom bootstrap" style="color: #fff; background-color: #022b69;">
+                <div class="cookie-notice-container">
+                    <span id="cn-notice-text">We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</span>
+                    <a href="#" id="tick-accept-cookie" ng-click="acceptCookie()" data-cookie-set="accept" class="tick-set-cookie cn-button bootstrap button">Ok</a>
+                </div>
+
+            </div>
+        </div>
+        <!-- #page -->
+    </div>
+
+    <script type="text/javascript">
+        var c = document.body.className;
+        c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+        document.body.className = c;
+    </script>
+    <script type="text/javascript">
+        function revslider_showDoubleJqueryError(sliderID) {
+            var errorMessage = "Revolution Slider Error: You have some jquery.js library include that comes after the revolution files js include.";
+            errorMessage += "<br> This includes make eliminates the revolution slider libraries, and make it not work.";
+            errorMessage += "<br><br> To fix it you can:<br>&nbsp;&nbsp;&nbsp; 1. In the Slider Settings -> Troubleshooting set option:  <strong><b>Put JS Includes To Body</b></strong> option to true.";
+            errorMessage += "<br>&nbsp;&nbsp;&nbsp; 2. Find the double jquery.js include and remove it.";
+            errorMessage = "<span style='font-size:16px;color:#BC0C06;'>" + errorMessage + "</span>";
+            jQuery(sliderID).show().html(errorMessage);
+        }
+    </script>
+    <link rel='stylesheet' id='js_composer_front-css' href='~/Content/css/js_composer.min.css?ver=5.7' type='text/css' media='all' />
+    <script type='text/javascript' src='~/Content/js/jquery.selectBox.min.js?ver=1.2.0'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var yith_wcwl_l10n = { "ajax_url": "#", "redirect_to_cart": "no", "multi_wishlist": "", "hide_add_button": "1", "is_user_logged_in": "", "ajax_loader_url": "#", "remove_from_wishlist_after_add_to_cart": "yes", "labels": { "cookie_disabled": "We are sorry, but this feature is available only if cookies are enabled on your browser.", "added_to_cart_message": "<div class=\"woocommerce-message\">Product correctly added to cart<\/div>" }, "actions": { "add_to_wishlist_action": "add_to_wishlist", "remove_from_wishlist_action": "remove_from_wishlist", "move_to_another_wishlist_action": "move_to_another_wishlsit", "reload_wishlist_and_adding_elem_action": "reload_wishlist_and_adding_elem" } };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/jquery.yith-wcwl.js?ver=2.2.8'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var wpcf7 = { "apiSettings": { "root": "https:\/\/#\/electro-wide\/wp-json\/contact-form-7\/v1", "namespace": "contact-form-7\/v1" }, "cached": "1" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/scripts.js?ver=5.1.1'></script>
+    <script type='text/javascript' src='~/Content/js/js.cookie.min.js?ver=2.1.4'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var woocommerce_params = { "ajax_url": "#", "wc_ajax_url": "#" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/woocommerce.min.js?ver=3.5.7'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var wc_cart_fragments_params = {
+            "ajax_url": "#",
+            "wc_ajax_url": "#",
+            "cart_hash_key": "wc_cart_hash_88effc316076f529e86d4cdd97a5ee51",
+            "fragment_name": "wc_fragments_88effc316076f529e86d4cdd97a5ee51"
+        };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/cart-fragments.min.js?ver=3.5.7'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var yith_woocompare = {
+            "ajaxurl": "#",
+            "actionadd": "yith-woocompare-add-product",
+            "actionremove": "yith-woocompare-remove-product",
+            "actionview": "yith-woocompare-view-table",
+            "actionreload": "yith-woocompare-reload-product",
+            "added_label": "Added",
+            "table_title": "Product Comparison",
+            "auto_open": "yes",
+            "loader": "#", "button_text": "Compare", "cookie_name": "yith_woocompare_list", "close_label": "Close"
+        };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/woocompare.min.js?ver=2.3.9'></script>
+    <script type='text/javascript' src='~/Content/js/jquery.colorbox-min.js?ver=1.4.21'></script>
+    <script type='text/javascript' src='~/Content/js/jquery.prettyPhoto.min.js?ver=3.1.6'></script>
+    <script type='text/javascript' src='~/Content/js/tether.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/bootstrap.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/jquery.waypoints.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/jquery.easing.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/scrollup.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/bootstrap-hover-dropdown.min.js?ver=2.3.1'></script>
+    <script src="~/Content/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+    <script src="~/Content/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var electro_options = {
+            "rtl": "0",
+            "ajax_url": "#",
+            "ajax_loader_url": "~\/Content\/images\/ajax-loader.gif",
+            "enable_sticky_header": "",
+            "enable_hh_sticky_header": "",
+            "enable_live_search": "",
+            "live_search_limit": "10",
+            "live_search_template": "<a href=\"{{url}}\" class=\"media live-search-media\"><img src=\"{{image}}\" class=\"media-left media-object flip pull-left\" height=\"60\" width=\"60\"><div class=\"media-body\"><p>{{{value}}}<\/p><\/div><\/a>",
+            "live_search_empty_msg": "Unable to find any products that match the current query",
+            "deal_countdown_text": { "days_text": "Days", "hours_text": "Hours", "mins_text": "Mins", "secs_text": "Secs" },
+            "typeahead_options": { "hint": false, "highlight": true },
+            "offcanvas_mcs_options": { "axis": "y", "theme": "minimal-dark", "contentTouchScroll": 100, "scrollInertia": 1500 },
+            "compare_page_url": "#"
+        };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/Content/js/electro.min.js?ver=2.3.2'></script>
+    <script type='text/javascript' src='~/Content/js/owl.carousel.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/pace.min.js?ver=2.3.1'></script>
+    <script type='text/javascript' src='~/Content/js/wp-embed.min.js?ver=5.1.3'></script>
+    <script type='text/javascript' src='~/Content/js/js_composer_front.min.js?ver=5.7'></script>
+    @if (pageName == "SingleProduct")
+    {
+        <script type='text/javascript' src='~/Content/js/jquery.zoom.min.js?ver=1.7.21'></script>
+        <script type='text/javascript' src='~/Content/js/jquery.flexslider-min.js?ver=5.7'></script>
+        <script type='text/javascript' src='~/Content/js/photoswipe.min.js?ver=4.1.1'></script>
+        <script type='text/javascript' src='~/Content/js/photoswipe-ui-default.min.js?ver=4.1.1'></script>
+        <script type='text/javascript'>/* <![CDATA[ */ var wc_single_product_params = { "i18n_required_rating_text": "Please select a rating", "review_rating_required": "yes", "flexslider": { "rtl": false, "animation": "slide", "smoothHeight": true, "directionNav": false, "controlNav": false, "slideshow": false, "animationSpeed": 500, "animationLoop": false, "allowOneSlide": false }, "zoom_enabled": "1", "zoom_options": [], "photoswipe_enabled": "1", "photoswipe_options": { "shareEl": false, "closeOnScroll": false, "history": false, "hideAnimationDuration": 0, "showAnimationDuration": 0 }, "flexslider_enabled": "1" }; /* ]]> */</script>
+        <script type='text/javascript' src='~/Content/js/single-product.min.js?ver=3.5.7'></script>
+    }
+
+    <script type='text/javascript' src='~/Content/js/hs.core.js'></script>
+    <script type='text/javascript' src='~/Content/js/hs.unfold.js'></script>
+    <script type='text/javascript' src='~/Content/js/toastr.js'></script>
+    <!--<script type="text/javascript" src="~/Content/js/datatables.min.js"></script>-->
+    <script data-require="angular.js@1.0.x" src="~/Content/angular.min.js" data-semver="1.7.9"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui-ieshiv.js" integrity="sha512-q4ajVuWU7k9TTAF7l7vgOkm+B8SDweXXagWHk3KVfYg94vddZjYlfwKUblWKvFoYMYw5e4qjamhctN4AvIkOFg==" crossorigin="anonymous"></script>
+    <script data-require="angular.js@1.0.x" src="~/Content/angular-route.min.js" data-semver="1.7.9"></script>
+    <script data-require="angular.js@1.0.x" src="~/Content/angular-animate.min.js" data-semver="1.7.9"></script>
+
+    <script src="~/Content/angular-sanitize.js"></script>
+    <script src="~/Content/angular-cookies.min.js" data-require="angularjs@1.4" data-semver="1.4.4"></script>
+    <script data-require="underscore.js@@*" data-semver="1.8.3" src="~/Content/underscore-min.js"></script>
+    <script src="~/Content/js/angular-filter.min.js"></script>
+    <script src="~/Content/angular-file-upload.js"></script>
+    <script src="~/Content/lease-term.js"></script>
+    <script>
+        jQuery(window).on('load', function () {
+            // initialization of HSMegaMenu component
+            jQuery('.js-mega-menu').HSMegaMenu({
+                event: 'hover',
+                direction: 'horizontal',
+                pageContainer: jQuery('.container'),
+                breakpoint: 767.98,
+                hideTimeOut: 0
+            });
+        });
+
+        jQuery(document).on('ready', function () {
+            jQuery.HSCore.components.HSUnfold.init(jQuery('[data-unfold-target]'), {
+                afterOpen: function () {
+                    jQuery(this).find('input[type="search"]').focus();
+                }
+            });
+            jQuery(".exportpdfnew").click(function () {
+                //mApp.block("#m_blockui_2_portlet");
+                var DocumentContainer = jQuery("#grid").html();
+                var height = jQuery("#grid").height();
+                var data = jQuery("#grid").html();
+                var myFrame = jQuery("#printf").contents().find('body');
+                var textareaValue = data;
+                myFrame.html(textareaValue);
+                //var WindowObject = window.open("", "PrintWindow", "width=750,height=" + height + ",top=50,left=50,right=50,toolbars=no,scrollbars=yes,status=no,resizable=yes");
+                //WindowObject.document.writeln(html);
+
+                //WindowObject.document.close();
+                // WindowObject.focus();
+                // WindowObject.print();
+                window.frames["printf"].focus();
+                window.frames["printf"].print();
+
+                //jQuery("input[name='html']").val(jQuery("#grid").html());
+                setTimeout(function () {
+                    //mApp.unblock("#m_blockui_2_portlet");
+                }, 50);
+            });
+        });
+
+    </script>
+    <script type="text/javascript">
+        var app = angular.module('MyApp', ['ngSanitize', 'ngRoute', 'ngCookies', 'angular.filter', 'angularFileUpload', 'leasetermjs']).run(['$anchorScroll', '$rootScope', function ($anchorScroll, $rootScope) {
+            $anchorScroll.yOffset = 50;   // always scroll by 50 extra pixels
+            $rootScope.shoppingCart = [];
+            $rootScope.IsUserLogedIn = false;
+            $rootScope.vat = 0;
+        }])
+        app.factory('ShoppingFactory', ['AccountsService', 'ItemsService', '$rootscope', function (AccountsService, ItemsService, $rootscope) {
+            return {
+                createCurrentUser: function () {
+                    this.username = '';
+                    this.password = '';
+                    this.shoppingcart = [];
+                    $rootscope.currentUser = this;
+                },
+                createShoppingCart: function () {
+                    $rootscope.shoppingcart = [];
+
+                    $rootscope.min = 0;
+                    $rootscope.max = 1000;
+                }
+            };
+        }]);
+        app.service('LoginService', function () {
+            this.LoginFlag = false;
+            this.LoginId = 0;
+        });
+        app.config(function ($locationProvider) {
+            //$locationProvider.html5Mode(true);
+        });
+        console.log('changed');
+        app.directive('ngLoading', function ($compile) {
+
+            var loadingSpinner = '<div class="se-pre-con"></div>';
+
+            return {
+                restrict: 'A',
+                link: function (scope, element, attrs) {
+                    var originalContent = element.html();
+                    element.html(loadingSpinner);
+                    scope.$watch(attrs.ngLoading, function (val) {
+                        if (val) {
+                            element.html(originalContent);
+                            $compile(element.contents())(scope);
+                        } else {
+                            element.html(loadingSpinner);
+                        }
+                    });
+                }
+            };
+        });
+        app.controller('CookieController', ['$rootScope', '$scope', '$http', '$cookies', '$window',
+        function ($rootScope, $scope, $http, $cookies, $window, LoginService) {
+            $scope.cookienone = false;
+            if (angular.isUndefined($cookies.get('cookienotice'))) {
+                $scope.cookienone = true;
+
+            }
+            $scope.acceptCookie = function () {
+                var expireDate = new Date();
+                expireDate.setDate(expireDate.getDate() + 1);
+                var c = {
+                    "cookieaccept":1
+                }
+                $cookies.putObject('cookienotice', c, { 'expires': expireDate });
+                $scope.cookienone = false;
+            }
+
+        }
+
+        ]);
+        app.controller('FeedBackController', ['$rootScope', '$scope', '$http', '$cookies', '$window',
+        function ($rootScope, $scope, $http, $cookies, $window, LoginService) {
+            /**********************FeedBack Form***************************************/
+            $scope.Isfeedbackform = false;
+            $scope.MFSubmitted = false;
+            $scope.feedbackdata = { musername: "", museremail: "" };
+            //$scope.feedbackdata.museremail = "";
+            if (!angular.isUndefined($cookies.get('userdata'))) {
+                var userdatas = $cookies.getObject('userdata');
+                $scope.feedbackdata.musername = userdatas.mname;
+                $scope.feedbackdata.museremail = userdatas.museridemail;
+            }
+            $scope.feedbackform = function () {
+                $scope.MFSubmitted = true;
+                if ($scope.Isfeedbackform) {
+                    $http({
+
+                        method: "POST",
+
+                        url: "/Feedback/SaveFeedback",
+
+                        data: $scope.feedbackdata
+                    }).success(function (data) {
+
+                        if (data["msg"] == "Success") {
+                            jQuery("#feedback-dialog .modal").modal("hide");
+                            toastr.success(" Thanks for your feedback!", "Thank You.");
+                            feedbackdata.musername = '';
+                            feedbackdata.museremail = '';
+                            feedbackdata.muserdescription = '';
+                            $scope.MFSubmitted = false;
+                        }
+                        else {
+                            $scope.IsError = true;
+                            $scope.invalidlogin = "Invalid Username or Password";
+                            $scope.MFSubmitted = false;
+                        }
+
+
+
+                    }).error(function () {
+
+                        alert('failed');
+
+                    })
+                }
+            };
+
+            $scope.$watchGroup(['feedbackform.$valid'], function (newVal) {
+                $scope.Isfeedbackform = newVal;
+
+            }, true);
+            /**************************************************************************/
+
+        }]);
+        app.controller('MenuController', ['$rootScope', '$scope', '$http', '$cookies', '$window','$timeout',
+        function ($rootScope, $scope, $http, $cookies, $window,$timeout,LoginService) {
+
+            $rootScope.musername = "";
+            $rootScope.savequote = 0;
+            $rootScope.muserid = 0;
+            $rootScope.morgname = "";
+            $rootScope.pendingorder = 0;
+
+            $rootScope.IsUserLogedIn = false;
+            $scope.showforget = false;
+            $scope.recoverEmail = "";
+            if (!angular.isUndefined($cookies.get('userdata'))) {
+                var userdatas = $cookies.getObject('userdata');
+
+                $rootScope.IsUserLogedIn = true;
+                $rootScope.muserid = userdatas.muserid;
+                $rootScope.musername = userdatas.mname;
+                $rootScope.mschoolid = userdatas.muid;
+                $rootScope.musertype = userdatas.musertype;
+                $rootScope.morgname = userdatas.morgname;
+
+                console.log($rootScope.morgname);
+                $http.get('/api/QuotationApi/GetTotalPendingId?getid=' + $rootScope.mschoolid).success(function (data) {
+                    if (data.length > 0) {
+
+                        $rootScope.pendingorder = data[0];
+                    }
+                });
+
+            }
+            else {
+                $rootScope.IsUserLogedIn = false;
+                $rootScope.muserid = 0;
+
+            }
+            $scope.category = 0;
+            var c23 = '@ViewBag.Category';
+            if (c23 != null && c23 != '') {
+                $scope.category = '@ViewBag.Category';
+
+            }
+            $scope.IsLoginFormValid = false;
+            $scope.MSubmitted = false;
+            $scope.SiteMenu = [];
+            $scope.IsError = false;
+            $scope.invalidlogin = "";
+            $scope.FSubmitted =false;
+            $http.get('/api/HomeApi/GelAllMainCategories').success(function (data) {
+                $scope.SiteMenu = data;
+
+                if (c23 != null && c23 != '') {
+                    $scope.category = '@ViewBag.Category';
+                    jQuery.each(data, function (i, item) {
+                        if (item.mprodcatid == $scope.category) {
+                            var c = item.mcatname;
+                            console.log(item.mprodcatid);
+
+                            var d = jQuery("#demo").html(c);
+                            var e = d.width();
+                            console.log(d.width());
+                            jQuery("#product_cat").css("width", e + 60);
+
+                        }
+                    });
+                    //jQuery("#product_cat").val($scope.category);
+                }
+                jQuery('#menuwrapper ul').children('li').on('mouseover', function () {
+                    var $menuItem = jQuery(this),
+                        $submenuWrapper = jQuery('> ul', $menuItem);
+
+                    console.log($menuItem, $submenuWrapper);
+
+                    // grab the menu item's position relative to its positioned parent
+                    var menuItemPos = $menuItem.position();
+
+                    // place the submenu in the correct position relevant to the menu item
+                    $submenuWrapper.css({
+                        top: menuItemPos.top,
+                        left: menuItemPos.left + Math.round($menuItem.outerWidth())
+                    });
+
+                });
+            });
+            $scope.$watchGroup(['menulogin.$valid','forgetpwd.$valid'], function (newVal) {
+                $scope.IsLoginFormValid = newVal;
+
+
+            }, true);
+            $scope.forgetPassword = function () {
+                $scope.FSubmitted = true;
+               // alert("submit");
+                //if ($scope.IsLoginFormValid) {
+                $http.get('/api/UserApi/ForgetUser?email=' + $scope.recoverEmail).success(function (data) {
+
+                        if (data["msg"] == "Success") {
+                            $rootScope.IsUserLogedIn = false;
+                            $scope.showforget = false;
+
+                            $rootScope.showmsg = "Please check your registered email for forget password.";
+                            $scope.invalidFlogin = "";
+                            $scope.FSubmitted = false;
+                        }
+                        else {
+                            $scope.IsFError = true;
+                            $scope.invalidFlogin = "Invalid Username";
+                            $scope.FSubmitted = false;
+                        }
+
+                        $scope.user = null;
+
+                    }).error(function () {
+                        $scope.FSubmitted = false;
+                        alert('failed');
+
+                    })
+                //}
+            };
+            $scope.MenuLoginData = {
+                museridemail: '',
+                mpwd: ''
+            };
+            $scope.MenuLogin = function () {
+                $scope.MSubmitted = true;
+                if ($scope.IsLoginFormValid) {
+                    $http({
+
+                        method: "POST",
+
+                        url: "/User/UserLogin",
+
+                        data: $scope.MenuLoginData
+                    }).success(function (data) {
+
+                        if (data["msg"] == "Success") {
+                            $rootScope.IsUserLogedIn = true;
+                            toastr.success("Login successfully!", "Welcome");
+                            $rootScope.mschoolid = data["Data"].muid;
+                            $rootScope.muserid = data["Data"].muserid;
+                            $rootScope.musername = data["Data"].mname;
+                            $rootScope.musertype = data["Data"].musertype;
+                            $rootScope.morgname = data["Data"].morgname;
+                            var expireDate = new Date();
+                            expireDate.setDate(expireDate.getDate() + 1);
+                            $cookies.putObject('userdata', data["Data"], { 'expires': expireDate });
+                            //var dropdownMenu = jQuery(".header-icons .dropdown").children(".dropdown-menu");
+                            jQuery(".header-icons .dropdown").removeClass("open");
+
+                            //$scope.Message = "Successfully login done. Welcome " + data["Data"].mname;
+
+                        }
+                        else {
+                            $scope.IsError = true;
+                            $scope.invalidlogin = "Invalid Username or Password";
+                            $scope.MSubmitted = false;
+                        }
+
+                        $scope.user = null;
+
+                    }).error(function () {
+
+                        alert('failed');
+
+                    })
+                }
+            };
+            $scope.Logout = function () {
+                $scope.MSubmitted = false;
+                $rootScope.IsUserLogedIn = false;
+                $rootScope.userid = 0;
+                $cookies.remove("userdata");
+                $window.location.href = "/Leasing/";
+            };
+        }
+        ]);
+
+    </script>
+    <script>
+        window.onscroll = function () { myFunction() };
+
+        var navbar = document.getElementById("masthead");
+        var footer = document.getElementById("colophon");
+        var sticky = navbar.offsetTop;
+        var footeroff = footer.offsetTop;
+
+        /*function gettop() {
+            return (jQuery(window).height()) / 2 + "px";
+        }
+        function getleft() {
+            return (jQuery(window).width()) / 2 + "px";
+        }*/
+        //var topx =
+        // jQuery('.se-pre-con').css('background-position-x', gettop());
+        // jQuery('.se-pre-con').css('background-position-y', getleft());
+        function myFunction() {
+
+            footer = document.getElementById("colophon");
+            footeroff = footer.offsetTop + 25 - footer.offsetHeight;
+            //   jQuery('.se-pre-con').css('background-position-x', gettop());
+            // jQuery('.se-pre-con').css('background-position-y', getleft());
+            if (window.pageYOffset > sticky) {
+                jQuery(navbar).addClass('sticky');
+                jQuery(".mobiletopsearch").css("display", "none");
+                jQuery(".hidesearchicon").css("display", "inherit");
+                if (window.pageYOffset > footeroff) {
+                    jQuery('.se-pre-con').css('position', 'absolute');
+
+                } else {
+                    jQuery('.se-pre-con').css('position', 'fixed');
+
+                }
+                jQuery('.sidebar').addClass('top30');
+            } else {
+
+                jQuery(navbar).removeClass('sticky');
+                jQuery('.se-pre-con').removeClass('sticky');
+                jQuery('.sidebar').removeClass('top30');
+                jQuery(".mobiletopsearch").css("display", "flex");
+                jQuery(".hidesearchicon").css("display", "none");
+            }
+        }
+        jQuery(function () {
+
+            jQuery(".header-icons .userdropdown").hover(
+          function () {
+              var dropdownMenu = jQuery(this).children(".dropdown-menu");
+              dropdownMenu.parent().addClass("open");
+          },
+          function () {
+              var dropdownMenu = jQuery(this).children(".dropdown-menu");
+              dropdownMenu.parent().removeClass("open");
+          });
+
+            jQuery("a1").focus(function () {
+                if (jQuery(this).parent().hasClass("open")) {
+                    jQuery(this).parent().removeClass("open");
+                    jQuery(this).attr("aria-expanded", "true");
+                } else {
+                    jQuery(this).parent().addClass("open")
+                    jQuery(this).attr("aria-expanded", "true");
+                }
+
+            });
+            jQuery(".price_slider_wrapper .btn").click(function () {
+                jQuery(".site-content").removeClass("active-hh-sidebar");
+            });
+        });
+    </script>
+    <script src="~/Content/js/bootstrap3-typeahead.min.js"></script>
+    <script>
+        jQuery(function () {
+            // whenever we hover over a menu item that has a submenu
+
+        });
+        //For Mobile Search
+        jQuery("#woocommerce-product-search-field-0").typeahead({
+            minLength: 1,
+            scrollBar: true,
+            alignWidth: true,
+            autoSelect: true,
+
+            menu: '<ul class="typeahead dropdown-menu"></ul>',
+            item: '<li><a href="#"></a></li>',
+
+            source: function (request, response) {
+                var cat = jQuery("#product_cat").val();
+                jQuery.ajax({
+                    url: "api/ProductApi/GetSearchList",
+                    data: {
+                        "name": request,
+                        "cat": cat
+                    },
+                    type: "GET",
+                    contentType: "json",
+                    success: function (data) {
+                        items = [];
+                        map = {};
+                        jQuery.each(data, function (i, item) {
+                            var id = item.mprodname;
+                            var name = item.mprodname;
+                            map[name] = {
+                                id: id,
+                                name: name
+                            };
+                            items.push(name);
+                        });
+                        response(items);
+                    },
+                    error: function (response) {
+                        //alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        //alert(response.responseText);
+                    }
+                });
+            },
+            updater: function (item) {
+                jQuery("#woocommerce-product-search-field-0").val(map[item].id);
+                jQuery(".woocommerce-product-search").submit();
+                return item;
+                //If simultaneously want to update value somewhere else $("#update").val(map[item].id); return item; } });
+            }
+        });
+
+        jQuery("#woocommerce-product-search-field-1").typeahead({
+            minLength: 1,
+            scrollBar: true,
+            alignWidth: true,
+            autoSelect: true,
+
+            menu: '<ul class="typeahead dropdown-menu"></ul>',
+            item: '<li><a href="#"></a></li>',
+
+            source: function (request, response) {
+                var cat = jQuery("#product_cat").val();
+                jQuery.ajax({
+                    url: "api/ProductApi/GetSearchList",
+                    data: {
+                        "name": request,
+                        "cat": cat
+                    },
+                    type: "GET",
+                    contentType: "json",
+                    success: function (data) {
+                        items = [];
+                        map = {};
+                        jQuery.each(data, function (i, item) {
+                            var id = item.mprodname;
+                            var name = item.mprodname;
+                            map[name] = {
+                                id: id,
+                                name: name
+                            };
+                            items.push(name);
+                        });
+                        response(items);
+                    },
+                    error: function (response) {
+                        //alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        //alert(response.responseText);
+                    }
+                });
+            },
+            updater: function (item) {
+                jQuery("#woocommerce-product-search-field-1").val(map[item].id);
+                jQuery(".woocommerce-product-search-1").submit();
+                return item;
+                //If simultaneously want to update value somewhere else $("#update").val(map[item].id); return item; } });
+            }
+        });
+
+        jQuery("#search").typeahead({
+            minLength: 1,
+            scrollBar: true,
+            alignWidth: true,
+            autoSelect: true,
+
+            menu: '<ul class="typeahead dropdown-menu"></ul>',
+            item: '<li><a href="#"></a></li>',
+
+            source: function (request, response) {
+                var cat = jQuery("#product_cat").val();
+                jQuery.ajax({
+                    url: "api/ProductApi/GetSearchList",
+                    data: {
+                        "name": request,
+                        "cat": cat
+                    },
+                    type: "GET",
+                    contentType: "json",
+                    success: function (data) {
+                        items = [];
+                        map = {};
+                        jQuery.each(data, function (i, item) {
+                            var id = item.mprodname;
+                            var name = item.mprodname;
+                            map[name] = {
+                                id: id,
+                                name: name
+                            };
+                            items.push(name);
+                        });
+                        response(items);
+                    },
+                    error: function (response) {
+                        //alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        //alert(response.responseText);
+                    }
+                });
+            },
+            updater: function (item) {
+                jQuery("#search").val(map[item].id);
+                jQuery("#navbarsearch").submit();
+                return item;
+                //If simultaneously want to update value somewhere else $("#update").val(map[item].id); return item; } });
+            }
+        });
+    </script>
+    @if (pageName != "index")
+    {
+        <script src="~/Content/js/address/getaddress.js"></script>
+        <script>
+            jQuery(function () {
+                jQuery('#postcode_lookup').getAddress(
+        {
+            api_key: 'aftW_j9KrkakTrJ026QoSA27396',
+            output_fields: {
+                line_1: '#line1',
+                line_2: '#line2',
+                line_3: '#line3',
+                post_town: '#town',
+                county: '#county',
+                postcode: '#postcode'
+            }
+        });
+
+            });
+        </script>
+
+    }
+    @RenderSection("scripts", required: false)
+    <script src="~/Content/angularcontroller/Shopping.js?v=1.1"></script>
+    <script>
+        jQuery('.qty').on('keypress', function (e) {
+            if (jQuery(this).length > 2) {
+                e.preventDefault();
+                //$(this).val(100);
+            }
+
+        });
+    </script>
+
+    <style>
+        #tickcookie {
+            display: block;
+            position: fixed;
+            min-width: 100%;
+            height: auto;
+            z-index: 100000;
+            font-size: 13px;
+            line-height: 20px;
+            left: 0;
+            text-align: center;
+            bottom: 0;
+        }
+
+        .cookie-notice-container {
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        #tickcookie .cn-button {
+            margin-left: 10px;
+        }
+
+        .cn-button.bootstrap {
+            font-family: sans-serif;
+            display: inline-block;
+            *display: inline;
+            padding: 4px 12px;
+            margin-right: .3em;
+            margin-bottom: 0;
+            *margin-left: .3em;
+            line-height: 20px;
+            color: #333;
+            text-align: center;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, .75);
+            font-style: normal;
+            vertical-align: middle;
+            cursor: pointer;
+            color: #fff;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+            background-color: #006dcc;
+            *background-color: #04c;
+            background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+            background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+            background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+            background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+            background-repeat: repeat-x;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #04c #04c #002a80;
+            border-color: rgba(0, 0, 0, .1) rgba(0, 0, 0, .1) rgba(0, 0, 0, .25);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .2) inset, 0 1px 2px rgba(0, 0, 0, .05);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+            filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+            padding: 2px 10px;
+            font-size: 12px;
+            text-decoration: none;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            outline: none;
+        }
+    </style>
+
+    <!--<div id="tickcookie" role="banner" class="cn-bottom bootstrap" style="color: #fff; background-color: #022b69;">
+        <div class="cookie-notice-container">
+            <span id="cn-notice-text">We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</span>
+            <a href="#" id="tick-accept-cookie" data-cookie-set="accept" class="tick-set-cookie cn-button bootstrap button">Ok</a>
+        </div>
+
+    </div>
+    <script src="~/Content/tickcookie.js"></script>-->
+    <!-- Add after your form -->
+
+
+</body>
+</html>

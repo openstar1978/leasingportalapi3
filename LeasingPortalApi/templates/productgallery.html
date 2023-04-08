@@ -1,0 +1,34 @@
+﻿<div class="product-images-wrapper">
+    <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-5 images electro-carousel-loaded" data-columns="5" style="opacity: 0; transition: opacity .25s ease-in-out;">
+        <figure class="woocommerce-product-gallery__wrapper">
+            <div ng-repeat="prodimg in Products.productgallery" data-thumb="/Content/images/product/{{prodimg.msubprodpicname}}" class="woocommerce-product-gallery__image">
+                <a href="../../Content/images/product/{{prodimg.msubprodpicname}}">
+                    <img width="600" height="550" src="/Content/images/single-product/1-600x550.jpg" class="wp-post-image" alt="" title="1" data-caption="" data-src="../../Content/images/product/{{prodimg.msubprodpicname}}" data-large_image="../../Content/images/product/{{prodimg.msubprodpicname}}" data-large_image_width="720" data-large_image_height="660" />
+                </a>
+            </div>
+            <div data-thumb="/Content/images/single-product/1.jpg" class="woocommerce-product-gallery__image"><a href="/Content/images/single-product/1.jpg"><img width="600" height="550" src="/Content/images/single-product/1-600x550.jpg" class="wp-post-image" alt="" title="1" data-caption="" data-src="../../Content/images/single-product/1-600x550.jpg" data-large_image="../../Content/images/single-product/1.jpg" data-large_image_width="720" data-large_image_height="660" /></a></div>
+        </figure>
+
+        <!--<figure class="woocommerce-product-gallery__wrapper">
+            <div data-thumb="~/Content/images/single-product/1.jpg" class="woocommerce-product-gallery__image"><a href="../../Content/images/single-product/1.jpg"><img width="600" height="550" src="~/Content/images/single-product/1-600x550.jpg" class="wp-post-image" alt="" title="1" data-caption="" data-src="../../Content/images/single-product/1-600x550.jpg" data-large_image="../../Content/images/single-product/1.jpg" data-large_image_width="720" data-large_image_height="660" /></a></div>
+            <div data-thumb="~/Content/images/single-product/4.jpg" class="woocommerce-product-gallery__image"><a href="~/Content/images/single-product/4.jpg"><img width="600" height="550" src="~/Content/images/single-product/4-600x550.jpg" class="" alt="" title="4" data-caption="" data-src="../../Content/images/single-product/4-600x550.jpg" data-large_image="~/Content/images/single-product/4.jpg" data-large_image_width="720" data-large_image_height="660" /></a></div>
+            <div data-thumb="~/Content/images/single-product/5.jpg" class="woocommerce-product-gallery__image"><a href="~/Content/images/single-product/5.jpg"><img width="600" height="550" src="~/Content/images/single-product/5-600x550.jpg" class="" alt="" title="5" data-caption="" data-src="../../Content/images/single-product/5-600x550.jpg" data-large_image="~/Content/images/single-product/5.jpg" data-large_image_width="720" data-large_image_height="660" /></a></div>
+            <div data-thumb="~/Content/images/single-product/3.jpg" class="woocommerce-product-gallery__image"><a href="~/Content/images/single-product/3.jpg"><img width="600" height="550" src="~/Content/images/single-product/3-600x550.jpg" class="" alt="" title="3" data-caption="" data-src="../../Content/images/single-product/3-600x550.jpg" data-large_image="~/Content/images/single-product/3.jpg" data-large_image_width="720" data-large_image_height="660" /></a></div>
+            <div data-thumb="~/Content/images/single-product/2.jpg" class="woocommerce-product-gallery__image"><a href="~/Content/images/single-product/2.jpg"><img width="600" height="550" src="~/Content/images/single-product/2-600x550.jpg" class="" alt="" title="2" data-caption="" data-src="../../Content/images/single-product/2-600x550.jpg" data-large_image="~/Content/images/single-product/2.jpg" data-large_image_width="720" data-large_image_height="660" /></a></div>
+        </figure>-->
+    </div>
+    <div id="electro-wc-product-gallery-5de935f6ca784" class="electro-wc-product-gallery electro-wc-product-gallery--with-images electro-wc-product-gallery--columns-5 images" data-columns="5">
+        <figure class="electro-wc-product-gallery__wrapper">
+            <!--<figure data-thumb="~/Content/images/single-product/4.jpg" class="electro-wc-product-gallery__image"><a href="~/Content/images/single-product/4.jpg"><img width="100" height="100" src="~/Content/images/single-product/4.jpg" class="attachment-shop_thumbnail size-shop_thumbnail" alt="" title="" data-large-image="~/Content/images/single-product/4.jpg" data-large-image-width="720" data-large-image-height="660" /></a></figure>
+            <figure data-thumb="~/Content/images/single-product/5.jpg" class="electro-wc-product-gallery__image"><a href="~/Content/images/single-product/5.jpg"><img width="100" height="100" src="~/Content/images/single-product/5.jpg" class="attachment-shop_thumbnail size-shop_thumbnail" alt="" title="" data-large-image="~/Content/images/single-product/5.jpg" data-large-image-width="720" data-large-image-height="660" /></a></figure>-->
+
+            <figure ng-repeat="prodimg in Products.productgallery" data-thumb="/Content/images/product/{{prodimg.msubprodpicname}}" class="electro-wc-product-gallery__image">
+                <a href="/Content/images/product/{{prodimg.msubprodpicname}}">
+                    <img width="100" height="100" ng-src="/Content/images/product/{{prodimg.msubprodpicname}}" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="" title="" data-large-image="~/Content/images/product/{{prodimg.msubprodpicname}}" data-large-image-width="720" data-large-image-height="660" />
+                </a>
+            </figure>
+            <!--<figure data-thumb="~/Content/images/single-product/3.jpg" class="electro-wc-product-gallery__image"><a href="~/Content/images/single-product/3.jpg"><img width="100" height="100" src="~/Content/images/single-product/3.jpg" class="attachment-shop_thumbnail size-shop_thumbnail" alt="" title="" data-large-image="~/Content/images/single-product/3.jpg" data-large-image-width="720" data-large-image-height="660" /></a></figure>
+            <figure data-thumb="~/Content/images/single-product/2.jpg" class="electro-wc-product-gallery__image"><a href="~/Content/images/single-product/2.jpg"><img width="100" height="100" src="~/Content/images/single-product/2.jpg" class="attachment-shop_thumbnail size-shop_thumbnail" alt="" title="" data-large-image="~/Content/images/single-product/2.jpg" data-large-image-width="720" data-large-image-height="660" /></a></figure>-->
+        </figure>
+    </div>
+</div>
