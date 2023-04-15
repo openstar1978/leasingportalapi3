@@ -675,8 +675,8 @@
                         "rowperpage": $scope.rowperpage,
                         "filter": $scope.filter,
                         "filterdata": $scope.leaseselected,
-                        "max": $scope.maxprice,
-                        "min": $scope.minprice,
+                        "max": ($scope.pricef == true ? $scope.maxprice : 0),
+                        "min": ($scope.pricef == true ? $scope.minprice : 0),
                         "sortby": $scope.listOrder,
                     };
                     $scope.Products = [];
@@ -694,7 +694,7 @@
                             $scope.row += $scope.rowperpage;
                             if (data.length > 0 && data != "") {
                                 $scope.noOfPages = Math.ceil(cnt / $scope.numPerPage);
-
+                                $scope.pricef = false;
                                 $scope.moreloading = true;
                                 setTimeout(function () {
                                     $scope.$apply(function () {
@@ -931,6 +931,9 @@
                 };
                 $scope.priceFiltering = function () {
                     $scope.row = 0;
+                    $scope.pricef = true;
+                    $scope.maxprice = Math.ceil(CommonLeaseTerm.priceFilter($scope.max));
+                    $scope.minprice = Math.ceil(CommonLeaseTerm.priceFilter($scope.min));
                     $scope.getPosts();
                     $scope.priceFilter = function (product) {
                         var i = 0;

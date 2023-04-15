@@ -269,8 +269,11 @@
     <Content Include="Content\images\audiojungle.png" />
     <Content Include="Content\images\avatar.jpg" />
     <Content Include="Content\images\Banner1-Img.jpg" />
+    <Content Include="Content\images\EYSBanner0.jpg" />
+    <Content Include="Content\images\EYSBanner1.jpg" />
     <Content Include="Content\images\banner1.png" />
     <Content Include="Content\images\banner2.png" />
+    <Content Include="Content\images\EYSBanner3.jpg" />
     <Content Include="Content\images\blank.gif" />
     <Content Include="Content\images\blog\blog-1.jpg" />
     <Content Include="Content\images\blog\blog-2.jpg" />
@@ -300,6 +303,7 @@
     <Content Include="Content\images\deals\2-4.jpg" />
     <Content Include="Content\images\deals\2.jpg" />
     <Content Include="Content\images\DesktopPC-e1523629711911.jpg" />
+    <Content Include="Content\images\EYSBanner4.jpg" />
     <Content Include="Content\images\footer\1.jpg" />
     <Content Include="Content\images\footer\2.jpg" />
     <Content Include="Content\images\footer\3.jpg" />
@@ -788,6 +792,9 @@
       <DependentUpon>LeasingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="spGetFeatureProducts_Result.cs">
+      <DependentUpon>LeasingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetFiltersQuery_Result.cs">
       <DependentUpon>LeasingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="spGetFilters_Result.cs">

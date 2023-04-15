@@ -21,6 +21,10 @@ namespace LeasingPortalApi.Controllers.Api
             List<ProductFilterViewModel> filters = null;
             return Ok("");
         }
+        public static string PadNumbers(string input)
+        {
+            return Regex.Replace(input, "[0-9]+", match => match.Value.PadLeft(10, '0'));
+        }
         [Route("api/productapi/GetAllProductById")]
         [HttpPost]
         public IHttpActionResult GetAllProductById(ProductParameterViewModel param)
@@ -55,21 +59,36 @@ namespace LeasingPortalApi.Controllers.Api
             {
                 List<int> productid = new List<int>();
                 List<int> getproducts = new List<int>();
-
+                var index = 0;
                 foreach (var ab in param.filterdata.Where(x => x.FilterUrl == "a"))
                 {
+                   
                     var ss = ab.FilterValue.Split(',');
+                    List<spGetFiltersQuery_Result> getfilteredsubtwoes = null;
+                    if (ab.FilterName=="Screen Size")
+                    {
+                        getfilteredsubtwoes = ctx.spGetFiltersQuery("Select mdetailheadid,mprodusubtwoid,mprodid,mdetailunit,(CASE WHEN Isnumeric(mdetailvalue)=1 and mdetailvalue is not null THEN cast(Floor(cast(mdetailvalue as float)) as nvarchar(max)) else mdetailvalue End) as mdetailvalue from [productsubtwo] where mdetailheadid=" + ab.FilterId).ToList();
+                    }
+                    else
+                    {
+                        getfilteredsubtwoes = ctx.spGetFiltersQuery("Select mdetailheadid,mprodusubtwoid,mprodid,mdetailvalue,mdetailunit from [productsubtwo] where mdetailheadid=" + ab.FilterId).ToList();
+                    }
+                    
+
                     if (getproducts.Count<=0 || !getproducts.Any())
                     {
-                        getproducts = (from c in ctx.productsubtwoes
-                                       where c.mdetailheadid == ab.FilterId && ss.Any(z => z == c.mdetailvalue)
+
+                        
+                        getproducts = (from c in getfilteredsubtwoes
+                                       
+                                       where c.mdetailheadid == ab.FilterId && ss.Any(z => z==c.mdetailvalue)
                                        select c.mprodid.Value).ToList();
 
                     }
                     else
                     {
-                        getproducts = (from c in ctx.productsubtwoes
-                                       where c.mdetailheadid == ab.FilterId && ss.Any(z => z == c.mdetailvalue) && getproducts.Any(z=>z==c.mprodid)
+                        getproducts = (from c in getfilteredsubtwoes
+                                       where c.mdetailheadid == ab.FilterId && ss.Any(z => z==c.mdetailvalue) && getproducts.Any(z=>z==c.mprodid)
                                        select c.mprodid.Value).ToList();
                     }
                     //if (getproducts.Any())
@@ -161,7 +180,8 @@ namespace LeasingPortalApi.Controllers.Api
                 {
                     FilterId = y.FirstOrDefault().mbrandid,
                     FilterUrl = "bn",
-                    FilterValue = y.FirstOrDefault().mbrand
+                    FilterValue = y.FirstOrDefault().mbrand,
+                    display=true,
                 }).Distinct().ToList();
                 filters.Add(new ProductFilterViewModel
                 {
@@ -176,11 +196,16 @@ namespace LeasingPortalApi.Controllers.Api
                                       FilterHead = y.FirstOrDefault().mdetailhead,
                                       FilterData = y.GroupBy(x => x.mdetailvalue.ToUpperInvariant()).Select(k => new ProductFilterDetailViewModel
                                       {
+                                          FilterName = y.FirstOrDefault().mdetailhead,
+                                          FilterUnit = k.FirstOrDefault().munitname,
                                           FilterId = k.FirstOrDefault().mdetailheadid.Value,
                                           FilterUrl = "a",
-                                          FilterValue = k.Key
-                                      }).OrderBy(x => x.FilterValue).ToList()
-                                  });
+                                          FilterValue = k.Key,
+                                          range = false,
+                                          rangevalues=k.Key,
+                                          display=true,
+                                      }).OrderBy(x => PadNumbers(x.FilterValue)).ToList()
+                                  }) ;
                 filters.AddRange(attrfilter);
                 /*var getfiltercat = ctx.productcomparativefields.Where(x => x.Filter == "Y" && x.CategoryId == getid).ToList();
                 if (getfiltercat.Any())
@@ -245,8 +270,68 @@ namespace LeasingPortalApi.Controllers.Api
                 var subpicdata = ctx.productsubpics.FirstOrDefault(z => z.mprodsubid == x.mprodvarid);
                 x.msubpicname = subpicdata != null ? subpicdata.msubprodpicname : "";
             });
-
+            filters = customisefilter(filters);
             return Json(new { cnt = cnt, datap = products, minprice = minprice, maxprice = maxprice, allFilter = filters });
+        }
+        public static List<ProductFilterViewModel> customisefilter(List<ProductFilterViewModel> filters)
+        {
+            filters.ForEach(x =>
+            {
+                if (x.FilterHead == "Main Storage")
+                {
+                    var cnt = 0;
+                    var index = -1;
+                    x.FilterData.ForEach(z =>
+                    {
+                        float re = 0;
+                        if (float.TryParse(z.FilterValue, out re))
+                        {
+                            if (re >= 1000 && index==-1)
+                            {
+                                z.FilterValue = "1 TB and above";
+                                z.FilterUnit = null;
+                                z.range = true;
+                                index = cnt;
+                            }else if(re>=1000 && index != -1)
+                            {
+                                x.FilterData[index].rangevalues = x.FilterData[index].rangevalues + "," + z.FilterValue;
+                                z.display = false;
+                            }
+                            
+
+                        }
+                        cnt++;
+                    });
+                }
+                else if (x.FilterHead == "Memory RAM")
+                {
+                    var cnt = 0;
+                    var index = -1;
+                    x.FilterData.ForEach(z =>
+                    {
+                        float re = 0;
+                        if (float.TryParse(z.FilterValue, out re))
+                        {
+                            if (re <= 8 && index == -1)
+                            {
+                                z.FilterValue = "Upto 8 GB";
+                                z.FilterUnit = null;
+                                z.range = true;
+                                index = cnt;
+                            }
+                            else if (re <=8 && index != -1)
+                            {
+                                x.FilterData[index].rangevalues = x.FilterData[index].rangevalues + "," + z.FilterValue;
+                                z.display = false;
+                            }
+
+
+                        }
+                        cnt++;
+                    });
+                }
+            });
+            return filters;
         }
         [HttpPost]
         [Route("api/ProductApi/GetSearchProduct")]

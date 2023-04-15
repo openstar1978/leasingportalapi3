@@ -20,6 +20,7 @@ namespace LeasingPortalApi
         public LeasingDbEntities()
             : base("name=LeasingDbEntities")
         {
+            this.Database.CommandTimeout = 120;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -146,15 +147,6 @@ namespace LeasingPortalApi
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetsUser_Result>("GetsUser");
         }
     
-        public virtual ObjectResult<spGetFilters_Result> spGetFilters(Nullable<int> getid)
-        {
-            var getidParameter = getid.HasValue ?
-                new ObjectParameter("getid", getid) :
-                new ObjectParameter("getid", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetFilters_Result>("spGetFilters", getidParameter);
-        }
-    
         public virtual ObjectResult<spGetFeatureProducts_Result> spGetFeatureProducts()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetFeatureProducts_Result>("spGetFeatureProducts");
@@ -225,6 +217,24 @@ namespace LeasingPortalApi
                 new ObjectParameter("getproducts", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetSearchProductsInCategory_Result>("spGetSearchProductsInCategory", catidParameter, getidParameter, getproductParameter, getproductsParameter);
+        }
+    
+        public virtual ObjectResult<spGetFilters_Result> spGetFilters(Nullable<int> getid)
+        {
+            var getidParameter = getid.HasValue ?
+                new ObjectParameter("getid", getid) :
+                new ObjectParameter("getid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetFilters_Result>("spGetFilters", getidParameter);
+        }
+    
+        public virtual ObjectResult<spGetFiltersQuery_Result> spGetFiltersQuery(string getid)
+        {
+            var getidParameter = getid != null ?
+                new ObjectParameter("getid", getid) :
+                new ObjectParameter("getid", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetFiltersQuery_Result>("spGetFiltersQuery", getidParameter);
         }
     }
 }

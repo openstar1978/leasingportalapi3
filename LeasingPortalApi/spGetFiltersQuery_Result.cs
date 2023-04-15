@@ -11,12 +11,12 @@ namespace LeasingPortalApi
 {
     using System;
     
-    public partial class spGetFilters_Result
+    public partial class spGetFiltersQuery_Result
     {
+        public int mprodusubtwoid { get; set; }
+        public Nullable<int> mprodid { get; set; }
         public Nullable<int> mdetailheadid { get; set; }
         public string mdetailvalue { get; set; }
-        public Nullable<int> mprodid { get; set; }
-        public string mdetailhead { get; set; }
-        public string munitname { get; set; }
+        public Nullable<int> mdetailunit { get; set; }
     }
 }

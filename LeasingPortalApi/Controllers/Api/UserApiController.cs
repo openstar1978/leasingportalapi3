@@ -53,6 +53,7 @@ namespace LeasingPortalApi.Controllers.Api
                               where um.musermoreid == getid
                               select new UsersAllDetailViewModel
                               {
+                                 
                                   museridemail = u.museridemail,
                                   maddress1 = ur.maddress1,
                                   maddress2 = ur.maddress2,

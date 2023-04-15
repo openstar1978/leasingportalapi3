@@ -910,6 +910,48 @@
                 translate: 50px 0 0;
             }
         }
+        #sidebar{
+            padding-left:12px;
+        }
+        /************Filter CSS**********/
+        .filtermain {
+            border: 1px solid #f5f5f5;
+            border-radius: 5px;
+        }
+        .filtermain+.filtermain{
+            padding-top:0px!important;
+            border-top:0px!important;
+        }
+            .filtermain .card-btn-arrow{
+                position:absolute;
+                right:10px;
+            }
+            .filtermain .widget-title {
+                padding: 10px !important;
+                background: #f5f5f5;
+                margin-bottom:0px!important
+            }
+            .filtermain ul {
+                padding-left: 10px !important;
+                margin-top: 10px !important
+            }
+            .filtermain p{
+                margin-bottom:0px;
+                padding-left:5px;
+            }
+            .filtermain .maxlist-more {
+                margin-top: 1.14em;
+                background: #f5f5f5;
+                padding: 5px;
+                margin-bottom: 0px;
+            }
+        .sticky2 {
+            position: fixed !important;
+            z-index: 22222;
+            background: #e7e7e7;
+            padding:5px!important;
+            
+        }
     </style>
     <!--[if IE]>
     <style>
@@ -5136,13 +5178,17 @@ setInterval(run, 5000);*/
             }]);
     </script>
     <script>
-        window.onscroll = function () { myFunction() };
+        window.onscroll = function () {
+            myFunction();
+            sidebarfunction();
+        };
 
         var navbar = document.getElementById("masthead");
         var footer = document.getElementById("colophon");
         var sticky = navbar.offsetTop;
         var footeroff = footer.offsetTop;
-
+        var navbar2 = document.getElementById("content");
+        var sticky2 = navbar2.offsetTop;
         /*function gettop() {
             return (jQuery(window).height()) / 2 + "px";
         }
@@ -5152,6 +5198,17 @@ setInterval(run, 5000);*/
         //var topx =
         // jQuery('.se-pre-con').css('background-position-x', gettop());
         // jQuery('.se-pre-con').css('background-position-y', getleft());
+        function sidebarfunction() {
+            console.log(window.pageYOffset + " " + sticky);
+            if (window.pageYOffset > sticky2 && window.pageYOffset < jQuery(".customfilter").height()+50) {
+                jQuery("#filter-header").addClass('sticky2');
+                jQuery("#filter-header").css("top", jQuery("#masthead").height() + "px");
+                jQuery("#filter-header").css("width", jQuery(".customfilter").width() + "px");
+            } else {
+                jQuery("#filter-header").removeClass('sticky2');
+                jQuery("#filter-header").css("top", "0px");
+            }
+        }
         function myFunction() {
 
             footer = document.getElementById("colophon");

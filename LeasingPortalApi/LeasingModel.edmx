@@ -979,12 +979,6 @@
           <Property Name="UserId" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'LeasingDb.dbo.UKSchoolEducationPhase' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="UKSchoolEducationPhase">
-          <Property Name="ID" Type="int" />
-          <Property Name="EducationPhase" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="UKSchools">
           <Key>
             <PropertyRef Name="id" />
@@ -1444,6 +1438,9 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
         <Function Name="spGetFilters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="getid" Type="int" Mode="In" />
         </Function>
+        <Function Name="spGetFiltersQuery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="getid" Type="varchar(max)" Mode="In" />
+        </Function>
         <Function Name="spGetNewArrivalProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spGetOnSaleProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spGetProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1669,9 +1666,6 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
           <Parameter Name="getid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetsUser" ReturnType="Collection(LeasingDbModel.GetsUser_Result)" />
-          <FunctionImport Name="spGetFilters" ReturnType="Collection(LeasingDbModel.spGetFilters_Result)">
-          <Parameter Name="getid" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="spGetFeatureProducts" ReturnType="Collection(LeasingDbModel.spGetFeatureProducts_Result)" />
           <FunctionImport Name="spGetNewArrivalProducts" ReturnType="Collection(LeasingDbModel.spGetNewArrivalProducts_Result)" />
           <FunctionImport Name="spGetOnSaleProducts" ReturnType="Collection(LeasingDbModel.spGetOnSaleProducts_Result)" />
@@ -1807,6 +1801,12 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
           </AssociationSet>
           <EntitySet Name="UKSchools" EntityType="LeasingDbModel.UKSchool" />
           <EntitySet Name="UKSchoolTypes" EntityType="LeasingDbModel.UKSchoolType" />
+          <FunctionImport Name="spGetFilters" ReturnType="Collection(LeasingDbModel.spGetFilters_Result)">
+          <Parameter Name="getid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetFiltersQuery" ReturnType="Collection(LeasingDbModel.spGetFiltersQuery_Result)">
+            <Parameter Name="getid" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="GetsUser_Result">
           <Property Type="Int32" Name="muid" Nullable="false" />
@@ -1821,12 +1821,6 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
           <Property Type="String" Name="musertype" Nullable="true" MaxLength="15" />
           <Property Type="String" Name="mposition" Nullable="true" MaxLength="30" />
           <Property Type="Byte" Name="mverify" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="spGetFilters_Result">
-          <Property Type="Int32" Name="mdetailheadid" Nullable="true" />
-          <Property Type="String" Name="mdetailvalue" Nullable="true" />
-          <Property Type="Int32" Name="mprodid" Nullable="true" />
-          <Property Type="String" Name="mdetailhead" Nullable="true" MaxLength="150" />
         </ComplexType>
         <ComplexType Name="spGetFeatureProducts_Result">
           <Property Type="Int32" Name="mprodid" Nullable="false" />
@@ -3504,6 +3498,20 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="EstablishmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="spGetFilters_Result">
+          <Property Type="Int32" Name="mdetailheadid" Nullable="true" />
+          <Property Type="String" Name="mdetailvalue" Nullable="true" />
+          <Property Type="Int32" Name="mprodid" Nullable="true" />
+          <Property Type="String" Name="mdetailhead" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="munitname" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="spGetFiltersQuery_Result">
+          <Property Type="Int32" Name="mprodusubtwoid" Nullable="false" />
+          <Property Type="Int32" Name="mprodid" Nullable="true" />
+          <Property Type="Int32" Name="mdetailheadid" Nullable="true" />
+          <Property Type="String" Name="mdetailvalue" Nullable="true" />
+          <Property Type="Int32" Name="mdetailunit" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3526,16 +3534,6 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
                 <ScalarProperty Name="musertype" ColumnName="musertype" />
                 <ScalarProperty Name="mposition" ColumnName="mposition" />
                 <ScalarProperty Name="mverify" ColumnName="mverify" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spGetFilters" FunctionName="LeasingDbModel.Store.spGetFilters">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="LeasingDbModel.spGetFilters_Result">
-                <ScalarProperty Name="mdetailheadid" ColumnName="mdetailheadid" />
-                <ScalarProperty Name="mdetailvalue" ColumnName="mdetailvalue" />
-                <ScalarProperty Name="mprodid" ColumnName="mprodid" />
-                <ScalarProperty Name="mdetailhead" ColumnName="mdetailhead" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -5294,6 +5292,28 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetFilters" FunctionName="LeasingDbModel.Store.spGetFilters">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LeasingDbModel.spGetFilters_Result">
+                <ScalarProperty Name="mdetailheadid" ColumnName="mdetailheadid" />
+                <ScalarProperty Name="mdetailvalue" ColumnName="mdetailvalue" />
+                <ScalarProperty Name="mprodid" ColumnName="mprodid" />
+                <ScalarProperty Name="mdetailhead" ColumnName="mdetailhead" />
+                <ScalarProperty Name="munitname" ColumnName="munitname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetFiltersQuery" FunctionName="LeasingDbModel.Store.spGetFiltersQuery">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LeasingDbModel.spGetFiltersQuery_Result">
+                <ScalarProperty Name="mprodusubtwoid" ColumnName="mprodusubtwoid" />
+                <ScalarProperty Name="mprodid" ColumnName="mprodid" />
+                <ScalarProperty Name="mdetailheadid" ColumnName="mdetailheadid" />
+                <ScalarProperty Name="mdetailvalue" ColumnName="mdetailvalue" />
+                <ScalarProperty Name="mdetailunit" ColumnName="mdetailunit" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
