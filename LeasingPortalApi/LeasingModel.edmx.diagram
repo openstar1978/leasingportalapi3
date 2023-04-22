@@ -112,6 +112,7 @@
         <AssociationConnector Association="LeasingDbModel.FK_HangFire_State_Job" />
         <EntityTypeShape EntityType="LeasingDbModel.UKSchool" Width="1.5" PointX="15.375" PointY="28.75" />
         <EntityTypeShape EntityType="LeasingDbModel.UKSchoolType" Width="1.5" PointX="21.375" PointY="28.75" />
+        <EntityTypeShape EntityType="LeasingDbModel.campaign_user_registration" Width="1.5" PointX="11.375" PointY="29.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

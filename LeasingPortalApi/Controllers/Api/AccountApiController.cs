@@ -60,6 +60,23 @@ namespace LeasingPortalApi.Controllers.Api
             }
             return Ok(countrydatas);
         }
+        [Route("api/AccountApi/GetSchoolByPostcode")]
+        public IHttpActionResult GetSchoolByPostcode(string detailid)
+        {
+            var db = new LeasingDbEntities();
+            var countrydatas = (from st in db.UKSchools
+                                where st.Postcode != null && st.Postcode.Replace(" ", "").Trim().ToUpper() == detailid.Replace(" ", "").Trim().ToUpper()
+                                select new CountryStateCityViewModel.SelectModelForCountrStateCity
+                                {
+                                    Code = st.id,
+                                    Name = st.SchoolName,
+                                }).ToList();
+            if (countrydatas.Count == 0)
+            {
+                return Ok("empty");
+            }
+            return Ok(countrydatas);
+        }
         [Route("api/AccountApi/GetSchoolByVal")]
         public IHttpActionResult GetSchoolByVal(string val)
         {
@@ -85,6 +102,19 @@ namespace LeasingPortalApi.Controllers.Api
                                 where st.id==detailid
                                 select st).FirstOrDefault();
             if (countrydatas==null)
+            {
+                return Ok("empty");
+            }
+            return Ok(countrydatas);
+        }
+        [Route("api/AccountApi/GetSchoolDetailByPostcode")]
+        public IHttpActionResult GetSchoolDetailByPostcode(string detailid)
+        {
+            var db = new LeasingDbEntities();
+            var countrydatas = (from st in db.UKSchools
+                                where st.Postcode!=null && st.Postcode.Replace(" ", "").Trim().ToUpper() == detailid.Replace(" ","").Trim().ToUpper()
+                                select st).FirstOrDefault();
+            if (countrydatas == null)
             {
                 return Ok("empty");
             }

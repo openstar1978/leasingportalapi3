@@ -65,7 +65,7 @@ namespace LeasingPortalApi.Controllers
                         "</tr>" +
                         "<tr height=20></tr>" +
                         "<tr width=100%>" +
-                    "<td><font size='3' color='' face=calibri>We will endeavour to response tp you within the next 24 hours</ font></td>" +
+                    "<td><font size='3' color='' face=calibri>We will endeavour to response to you within the next 24 hours</ font></td>" +
                     "</tr>" +
                     "<tr height=20></tr>" +
                         "<tr width=100%>" +

@@ -8,7 +8,7 @@ using System.IO;
 
 namespace LeasingPortalApi.Areas.Supplier.Controllers
 {
-    public class RegistrationController : Controller
+    public class RegistrationoldController : Controller
     {
         // GET: Seller/Registration
         public ActionResult Index()

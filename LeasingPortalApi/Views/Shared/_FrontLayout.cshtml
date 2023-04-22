@@ -901,13 +901,22 @@
             .masthead .header-icons {
                 flex: 0 0 29%;
                 width: auto;
-                max-width: 28.5%;
+                max-width: 28%;
+                justify-content:flex-end;
+
             }
             .cart-items-total-price.total-price{
                 width:75%;
             }
-            .header-icon {
-                translate: 50px 0 0;
+            .header-icon > a {
+                font-weight: 500;
+                display: flex;
+                align-content: flex-end;
+                justify-content: flex-end;
+            }
+            .header-icon .cart-items-total-price.total-price {
+                width: auto;
+                flex-direction: column;
             }
         }
         #sidebar{
@@ -1047,7 +1056,7 @@
 
                                 <div class="mb-2 border-top-gray-1 text-center" style="border-top:1px solid;">
                                     <span style="text-align:center;">New customer! Start here.</span>
-                                    <a href="/Leasing/Registration" class="btn btn-block btn-sm  btnloginregister transition-3d-hover">
+                                    <a href="/Registration" class="btn btn-block btn-sm  btnloginregister transition-3d-hover">
                                         Register
                                     </a>
 
@@ -1825,7 +1834,7 @@
                                             </div>
                                             <div class="register">
                                                 <span>New customer! Start here.</span>
-                                                <a href="/Leasing/Registration">
+                                                <a href="/Registration">
                                                     Register
                                                 </a>
                                             </div>
@@ -1926,7 +1935,7 @@
 
                                                                     <div class="text-center mb-4">
                                                                         <span class="small text-muted">Do not have an account?</span>
-                                                                        <a class="js-animation-link small text-dark" href="/Leasing/Registration#/" style="color:#333!important">
+                                                                        <a class="js-animation-link small text-dark" href="/Registration#/" style="color:#333!important">
                                                                             Signup
                                                                         </a>
                                                                     </div>
@@ -2034,7 +2043,7 @@
                                                data-unfold-duration="500">
                                                 Sign In <span class="text-gray-50">or</span>
                                             </a>
-                                            <a href="/Leasing/Registration" class="u-header-topbar__nav-link" style="display:inline-block;width:50%;padding:.25rem 0;"> Register</a>
+                                            <a href="/Registration" class="u-header-topbar__nav-link" style="display:inline-block;width:50%;padding:.25rem 0;"> Register</a>
                                         </li>
                                         <li ng-show="IsUserLogedIn">
                                             <a href="/MyAccount/Index?tab=yourleaseorder&content=7">Your Profile</a>
@@ -2511,7 +2520,7 @@
 
                                                             <div class="text-center mb-4">
                                                                 <span class="small text-muted">Do not have an account?</span>
-                                                                <a class="js-animation-link small text-dark" href="/Leasing/Registration/">
+                                                                <a class="js-animation-link small text-dark" href="/Registration/">
                                                                     Signup
                                                                 </a>
                                                             </div>
@@ -2637,7 +2646,7 @@
                                                     </div>
                                                     <div class="register">
                                                         <span>New customer! Start here.</span>
-                                                        <a href="/Leasing/Registration">
+                                                        <a href="/Registration">
                                                             Register
                                                         </a>
                                                     </div>
@@ -2672,7 +2681,7 @@
                                                        data-unfold-duration="500">
                                                         Sign In <span class="text-gray-50">or</span>
                                                     </a>
-                                                    <a href="/Leasing/Registration" class="u-header-topbar__nav-link" style="display:inline-block;width:50%;padding:.25rem 0;"> Register</a>
+                                                    <a href="/Registration" class="u-header-topbar__nav-link" style="display:inline-block;width:50%;padding:.25rem 0;"> Register</a>
                                                 </li>
                                                 <li ng-show="IsUserLogedIn">
                                                     <a href="/MyAccount/index?tab=yourleaseorder&content=7">My Profile</a>
@@ -5188,7 +5197,7 @@ setInterval(run, 5000);*/
         var sticky = navbar.offsetTop;
         var footeroff = footer.offsetTop;
         var navbar2 = document.getElementById("content");
-        var sticky2 = navbar2.offsetTop;
+        var sticky2 = jQuery("#masthead").height();
         /*function gettop() {
             return (jQuery(window).height()) / 2 + "px";
         }
@@ -5199,11 +5208,12 @@ setInterval(run, 5000);*/
         // jQuery('.se-pre-con').css('background-position-x', gettop());
         // jQuery('.se-pre-con').css('background-position-y', getleft());
         function sidebarfunction() {
-            console.log(window.pageYOffset + " " + sticky);
-            if (window.pageYOffset > sticky2 && window.pageYOffset < jQuery(".customfilter").height()+50) {
+            console.log(window.pageYOffset + " " + sticky2);
+            if (window.pageYOffset > 30 && window.pageYOffset < jQuery(".customfilter").height()+50) {
                 jQuery("#filter-header").addClass('sticky2');
                 jQuery("#filter-header").css("top", jQuery("#masthead").height() + "px");
                 jQuery("#filter-header").css("width", jQuery(".customfilter").width() + "px");
+                jQuery("#filter-header").css("z-index",111);
             } else {
                 jQuery("#filter-header").removeClass('sticky2');
                 jQuery("#filter-header").css("top", "0px");

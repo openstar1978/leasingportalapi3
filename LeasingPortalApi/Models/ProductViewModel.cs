@@ -344,6 +344,7 @@ namespace LeasingPortalApi.Models
     {
         public int FilterId { get; set; }
         public string FilterValue { get; set; }
+        public string FilterValueDisplay { get; set; }
         public string FilterUrl { get; set; }
         public string FilterUnit { get; set; }
         public string FilterName { get; set; }

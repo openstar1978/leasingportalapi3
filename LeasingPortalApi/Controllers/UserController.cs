@@ -96,6 +96,23 @@ namespace LeasingPortalApi.Controllers
             
         }
         [HttpPost]
+        public ActionResult CheckCampaignUser(string userid)
+        {
+            using (var db = new LeasingDbEntities())
+            {
+                var search = db.campaign_user_registration.FirstOrDefault(x => x.memailaddress == userid);
+                if (search == null)
+                {
+                    return Json(new { msg = "Success" });
+                }
+                else
+                {
+                    return Json(new { msg = "found" });
+                }
+            }
+
+        }
+        [HttpPost]
         public ActionResult SaveUser(UsersAllDetailViewModel model)
         {
             if (ModelState.IsValid)
@@ -114,6 +131,23 @@ namespace LeasingPortalApi.Controllers
 
                     };
                     return Json(new { Data = d, msg = "Success",muid=re[0] });
+                }
+                else
+                {
+                    return Json(new { msg = "Invalid" });
+                }
+            }
+            return RedirectToAction("index");
+        }
+        [HttpPost]
+        public ActionResult SaveCampaignUser(UsersAllDetailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var re = UsersDao.AddCampaignuser(model);
+                if (re!=0)
+                {
+                    return Json(new { Data = "", msg = "Success"});
                 }
                 else
                 {

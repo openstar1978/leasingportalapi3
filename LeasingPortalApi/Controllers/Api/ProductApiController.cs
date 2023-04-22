@@ -64,14 +64,15 @@ namespace LeasingPortalApi.Controllers.Api
                 {
                    
                     var ss = ab.FilterValue.Split(',');
+                    
                     List<spGetFiltersQuery_Result> getfilteredsubtwoes = null;
                     if (ab.FilterName=="Screen Size")
                     {
-                        getfilteredsubtwoes = ctx.spGetFiltersQuery("Select mdetailheadid,mprodusubtwoid,mprodid,mdetailunit,(CASE WHEN Isnumeric(mdetailvalue)=1 and mdetailvalue is not null THEN cast(Floor(cast(mdetailvalue as float)) as nvarchar(max)) else mdetailvalue End) as mdetailvalue from [productsubtwo] where mdetailheadid=" + ab.FilterId).ToList();
+                        getfilteredsubtwoes = ctx.spGetFiltersQuery("Select mdetailheadid,mprodusubtwoid,mprodid,mdetailunit,(CASE WHEN Isnumeric(mdetailvalue)=1 and mdetailvalue is not null THEN cast(Floor(cast(mdetailvalue as float)) as nvarchar(max)) else mdetailvalue End) as mdetailvalue from [productsubtwo] where mdetailheadid=" + ab.FilterId+ " and mdetailvalue is not null and mdetailvalue!=''").ToList();
                     }
                     else
                     {
-                        getfilteredsubtwoes = ctx.spGetFiltersQuery("Select mdetailheadid,mprodusubtwoid,mprodid,mdetailvalue,mdetailunit from [productsubtwo] where mdetailheadid=" + ab.FilterId).ToList();
+                        getfilteredsubtwoes = ctx.spGetFiltersQuery("Select mdetailheadid,mprodusubtwoid,mprodid,mdetailvalue,mdetailunit from [productsubtwo] where mdetailheadid=" + ab.FilterId+ " and mdetailvalue is not null and mdetailvalue!=''").ToList();
                     }
                     
 
@@ -81,14 +82,14 @@ namespace LeasingPortalApi.Controllers.Api
                         
                         getproducts = (from c in getfilteredsubtwoes
                                        
-                                       where c.mdetailheadid == ab.FilterId && ss.Any(z => z==c.mdetailvalue)
+                                       where c.mdetailheadid == ab.FilterId && ss.Any(z => z.Replace("$$$",",").Trim()==c.mdetailvalue.ToUpperInvariant().Trim())
                                        select c.mprodid.Value).ToList();
 
                     }
                     else
                     {
                         getproducts = (from c in getfilteredsubtwoes
-                                       where c.mdetailheadid == ab.FilterId && ss.Any(z => z==c.mdetailvalue) && getproducts.Any(z=>z==c.mprodid)
+                                       where c.mdetailheadid == ab.FilterId && ss.Any(z => z.Replace("$$$", ",").Trim()==c.mdetailvalue.ToUpperInvariant().Trim()) && getproducts.Any(z=>z==c.mprodid)
                                        select c.mprodid.Value).ToList();
                     }
                     //if (getproducts.Any())
@@ -181,6 +182,7 @@ namespace LeasingPortalApi.Controllers.Api
                     FilterId = y.FirstOrDefault().mbrandid,
                     FilterUrl = "bn",
                     FilterValue = y.FirstOrDefault().mbrand,
+                    FilterValueDisplay=y.FirstOrDefault().mbrand,
                     display=true,
                 }).Distinct().ToList();
                 filters.Add(new ProductFilterViewModel
@@ -200,7 +202,8 @@ namespace LeasingPortalApi.Controllers.Api
                                           FilterUnit = k.FirstOrDefault().munitname,
                                           FilterId = k.FirstOrDefault().mdetailheadid.Value,
                                           FilterUrl = "a",
-                                          FilterValue = k.Key,
+                                          FilterValue =k.Key!=null && k.Key!=""?k.Key.Replace(",","$$$"):k.Key,
+                                          FilterValueDisplay=k.Key,
                                           range = false,
                                           rangevalues=k.Key,
                                           display=true,
@@ -288,6 +291,7 @@ namespace LeasingPortalApi.Controllers.Api
                         {
                             if (re >= 1000 && index==-1)
                             {
+                                z.FilterValueDisplay = "1 TB and above";
                                 z.FilterValue = "1 TB and above";
                                 z.FilterUnit = null;
                                 z.range = true;
@@ -314,6 +318,7 @@ namespace LeasingPortalApi.Controllers.Api
                         {
                             if (re <= 8 && index == -1)
                             {
+                                z.FilterValueDisplay = "Upto 8 GB";
                                 z.FilterValue = "Upto 8 GB";
                                 z.FilterUnit = null;
                                 z.range = true;
@@ -421,17 +426,29 @@ namespace LeasingPortalApi.Controllers.Api
                     foreach (var ab in prodsearch.filterdata.Where(x => x.FilterUrl == "a"))
                     {
                         var ss = ab.FilterValue.Split(',');
+                        List<spGetFiltersQuery_Result> getfilteredsubtwoes = null;
+                        if (ab.FilterName == "Screen Size")
+                        {
+                            getfilteredsubtwoes = ctx.spGetFiltersQuery("Select mdetailheadid,mprodusubtwoid,mprodid,mdetailunit,(CASE WHEN Isnumeric(mdetailvalue)=1 and mdetailvalue is not null THEN cast(Floor(cast(mdetailvalue as float)) as nvarchar(max)) else mdetailvalue End) as mdetailvalue from [productsubtwo] where mdetailheadid=" + ab.FilterId+" and mdetailvalue is not null and mdetailvalue!=''").ToList();
+                        }
+                        else
+                        {
+                            getfilteredsubtwoes = ctx.spGetFiltersQuery("Select mdetailheadid,mprodusubtwoid,mprodid,mdetailvalue,mdetailunit from [productsubtwo] where mdetailheadid=" + ab.FilterId+" and mdetailvalue is not null and mdetailvalue!=''").ToList();
+                        }
                         if (getproducts.Count <= 0 || !getproducts.Any())
                         {
-                            getproducts = (from c in ctx.productsubtwoes
-                                           where c.mdetailheadid == ab.FilterId && ss.Any(z => z == c.mdetailvalue)
+
+
+                            getproducts = (from c in getfilteredsubtwoes
+
+                                           where c.mdetailheadid == ab.FilterId && ss.Any(z => z.Replace("$$$", ",").Trim() == c.mdetailvalue.ToUpperInvariant().Trim())
                                            select c.mprodid.Value).ToList();
 
                         }
                         else
                         {
-                            getproducts = (from c in ctx.productsubtwoes
-                                           where c.mdetailheadid == ab.FilterId && ss.Any(z => z == c.mdetailvalue) && getproducts.Any(z => z == c.mprodid)
+                            getproducts = (from c in getfilteredsubtwoes
+                                           where c.mdetailheadid == ab.FilterId && ss.Any(z => z.Replace("$$$", ",").Trim() == c.mdetailvalue.ToUpperInvariant().Trim()) && getproducts.Any(z => z == c.mprodid)
                                            select c.mprodid.Value).ToList();
                         }
                         //if (getproducts.Any())
@@ -575,16 +592,38 @@ namespace LeasingPortalApi.Controllers.Api
                 if (prodsearch.filterdata.Any(x => x.FilterUrl == "a"))
                 {
                     List<int> productid = new List<int>();
+                    List<int> getproducts = new List<int>();
                     foreach (var ab in prodsearch.filterdata.Where(x => x.FilterUrl == "a"))
                     {
                         var ss = ab.FilterValue.Split(',');
-                        var getproducts = (from c in ctx.productsubtwoes
-                                           where c.mdetailheadid == ab.FilterId && ss.Any(z => z == c.mdetailvalue)
-                                           select c.mprodid.Value).AsEnumerable();
-                        if (getproducts.Any())
+                        List<spGetFiltersQuery_Result> getfilteredsubtwoes = null;
+                        if (ab.FilterName == "Screen Size")
                         {
-                            productid.AddRange(getproducts);
+                            getfilteredsubtwoes = ctx.spGetFiltersQuery("Select mdetailheadid,mprodusubtwoid,mprodid,mdetailunit,(CASE WHEN Isnumeric(mdetailvalue)=1 and mdetailvalue is not null THEN cast(Floor(cast(mdetailvalue as float)) as nvarchar(max)) else mdetailvalue End) as mdetailvalue from [productsubtwo] where mdetailheadid=" + ab.FilterId+ " and mdetailvalue is not null and mdetailvalue!=''").ToList();
                         }
+                        else
+                        {
+                            getfilteredsubtwoes = ctx.spGetFiltersQuery("Select mdetailheadid,mprodusubtwoid,mprodid,mdetailvalue,mdetailunit from [productsubtwo] where mdetailheadid=" + ab.FilterId+ " and mdetailvalue is not null and mdetailvalue!=''").ToList();
+                        }
+                        if (getproducts.Count <= 0 || !getproducts.Any())
+                        {
+
+
+                            getproducts = (from c in getfilteredsubtwoes
+
+                                           where c.mdetailheadid == ab.FilterId && ss.Any(z => z.Replace("$$$", ",").Trim() == c.mdetailvalue.ToUpperInvariant().Trim())
+                                           select c.mprodid.Value).ToList();
+
+                        }
+                        else
+                        {
+                            getproducts = (from c in getfilteredsubtwoes
+                                           where c.mdetailheadid == ab.FilterId && ss.Any(z => z.Replace("$$$", ",").Trim() == c.mdetailvalue.ToUpperInvariant().Trim()) && getproducts.Any(z => z == c.mprodid)
+                                           select c.mprodid.Value).ToList();
+                        }
+                        //if (getproducts.Any())
+                        //{
+                        productid = getproducts;
                     }
 
                     getprod = (from p in getprod
@@ -679,7 +718,9 @@ namespace LeasingPortalApi.Controllers.Api
                 {
                     FilterId = y.FirstOrDefault().mbrandid,
                     FilterUrl = "bn",
-                    FilterValue = y.FirstOrDefault().mbrand
+                    FilterValue = y.FirstOrDefault().mbrand,
+                    FilterValueDisplay = y.FirstOrDefault().mbrand,
+                    display =true,
                 }).Distinct().ToList();
                 filters.Add(new ProductFilterViewModel
                 {
@@ -703,17 +744,23 @@ namespace LeasingPortalApi.Controllers.Api
                     }
 
                     var attrfilter = (from g in ctx.spGetFilters(cattid).ToList()
-                                      select g).GroupBy(x => x.mdetailheadid).Select(y => new ProductFilterViewModel
+                                  select g).GroupBy(x => x.mdetailheadid).Select(y => new ProductFilterViewModel
+                                  {
+                                      FilterHead = y.FirstOrDefault().mdetailhead,
+                                      FilterData = y.GroupBy(x => x.mdetailvalue.ToUpperInvariant()).Select(k => new ProductFilterDetailViewModel
                                       {
-                                          FilterHead = y.FirstOrDefault().mdetailhead,
-                                          FilterData = y.GroupBy(x => x.mdetailvalue.ToUpperInvariant()).Select(k => new ProductFilterDetailViewModel
-                                          {
-                                              FilterId = k.FirstOrDefault().mdetailheadid.Value,
-                                              FilterUrl = "a",
-                                              FilterValue = k.Key
-                                          }).OrderBy(x => x.FilterValue).ToList()
-                                      });
-                    filters.AddRange(attrfilter);
+                                          FilterName = y.FirstOrDefault().mdetailhead,
+                                          FilterUnit = k.FirstOrDefault().munitname,
+                                          FilterId = k.FirstOrDefault().mdetailheadid.Value,
+                                          FilterUrl = "a",
+                                          FilterValue = k.Key != null && k.Key != "" ? k.Key.Replace(",", "$$$") : k.Key,
+                                          FilterValueDisplay = k.Key,
+                                          range = false,
+                                          rangevalues=k.Key,
+                                          display=true,
+                                      }).OrderBy(x => PadNumbers(x.FilterValue)).ToList()
+                                  }) ;
+                filters.AddRange(attrfilter);
                     /*var getfiltercat = ctx.productcomparativefields.Where(x => x.Filter == "Y" && x.CategoryId == cattid).ToList();
                     if (getfiltercat.Any())
                     {
@@ -778,6 +825,7 @@ namespace LeasingPortalApi.Controllers.Api
                 var subpicdata = ctx.productsubpics.FirstOrDefault(z => z.mprodsubid == x.mprodvarid);
                 x.msubpicname = subpicdata != null ? subpicdata.msubprodpicname : "";
             });
+            filters = customisefilter(filters);
             return Json(new { cnt = cnt, datap = products, minprice = minprice, maxprice = maxprice, allFilter = filters });
             //return Ok(products);
         }
@@ -1481,7 +1529,9 @@ namespace LeasingPortalApi.Controllers.Api
                 {
                     FilterId = y.FirstOrDefault().mbrandid,
                     FilterUrl = "bn",
-                    FilterValue = y.FirstOrDefault().mbrand
+                    FilterValue = y.FirstOrDefault().mbrand,
+                    FilterValueDisplay = y.FirstOrDefault().mbrand,
+                    display =true,
                 }).Distinct().ToList();
                 filters.Add(new ProductFilterViewModel
                 {
@@ -1616,7 +1666,9 @@ namespace LeasingPortalApi.Controllers.Api
                 {
                     FilterId = y.FirstOrDefault().mbrandid,
                     FilterUrl = "bn",
-                    FilterValue = y.FirstOrDefault().mbrand
+                    FilterValue = y.FirstOrDefault().mbrand,
+                    FilterValueDisplay = y.FirstOrDefault().mbrand,
+                    display =true,
                 }).Distinct().ToList();
                 filters.Add(new ProductFilterViewModel
                 {
@@ -1815,7 +1867,9 @@ namespace LeasingPortalApi.Controllers.Api
                 {
                     FilterId = y.FirstOrDefault().mbrandid,
                     FilterUrl = "bn",
-                    FilterValue = y.FirstOrDefault().mbrand
+                    FilterValue = y.FirstOrDefault().mbrand,
+                    FilterValueDisplay = y.FirstOrDefault().mbrand,
+                    display =true,
                 }).Distinct().ToList();
                 filters.Add(new ProductFilterViewModel
                 {

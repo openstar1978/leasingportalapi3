@@ -316,6 +316,7 @@
                                             <h2 ng-cloak class="woocommerce-loop-product__title">{{product.mprodname}}</h2>
                                             <div class="product-thumbnail product-item__thumbnail">
                                                 <img width="300" height="300" ng-src="/LeaseAdmin/Content/images/product/{{product.msubpicname || 'leasenoimage.png'}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" style="width:auto;height:100px;">
+                                                <img ng-if="product.mbrandlogo!=null && product.mbrandlogo!=''" width="300" height="300" ng-src="/LeaseAdmin/Content/brandimages/{{product.mbrandlogo }}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail brandlogo" alt="">
                                             </div>
                                         </a>
                                         <div class="product-rating ng-hide" ng-if="product.totalrating>0">
@@ -478,10 +479,10 @@
                             </li>
                         </ul>
                     </aside>*@
-                <aside id="electro_products_filter-1" class="widget widget_electro_products_filter">
+                <aside id="electro_products_filter-1" class="widget widget_electro_products_filter" style="display:none;">
                     <h3 class="widget-title">Rental Per Month</h3>
                     <!--<aside id="woocommerce_layered_nav_filters-1" class="widget woocommerce widget_layered_nav_filters"><h3 class="widget-title">Active Filters</h3><ul><li class="chosen"><a rel="nofollow" aria-label="Remove filter" href="https://demo2.madrasthemes.com/electro-wide/product-category/laptops-computers/accessories-laptops-computers/?max_price=250">Min <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>152.00</span></a></li><li class="chosen"><a rel="nofollow" aria-label="Remove filter" href="https://demo2.madrasthemes.com/electro-wide/product-category/laptops-computers/accessories-laptops-computers/?min_price=152">Max <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&pound;</span>250.00</span></a></li></ul></aside>-->
-                    <aside id="woocommerce_price_filter-1" class="widget woocommerce widget_price_filter">
+                    <aside id="woocommerce_price_filter-1" class="widget woocommerce widget_price_filter" >
                         <h3 class="widget-title">Price</h3>
                         <input type="hidden" id="hidden_minimum_price" value="0" />
                         <input type="hidden" id="hidden_maximum_price" value="65000" />
@@ -532,31 +533,38 @@
                         });
                     </script>
                 </aside>
-                <aside id="electro_products_filter-1" class="widget widget_electro_products_filter">
-                    <h3 class="widget-title" style="line-height: 1.4em;">
+                <aside id="electro_products_filter-1" class="widget widget_electro_products_filter customfilter">
+                    <h3 id="filter-header" class="widget-title" style="line-height: 1.4em;">
                         Filters
 
-                        <input class="btn btn-primary btn-sm pull-right mb-1" type="submit" ng-click="getPosts()" value="Apply">
-
+                        <input class="btn btn-primary btn-sm pull-right mb-1" type="submit" ng-click="appliedfilter()" value="Apply">
                     </h3>
 
-                    <aside ng-repeat="filter in prodfilters" id="woocommerce_layered_nav-1" class="widget woocommerce widget_layered_nav woocommerce-widget-layered-nav">
-                        <h3 class="widget-title">{{filter.FilterHead}}</h3>
-                        <ul class="woocommerce-widget-layered-nav-list">
+                    <aside ng-repeat="filter in prodfilters" id="woocommerce_layered_nav-1" class="widget woocommerce widget_layered_nav woocommerce-widget-layered-nav filtermain">
+                        <h3 basicsHeadingOne{{$index}} class="widget-title" data-toggle="collapse" data-target="#basicsCollapseOner{{$index}}" aria-expanded="true" aria-controls="basicsCollapseOner">
+                            {{filter.FilterHead}}
+                            <span class="card-btn-arrow">
+                                <i class="fas fa-chevron-down text-gray-90 font-size-18"></i>
+                            </span>
+                        </h3>
+                        <div id="basicsCollapseOner{{$index}}" aria-labelledby="basicsHeadingOne{{$index}}" class="collapse show in" style="overflow:hidden;" data-parent="#basicsAccordion">
+                            <ul class="woocommerce-widget-layered-nav-list" style="padding-left:0px;">
 
-                            <li ng-repeat="fvalue in filter.FilterData track by $index" class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " ng-class="{'hidendata hidemore':$index>4}" style="color:#333;">
-                                <input type="checkbox" data-u="{{fvalue.FilterUrl}}" ng-click="filtertoggle(fvalue, leaseselected)">&nbsp;&nbsp;{{fvalue.FilterValue}}
-                            </li>
+                                <li ng-repeat="fvalue in filter.FilterData | filter:{display:'true'} track by $index" class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term " ng-class="{'hidendata hidemore':$index>4}" style="color:#333;">
+                                    <input type="checkbox" data-u="{{fvalue.FilterUrl}}" ng-click="filtertoggle(fvalue, leaseselected)">&nbsp;&nbsp;{{fvalue.FilterValue}}&nbsp;&nbsp;{{fvalue.FilterUnit}}
+                                </li>
 
-                        </ul>
-                        <p class="maxlist-more" ng-show="filter.FilterData.length>4"><a href="javascript:;" class="mtext">+ Show more</a></p>
+                            </ul>
+                            <p class="maxlist-more" ng-show="filter.FilterData.length>4"><a href="javascript:;" class="mtext">+ Show more</a></p>
+                        </div>
+
                     </aside>
 
 
                 </aside>
-                <aside id="media_image-2" class="widget widget_media_image">
+                <!--<aside id="media_image-2" class="widget widget_media_image">
                     <img width="270" height="315" src="~/Content/images/shop-sidebar-ad-banner.jpg" class="image wp-image-2142  attachment-full size-full" alt="" style="max-width: 100%; height: auto;">
-                </aside>
+                </aside>-->
 
             </div>
         </div>
@@ -760,7 +768,7 @@
 
                                     });
                                     $scope.firstload = false;
-                                    jQuery('.widget_electro_products_filter .widget .widget-title + ul').hideMaxListItems({
+                                    jQuery('.widget_electro_products_filter .widget .show .woocommerce-widget-layered-nav-list').hideMaxListItems({
                                         'max': 5,
                                         'speed': 500,
                                         'moreText': "+ Show more",
@@ -890,36 +898,53 @@
                 }
             };
             $scope.filtertoggle = function (item, list) {
+                console.log(item);
                 var n = {
                     "FilterId": item.FilterId,
-                    "FilterValue": item.FilterValue,
-                    "FilterUrl": item.FilterUrl
+                    "FilterValue": item.range == true ? item.rangevalues : item.FilterValue,
+                    "FilterUrl": item.FilterUrl,
+                    "FilterUnit": item.FilterUnit,
+                    "FilterName": item.FilterName,
+
                 };
                 var idx = list.findIndex(x => x.FilterId == item.FilterId && x.FilterUrl == item.FilterUrl);
 
                 if (idx > -1) {
                     //list[idx].forEach(function (obj) {
-                    var newarr = list[idx].FilterValue.split(",");
-                    var inind = newarr.findIndex(x=>x==item.FilterValue);
-                    if (inind > -1) {
-                        newarr.splice(inind, 1);
 
+                    var newarr = list[idx].FilterValue.split(",");
+                    if (item.range) {
+                        var s = item.rangevalues.split(",");
+                        s.forEach(function (o) {
+                            var inind = newarr.findIndex(x => x == o);
+                            if (inind > -1) {
+                                newarr.splice(inind, 1);
+
+                            }
+                        });
+                    } else {
+                        var inind = newarr.findIndex(x => x == item.FilterValue);
+                        if (inind > -1) {
+                            newarr.splice(inind, 1);
+
+                        }
+                        else {
+                            newarr.push(item.FilterValue);
+                        }
                     }
-                    else {
-                        newarr.push(item.FilterValue);
-                    }
+
                     if (newarr.length > 0) {
-                        newarr=newarr.join(",");
+                        newarr = newarr.join(",");
                         list[idx].FilterValue = newarr;
                     } else {
                         list.splice(idx, 1);
                     }
                     //});
-                    console.log(list);
+
                 }
                 else {
                     list.push(n);
-                    console.log(list);
+
                 }
                 if (list.length > 0) {
                     $scope.filter = false;
@@ -931,6 +956,12 @@
             $scope.leaseexists = function (item, list) {
                 return list.indexOf(item) > -1;
             };
+            $scope.appliedfilter = function () {
+                $scope.row = 0;
+                $scope.currentPage = 1;
+                $scope.getPosts();
+
+            }
             $scope.priceFiltering = function () {
                 $scope.row = 0;
                 $scope.pricef = true;

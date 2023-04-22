@@ -65,15 +65,15 @@ namespace LeasingPortalApi.Controllers
                         //Credentials = new NetworkCredential(senderEmail.Address, password)
                         Credentials = new NetworkCredential(smtpuser, smtppwd)
                     };
-                    var body = "Thank you for valuable feedback with <a href='https://www.equipyourschool.co.uk' >equipyourschool.co.uk</a><br/><br/>";
+                    var body = "Thank you for your valuable feedback at <a href='https://www.equipyourschool.co.uk' >equipyourschool.co.uk</a><br/><br/>";
                     body += "Name:" + model.musername + "<br/>";
                     body += "Email: " + model.museremail + "<br/>";
                     body += "Description: " + model.muserdescription + "<br/><br/>";
-                    body += "It you have any queries, please feel free to call us on xxxxxxxxxx.<br/><br/>";
+                    body += "It you have any queries, please feel free to contact on <a href='mailto:info@equipyourschool.co.uk'>info@equipyourschool.co.uk</a>.<br/><br/>";
 
                     using (var mess = new MailMessage(senderEmail, receiverEmail)
                     {
-                        Subject = "Thank you for feedback with us",
+                        Subject = "Thank you for your feedback",
                         Body = body,
                         IsBodyHtml = true
                     })

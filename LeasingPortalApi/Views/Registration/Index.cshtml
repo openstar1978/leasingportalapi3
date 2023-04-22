@@ -1,0 +1,1138 @@
+﻿@using LeasingPortalApi.Models;
+@{
+    ViewBag.Title = "Registartion";
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    var ngpattern = @"/^(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z/\d$@$!%*#?&]{8,20}$/";
+}
+<style>
+    .text-center {
+        color: #333;
+    }
+
+    .showerror {
+        padding: 10px 10px;
+        background: #c10404;
+        color: #fff;
+        font-size: 16px;
+    }
+
+    .form-label, .section-title {
+        color: #565555;
+    }
+
+    .radio-inline {
+        color: #565555;
+    }
+
+    .showerror.in {
+        display: block;
+    }
+
+    input.ng-invalid.ng-touched {
+        border-color: #FA787E;
+    }
+
+    input.ng-valid.ng-touched {
+        border-color: rgba(0, 201, 167, 0.1);
+    }
+
+    .invalid-feedback {
+        display: block;
+        margin-left: 10px;
+    }
+    .typeahead-demo .custom-popup-wrapper {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        background-color: #f9f9f9;
+    }
+
+        .typeahead-demo .custom-popup-wrapper > .message {
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+            color: #868686;
+        }
+
+        .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
+            position: static;
+            float: none;
+            display: block;
+            min-width: 160px;
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+    .mss .dropdown-menu{
+        margin-top:0px;
+    }
+</style>
+<div class="se-pre-con ng-hide" ng-show="loader">
+
+</div>
+<!-- ========== MAIN CONTENT ========== -->
+<main id="content" role="main" class="checkout-page" ng-controller="Registeration1Controller">
+    <!-- breadcrumb -->
+    <div class="container">
+        <nav class="woocommerce-breadcrumb"><a href="/Leasing/">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Registration</nav>
+    </div>
+    <!-- End breadcrumb -->
+
+    <div class="container" ng-if="!loader">
+        <div class="mb-5">
+            <h1 class="text-center">Create Your Account</h1>
+        </div>
+        <div id="shopCartAccordion1" class="accordion rounded mb-6" ng-show="!IsLogedIn">
+            <!-- Card -->
+            <div class="card border-0">
+                <div id="shopCartHeadingTwo" class="alert alert-primary mb-0" role="alert">
+                    Please complete the below form <!--<a href="#" class="alert-link collapsed" data-toggle="collapse" data-target="#shopCartTwo" aria-expanded="false" aria-controls="shopCartTwo">Click here to register</a>-->
+                </div>
+                
+                    <div id="shopCartTwo" class="border border-top-0 collapse show in" aria-labelledby="shopCartHeadingTwo" data-parent="#shopCartAccordion1" style="" aria-expanded="true">
+                        <div class="col-lg-12 order-lg-1 rform ">
+                            <form class="rform js-validate" name="form" ng-submit="SaveData(form.$valid)" novalidate>
+
+                                <div class="pb-7 mb-7">
+
+
+                                    <div class="row box-shadow-1 pt-5 pb-5 mb-5">
+                                        <!-- Title -->
+                                        <div class="col-md-12">
+                                            <div class="border-bottom border-color-1 mb-5">
+
+                                                <h3 class="section-title mb-0 pb-2">Your details</h3>
+                                            </div>
+                                        </div>
+                                        <!-- End Title -->
+                                        <!-- Billing Form -->
+                                        <div class="col-md-12">
+                                            <p style="color:#ae0404">All fields mark (*) are compulsory</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6 mss">
+                                                <label class="form-label">
+                                                    School Name
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <!--<input type="hidden" name="mschoolid" class="form-control m-input">-->
+                                                <input type="text" autocomplete="off" uib-typeahead="tierOne as tierOne.name for tierOne in tierOneData | filter:$viewValue | limitTo:8" typeahead-on-select="onSelectSchool($item, $model, $label)" typeahead-no-results="User.mschoolid=0" class="form-control mschool" ng-model="User.morgname" name="companyName" id="schoolname" placeholder="School Name" aria-label="Company Name" data-msg="Please enter a company name." validate-on="blur" required data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <!--<input type="text" autocomplete="off" uib-typeahead="address as address.Name for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-on-select="onSelectSchool($item, $model, $label)" class="form-control mschool" ng-model="User.morgname" name="companyName" id="schoolname" placeholder="School Name" aria-label="Company Name" data-msg="Please enter a company name." validate-on="blur" required data-error-class="u-has-error" data-success-class="u-has-success">-->
+                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.companyName.$touched) && form.companyName.$error.required">Please enter company name</div>
+
+                                            </div>
+
+                                            <!-- End Input -->
+                                        </div>
+                                        <div class="col-md-3">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6">
+                                                <label class="form-label">
+                                                    First Name
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" maxlength="100" class="form-control" ng-model="User.mname" name="Name" placeholder="First Name" aria-label="Wayley" required="" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.Name.$touched) && form.Name.$error.required">Please enter first name</div>
+                                            </div>
+                                            <!-- End Input -->
+                                        </div>
+                                        <div class="col-md-3">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6">
+                                                <label class="form-label">
+                                                    Surname
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" maxlength="100" class="form-control" ng-model="User.msname" name="SName" placeholder="Surname" aria-label="Wayley" required="" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.SName.$touched) && form.SName.$error.required">Please enter surname</div>
+                                            </div>
+                                            <!-- End Input -->
+                                        </div>
+
+                                        <div class="w-100"></div>
+                                        <div class="col-md-6">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6">
+                                                <label class="form-label">
+                                                    Position
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" maxlength="100" class="form-control" ng-model="User.mposition" name="Position" placeholder="Position" aria-label="Wayley" required="" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.Position.$touched) && form.Position.$error.required">Please enter position</div>
+                                            </div>
+                                            <!-- End Input -->
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6">
+                                                <label class="form-label">
+                                                    Contact Number
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" maxlength="20" class="form-control" ng-model="User.mphone" name="Phone" required placeholder="Phone" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.Phone.$touched) && form.Phone.$error.required">Pleaase enter contact number</div>
+                                            </div>
+                                            <!-- End Input -->
+                                        </div>
+                                        <div class="w-100"></div>
+
+                                        <div class="col-md-6">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6">
+                                                <label class="form-label">
+                                                    Email address (Login ID)
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="email" maxlength="150" class="form-control" ng-model="User.museridemail" ng-change="checkuser(User.museridemail,'0')" name="emailA" placeholder="Please enter email address" aria-label="Email Address" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.emailA.$touched)">
+                                                    <span ng-show="form.emailA.$error.required">Please enter your email address</span>
+                                                    <span ng-show="form.emailA.$error.email">Please enter valid email</span>
+                                                    <span ng-show="InValidEmail['0']">Email is taken already</span>
+                                                </div>
+                                            </div>
+                                            <!-- End Input -->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6">
+                                                <label class="form-label">
+                                                    Password
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="password" class="form-control" ng-model="User.mpwd" name="password" id="signinSrPasswordExample1" placeholder="********" aria-label="********" required
+                                                       data-msg="Enter password."
+                                                       data-error-class="u-has-error"
+                                                       data-success-class="u-has-success" ng-pattern="@ngpattern">
+                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.password.$touched) && form.password.$error.required">Please enter password</div>
+                                                <div class="invalid-feedback" ng-show="!form.password.$valid">Password should be at least 8 characters long and should contain one number,one character and one special character</div>
+                                            </div>
+                                            <!-- End Input -->
+                                        </div>
+
+
+
+                                        <div class="col-md-12" style="display:none;">
+                                            <div class="js-form-message mb-6">
+                                                <label></label>
+                                                <div id="postcode_lookup"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="js-form-message mb-6">
+                                                <label></label>
+                                                <div id="postcode_lookup1" ng-init="postcode='';selectedAddress=''">
+                                                    <input type="text" id="getaddress_input" placeholder="Enter your Postcode" ng-model="postcode" class="form-control postcode-autocomplete" name="getaddress_input" autocomplete="off">
+                                                    <button id="getaddress_button" type="button" class="btn btn-primary" ng-click="getAddress(postcode)" ng-disabled="getaddressdisable">{{getaddbtntxt}}</button>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7" ng-show="addressess.length>0">
+                                            <div class="js-form-message mb-6">
+                                                <select id="getaddress_dropdown" ng-options="address as address.Name for address in addressess track by address.Code" class="form-control js-select selectpicker dropdown-select" ng-model="selectedAddress" ng-change="getSelectedAddress(selectedAddress)" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
+                                                        data-live-search="true"
+                                                        data-style="form-control border-color-1 font-weight-normal">
+                                                    <option value="">Select address</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                            <div class="col-md-6">
+                                                <!-- Input -->
+                                                <div class="js-form-message mb-6">
+                                                    <label class="form-label">
+                                                        Address line 1
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="text" id="line1" maxlength="100" class="form-control" ng-model="User.maddress1" name="streetAddress" placeholder="" aria-label="470 Lucy Forks" required="" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                    <div class="invalid-feedback" ng-show="(form.$submitted || form.streetAddress.$touched) && form.streetAddress.$error.required">Please enter address</div>
+                                                </div>
+                                                <!-- End Input -->
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <!-- Input -->
+                                                <div class="js-form-message mb-6">
+                                                    <label class="form-label">
+                                                        Address line 2
+                                                    </label>
+                                                    <input type="text" id="line2" maxlength="100" class="form-control" ng-model="User.maddress2" placeholder="" aria-label="YC7B 3UT" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
+
+                                                </div>
+                                                <!-- End Input -->
+                                            </div>
+
+                                        
+                                        
+                                        <div class="col-md-6">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6">
+                                                <label class="form-label">
+                                                    City
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" id="town" maxlength="50" class="form-control" ng-model="User.mcity" name="cityAddress" placeholder="" aria-label="London" required="" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
+                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.cityAddress.$touched) && form.cityAddress.$error.required">Please enter city</div>
+                                            </div>
+                                            <!-- End Input -->
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6">
+                                                <label class="form-label">
+                                                    Postcode/Zip
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" maxlength="9" id="postcode" class="form-control" ng-model="User.mpostcode" name="postcode" placeholder="" required="" data-msg="Please enter a postcode or zip code." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.postcode.$touched) && form.postcode.$error.required">Please enter postcode</div>
+                                            </div>
+                                            <!-- End Input -->
+                                        </div>
+                                        <div class="col-md-6 hide">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6">
+                                                <label class="form-label">
+                                                    Country
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <select name="country" ng-init="mcountry = {Code:230}" ng-options="country as country.Name for country in countries track by country.Code" class="form-control js-select selectpicker dropdown-select" ng-model="mcountry" ng-change="getStates(mcountry)" required="" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
+                                                        data-live-search="true"
+                                                        data-style="form-control border-color-1 font-weight-normal">
+                                                    <option value="">Select country</option>
+                                                </select>
+                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.country.$touched) && form.country.$error.required">Select Country from list</div>
+                                            </div>
+                                            <!-- End Input -->
+                                        </div>
+
+                                        <div class="col-md-6 hide">
+                                            <!-- Input -->
+                                            <div class="js-form-message mb-6">
+                                                <label class="form-label">
+                                                    State
+                                                    <!--<span class="text-danger">*</span>-->
+                                                </label>
+                                                <select ng-options="state as state.Name for state in states track by state.Code" class="form-control js-select selectpicker dropdown-select" ng-model="mstate" data-msg="Please select states." data-error-class="u-has-error" data-success-class="u-has-success"
+                                                        data-live-search="true"
+                                                        data-style="form-control border-color-1 font-weight-normal">
+                                                    <option value="">Select State</option>
+                                                </select>
+
+                                            </div>
+                                            <!-- End Input -->
+                                        </div>
+                                        <div class="w-100"></div>
+
+
+
+                                        <div class="w-100"></div>
+                                        @*<div class="col-md-12">
+                        <div class="js-form-message" style="background:#e0dede;padding:10px;margin-bottom:30px;border-radius:6.1875rem;">
+
+                            <label class="radio-inline ">
+                                Register as a
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="User.musertype" value="Buyer" ng-click="changefield('Buyer')" ng-required="!User.musertype" name="optradio"> Buyer?
+                            </label>
+                            <label class="radio-inline">
+                                or
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" ng-model="User.musertype" value="Approver" ng-click="changefield('Approver')" ng-required="!User.musertype" name="optradio"> Approver?
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12" ng-show="IsClicked">
+                        <div class="col-md-6">
+                            <!-- Input -->
+                            <div class="js-form-message mb-6">
+                                <label class="form-label">
+                                    {{ConfigureField.Name}} Name
+
+                                    <span class="text-danger" ng-show="ConfigureField.Name=='Approver'">*</span>
+                                </label>
+                                <input type="text" class="form-control" maxlength="100" ng-required="ConfigureField.Name=='Approver'" ng-model="User.manotherusername" name="{{ConfigureField.Name}}Name" placeholder="{{ConfigureField.Name}} Name" aria-label="" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                <div class="invalid-feedback" ng-show="(form.$submitted || form.ApproverName.$touched) && form.ApproverName.$error.required">Enter Approver Name</div>
+                            </div>
+                            <!-- End Input -->
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Input -->
+                            <div class="js-form-message mb-6">
+                                <label class="form-label">
+                                    {{ConfigureField.Name}} Email
+
+                                    <span class="text-danger" ng-show="ConfigureField.Name=='Approver'">*</span>
+                                </label>
+                                <input type="email" maxlength="150" class="form-control" ng-required="ConfigureField.Name=='Approver'" ng-change="checkuser(User.manotheruseremail,'1')" ng-model="User.manotheruseremail" name="{{ConfigureField.Name}}Email" placeholder="{{ConfigureField.Name}} Email" aria-label="" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                <div class="invalid-feedback" ng-show="(form.$submitted || form.ApproverEmail.$touched || InValidEmail['1'])">
+                                    <span ng-show="form.ApproverEmail.$error.required">Enter detail</span>
+                                    <span ng-show="form.ApproverEmail.$error.email || form.BuyerEmail.$error.email">Enter valid email</span>
+                                    <span ng-show="form.ApproverEmail.$error.emailA || form.BuyerEmail.$error.emailA">This email is already taken!</span>
+                                    <span ng-show="InValidEmail['1']">This email is already taken previously!</span>
+                                </div>
+                            </div>
+                            <!-- End Input -->
+                        </div>
+                        <div class="col-md-6" style="margin-top:15px;">
+                            <!-- Input -->
+                            <div class="js-form-message mb-6">
+                                <label class="form-label">
+                                    Accountant Email
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" maxlength="150" class="form-control" ng-model="User.maccountantemail"  ng-change="checkuser(User.manotheruseremail,'2')" name="AccountantEmail" placeholder="Wayley" aria-label="Wayley" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                <div class="invalid-feedback" ng-show="(form.$submitted || form.ApproverEmail.$touched || InValidEmail['2'])">
+                                    <span ng-show="form.AccountantEmail.$error.email">Enter valid email</span>
+                                    <span ng-show="form.AccountantEmail.$error.emailA">This email is already taken!</span>
+                                    <span ng-show="InValidEmail['2']">This email is already taken previously!</span>
+                                </div>
+                            </div>
+                            <!-- End Input -->
+                        </div>
+
+
+                    </div>
+                                        *@
+                                    </div>
+                                    <div class="row box-shadow-1" style="display:none;">
+
+                                        <div class="col-md-12 width-100">
+                                            <div class="js-form-message " style="padding:10px;margin-bottom:0px;">
+                                                <label class="form-label">
+                                                    Agreements Details
+
+                                                </label>
+
+                                                <hr />
+                                            </div>
+                                            <div class="col-md-12 box-shadow-1">
+                                                <div class="js-form-message border-bottom" style="padding:10px;">
+
+                                                    <label style="color:#333;">
+                                                        Is your Agreement address the same as your delivery address? *
+                                                    </label>
+                                                    <label class="radio-inline" ng-init="diffaddress='yes'">
+                                                        <input type="radio" ng-model="diffaddress" value="yes" ng-click="changefield('Buyer')" checked name="diffaddress">Yes
+                                                    </label>
+
+                                                    <label class="radio-inline">
+                                                        <input type="radio" ng-model="diffaddress" value="no" ng-click="changefield('Approver')" name="diffaddress">no
+                                                    </label>
+
+                                                </div>
+                                                <div ng-show="diffaddress=='no'">
+                                                    <div class="row m-0">
+                                                        <div class="col-md-6">
+                                                            <!-- Input -->
+                                                            <div class="js-form-message mb-2">
+                                                                <label class="form-label">
+                                                                    Address line 1
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <input type="text" id="line1" maxlength="100" class="form-control" ng-model="MoreAddress.maddress1" name="streetAddress1" placeholder="" aria-label="470 Lucy Forks" ng-required="diffaddress=='no'" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.streetAddress1.$touched) && form.streetAddress1.$error.required">Please enter address</div>
+                                                            </div>
+                                                            <!-- End Input -->
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <!-- Input -->
+                                                            <div class="js-form-message mb-2">
+                                                                <label class="form-label">
+                                                                    Address line 2
+                                                                </label>
+                                                                <input type="text" id="line2" maxlength="100" class="form-control" ng-model="MoreAddress.maddress2" placeholder="" aria-label="YC7B 3UT" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
+
+                                                            </div>
+                                                            <!-- End Input -->
+                                                        </div>
+                                                        </div>
+                                                    <div class="row m-0">
+                                                        <div class="col-md-6">
+                                                            <!-- Input -->
+                                                            <div class="js-form-message mb-2">
+                                                                <label class="form-label">
+                                                                    City
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <input type="text" id="town" maxlength="50" class="form-control" ng-model="MoreAddress.mcity" name="cityAddress1" placeholder="" aria-label="London" ng-required="diffaddress=='no'" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
+                                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.cityAddress1.$touched) && form.cityAddress1.$error.required">Please enter city</div>
+                                                            </div>
+                                                            <!-- End Input -->
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <!-- Input -->
+                                                            <div class="js-form-message mb-2">
+                                                                <label class="form-label">
+                                                                    Postcode/Zip
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <input type="text" maxlength="9" id="postcode" class="form-control" ng-model="MoreAddress.mpostcode" name="postcode1" placeholder="" ng-required="diffaddress=='no'" data-msg="Please enter a postcode or zip code." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <div class="invalid-feedback" ng-show="(form.$submitted || form.postcode1.$touched) && form.postcode1.$error.required">Please enter postcode</div>
+                                                            </div>
+                                                            <!-- End Input -->
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-12 box-shadow-1 mt-5 mb-5">
+                                                <div class="js-form-message border-bottom" style="padding:10px;margin-bottom:0px;">
+
+                                                    <label style="color:#333;">
+                                                        Is your Agreement contact the same as your main contact? *
+                                                    </label>
+                                                    <label class="radio-inline" ng-init="samecontact='yes'">
+                                                        <input type="radio" ng-model="samecontact" value="yes" ng-click="changefield('Buyer')" checked name="samecontact">Yes
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" ng-model="samecontact" value="no" ng-click="changefield('Approver')" name="samecontact">no
+                                                    </label>
+
+                                                </div>
+                                                <div class="js-form-message " ng-show="samecontact=='no'" style="padding:10px;margin-bottom:0px;">
+                                                    <label class="form-label">
+                                                        More Contacts
+                                                        <!--<button type="button" ng-click="addRow()" class="btn btn-link pull-right" style="padding:0px 5px!important;background:transparent;">Add More</button>-->
+                                                    </label>
+
+                                                    <hr />
+                                                </div>
+                                                <div ng-repeat="input in MoreContacts| limitTo:5 track by $index" ng-show="samecontact=='no'">
+                                                    <div class="w-100"></div>
+                                                    <div class="box-shadow-1">
+                                                        <div class="col-md-3">
+                                                            <!-- Input -->
+                                                            <div class="js-form-message mb-2">
+                                                                <label class="form-label">
+                                                                    First Name
+                                                                </label>
+                                                                <input type="text" maxlength="100" class="form-control" ng-model="input.cusername" name="CName" placeholder="First Name" />
+
+                                                            </div>
+                                                            <!-- End Input -->
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <!-- Input -->
+                                                            <div class="js-form-message mb-2">
+                                                                <label class="form-label">
+                                                                    Surname
+                                                                </label>
+                                                                <input type="text" maxlength="100" class="form-control" ng-model="input.csurname" name="CSName" placeholder="Surname" />
+
+                                                            </div>
+                                                            <!-- End Input -->
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <!-- Input -->
+                                                            <div class="js-form-message mb-2">
+                                                                <label class="form-label">
+                                                                    Position
+                                                                </label>
+                                                                <input type="text" maxlength="100" class="form-control" ng-model="input.cposition" name="CPosition" placeholder="Position">
+
+                                                            </div>
+                                                            <!-- End Input -->
+                                                        </div>
+                                                        <div class="w-100"></div>
+                                                        <div class="col-md-6">
+                                                            <!-- Input -->
+                                                            <div class="js-form-message mb-2">
+                                                                <label class="form-label">
+                                                                    Phone
+
+                                                                </label>
+                                                                <input type="text" maxlength="20" class="form-control" ng-model="input.cphone" name="CPhone" placeholder="Phone">
+
+                                                            </div>
+                                                            <!-- End Input -->
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <!-- Input -->
+                                                            <div class="js-form-message mb-2">
+                                                                <label class="form-label">
+                                                                    Email Address
+
+                                                                </label>
+                                                                <input type="text" maxlength="150" class="form-control" ng-model="input.cemailaddress" name="CEmail1" placeholder="Email address">
+
+                                                            </div>
+                                                            <!-- End Input -->
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <!--<button type="button" ng-click="deleteRow($index)" class="btn btn-link pull-right" style="padding:0px 5px!important;">Delete Data</button>-->
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <hr />
+                                                        </div>
+                                                        <div class="w-100"></div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row box-shadow-1 mt-5">
+
+                                        <div class="col-md-12 width-100">
+                                            <div class="js-form-message " style="padding:10px;margin-bottom:0px;">
+                                                <label class="form-label">
+                                                    Confirmation
+
+                                                </label>
+
+                                                <hr />
+                                            </div>
+
+                                            <div class="form-group d-flex align-items-center justify-content-between px-3 mb-5">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="offer" ng-model="User.subscribe" value="1" id="defaultCheck9" data-msg="Please agree terms and conditions." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                    <label class="form-check-label form-label" for="defaultCheck10">
+                                                        I wish to receive newsletters, offers and information from equipyourschool.co.uk
+
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group d-flex align-items-center justify-content-between px-3 mb-5">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="terms" value="" id="defaultCheck10" ng-model="terms" required="" data-msg="Please agree terms and conditions." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                    <label class="form-check-label form-label" for="defaultCheck10">
+                                                        By creating an account you agree to EYS <a href="/Leasing/TermsConditions" target="_blank" class="text-blue">Terms and Conditions </a>
+
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="invalid-feedback" ng-show="(form.$submitted || form.terms.$touched) && form.terms.$error.required">please tick this</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row" ng-show="form.$submitted && (!validuser)">
+                                    <div class="w-100"></div>
+
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger">
+                                            Please fill  all * mark information or fill correct information in the form.
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="w-100"></div>
+                                    <div class="col-md-12">
+                                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3">{{submitText}}</button>
+                                    </div>
+                                </div>
+                            </form>
+</div>
+
+                    </div>
+               
+            </div>
+            <!-- End Card -->
+        </div>
+        <div class="row" ng-show="IsLogedIn">
+            <div class="col-md-12">
+                <div class="alert alert-success text-center">
+                    <strong>Success</strong>
+                    Please check your email address and verify your account.<br/>
+                    <a href="/Leasing/" class="btn btn-primary">Continue to Shopping</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<!-- ========== END MAIN CONTENT ========== -->
+
+@section scripts{
+    <script type="text/javascript">
+        @*var brandid=0;
+        var branddata = @Html.Raw(Json.Encode(UsersDao.Getsschool()));
+        var ndata = $.map(branddata, function (item) {
+            brandid = 0;
+            $("input[name='mschoolid']").val(brandid);
+            return { label: item.mschoolname, value: item.mschoolid };
+        });
+        $(function () {
+            $(".mbrand").autocomplete({
+                source: ndata,
+                select: function (event, ui) {
+                    var id = ui.item.value;
+                    var name = ui.item.label;
+                    brandid = id;
+                    $("input[name='mschoolid']").val(brandid);
+                    $(".mschool").val(name);
+                    return false;
+                }
+            });
+        });*@
+        
+            app.controller('Registeration1Controller', ['$scope', '$http', '$rootScope', '$window', '$sce', '$cookies', function ($scope, $http, $rootScope, $window, $sce, $cookies, LoginService) {
+            $scope.isCheckoutPage = false;
+            $scope.loader = true;
+            $scope.cartdisable = true;
+            $rootScope.shoppingCart = [];
+            $scope.IsLogedIn = false;
+            $scope.IsError = false;
+            $scope.Message = '';
+            $scope.Submitted = false;
+            $scope.Session_Id = "";
+            $scope.IsRegisterFormValid = false;
+            $scope.IsClicked = false;
+            $scope.IsApprover = false;
+            $scope.countries = [];
+            $scope.states = [];
+            $scope.mcountry = "";
+            $scope.mstate = "";
+            $scope.validuser = false;
+            $scope.InValidEmail = {};
+                $scope.IsFormValid = false;
+                $scope.allAddress = {};
+            $scope.MoreContacts = [{
+                cusername: '',
+                csurname: '',
+                cposition: '',
+                cemailaddress: '',
+                cphone: '',
+                csurname: ''
+            }];
+            $scope.MoreAddress = {
+                maddress1: '',
+                maddress2: '',
+                mcity: '',
+                mcountry: '',
+                mpostcode: ''
+            };
+            if ($rootScope.muserid > 0) {
+                $scope.IsLogedIn = true;
+                $scope.loader = false;
+                $window.location.href = "/Leasing/";
+            }
+            else {
+                $scope.IsLogedIn = false;
+                $scope.loader = false;
+
+            }
+                $scope.tierOneData = [];
+                /*$scope.getLocation = function (val) {
+                    return $http.get('/api/AccountApi/GetSchoolByVal', {
+                        params: {
+                            val: val,
+                            sensor: false
+                        }
+                    }).then(function (response) {
+                        console.log(response);
+
+                        if (response.data == "empty") {
+                            $scope.User.mschoolid = "0";
+                        } else {
+
+                            return response.data.map(function (item) {
+                                return item;
+                            });
+                        } 
+                        
+                    });
+                };
+                */
+                $http.get('/api/AccountApi/GetSchool')
+                    .success(function (data) {
+                        angular.forEach(data, function (item) {
+                            $scope.tierOneData.push({ name: item.Name,label:item.Code });
+                            
+                        });
+                        
+                    });
+                $scope.updateschoolid = function () {
+                    $scope.User.mschoolid = 0;
+                }
+                $scope.onSelectSchool = function ($item, $model, $label) {
+                    $scope.$item = $item;
+                    $scope.$model = $model;
+                    $scope.$label = $label;
+                    $scope.User.morgname = $label;
+                    $scope.User.mschoolid = $item["label"];
+                    $http.get('/api/AccountApi/GetSchoolDetail?detailid=' + $item["label"])
+                        .success(function (data) {
+                            if (data != "empty") {
+                                $scope.User.maddress1 = data["Street"];
+                                $scope.User.maddress2 = data["Addressline3"];;
+                                $scope.User.mcity = data["Town"];
+                                $scope.User.mpostcode = data["Postcode"];
+                            } else {
+                                $scope.User.maddress1 = "";
+                                $scope.User.maddress2 = "";
+                                $scope.User.mcity = "";
+                                $scope.User.mpostcode = "";
+                            }
+                            
+                        });
+                    
+                };
+                //loadcountry();
+            jQuery("getaddress_dropdown").change(function () {
+                User.maddress1 = jQuery("#line1").val();
+                User.maddress2 = jQuery("#line2").val();
+                User.mcity = jQuery("#town").val();
+                User.mpostcode = jQuery("#postcode").val();
+                
+            });
+            $scope.addressess = [];
+            $scope.allAddress = [];
+            $scope.getaddbtntxt = "Find the address";
+            $scope.getaddressdisable = false;
+                $scope.getAddress = function (postcode) {
+                    var apikey = "gpVL4Uf-OECpRvzOjZnKWA33077";
+                    $scope.getaddressdisable = true;
+                    $scope.getaddbtntxt = "Loading..";
+                    $http.get("https://api.getaddress.io/find/" + postcode + "?api-key=" + apikey + "&expand=true&sort=true").success(function (data, status) {
+                        
+                        if (data != null) {
+                            console.log(data);
+                            $scope.User.mpostcode = data["postcode"];
+                            $scope.allAddress = data["addresses"];
+
+                            var i = 0;
+                            console.log($scope.allAddress);
+                            $scope.allAddress.forEach(function (obj) {
+                                
+                                var newobj = {
+                                    Code: i,
+                                    Name: jQuery.grep(obj.formatted_address, Boolean).join(", ")
+                                };
+                                $scope.addressess.push(newobj);
+                                i++;
+                            })
+
+
+
+                            //jQuery("#reg_postcode").val(data["postcode"]);
+                        }
+                        else {
+                            $scope.getaddbtntxt = "Find address";
+                            $scope.getaddressdisable = false;
+                        }
+                        $scope.getaddbtntxt = "Find the address";
+                        $scope.getaddressdisable = false;
+
+
+                    }).error(function (e) {
+                        $scope.getaddbtntxt = "Find the address";
+                        $scope.getaddressdisable = false;
+                    });
+            }
+            $scope.getSelectedAddress = function (id) {
+
+                console.log(id.Code);
+                var d = $scope.allAddress[id.Code];
+                $scope.User.maddress1 = d["line_1"];
+                $scope.User.maddress2 = d["line_2"];
+                $scope.User.mcity = d["town_or_city"];
+
+            }
+            /*function loadcountry() {
+                $http.get("api/AccountApi/GetCountries").success(function (data, status) {
+
+                    if (data == "empty") {
+                        $rootScope.countries = [];
+
+                    }
+                    else {
+                        $scope.countries = data;
+                        $scope.getStates($scope.countries[229]);
+                    }
+
+
+                }).error(function () {
+
+                    //alert('failed');
+
+                });
+            }*/
+            $scope.getStates = function (countryid) {
+                $scope.User.mcountry = countryid.Code;
+                $http.get("/api/AccountApi/GetStates?cnid=" + countryid.Code).success(function (data, status) {
+
+                    if (data == "empty") {
+                        $rootScope.states = [];
+
+                    }
+                    else {
+                        $scope.states = data;
+                    }
+
+
+                }).error(function () {
+
+                    //alert('failed');
+
+                });
+            }
+
+            $scope.ConfigureField = {
+                "Name": "Buyer"
+
+
+            }
+            $scope.addRow = function () {
+                $scope.MoreContacts.push({
+                    cusername: '',
+                    cposition: '',
+                    cemailaddress: '',
+                    cphone: ''
+                });
+            }
+            $scope.deleteRow = function (index) {
+                $scope.MoreContacts.splice(index, 1);
+            }
+            $scope.changefield = function (field) {
+                $scope.IsClicked = true;
+                $scope.User.musertype = field;
+                console.log(field);
+                if (field == 'Buyer') {
+
+                    $scope.ConfigureField = {
+                        "Name": "Approver"
+
+                    };
+                } else if (field == 'Approver') {
+                    $scope.ConfigureField = {
+                        "Name": "Buyer"
+
+                    };
+                }
+
+            }
+            $scope.cartbutton = function () {
+                $scope.cartdisable = false;
+            }
+
+
+
+
+            //$rootScope.shoppingCart.totalPrice = 0;
+            $scope.$watchGroup(['f1.$valid', 'reg.$valid', 'shoppingCart',  'form.$valid'], function (newVal) {
+                $scope.IsFormValid = newVal;
+                $scope.IsRegisterFormValid = newVal;
+                //$scope.getTotalPrice();
+
+                ///$scope.getTotalNoOfItems();
+                if ($rootScope.muserid == 0) {
+                    $scope.IsLogedIn = false;
+                    console.log("IsLogedIn " + $scope.IsLogedIn);
+                }
+
+            }, true);
+
+            $scope.submitText = "Register";
+            $scope.rsubmitted = false;
+            $scope.validuser = false;
+            $scope.User = {
+                museridemail: '',
+                maddress1: '',
+                maddress2: '',
+                mcity: '',
+                mcountry: '',
+                mlandmark: '',
+                maddresstype: '',
+                mpwd: '',
+                mname: '',
+                msname: '',
+                morgname: '',
+                mschoolid:0,
+                mphone: '',
+                manotherusername: '',
+                manotheruseremail: '',
+                maccountantemail: '',
+                musertype: '',
+                morecontacts: '',
+                mposition: '',
+                mpostcode: '',
+                msname: '',
+                subscribe:'',
+            };
+            $scope.UserAddress = {
+                maddress1: '',
+                maddress2: '',
+                mcity: '',
+                mcountry: '',
+                mlandmark: '',
+                maddresstype: '',
+
+            };
+            $scope.UserMore = {
+                mpwd: '',
+                mname: '',
+                morgname: '',
+                mphone: '',
+
+            };
+
+            $scope.checkuser = function (data, type) {
+                $http({
+
+                    method: "POST",
+
+                    url: "/User/Checkuser",
+
+                    data: { "userid": data }
+                }).success(function (data) {
+                    if (data["msg"] == "Success") {
+
+                        if ($scope.User.manotheruseremail != "" && $scope.User.museridemail == $scope.User.manotheruseremail) {
+                            $scope.validuser = false;
+                            $scope.InValidEmail[type] = true;
+                        }
+                        else if ($scope.User.maccountantemail != "" && ($scope.User.museridemail == $scope.User.maccountantemail)) {
+                            $scope.validuser = false;
+                            $scope.InValidEmail[type] = true;
+                        }
+                        else if ($scope.User.manotheruseremail != "" && ($scope.User.manotheruseremail == $scope.User.maccountantemail)) {
+                            $scope.validuser = false;
+                            $scope.InValidEmail[type] = true;
+                        }
+                        else {
+                            $scope.validuser = true;
+                            $scope.InValidEmail[type] = false;
+                        }
+                    }
+                    else {
+                        $scope.InValidEmail[type] = true;
+                        $scope.validuser = false;
+                    }
+                });
+            };
+
+                $scope.SaveData = function (isValid) {
+                    
+                if ($scope.submitText == 'Register') {
+                    $scope.rsubmitted = true;
+                    $scope.message = '';
+                    $scope.User.moreaddress = $scope.MoreAddress;
+                    if ($scope.MoreContacts.length > 0) {
+                        $scope.User.morecontacts = $scope.MoreContacts
+
+                    }
+                    else {
+                        $scope.User.morecontacts = [{
+                            cusername: '',
+                            cposition: '',
+                            cemailaddress: '',
+                            cphone: ''
+                        }];
+                    }
+
+                    if ($scope.validuser && isValid) {
+                        $scope.submitText = 'Please Wait...';
+                        //$scope.User = data;
+                        $http({
+
+                            method: "POST",
+
+                            url: "/User/SaveUser",
+
+                            data: $scope.User
+                        }).success(function (data) {
+                            if (data["msg"] == "Success") {
+                                $scope.IsLogedIn = true;
+                                //$rootScope.muserid = data["muid"];
+                                //$rootScope.musername = data["Data"].mname;
+                                //$rootScope.musertype = data["Data"].musertype;
+                                //$rootScope.IsUserLogedIn = true;
+                                //$scope.IsLogedIn = true;
+                                //$rootScope.savequote = 1;
+                                //var expireDate = new Date();
+                                //expireDate.setDate(expireDate.getDate() + 1);
+                                //$cookies.putObject('userdata', data["Data"], { 'expires': expireDate, 'path': '/' });
+
+                                //$scope.Message = "Successfully login done. Welcome " + data["Data"].mname;
+                                //toastr.success($scope.Message, "Success");
+                                //$window.location.href = "/Leasing/";
+
+                            }
+                            else {
+                                $scope.IsError = true;
+                                alert('Invalid Credential!');
+                            }
+
+                            $scope.user = null;
+
+                        }).error(function () {
+
+                            //alert('failed');
+
+                        })
+
+                    }
+                    else {
+                        jQuery('input.ng-invalid').first().focus();
+                        $scope.message = 'Please fill required fields value';
+                        $scope.rsubmitted = false;
+                    }
+                }
+            }
+            //Clear Form (reset)
+            function ClearForm() {
+                $scope.User = {};
+                $scope.reg.$setPristine(); //here f1 our form name
+                $scope.submitted = false;
+            }
+
+            /*************************Save Cart***************************/
+
+            $scope.SaveCart = function () {
+                $scope.Submitted = true;
+
+                var passdata = { "Product": $rootScope.shoppingCart, "muserid": $rootScope.muserid, "mquotetotal": $rootScope.shoppingCart.totalPrice };
+                $http.post("api/ProductApi/SaveQuote", passdata).success(function (data, status) {
+
+                    if (data == "Save") {
+                        $rootScope.shoppingCart = [];
+                        $cookies.remove("leasebasket", { path: '/' });
+                        alert("Your quotation generated successfully");
+                        $location.href = '/Leasing/';
+                        $scope.Message = "Successfully login done. Welcome " + data["Data"].mname;
+
+                    }
+                    else {
+                        $scope.IsError = true;
+                        alert('Invalid Credential!');
+                    }
+
+                    $scope.user = null;
+
+                }).error(function () {
+
+                   // alert('failed');
+
+                })
+
+                };
+                
+        }]);
+
+
+    </script>
+}
+

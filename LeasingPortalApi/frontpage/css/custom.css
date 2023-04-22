@@ -1,0 +1,275 @@
+.feature-eight-section .eight-feature-box {
+
+    height: 480px;
+}
+
+.eight-banner-section .eight-banner-content p {
+    font-size: 17px;
+ 
+}
+
+.eight-banner-section .eight-banner-content h1 {
+
+    font-size: 56px;
+   
+}
+
+.eisticky-menu-bg-overlay {
+    background-color: #43266b;
+}
+/*.site-logo img{
+    max-width: 100px;
+}*/
+
+.waveWrapperInner {
+    background: linear-gradient(to right, #43266b, #3f5bbd);
+}
+
+.eight-banner-section .eight-banner-content h1 {
+    font-size: 45px;
+}
+
+
+.main-header-eight .appheader-content .sign-up-btn-eight {
+
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.fa-power-off:before {
+    content: "\f011";
+    margin-right: 10px;
+}
+
+.eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(1) {
+ 
+    width: 196px;
+    
+}
+
+.main-header-eight .appheader-content .sign-up-btn-eight {
+    margin-left: 10px;
+}
+
+@media(max-width:991px){
+    .main-header-eight .appheader-content .sign-up-btn-eight{
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      margin-top: 5px;
+      margin-left: 0px;
+    }
+
+     .signupbtn{
+       margin-right: 5px!important;
+     } 
+    .main-header-eight .appheader-content .sign-up-btn-eight{
+      margin-right: 5px;
+      
+    }
+   
+  }
+  .mybtndiv{
+    padding: 45px 0px 25px 0px;
+  }
+  .mybtndiv a
+  {
+    height: 55px;
+color: #fff;
+width: 175px;
+line-height: 55px;
+text-align: center;
+border-radius: 50px;
+margin-right: 20px;
+border-top-right-radius: 0;
+background-color: #ff00d6;
+display: inline-block;
+font-size: 15px;
+font-weight: 700;
+font-family: "Open Sans", Helvetica, Arial, sans-serif;;
+display: inline-block;
+transition: 0.3s all ease-in-out;
+  }
+  .mybtndiv a:hover{
+    background-color: #009cff!important;
+border-top-right-radius: 50px!important;
+border-bottom-left-radius: 0px!important;
+  }
+  
+  .ei-footer-section {
+    padding-top: 10px;
+}
+
+.fa{
+  padding-top: 25px;
+}
+
+.feature-eight-section .eight-feature-box .feature-icon8 i{
+  font-weight: 600;
+}
+
+.cd-headline.clip .cd-words-wrapper{
+  top: 25px;
+}
+
+/* 
+
+@media screen and (min-width: 578px) and (max-width: 1440px){
+  .main-header-eight .appheader-content {
+    padding: 0 100px;
+}
+}
+
+@media screen and (min-width: 1441px){
+  .main-header-eight .appheader-content {
+    padding: 0 160px;
+}
+}
+
+@media (max-width: 991px){
+.main-header-eight .appheader-content .sign-up-btn-eight {
+    margin-right: 5px;
+    margin-top: 30px;
+}}
+
+@media screen and (max-width: 576){
+.main-header-eight .appheader-content {
+    padding: 0 40px;
+}} */
+
+@media screen and (max-width: 1440px){
+.main-header-eight .appheader-content {
+    padding:0;
+}}
+
+@media (max-width: 991px){
+  .main-header-eight .appheader-content .sign-up-btn-eight {
+      margin-top: 15px;
+  }}
+
+  .main-header-eight .appheader-content {
+    padding: 0;
+}
+
+.eight-banner-section {
+ 
+  padding: 170px 0px 112px;
+  
+}
+.feature-eight-section {
+    padding: 100px 0px 120px;
+}
+    .feature-eight-section .ei-feature-shape{
+        top:100px;
+    }
+    .ladyimg {
+        padding-right: 50px;
+        margin-top: -52px;
+        height: 430px;
+    }
+
+@media screen and (max-width: 480px) {
+  .eight-banner-section {
+    padding: 50px 0px 50px;
+}
+  .addbtn label{
+      display:none;
+  }
+}
+@media (min-width:423px) and (max-width: 767px){ 
+  .ladyimg img{
+    width: 300px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .eight-banner-section .eight-banner-content .ei-banner-mbl-mockup {
+ 
+    margin-top: 0px; 
+    top: -55px;
+    position: absolute;
+    left: 50px;
+}
+.eight-banner-section .eight-banner-content h1 {
+ 
+  padding-top: 120px;
+}
+}
+@media (min-width:768px) and (max-width: 991px){
+  .eight-banner-section .eight-banner-content .ei-banner-mbl-mockup {
+ 
+    margin-top: 0px; 
+    top: -55px;
+    position: absolute;
+    right: 0px;
+}
+
+
+
+
+.eight-banner-section .eight-banner-content h1 {
+ 
+  padding-top: 0px;
+}
+
+.ladyimg{
+  padding-right: 0px;
+  
+}
+.ladyimg img{
+  height: 61%;
+}
+}
+.ei-appdownload-section.sowhatclass {
+  padding: 50px 0px 50px;
+  z-index: 1;
+}
+
+@media screen and (max-width: 991px){
+  .whyselldivright{
+    position: absolute !important;
+    top:0;
+  }
+  .whyselldivleft{
+    margin-top: 100px;
+  }
+  .eight-service-section .eight-service-text {
+    padding: 50px 0px 0px 0;
+  }
+}
+
+.ei-footer-copyright .ei-copyright-menu {
+  
+  padding-right: 100px;
+}
+
+@media screen and (max-width:345px) {
+  .cd-words-wrapper{
+    font-size: 25px;
+  }
+}
+
+.ei-scrollup{
+  z-index: 999;
+}
+ 
+ /* date=19/11  change*/
+@media (min-width:345px) and (max-width: 400px) {
+  .ei-footer-section {
+  
+    padding-bottom: 170px !important; 
+}
+}
+
+
+@media (min-width: 400px) and (max-width: 480px) {
+  .ei-footer-section {
+  
+    padding-bottom: 130px !important; 
+}
+}
+.tawk-min-container .tawk-button-circle.tawk-button-large{
+    width:49px!important;
+    height:49px!important;
+}

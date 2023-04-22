@@ -1,0 +1,1616 @@
+﻿@{
+    var ngpattern = @"/^(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z/\d$@$!%*#?&]{8,20}$/";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title> EYS - UK's No. 1 Education and School Leasing Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="~/frontpage//img/fv.png" type="image/x-icon" />
+    <!-- <link rel="icon" href="~/frontpage//img/fv.png" type="image/x-icon" /> -->
+
+    <link rel="stylesheet" href="~/frontpage//css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/frontpage//css/animate.css" />
+    <link rel="stylesheet" href="~/frontpage//css/newfont.css" />
+    <link rel="stylesheet" href="~/frontpage//css/owl.carousel.css" />
+    <link rel="stylesheet" href="~/frontpage//css/fontawesome-all.css" />
+    <link rel="stylesheet" href="~/frontpage//css/swiper.css" />
+    <link rel="stylesheet" href="~/frontpage//css/jquery.bxslider.min.css" />
+    <link rel="stylesheet" href="~/frontpage//css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" href="~/frontpage//css/odometer-theme-default.css" />
+    <link rel="stylesheet" href="~/frontpage//css/flaticon.css" />
+    <link rel="stylesheet" href="~/frontpage//css/style.css" />
+    <link rel="stylesheet" href="~/frontpage//css/custom.css?v=1.0.1" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;display=swap" rel="stylesheet">
+    <style>
+        #m_login {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            position: relative;
+            overflow: hidden;
+            width: 768px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .m-login.m-login--5.m-login--signin .m-login__forget-password {
+            display: none;
+        }
+
+        .m-login.m-login--5.m-login--forget-password .m-login__forget-password {
+            display: block;
+        }
+
+        .m-login.m-login--5.m-login--forget-password .m-login__signin {
+            display: none;
+        }
+
+        .m-login.m-login--5.m-login--signin .m-login__signin {
+            display: block;
+        }
+
+        .m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__form {
+            margin: 2em auto;
+        }
+
+        .m-login.m-login--5 .m-login__wrapper-2 .m-login__contanier .m-login__account {
+            text-align: center;
+        }
+
+        .m-login.m-login--2 .m-login__wrapper {
+            padding-top: 1%;
+        }
+
+            .m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__logo {
+                margin-bottom: 2rem;
+            }
+
+        .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__head .m-login__title, .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__account .m-login__account-msg, .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__form .m-login__form-sub .m-link {
+            color: #fff;
+        }
+
+        .bordero {
+            border: 1px solid #333 !important;
+        }
+
+        .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__account .m-login__account-link {
+            color: #e4e4e4;
+        }
+
+            .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__account .m-login__account-link:hover {
+                color: #f4e439;
+            }
+
+
+        .m-login__wrapper-1-1 {
+            background-color: #fff;
+        }
+
+        .m-login__wrapper-1-1 {
+            background: #7e00ad;
+            /*background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+        background: linear-gradient(to right, #FF4B2B, #FF416C);*/
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 0 0;
+            color: #FFFFFF;
+        }
+
+        .m-login.m-login--5 .m-login__wrapper-2 .m-login__contanier .m-login__form .m-login__form-action {
+            margin: 1rem 0 1rem 0;
+            text-align: center;
+        }
+
+            .m-login.m-login--5 .m-login__wrapper-2 .m-login__contanier .m-login__form .m-login__form-action .btn {
+                display: inline-block;
+                text-align: center;
+                padding: 1.2rem 3rem;
+                margin-right: 2rem;
+            }
+
+        .btn-focus.m-btn--air, .btn-outline-focus.m-btn--air, .m-btn--gradient-from-focus.m-btn--air {
+            -webkit-box-shadow: 0 5px 10px 2px rgba(152,22,244,.19) !important;
+            box-shadow: 0 5px 10px 2px rgba(152,22,244,.19) !important;
+        }
+
+        .btn-focus {
+            color: #fff;
+            background-color: #9816f4;
+            border-color: #9816f4;
+        }
+
+        .bg-dark {
+            background-color: #343a40 !important;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            padding: .85rem 1.15rem;
+            font-size: 1rem;
+            line-height: 1.25;
+            border-radius: .25rem;
+            -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        }
+
+            .btn.btn-focus.active, .btn.btn-focus.focus, .btn.btn-focus:focus, .btn.btn-focus:hover:not(:disabled) {
+                color: #fff !important;
+            }
+
+        .m-link {
+            color: #716aca;
+        }
+
+        .m-link {
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .m-login.m-login--5 .m-login__wrapper-2 {
+            width: 100%;
+            display: block;
+        }
+
+        .m--align-right {
+            text-align: right;
+        }
+
+        .m-login.m-login--5 .m-login__wrapper-1 .m-login__wrapper-1-1, .m-login.m-login--5 .m-login__wrapper-2 .m-login__wrapper-1-2 {
+            display: block;
+            height: 100%;
+        }
+
+            .m-login.m-login--5 .m-login__wrapper-1 .m-login__wrapper-1-1 .m-login__contanier {
+                display: block;
+            }
+
+                .m-login.m-login--5 .m-login__wrapper-1 .m-login__wrapper-1-1 .m-login__contanier .m-login__content, .m-login.m-login--5 .m-login__wrapper-2 .m-login__wrapper-1-2 .m-login__contanier .m-login__content, .m-login.m-login--5 .m-login__wrapper-2 .m-login__contanier {
+                    width: 100%;
+                }
+
+
+        .m-login.m-login--5 .m-login__wrapper-2 {
+            padding-top: 0px;
+        }
+
+        input {
+            background-color: #eee !important;
+            border: none;
+            padding: 12px 15px !important;
+            margin: 8px 0 !important;
+        }
+
+        .m-header .m-header__top, .m-footer {
+            background: #4a0265;
+        }
+
+        .m-footer {
+            color: #fff;
+        }
+
+        .btn-outline-yellow {
+            background-color: #f4e439;
+            background-image: none;
+            border-color: #f4e439;
+            color: #000;
+            font-weight: 500;
+        }
+
+        @@media(max-width:900px) {
+            #m_login {
+                width: 100%;
+            }
+        }
+
+        .m-page-loader.m-page-loader--base {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1065;
+            display: none
+        }
+
+        .m-page--loading .m-page-loader.m-page-loader--base {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+
+        .m-page-loader.m-page-loader--base.m-page-loader--non-block {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            right: auto;
+            bottom: auto;
+            width: auto
+        }
+
+        .m-page--loading-non-block .m-page-loader.m-page-loader--base.m-page-loader--non-block {
+            display: inline-block
+        }
+
+        .m-page-loader.m-page-loader--base {
+            background: #fff;
+        }
+
+            .m-page-loader.m-page-loader--base.m-page-loader--non-block {
+                background: 0 0
+            }
+
+        .m-page-loader.m-page-loader--brand {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1052;
+            display: none
+        }
+
+        .m-page--loading .m-page-loader.m-page-loader--brand {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+
+        .m-page-loader.m-page-loader--brand.m-page-loader--non-block {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            right: auto;
+            bottom: auto;
+            width: auto
+        }
+
+        .m-page--loading-non-block .m-page-loader.m-page-loader--brand.m-page-loader--non-block {
+            display: inline-block
+        }
+
+        .m-page-loader.m-page-loader--brand {
+            background: #fff
+        }
+
+            .m-page-loader.m-page-loader--brand.m-page-loader--non-block {
+                background: 0 0
+            }
+
+        .m-blockui-hide {
+            background: transparent !important;
+            box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+        }
+
+        .m-blockui {
+            border-radius: 4px;
+            display: table;
+            table-layout: fixed
+        }
+
+            .m-blockui > span {
+                display: table-cell;
+                vertical-align: middle;
+                padding: 8px 15px;
+                font-size: 1rem;
+                font-weight: 400
+            }
+
+                .m-blockui > span > .m-loader,
+                .m-blockui > span > .m-spinner {
+                    margin-right: 10px
+                }
+
+        .m-blockui {
+            background: #fff;
+            -webkit-box-shadow: 0 1px 15px 1px rgba(69,65,78,.1);
+            box-shadow: 0 1px 15px 1px rgba(69,65,78,.1)
+        }
+
+            .m-blockui.m-blockui-no-shadow {
+                -webkit-box-shadow: none;
+                box-shadow: none
+            }
+
+            .m-blockui > span {
+                color: #6f727d
+            }
+
+            .m-blockui.m-blockui--skin-dark {
+                background: #2c2e3e;
+                -webkit-box-shadow: 0 1px 15px 1px rgba(69,65,78,.5);
+                box-shadow: 0 1px 15px 1px rgba(69,65,78,.5)
+            }
+
+                .m-blockui.m-blockui--skin-dark.m-blockui-no-shadow {
+                    -webkit-box-shadow: none;
+                    box-shadow: none
+                }
+
+                .m-blockui.m-blockui--skin-dark > span {
+                    color: #9093ac
+                }
+
+        .footer-social-icon.whatsapp li a {
+            background-color: #009900;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            padding: 7px 16px 7px 12px;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 100px;
+            z-index: 1;
+            color: white;
+            right: 35px;
+        }
+
+            .footer-social-icon.whatsapp li a .la {
+                font-size: 1.3em;
+            }
+
+        .m-input-icon {
+            position: relative;
+            padding: 0;
+            width: 100%;
+        }
+
+            .m-input-icon > .m-input-icon__icon.m-input-icon__icon--right {
+                right: 0;
+            }
+
+            .m-input-icon > .m-input-icon__icon {
+                position: absolute;
+                height: 100%;
+                display: inline-block;
+                text-align: center;
+                top: 0;
+                width: 3.2rem;
+            }
+
+        .dropdown-menu {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
+        }
+
+        .dropdown-menu {
+            border-radius: 0;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.28);
+            border-color: transparent;
+            min-width: 200px;
+            border-bottom-left-radius: 0.5em;
+            border-bottom-right-radius: 0.5em;
+        }
+
+            .dropdown-menu > li > a:hover, .mss .dropdown-menu > li.active > a {
+                background-color: #f8f9fa;
+            }
+
+            .dropdown-menu > li > a {
+                display: block;
+                width: 100%;
+                padding: 0.25rem 1.5rem;
+                clear: both;
+                font-weight: 400;
+                color: #212529;
+                text-align: inherit;
+                white-space: nowrap;
+                background-color: transparent;
+                border: 0;
+            }
+
+        .btn:disabled {
+            opacity: 0.65;
+            background: #b3b3b3;
+            color: #000;
+        }
+
+        .invalid-feedback {
+            display: block;
+            margin-left: 10px;
+        }
+
+        input {
+            margin: 0 0 !important;
+        }
+
+        @@media(max-width:767px) {
+            .ladyimg {
+                display: none;
+            }
+        }
+    </style>
+    <style>
+        #tickcookie {
+            display: block;
+            position: fixed;
+            min-width: 100%;
+            height: auto;
+            z-index: 1064;
+            font-size: 13px;
+            line-height: 20px;
+            left: 0;
+            text-align: center;
+            bottom: 0;
+        }
+
+        .cookie-notice-container {
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        #tickcookie .cn-button {
+            margin-left: 10px;
+        }
+
+        .cn-button.bootstrap {
+            font-family: sans-serif;
+            display: inline-block;
+            *display: inline;
+            padding: 4px 12px;
+            margin-right: .3em;
+            margin-bottom: 0;
+            *margin-left: .3em;
+            line-height: 20px;
+            color: #333;
+            text-align: center;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, .75);
+            font-style: normal;
+            vertical-align: middle;
+            cursor: pointer;
+            color: #fff;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+            background-color: #006dcc;
+            *background-color: #04c;
+            background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+            background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+            background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+            background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+            background-repeat: repeat-x;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #04c #04c #002a80;
+            border-color: rgba(0, 0, 0, .1) rgba(0, 0, 0, .1) rgba(0, 0, 0, .25);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .2) inset, 0 1px 2px rgba(0, 0, 0, .05);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+            filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+            padding: 2px 10px;
+            font-size: 12px;
+            text-decoration: none;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body ng-app="MyApp" class="app-eight-home" data-spy="scroll" data-target=".navigation-eight" data-offset="80">
+    <div class="m-page-loader m-page-loader--base">
+        <div class="m-blockui" style="top:50%;left:45%;">
+            <span id="loadtext">Synchronising with back office...</span>
+            <span><div class="m-loader m-loader--brand"></div></span>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myThankyouModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                    <section id="feature-eight" class="feature-eight-section position-relative" style="padding:0px 0px 50px;">
+                        <div class="container">
+                            <div class="eight-section-title appeight-headline pera-content text-center">
+                                <span class="">
+                                    <i class="fa fa-check-circle" style="background: none; font-size: 25px; color: #43266b"></i>
+
+
+                                </span>
+                                <h2>Thank you for registering!</h2>
+                                <p>
+                                    It's almost time for your school to start saving time and money.<br /><br />
+                                    Keep your eyes peeled for further information on your exclusive early access. You won't want to miss it!
+                                </p>
+                            </div>
+                            <!-- /title -->
+
+
+
+
+                        </div>
+
+                    </section>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- preloader - start -->
+    <div id="preloader" class="ei-preloader"></div>
+    <div class="ei-up">
+        <a href="#" id="scrollup" class="ei-scrollup text-center"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <!-- Start of header section
+          ============================================= -->
+    <header id="header-eight" class="main-header-eight">
+        <div class="container">
+            <div class="appheader-content">
+                <div class="site-logo float-left">
+                    <a href="#"><img src="/frontpage/img/app-landing/logo/logo1.png" alt="" /></a>
+                </div>
+                <nav class="navigation-eight ul-li saasio_one_click">
+
+                </nav>
+                <div class="sign-up-btn-eight text-center float-right clearfix signupbtn btnddesk">
+                    <a href="javascript:" class="register">Register</a>
+                </div>
+                <!-- <div class="sign-up-btn-eight text-center float-right clearfix signinbtn ">
+                    <a href="javascript:;" onclick="OpenLoginModal()">Sign In</a>
+                </div> -->
+            </div>
+        </div>
+        <!-- /desktop-menu -->
+        <!-- <div class="appi-ei-mobile_menu relative-position">
+          <div class="appi-ei-mobile_menu_button appi-ei-open_mobile_menu">
+            <i class="fas fa-bars"></i>
+          </div>
+          <div class="appi-ei-mobile_menu_wrap">
+            <div class="mobile_menu_overlay appi-ei-open_mobile_menu"></div>
+            <div class="appi-ei-mobile_menu_content">
+              <div class="appi-ei-mobile_menu_close appi-ei-open_mobile_menu">
+                <i class="far fa-times-circle"></i>
+              </div>
+              <div class="m-brand-logo text-center eys">
+                <img src="~/frontpage//img/app-landing/logo/f-logo.png" alt="" />
+              </div>
+              <nav class="
+                    appi-ei-mobile-main-navigation
+                    saasio_one_click
+                    clearfix
+                    ul-li
+                  ">
+                <ul id="main-nav" class="navbar-nav text-capitalize clearfix">
+                  <li><a class="nav-link" href="#eight-banner">Home</a></li>
+                  <li><a class="nav-link" href="#feature-eight">Features</a></li>
+                  <li><a class="nav-link" href="#eight-service">Showcase</a></li>
+                  <li><a class="nav-link" href="#ei-team">Team</a></li>
+                  <li><a class="nav-link" href="#ei-faq">FAQ</a></li>
+                  <li>
+                    <a class="nav-link" href="#ei-screenshots">Screenshots</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div> -->
+        <!-- /mobile-menu -->
+    </header>
+    <!-- End of header section
+          ============================================= -->
+    <!-- Start of Banner section
+          ============================================= -->
+    <section id="eight-banner" class="eight-banner-section position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="eight-banner-content">
+                        <div class="banner-content-box appeight-headline pera-content">
+                            <h1 class="cd-headline clip is-full-width">
+                                The ultimate<br /> procurement tool<br /> for education equipment
+                                <!--<span class="cd-words-wrapper">
+                                    <b class="is-visible">it Needs!</b>
+                                    <b>it Wants!</b>
+                                    <b>it Deserves!</b>
+                                </span>-->
+                            </h1>
+                            <P>
+                                Guaranteed to save
+                                you time and money
+                            </P>
+                            <div class="ei-banner-btn">
+                                <a href="javascript:;" class="register">Register Here</a>
+                            </div>
+                        </div>
+                        <div class="ei-banner-mbl-mockup wow fadeInRight ladyimg" data-wow-delay="600ms" data-wow-duration="1500ms">
+                            <img src="~/frontpage/img/landing_girl.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="waveWrapper waveAnimation">
+            <div class="waveWrapperInner bgTop">
+                <div class="wave waveTop" style="display:none;
+              background-image: url('/frontpage/img/app-landing/shape/b-shapeup.png');
+            "></div>
+            </div>
+            <div class="waveWrapperInner bgMiddle">
+                <div class="wave waveMiddle" style="display: none; background-image: url('/frontpage/img/app-landing/shape/b-shapemiddle.png'); "></div>
+            </div>
+            <div class="waveWrapperInner bgBottom">
+                <div class="wave waveBottom" style="display: none; background-image: url('/frontpage/img/app-landing/shape/b-shapemiddle.png'); "></div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Banner section
+          ============================================= -->
+    <!-- Start of Featured  section
+          ============================================= -->
+    <section id="feature-eight" class="feature-eight-section position-relative">
+        <div class="container">
+            <div class="eight-section-title appeight-headline pera-content text-center">
+                <span class="eg-title-tag">
+                    Equip Your School
+                    <i class="square-shape"><i></i><i></i> <i></i> <i></i> </i>
+                </span>
+                <h2>How easy is it to use?</h2>
+                <p>
+                    For the first time in education history, schools can now compare and order education equipment in no time, all at the click of a button. From equipment for classrooms and the school kitchen right through to the playground and D&T workshops, EYS brings
+                    you all the manufacturers of education equipment with education exclusive pricing under one roof.
+                </p>
+            </div>
+            <!-- /title -->
+
+
+            <div class="eight-feature-content" id="registrationdiv">
+                <div class="row justify-content-md-center">
+                    <div class="col-lg-3 col-md-12 wow fadeFromUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+
+                    </div>
+                    <div class="col-lg-6 col-md-12 wow fadeFromUp" data-wow-delay="300ms" data-wow-duration="1500ms" ng-controller="Registeration1Controller">
+                        <form class="rform js-validate" name="form" ng-submit="SaveData(form.$valid)" novalidate>
+
+                            <div class="pb-7 mb-7">
+
+
+                                <div class="row box-shadow-1 pt-1 pb-1">
+                                    <!-- Title -->
+                                    <div class="col-md-12">
+                                        <div class="border-bottom border-color-1 mb-5">
+
+                                            <h3 class="section-title mb-0 pb-2">Register Your School / Trust</h3>
+                                        </div>
+                                    </div>
+                                    <!-- End Title -->
+                                    <!-- Billing Form -->
+                                    <div class="col-md-12">
+                                        <p style="color:#ae0404">All fields mark (*) are compulsory</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="js-form-message mb-6">
+                                            <label class="form-label">
+                                                Enter Postcode
+
+                                            </label>
+                                            <div id="postcode_lookup1" ng-init="postcode='';selectedAddress=''">
+                                                <input type="text" id="getaddress_input" placeholder="Enter your Postcode" ng-model="User.mpostcode" class="form-control postcode-autocomplete" name="getaddress_input" autocomplete="off">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 addbtn">
+                                        <label class="form-label">
+                                            &nbsp;
+
+                                        </label>
+
+                                        <div class="js-form-message mb-6 pt-2">
+                                            <button id="getaddress_button" type="button" class="btn btn-primary " ng-click="getAddress(User.mpostcode)" ng-disabled="getaddressdisable">{{getaddbtntxt}}</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" ng-show="addressess.length>0">
+                                        <div class="js-form-message mb-6">
+                                            <select id="getaddress_dropdown" ng-options="address as address.Name for address in addressess track by address.Code" class="form-control js-select selectpicker dropdown-select" ng-model="selectedAddress" ng-change="getSelectedAddress(selectedAddress)" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
+                                                    data-live-search="true"
+                                                    data-style="form-control border-color-1 font-weight-normal">
+                                                <option value="">Select address</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <!-- Input -->
+                                        <div class="js-form-message mb-6 mss">
+                                            <label class="form-label">
+                                                School / Trust Name
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <!--<input type="hidden" name="mschoolid" class="form-control m-input">-->
+                                            <input type="text" autocomplete="off" typeahead-show-hint="true" typeahead-min-length="0" uib-typeahead="tierOne as tierOne.name for tierOne in tierOneData | filter:$viewValue | limitTo:8" typeahead-on-select="onSelectSchool($item, $model, $label)" typeahead-no-results="User.mschoolid=0" class="form-control mschool" ng-model="User.morgname" name="companyName" id="schoolname" placeholder="School Name" aria-label="Company Name" data-msg="Please enter a company name." validate-on="blur" required data-error-class="u-has-error" data-success-class="u-has-success">
+                                            <!--<input type="text" autocomplete="off" uib-typeahead="address as address.Name for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-on-select="onSelectSchool($item, $model, $label)" class="form-control mschool" ng-model="User.morgname" name="companyName" id="schoolname" placeholder="School Name" aria-label="Company Name" data-msg="Please enter a company name." validate-on="blur" required data-error-class="u-has-error" data-success-class="u-has-success">-->
+                                            <div class="invalid-feedback" ng-show="(form.$submitted || form.companyName.$touched) && form.companyName.$error.required">Please enter company name</div>
+
+                                        </div>
+
+                                        <!-- End Input -->
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Input -->
+                                        <div class="js-form-message mb-6">
+                                            <label class="form-label">
+                                                First Name
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" maxlength="100" class="form-control" ng-model="User.mname" name="Name" placeholder="First Name" aria-label="Wayley" required="" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                            <div class="invalid-feedback" ng-show="(form.$submitted || form.Name.$touched) && form.Name.$error.required">Please enter first name</div>
+                                        </div>
+                                        <!-- End Input -->
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Input -->
+                                        <div class="js-form-message mb-6">
+                                            <label class="form-label">
+                                                Surname
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" maxlength="100" class="form-control" ng-model="User.msname" name="SName" placeholder="Surname" aria-label="Wayley" required="" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                            <div class="invalid-feedback" ng-show="(form.$submitted || form.SName.$touched) && form.SName.$error.required">Please enter surname</div>
+                                        </div>
+                                        <!-- End Input -->
+                                    </div>
+
+                                    <div class="w-100"></div>
+                                    <div class="col-md-12">
+                                        <!-- Input -->
+                                        <div class="js-form-message mb-6">
+                                            <label class="form-label">
+                                                Job Title
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" maxlength="100" class="form-control" ng-model="User.mposition" name="Position" placeholder="Position" aria-label="Wayley" required="" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                            <div class="invalid-feedback" ng-show="(form.$submitted || form.Position.$touched) && form.Position.$error.required">Please enter position</div>
+                                        </div>
+                                        <!-- End Input -->
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <!-- Input -->
+                                        <div class="js-form-message mb-6">
+                                            <label class="form-label">
+                                                Contact Number
+
+                                            </label>
+                                            <input type="text" maxlength="20" class="form-control" ng-model="User.mphone" name="Phone" placeholder="Phone" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+
+                                        </div>
+                                        <!-- End Input -->
+                                    </div>
+                                    <div class="w-100"></div>
+
+                                    <div class="col-md-12">
+                                        <!-- Input -->
+                                        <div class="js-form-message mb-6">
+                                            <label class="form-label">
+                                                Your email address at School / Trust
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="email" maxlength="150" class="form-control" ng-model="User.museridemail" ng-change="checkuser(User.museridemail,'0')" name="emailA" placeholder="please enter email address" aria-label="Email Address" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                            <div class="invalid-feedback" ng-show="(form.$submitted || form.emailA.$touched)">
+                                                <span ng-show="form.emailA.$error.required">Please enter your email address</span>
+                                                <span ng-show="form.emailA.$error.email">Please enter valid email</span>
+                                                <span ng-show="InValidEmail['0']">Email is already registered</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Input -->
+                                    </div>
+
+
+
+                                </div>
+                                <div class="row" ng-show="form.$submitted && (!validuser)">
+                                    <div class="w-100"></div>
+
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger">
+                                            Please fill  all * mark information or fill correct information in the form.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" ng-show="(showmsg)">
+                                    <div class="w-100"></div>
+
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success">
+                                            {{message}}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="w-100"></div>
+                                    <div class="col-md-12">
+                                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary btn-block btn-pill font-size-20 mb-3 py-3">{{submitText}}</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                    <div class="col-lg-3 col-md-12 wow fadeFromUp" data-wow-delay="900ms" data-wow-duration="1500ms">
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="ei-feature-shape">
+            <img src="/frontpage/img/app-landing/shape/f-shape1.png" alt="" />
+        </div>
+    </section>
+    <!-- End of Featured section
+          ============================================= -->
+    <!-- Start of service  section
+          ============================================= -->
+    <section id="eight-service" class="eight-service-section position-relative">
+        <div class="container">
+            <div class="eight-service-slide clearfix wow fadeFromLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+                <div class="ei-service-slide-btn ul-li-block clearfix">
+                    <div class="banner-pager clearfix" id="banner-pager">
+                        <a class="pager" data-slide-index="0">
+                            <div class="
+                    ei-service-icon-text
+                    text-right
+                    appeight-headline
+                    pera-content
+                  ">
+                                <div class="ei-service-icon float-right text-center">
+                                    <i class="fa fa-briefcase"> <span class="ei-icon-bg"></span> </i>
+                                </div>
+                                <div class="ei-service-text">
+                                    <h3>3 Quotes</h3>
+                                    <p>
+                                        Compare over 12,000 products and get 3 independent quotes at the click of a button
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="pager" data-slide-index="1">
+                            <div class="
+                    ei-service-icon-text
+                    text-right
+                    appeight-headline
+                    pera-content
+                  ">
+                                <div class="ei-service-icon float-right text-center">
+                                    <i class="fa fa-life-ring"></i>
+                                </div>
+                                <div class="ei-service-text">
+                                    <h3>Saves Time and Money</h3>
+                                    <p>
+                                        The only place where you’ll find all the manufacturers of education equipment together under one roof
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="pager" data-slide-index="2">
+                            <div class="
+                    ei-service-icon-text
+                    text-right
+                    appeight-headline
+                    pera-content
+                  ">
+                                <div class="ei-service-icon float-right text-center">
+                                    <i class="fa fa-credit-card"></i>
+                                </div>
+                                <div class="ei-service-text">
+                                    <h3>Education Pricing</h3>
+                                    <p>
+                                        Discounted equipment prices exclusive for education from technology through to playground equipment
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="
+            eight-service-text
+            position-relative
+            appeight-headline
+            wow
+            fadeFromRight
+          " data-wow-delay="300ms" data-wow-duration="1500ms">
+
+                <h2>Why use EYS?</h2>
+            </div>
+        </div>
+        <div class="s-shape-bg1" data-parallax='{"x" : -70}'>
+            <img src="/frontpage/img/app-landing/shape/s-shape3.png" alt="" />
+        </div>
+        <div class="s-shape-bg2 text-center">
+            <img src="/frontpage/img/app-landing/shape/s-shape4.png" alt="" />
+        </div>
+    </section>
+    <!-- End of service  section
+          ============================================= -->
+    <!-- Start of App Download  section
+          ============================================= -->
+    <section id="ei-appdownload" class="ei-appdownload-section position-relative" data-background="../frontpage//img/app-landing/background/appbg1.png">
+        <div class="container">
+            <div class="ei-appdownload-content">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ei-app-mockup-img wow fadeFromRight" data-wow-delay="300ms" data-wow-duration="1500ms">
+                            <!--<img src="/frontpage/img/app-landing/sowhat.jpg" alt="" />-->
+                            <video style="width:100%;height:auto;" controls>
+                                <source src="~/Content/EYSMarketing.mp4" type="video/mp4">
+                                <source src="~/Content/EYSMarketing.ogg" type="video/ogg">
+
+                            </video>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ei-app-down-text wow fadeFromLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
+                            <div class=" eight-section-title appeight-headline pera-content text-left">
+                                <span class="eg-title-tag">
+                                    So what are you waiting for?<i class="square-shape"><i></i><i></i><i></i><i></i></i>
+                                </span>
+                                <h2>
+                                    Start saving time and money for your school now!
+                                </h2>
+                            </div>
+                            <div class="eight-banner-content signfree">
+                                <div class="banner-content-box appeight-headline">
+                                    <div class="ei-banner-btn mybtndiv">
+                                        <a href="javascript:;" class="register">Register Here</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ei-appdownloaad-shape app-shape1" data-parallax='{"y" : -100}'>
+            <img src="/frontpage/img/app-landing/background/apps1.png" alt="" />
+        </div>
+        <div class="ei-appdownloaad-shape app-shape2" data-parallax='{"x" : -120}'>
+            <img src="/frontpage/img/app-landing/background/apps2.png" alt="" />
+        </div>
+        <div class="ei-appdownloaad-shape app-shape3" data-parallax='{"y" : -100}'>
+            <img src="/frontpage/img/app-landing/background/apps3.png" alt="" />
+        </div>
+    </section>
+    <!-- End of App Download section
+          ============================================= -->
+    <!-- Start of Footer  section
+          ============================================= -->
+    <section id="ei-footer" class="ei-footer-section position-relative">
+
+        <div class="ei-footer-copyright">
+            <div class="container">
+                <div class="ei-footer-copyright-content">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="ei-copyright-text">
+                                <p>All Rights Reserved</p>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="ei-copyright-menu">
+                                <!--<a href="#">Help</a>-->
+                                <a href="~/RegisterNow/TermsConditions" class="m-nav__link" target="_blank">Terms & Conditions </a>
+                                <a href="~/RegisterNow/PrivacyPolicy" class="m-nav__link" target="_blank">Privacy </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div  ng-controller="CookieController">
+        <div id="tickcookie" role="banner" ng-cloak ng-show="cookienone" class="cn-bottom bootstrap" style="color: #fff; background-color: #022b69;">
+            <div class="cookie-notice-container">
+                <span id="cn-notice-text">We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</span>
+                <a href="#" id="tick-accept-cookie" ng-click="acceptCookie()" data-cookie-set="accept" class="tick-set-cookie cn-button bootstrap button">Ok</a>
+            </div>
+
+        </div>
+    </div>
+    <!-- End of Footer  section
+          ============================================= -->
+    <script src="~/frontpage//js/jquery.js"></script>
+    <script src="~/frontpage//js/popper.min.js"></script>
+    <script src="~/frontpage//js/bootstrap.min.js"></script>
+    <script src="~/frontpage//js/appear.js"></script>
+    <script src="~/frontpage//js/owl.js"></script>
+    <script src="~/frontpage//js/wow.min.js"></script>
+    <script src="~/frontpage//js/aos.js"></script>
+    <script src="~/frontpage//js/slick.js"></script>
+    <script src="~/frontpage//js/pagenav.js"></script>
+    <script src="~/frontpage//js/odometer.js"></script>
+    <script src="~/frontpage//js/bxslider.js"></script>
+    <script src="~/frontpage//js/jquery.barfiller.js"></script>
+    <script src="~/frontpage//js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/frontpage//js/parallax-scroll.js"></script>
+    <script src="~/frontpage//js/swiper.min.js"></script>
+    <script src="~/frontpage//js/typer-new.js"></script>
+    <script src="~/frontpage//js/script.js"></script>
+    <script src="~/Content/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+    <script src="~/Content/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Content/jquery.cookie.min.js"></script>
+    <script src="~/Content/angular.min.js"></script>
+    <script src="~/Content/angular-route.min.js"></script>
+    <script src="~/Content/angular-animate.min.js"></script>
+
+    <script src="~/Content/angular-sanitize.js"></script>
+    <script src="~/Content/angular-cookies.min.js"></script>
+    <script src="~/Content/underscore-min.js"></script>
+    <script src="~/Content/js/angular-filter.min.js"></script>
+    <script src="~/Content/angular-file-upload.js"></script>
+    <script src="~/Content/ng-infinite-scrolle.min.js"></script>
+    <script src="~/Content/lease-term.js?v=1.0.0"></script>
+    <script src="~/Content/js/jspdf.min.js"></script>
+    <script src="~/Content/js/html2canvas.js"></script>
+    <script data-require="angular-ui-bootstrap@0.3.0" data-semver="0.3.0" src="~/Content/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Script-->
+    <!--End of Tawk.to Script-->
+    <!--End of Tawk.to Script-->
+    <script>
+
+    </script>
+    <script type="text/javascript">
+
+        $(".register").click(function () {
+            $('html, body').animate({
+                scrollTop: $("#registrationdiv").offset().top - 50
+            }, 1000);
+        });
+        var app = angular.module('MyApp', ['ngSanitize', 'ngRoute', 'ngCookies', 'angular.filter', 'angularFileUpload', 'leasetermjs', 'infinite-scroll', 'ui.bootstrap']).run(['$anchorScroll', '$rootScope', function ($anchorScroll, $rootScope) {
+            $rootScope.loader = false;
+
+        }])
+        app.controller('CookieController', ['$rootScope', '$scope', '$http', '$cookies', '$window',
+            function ($rootScope, $scope, $http, $cookies, $window, LoginService) {
+                $scope.cookienone = false;
+                if (angular.isUndefined($cookies.get('cookienotice'))) {
+                    $scope.cookienone = true;
+                    jQuery(".single-product .single_add_to_cart_button").addClass("cookiemsg");
+                }
+                $scope.acceptCookie = function () {
+                    var expireDate = new Date();
+                    expireDate.setDate(expireDate.getDate() + 365);
+                    var c = {
+                        "cookieaccept": 1
+                    }
+                    $cookies.putObject('cookienotice', c, { 'expires': expireDate, 'path': '/' });
+                    jQuery(".single-product .single_add_to_cart_button").removeClass("cookiemsg");
+                    $scope.cookienone = false;
+                }
+
+            }
+        ]);
+        app.controller('Registeration1Controller', ['$scope', '$http', '$rootScope', '$window', '$sce', '$cookies', function ($scope, $http, $rootScope, $window, $sce, $cookies, LoginService) {
+            $scope.isCheckoutPage = false;
+            $scope.loader = true;
+            $scope.cartdisable = true;
+            $rootScope.shoppingCart = [];
+            $scope.IsLogedIn = false;
+            $scope.IsError = false;
+            $scope.Message = '';
+            $scope.Submitted = false;
+            $scope.Session_Id = "";
+            $scope.IsRegisterFormValid = false;
+            $scope.IsClicked = false;
+            $scope.IsApprover = false;
+            $scope.countries = [];
+            $scope.states = [];
+            $scope.mcountry = "";
+            $scope.mstate = "";
+            $scope.validuser = false;
+            $scope.InValidEmail = {};
+            $scope.IsFormValid = false;
+            $scope.allAddress = {};
+            $scope.message = "";
+            $scope.showmsg = false;
+            $scope.MoreContacts = [{
+                cusername: '',
+                csurname: '',
+                cposition: '',
+                cemailaddress: '',
+                cphone: '',
+                csurname: ''
+            }];
+            $scope.MoreAddress = {
+                maddress1: '',
+                maddress2: '',
+                mcity: '',
+                mcountry: '',
+                mpostcode: ''
+            };
+            $scope.tierOneData = [];
+            /*$http.get('/api/AccountApi/GetSchool')
+                .success(function (data) {
+                    angular.forEach(data, function (item) {
+                        $scope.tierOneData.push({ name: item.Name, label: item.Code });
+
+                    });
+
+                });
+                */
+            $scope.updateschoolid = function () {
+                $scope.User.mschoolid = 0;
+            }
+            $scope.onSelectSchool = function ($item, $model, $label) {
+                $scope.$item = $item;
+                $scope.$model = $model;
+                $scope.$label = $label;
+                $scope.User.morgname = $label;
+                $scope.User.mschoolid = $item["label"];
+                $http.get('/api/AccountApi/GetSchoolDetail?detailid=' + $item["label"])
+                    .success(function (data) {
+                        if (data != "empty") {
+                            $scope.User.maddress1 = data["Street"];
+                            $scope.User.maddress2 = data["Addressline3"];;
+                            $scope.User.mcity = data["Town"];
+                            //$scope.User.mpostcode = data["Postcode"];
+                        } else {
+                            $scope.User.maddress1 = "";
+                            $scope.User.maddress2 = "";
+                            $scope.User.mcity = "";
+                            $scope.User.mpostcode = "";
+                        }
+
+                    });
+
+            };
+            jQuery("getaddress_dropdown").change(function () {
+                User.mpostcode = jQuery("#postcode").val();
+
+            });
+            $scope.addressess = [];
+            $scope.allAddress = [];
+            $scope.getaddbtntxt = "Find School / Trust";
+            $scope.getaddressdisable = false;
+            $scope.getAddress = function (postcode) {
+                if (postcode != null && postcode != "") {
+                    $scope.getaddressdisable = true;
+                    $scope.getaddbtntxt = "Loading..";
+                    //$http.get('/api/AccountApi/GetSchoolDetailByPostcode?detailid=' + postcode)
+                    $scope.tierOneData = [];
+                    $http.get('/api/AccountApi/GetSchoolByPostcode?detailid=' + postcode)
+                        .success(function (data) {
+
+
+                            //.success(function (data) {
+                            if (data != "empty") {
+                                $scope.User.morgname = "";
+                                if (data.length == 1) {
+                                    console.log(data);
+                                    $scope.User.maddress1 = data["Street"];
+                                    $scope.User.maddress2 = data["Addressline3"];;
+                                    $scope.User.mcity = data["Town"];
+                                    //$scope.User.mpostcode = data["Postcode"];
+                                    $scope.User.morgname = data[0]["Name"];
+
+                                } else {
+                                    angular.forEach(data, function (item) {
+                                        $scope.tierOneData.push({ name: item.Name, label: item.Code });
+
+                                    });
+                                }
+
+                            } else {
+                                $scope.User.maddress1 = "";
+                                $scope.User.maddress2 = "";
+                                $scope.User.mcity = "";
+                                //$scope.User.mpostcode = "";
+                                //$scope.User.morgname = "";
+                            }
+                            $scope.getaddbtntxt = "Find School / Trust";
+                            $scope.getaddressdisable = false;
+
+                        }).error(function (e) {
+                            $scope.getaddbtntxt = "Find School / Trust";
+                            $scope.getaddressdisable = false;
+                        });
+
+                } else {
+                    $scope.getaddbtntxt = "Find School / Trust";
+                    $scope.getaddressdisable = false;
+                }
+                /*var apikey = "gpVL4Uf-OECpRvzOjZnKWA33077";
+                $scope.getaddressdisable = true;
+                $scope.getaddbtntxt = "Loading..";
+                $http.get("https://api.getaddress.io/find/" + postcode + "?api-key=" + apikey + "&expand=true&sort=true").success(function (data, status) {
+
+                    if (data != null) {
+                        console.log(data);
+                        $scope.User.mpostcode = data["postcode"];
+                        $scope.allAddress = data["addresses"];
+
+                        var i = 0;
+                        console.log($scope.allAddress);
+                        $scope.allAddress.forEach(function (obj) {
+
+                            var newobj = {
+                                Code: i,
+                                Name: jQuery.grep(obj.formatted_address, Boolean).join(", ")
+                            };
+                            $scope.addressess.push(newobj);
+                            i++;
+                        })
+
+
+
+                        //jQuery("#reg_postcode").val(data["postcode"]);
+                    }
+                    else {
+                        $scope.getaddbtntxt = "Find address";
+                        $scope.getaddressdisable = false;
+                    }
+                    $scope.getaddbtntxt = "Find the address";
+                    $scope.getaddressdisable = false;
+
+
+                }).error(function (e) {
+                    $scope.getaddbtntxt = "Find the address";
+                    $scope.getaddressdisable = false;
+                });*/
+            }
+            $scope.getSelectedAddress = function (id) {
+
+                console.log(id.Code);
+                var d = $scope.allAddress[id.Code];
+                $scope.User.maddress1 = d["line_1"];
+                $scope.User.maddress2 = d["line_2"];
+                $scope.User.mcity = d["town_or_city"];
+                $scope.User.morgname = d["line_1"];
+            }
+            $scope.getStates = function (countryid) {
+                $scope.User.mcountry = countryid.Code;
+                $http.get("/api/AccountApi/GetStates?cnid=" + countryid.Code).success(function (data, status) {
+
+                    if (data == "empty") {
+                        $rootScope.states = [];
+
+                    }
+                    else {
+                        $scope.states = data;
+                    }
+
+
+                }).error(function () {
+
+                    //alert('failed');
+
+                });
+            }
+
+            $scope.ConfigureField = {
+                "Name": "Buyer"
+
+
+            }
+            $scope.addRow = function () {
+                $scope.MoreContacts.push({
+                    cusername: '',
+                    cposition: '',
+                    cemailaddress: '',
+                    cphone: ''
+                });
+            }
+            $scope.deleteRow = function (index) {
+                $scope.MoreContacts.splice(index, 1);
+            }
+            $scope.changefield = function (field) {
+                $scope.IsClicked = true;
+                $scope.User.musertype = field;
+                console.log(field);
+                if (field == 'Buyer') {
+
+                    $scope.ConfigureField = {
+                        "Name": "Approver"
+
+                    };
+                } else if (field == 'Approver') {
+                    $scope.ConfigureField = {
+                        "Name": "Buyer"
+
+                    };
+                }
+
+            }
+            $scope.cartbutton = function () {
+                $scope.cartdisable = false;
+            }
+
+
+
+
+            //$rootScope.shoppingCart.totalPrice = 0;
+            $scope.$watchGroup(['f1.$valid', 'reg.$valid', 'shoppingCart', 'form.$valid'], function (newVal) {
+                $scope.IsFormValid = newVal;
+                $scope.IsRegisterFormValid = newVal;
+                //$scope.getTotalPrice();
+
+                ///$scope.getTotalNoOfItems();
+
+            }, true);
+
+            $scope.submitText = "Register";
+            $scope.rsubmitted = false;
+            $scope.validuser = false;
+            $scope.User = {
+                museridemail: '',
+                maddress1: '',
+                maddress2: '',
+                mcity: '',
+                mcountry: '',
+                mlandmark: '',
+                maddresstype: '',
+                mpwd: '',
+                mname: '',
+                msname: '',
+                morgname: '',
+                mschoolid: 0,
+                mphone: '',
+                manotherusername: '',
+                manotheruseremail: '',
+                maccountantemail: '',
+                musertype: '',
+                morecontacts: '',
+                mposition: '',
+                mpostcode: '',
+                msname: '',
+                subscribe: '',
+            };
+            $scope.UserAddress = {
+                maddress1: '',
+                maddress2: '',
+                mcity: '',
+                mcountry: '',
+                mlandmark: '',
+                maddresstype: '',
+
+            };
+            $scope.UserMore = {
+                mpwd: '',
+                mname: '',
+                morgname: '',
+                mphone: '',
+
+            };
+
+            $scope.checkuser = function (data, type) {
+                $http({
+
+                    method: "POST",
+
+                    url: "/User/CheckCampaignUser",
+
+                    data: { "userid": data }
+                }).success(function (data) {
+                    if (data["msg"] == "Success") {
+
+                        if ($scope.User.manotheruseremail != "" && $scope.User.museridemail == $scope.User.manotheruseremail) {
+                            $scope.validuser = false;
+                            $scope.InValidEmail[type] = true;
+                        }
+                        else if ($scope.User.maccountantemail != "" && ($scope.User.museridemail == $scope.User.maccountantemail)) {
+                            $scope.validuser = false;
+                            $scope.InValidEmail[type] = true;
+                        }
+                        else if ($scope.User.manotheruseremail != "" && ($scope.User.manotheruseremail == $scope.User.maccountantemail)) {
+                            $scope.validuser = false;
+                            $scope.InValidEmail[type] = true;
+                        }
+                        else {
+                            $scope.validuser = true;
+                            $scope.InValidEmail[type] = false;
+                        }
+                    }
+                    else {
+                        $scope.InValidEmail[type] = true;
+                        $scope.validuser = false;
+                    }
+                });
+            };
+
+            $scope.SaveData = function (isValid) {
+
+                if ($scope.submitText == 'Register') {
+                    $scope.rsubmitted = true;
+                    $scope.message = '';
+                    $scope.User.moreaddress = $scope.MoreAddress;
+                    if ($scope.MoreContacts.length > 0) {
+                        $scope.User.morecontacts = $scope.MoreContacts
+
+                    }
+                    else {
+                        $scope.User.morecontacts = [{
+                            cusername: '',
+                            cposition: '',
+                            cemailaddress: '',
+                            cphone: ''
+                        }];
+                    }
+
+                    if ($scope.validuser && isValid) {
+                        $scope.submitText = 'Please Wait...';
+                        //$scope.User = data;
+                        $http({
+
+                            method: "POST",
+
+                            url: "/User/SaveCampaignUser",
+
+                            data: $scope.User
+                        }).success(function (data) {
+                            if (data["msg"] == "Success") {
+                                $scope.User = {
+                                    museridemail: '',
+                                    maddress1: '',
+                                    maddress2: '',
+                                    mcity: '',
+                                    mcountry: '',
+                                    mlandmark: '',
+                                    maddresstype: '',
+                                    mpwd: '',
+                                    mname: '',
+                                    msname: '',
+                                    morgname: '',
+                                    mschoolid: 0,
+                                    mphone: '',
+                                    manotherusername: '',
+                                    manotheruseremail: '',
+                                    maccountantemail: '',
+                                    musertype: '',
+                                    morecontacts: '',
+                                    mposition: '',
+                                    mpostcode: '',
+                                    msname: '',
+                                    subscribe: '',
+                                };
+                                form.$submitted = false;
+                                $scope.showmsg = true;
+                                //$scope.message = "You have successfully registered on EYS. We will get back to you soon!";
+                                $scope.rsubmitted = false;
+                                $scope.submitText = "Register";
+                                $("#myThankyouModal").modal("show");
+                                $("#myThankyouModal").on("hide.bs.modal", function () {
+                                    $window.location.reload();
+                                });
+                                //toastr.success($scope.Message, "Success");
+                                //$window.location.href = "/Leasing/";
+
+                            }
+                            else {
+                                $scope.IsError = true;
+                                $scope.message = 'Something went wrong! Please try again.';
+                                $scope.rsubmitted = false;
+                                $scope.submitText = "Register";
+                            }
+
+                            $scope.user = null;
+
+                        }).error(function () {
+
+                            //alert('failed');
+
+                        })
+
+                    }
+                    else {
+                        jQuery('input.ng-invalid').first().focus();
+                        $scope.message = 'Please fill required fields value';
+                        $scope.rsubmitted = false;
+                    }
+                }
+            }
+            //Clear Form (reset)
+            function ClearForm() {
+                $scope.User = {};
+                $scope.reg.$setPristine(); //here f1 our form name
+                $scope.submitted = false;
+            }
+
+            /*************************Save Cart***************************/
+
+            $scope.SaveCart = function () {
+                $scope.Submitted = true;
+
+                var passdata = { "Product": $rootScope.shoppingCart, "muserid": $rootScope.muserid, "mquotetotal": $rootScope.shoppingCart.totalPrice };
+                $http.post("api/ProductApi/SaveQuote", passdata).success(function (data, status) {
+
+                    if (data == "Save") {
+                        $rootScope.shoppingCart = [];
+                        $cookies.remove("leasebasket", { path: '/' });
+                        alert("Your quotation generated successfully");
+                        $location.href = '/Leasing/';
+                        $scope.Message = "Successfully login done. Welcome " + data["Data"].mname;
+
+                    }
+                    else {
+                        $scope.IsError = true;
+                        alert('Invalid Credential!');
+                    }
+
+                    $scope.user = null;
+
+                }).error(function () {
+
+                    // alert('failed');
+
+                })
+
+            };
+
+        }]);
+
+
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfJV9MkAAAAAPJvDFy18GmUo_5oipfGR4umPwHd"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LfJV9MkAAAAAPJvDFy18GmUo_5oipfGR4umPwHd', { action: 'submit' }).then(function (token) {
+                // Add your logic to submit to your backend server here.
+                $("textarea[name='Captcha_Response']").val(token);
+                //console.log(token);
+            });
+        });
+
+    </script>
+</body>
+
+
+
+
+</html>

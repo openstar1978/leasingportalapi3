@@ -31,8 +31,8 @@ namespace LeasingPortalApi.Controllers
             if (Url == "www.saicomputers.com" || Url=="equipyourschool.co.uk" || Url == "www.equipyourschool.co.uk")
             //if (Url == "www.saicomputers.com")
             {
-                return Redirect("index.htm");
-
+                //return Redirect("index.htm");
+                return RedirectToAction("index","RegisterNow");
             }
             else
             {

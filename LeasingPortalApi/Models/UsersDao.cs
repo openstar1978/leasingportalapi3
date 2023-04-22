@@ -197,6 +197,44 @@ namespace LeasingPortalApi.Models
             }
             return null;
         }
+        public static int AddCampaignuser(UsersAllDetailViewModel model)
+        {
+            using (var db = new LeasingDbEntities())
+            {
+                var ids = new List<int>();
+                var mschoolid = model.mschoolid;
+                if (mschoolid > 0)
+                {
+                    var schooldata = db.UKSchools.FirstOrDefault(x => x.id == mschoolid && x.SchoolName.Trim() == model.morgname.Trim());
+                    if (schooldata == null)
+                    {
+                        mschoolid = 0;
+                    }
+                }
+                var obj2 = new  campaign_user_registration
+                {
+                    mcreatedate=DateTime.Now,
+                    memailaddress=model.museridemail,
+                    mfirstname=model.mname,
+                    mlastname=model.msname,
+                    mjobtitle=model.mposition,
+                    mpostcode=model.mpostcode,
+                    mregdate=DateTime.Now,
+                    
+                    morgname = model.morgname,
+                    mphone = model.mphone,
+                    mschoolid = mschoolid
+                };
+                db.campaign_user_registration.Add(obj2);
+                db.SaveChanges();
+                string Url = "equipyourschool.co.uk";
+                var emailreturn = CampaignUserEmail(obj2, Url);
+                //var emailreturn=SendThankYouemail(obj,Url);
+                return obj2.mcampaignuserid;
+
+            }
+            return 0;
+        }
         public static bool VerifyAccount(string ag)
         {
             var db = new LeasingDbEntities();
@@ -365,6 +403,69 @@ namespace LeasingPortalApi.Models
             body += "</body>";
             body += "</html>";
             */
+        public static bool CampaignUserEmail(campaign_user_registration obj, string requestedurl)
+        {
+            UrlHelper url = new UrlHelper();
+            var body = "";
+            body += "<table width='750' align='center' border='0' cellpadding='0' cellspacing='0' style='border: 1px solid #44266c;padding: 23px;'>" +
+                        "<tr height=30></tr>" +
+                        "<tr>" +
+                        "<td align=center>  <img src='https://equipyourschool.co.uk/Content/images/logo/openstar-school-leasing-log-dark.png' id='eyslogo'  height='60' border='0' alt='' align='center'></td>" +
+                        "</tr>" +
+                        "<tr height=10></tr>" +
+                          "<tr align=center>" +
+                        "<td><font size='3' color='#9900ff' face=calibri><strong>A portal strictly for Education only</strong></font></td>" +
+                        "</tr>" +
+                        "<tr height=30></tr>" +
+                        "<tr align=left >" +
+                        "<td><font size='3' color='' face=calibri>Thank you for contacting on equipyourschool.co.uk.</ font></td>" +
+                        "</tr>" +
+                        "<tr height=20></tr>" +
+                        "<tr align=left >" +
+                        "<td><font size='3' color='' face=calibri>We have received your following mesage/enquiry on " + DateTime.Now.ToString("dd/MM/yyyy") + " </ font></td>" +
+                        "</tr>" +
+                        "<tr align=left >" +
+                        "<td>" +
+                        "<table width=100% cellspacing='0' cellpadding='0' border='0' style='border:3px solid #dcdcdc;padding:5px;'>" +
+                        "<tr><td><strong>School / Trust :</strong></td><td>" + obj.morgname + "</td></tr>" +
+                        "<tr><td><strong>Name  :</strong></td><td>" + obj.mfirstname + " " + obj.mlastname + "</td></tr>" +
+                        "<tr><td><strong>Email  :</strong></td><td>" + obj.memailaddress + "</td></tr>" +
+                        "<tr><td><strong>Postcode  :</strong></td><td>" + obj.mpostcode + "</td></tr>" +
+                        "<tr><td><strong>Job Title  :</strong></td><td>" + obj.mjobtitle + "</td></tr>" +
+                        "<tr><td><strong>Phone  :</strong></td><td>" + obj.mphone + "</td></tr>" +
+                        "</table>" +
+                        "</td>" +
+                        "</tr>" +
+                        "<tr height=20></tr>" +
+                        "<tr width=100%>" +
+                    "<td><font size='3' color='' face=calibri>We will endeavour to response to you within the next 24 hours</ font></td>" +
+                    "</tr>" +
+                    "<tr height=20></tr>" +
+                        "<tr width=100%>" +
+                    "<td><font size='3' color='' face=calibri>Thank you</ font></td>" +
+                    "</tr>" +
+                        "<tr height=20></tr>" +
+                        "<tr width=100%>" +
+                    "<td><font size='3' color='' face=calibri>Yours sincerely</font></td>" +
+                    "</tr>" +
+                    "<tr height=20 width=50%>" +
+                    "<td><font size='3' color='' face=calibri>EYS Admin</font></td>" +
+                    "</tr>" +
+                        "</table>";
+            byte[] b = { };
+            if (MailDao.MailSend("New school / trust registering on EYS", body, "hirjieysregistrarions@gmail.com", b) == "done")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            //return File(stream.ToArray(), "application/pdf", "OrderStatus.pdf");
+
+
+
+        }
         public static bool VerifyEmail(user_registration obj, string requestedurl)
         {
             UrlHelper url = new UrlHelper();
@@ -470,74 +571,94 @@ namespace LeasingPortalApi.Models
             var ctx = new LeasingDbEntities();
             UrlHelper url = new UrlHelper();
             var body = "";
-            body += "<!DOCTYPE html>";
-            body += "<html lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office'>";
-            body += "<head>";
-            body += "<meta charset='utf-8'>";
-            body += "<meta name='viewport' content='width=device-width,initial-scale=1'>";
-            body += "<meta name='x-apple-disable-message-reformatting'>";
-            body += "<style>";
-            body += ".box_border { border: 1px solid #0fb5de !important;background-color: #7140be; padding: 20px; border-radius: 20px; } .box_border .txt_clr { color: #fff; } .box_border .clr { color: #0fb5de; } .box_border .mb-10 { margin-bottom: 10px; } .box_border .mb-20 { margin-bottom: 20px; } .box_border .mb-30 { margin-bottom: 30px; } .box_border .mb-60 { margin-bottom: 60px; }";
-            body += ".col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11{ position: relative; width: 100%; padding-right: 0px; padding-left: 0px; }";
-            body += ".col-md-12 { position: relative; width: 100%; }";
-            body += "b, strong { font-weight: bolder; }";
-            body += "@media (min-width: 768px) { .col-md-2 { flex: 0 0 16.666667%; max-width: 16.666667%; } }";
-            body += "@media (min-width: 768px) { .col-md-3 { flex: 0 0 20%; max-width: 20%; } }";
-            body += "@media (min-width: 768px) { .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; } }";
-            body += "@media (min-width: 768px) { .col-md-6 { flex: 0 0 60%; max-width: 60%; } }";
-            body += "@media (min-width: 768px) { .col-md-8 { flex: 0 0 66.666667%; max-width: 66.666667%;} }";
-            body += "@media (min-width: 768px) { .col-md-10 { flex: 0 0 83.333333%; max-width: 83.333333%; } }";
-            body += "@media (min-width: 768px) { .col-md-12 { flex: 0 0 100%; max-width: 100%; } }";
-            body += ".black_clr { color: #000; }";
-            body += "p { display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; }";
-            body += "h1, h2, h3, h4, h5, h6, p { margin: 0; padding: 0; }";
-            body += "h4 { font-size: 1.2rem; font-family: inherit; font-weight: 500; display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; }";
-            body += ".redeembox_img img{ height: 100% !important; max-width: none !important; } ";
-            body += "table, td, div, h1, p { font-family:Arial, sans-serif; } ";
-            body += "@media (max-width: 1200px) and (min-width: 992px) { .redeembox .mainbox.col-md-3 {flex: 0 0 20%;max-width: 20%;} .redeembox .mainbox.col-md-6 {flex: 0 0 60%;max-width: 60%;}} ";
-            body += "@media (max-width: 991px) and (min-width: 767px) { .redeembox .mainbox.col-md-3 { flex: 0 0 10%; max-width: 10%; } .redeembox .mainbox.col-md-6 { flex: 0 0 80%; max-width: 80%; } }";
-            body += ".section1_code { padding: 20px; background: #fff; border-radius: 15px; }";
-            body += "*, ::after, ::before { box-sizing: border-box; }";
-            body += ".row { display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px; }";
-            body += "html, body { font-family: 'Open Sans'; text-align: left; font-weight: 400; font-size: 13px; line-height: 1.7; width: 100%; color: #ffffff; }";
-            body += ".redeembox_img img { height: 100% !important; max-width: none !important; }";
-            body += "img { vertical-align: middle; border-style: none; max-width: 100%; height: auto; }";
-            body += ".box_border .txt_clr { color: #fff; }";
-            body += "div {display:block;}";
-            body += ".section1_code { width:100%;}";
-            body += "a { text-decoration: none; }";
-            body += ".btn:not(:disabled):not(.disabled) { cursor: pointer; }";
-            body += ".btn { display: inline-block; font-weight: 400; text-align: center; vertical-align: middle; user-select: none; border: 1px solid transparent; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .25rem; }";
-            body += "@media (max-width: 767px) { .col-md-8 { max-width: 100% !important; width: 100% !important; } .col-md-4 { max-width: 100% !important; width: 100% !important; } }";
-            body += "@media (max-width: 767px) { .redeembox .mainbox.col-md-3 { display:none; } }";
-            body += "</style>";
-            body += "</head>";
-            body += "<body>";
+            //body += "<!DOCTYPE html>";
+            //body += "<html lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office'>";
+            //body += "<head>";
+            //body += "<meta charset='utf-8'>";
+            //body += "<meta name='viewport' content='width=device-width,initial-scale=1'>";
+            //body += "<meta name='x-apple-disable-message-reformatting'>";
+            //body += "<style>";
+            //body += ".box_border { border: 1px solid #0fb5de !important;background-color: #7140be; padding: 20px; border-radius: 20px; } .box_border .txt_clr { color: #fff; } .box_border .clr { color: #0fb5de; } .box_border .mb-10 { margin-bottom: 10px; } .box_border .mb-20 { margin-bottom: 20px; } .box_border .mb-30 { margin-bottom: 30px; } .box_border .mb-60 { margin-bottom: 60px; }";
+            //body += ".col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11{ position: relative; width: 100%; padding-right: 0px; padding-left: 0px; }";
+            //body += ".col-md-12 { position: relative; width: 100%; }";
+            //body += "b, strong { font-weight: bolder; }";
+            //body += "@media (min-width: 768px) { .col-md-2 { flex: 0 0 16.666667%; max-width: 16.666667%; } }";
+            //body += "@media (min-width: 768px) { .col-md-3 { flex: 0 0 20%; max-width: 20%; } }";
+            //body += "@media (min-width: 768px) { .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; } }";
+            //body += "@media (min-width: 768px) { .col-md-6 { flex: 0 0 60%; max-width: 60%; } }";
+            //body += "@media (min-width: 768px) { .col-md-8 { flex: 0 0 66.666667%; max-width: 66.666667%;} }";
+            //body += "@media (min-width: 768px) { .col-md-10 { flex: 0 0 83.333333%; max-width: 83.333333%; } }";
+            //body += "@media (min-width: 768px) { .col-md-12 { flex: 0 0 100%; max-width: 100%; } }";
+            //body += ".black_clr { color: #000; }";
+            //body += "p { display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; }";
+            //body += "h1, h2, h3, h4, h5, h6, p { margin: 0; padding: 0; }";
+            //body += "h4 { font-size: 1.2rem; font-family: inherit; font-weight: 500; display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; }";
+            //body += ".redeembox_img img{ height: 100% !important; max-width: none !important; } ";
+            //body += "table, td, div, h1, p { font-family:Arial, sans-serif; } ";
+            //body += "@media (max-width: 1200px) and (min-width: 992px) { .redeembox .mainbox.col-md-3 {flex: 0 0 20%;max-width: 20%;} .redeembox .mainbox.col-md-6 {flex: 0 0 60%;max-width: 60%;}} ";
+            //body += "@media (max-width: 991px) and (min-width: 767px) { .redeembox .mainbox.col-md-3 { flex: 0 0 10%; max-width: 10%; } .redeembox .mainbox.col-md-6 { flex: 0 0 80%; max-width: 80%; } }";
+            //body += ".section1_code { padding: 20px; background: #fff; border-radius: 15px; }";
+            //body += "*, ::after, ::before { box-sizing: border-box; }";
+            //body += ".row { display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px; }";
+            //body += "html, body { font-family: 'Open Sans'; text-align: left; font-weight: 400; font-size: 13px; line-height: 1.7; width: 100%; color: #ffffff; }";
+            //body += ".redeembox_img img { height: 100% !important; max-width: none !important; }";
+            //body += "img { vertical-align: middle; border-style: none; max-width: 100%; height: auto; }";
+            //body += ".box_border .txt_clr { color: #fff; }";
+            //body += "div {display:block;}";
+            //body += ".section1_code { width:100%;}";
+            //body += "a { text-decoration: none; }";
+            //body += ".btn:not(:disabled):not(.disabled) { cursor: pointer; }";
+            //body += ".btn { display: inline-block; font-weight: 400; text-align: center; vertical-align: middle; user-select: none; border: 1px solid transparent; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; border-radius: .25rem; }";
+            //body += "@media (max-width: 767px) { .col-md-8 { max-width: 100% !important; width: 100% !important; } .col-md-4 { max-width: 100% !important; width: 100% !important; } }";
+            //body += "@media (max-width: 767px) { .redeembox .mainbox.col-md-3 { display:none; } }";
+            //body += "</style>";
+            //body += "</head>";
+            //body += "<body>";
 
-            body += "<div class='redeembox row'>";
-            //Column 1 Start
-            body += "<div class='mainbox col-md-3'></div>";
-            //Column 1 End
+            //body += "<div class='redeembox row'>";
+            ////Column 1 Start
+            //body += "<div class='mainbox col-md-3'></div>";
+            ////Column 1 End
 
-            //Column 2 Start
-            body += "<div class='mainbox col-md-6 box_border'>";
+            ////Column 2 Start
+            //body += "<div class='mainbox col-md-6 box_border'>";
 
-            //Logo Start
+            ////Logo Start
             
-            body += "<div style='text-align:center;'>";
-            body += "<a href='https://www.equipyourschool.co.uk'><img class='mb-30' width='260' style='-webkit-user-drag:none !important;' src='https://www.equipyourschool.co.uk/Content/images/logo/openstar-school-leasing-log.png' /></a>";
-            body += "</div>";
-            //Logo End           
+            //body += "<div style='text-align:center;'>";
+            //body += "<a href='https://www.equipyourschool.co.uk'><img class='mb-30' width='260' style='-webkit-user-drag:none !important;' src='https://www.equipyourschool.co.uk/Content/images/logo/openstar-school-leasing-log.png' /></a>";
+            //body += "</div>";
+            ////Logo End           
 
-            //Section 1 Start
-            body += "<div class='row' style='background:#fff;padding:5px;'>";
-            body += "<table border=1 style=width:100%;>";
+            ////Section 1 Start
+            //body += "<div class='row' style='background:#fff;padding:5px;'>";
+
+            body += "<table width='750' align='center' border='0' cellpadding='0' cellspacing='0' style='border: 1px solid #44266c;padding: 23px;'>" +
+                        "<tr height=30></tr>" +
+                        "<tr>" +
+                        "<td align=center>  <img src='https://equipyourschool.co.uk/Content/images/logo/openstar-school-leasing-log-dark.png' id='eyslogo'  height='60' border='0' alt='' align='center'></td>" +
+                        "</tr>" +
+                        "<tr height=10></tr>" +
+                          "<tr align=center>" +
+                        "<td><font size='3' color='#9900ff' face=calibri><strong>A portal strictly for Education only</strong></font></td>" +
+                        "</tr>" +
+                        "<tr height=30></tr>" +
+                        "<tr align=left >" +
+                        "<td><font size='3' color='' face=calibri>Thank you for contacting on equipyourschool.co.uk.</ font></td>" +
+                        "</tr>" +
+                        "<tr height=20></tr>" +
+                        "<tr align=left >" +
+                        "<td><font size='3' color='' face=calibri>We have received your following mesage/enquiry on " + DateTime.Now.ToString("dd/MM/yyyy") + " </ font></td>" +
+                        "</tr>" +
+                        "<tr align=left >" +
+                        "<td>";
+                        body += "<table border=1 style=width:100%;>";
             if (obj.muserid > 0)
             {
                 var getschool = (from u in ctx.user_registration
                                  join uc in ctx.user_contact_more on u.muid equals uc.usermoreid
-                                 join um in ctx.user_registration_more  on u.musermoreid equals um.musermoreid
-                                 where u.muid==obj.muserid
+                                 join um in ctx.user_registration_more on u.musermoreid equals um.musermoreid
+                                 where u.muid == obj.muserid
                                  select new
                                  {
                                      um.morgname,
@@ -552,14 +673,14 @@ namespace LeasingPortalApi.Models
                 {
                     body += "<tr>";
                     body += "<td style=width:30%;>School Detail : </td>";
-                    body += "<td>" + getschool.morgname + "<br/>"+getschool.cusername+" "+getschool.csurname +",<br/>"+getschool.cposition+"<br/>"+getschool.cphone+"<br/>"+getschool.cemailaddress+"</td>";
+                    body += "<td>" + getschool.morgname + "<br/>" + getschool.cusername + " " + getschool.csurname + ",<br/>" + getschool.cposition + "<br/>" + getschool.cphone + "<br/>" + getschool.cemailaddress + "</td>";
                     body += "</tr>";
                 }
-                
+
             }
             body += "<tr>";
             body += "<td style=width:30%;>Name : </td>";
-            body += "<td>"+obj.morgname+"</td>";
+            body += "<td>" + obj.morgname + "</td>";
             body += "</tr>";
             body += "<tr>";
             body += "<td style=width:30%;>Email address : </td>";
@@ -571,10 +692,10 @@ namespace LeasingPortalApi.Models
             body += "</tr>";
             body += "<tr>";
             body += "<td style=width:30%;>Interested to see the product range : </td>";
-            body += "<td>" + (obj.interested==true?"Yes":"No") + "</td>";
+            body += "<td>" + (obj.interested == true ? "Yes" : "No") + "</td>";
             body += "</tr>";
-            
-            if (obj.specificproduct!=null && obj.specificproduct != "")
+
+            if (obj.specificproduct != null && obj.specificproduct != "")
             {
                 body += "<tr>";
                 body += "<td style=width:30%;>Specific products : </td>";
@@ -583,22 +704,90 @@ namespace LeasingPortalApi.Models
 
             }
             body += "</table>";
+            body += "</td>" +
+                        "</tr>" +
+                        "<tr height=20></tr>" +
+                    "<tr height=20></tr>" +
+                        "<tr width=100%>" +
+                    "<td><font size='3' color='' face=calibri>Thank you</ font></td>" +
+                    "</tr>" +
+                        "<tr height=20></tr>" +
+                        "<tr width=100%>" +
+                    "<td><font size='3' color='' face=calibri>Yours sincerely</font></td>" +
+                    "</tr>" +
+                    "<tr height=20 width=50%>" +
+                    "<td><font size='3' color='' face=calibri>EYS Admin</font></td>" +
+                    "</tr>" +
+                        "</table>";
 
-            body += "</div>";
-            body += "</div>";
-            //Section 1 End          
+            //body += "<table border=1 style=width:100%;>";
+            //if (obj.muserid > 0)
+            //{
+            //    var getschool = (from u in ctx.user_registration
+            //                     join uc in ctx.user_contact_more on u.muid equals uc.usermoreid
+            //                     join um in ctx.user_registration_more  on u.musermoreid equals um.musermoreid
+            //                     where u.muid==obj.muserid
+            //                     select new
+            //                     {
+            //                         um.morgname,
+            //                         uc.cusername,
+            //                         uc.csurname,
+            //                         uc.cposition,
+            //                         uc.cemailaddress,
+            //                         uc.cphone
+            //                     }).FirstOrDefault();
 
-            body += "</div>";
-            //Column 2 End
+            //    if (getschool != null)
+            //    {
+            //        body += "<tr>";
+            //        body += "<td style=width:30%;>School Detail : </td>";
+            //        body += "<td>" + getschool.morgname + "<br/>"+getschool.cusername+" "+getschool.csurname +",<br/>"+getschool.cposition+"<br/>"+getschool.cphone+"<br/>"+getschool.cemailaddress+"</td>";
+            //        body += "</tr>";
+            //    }
+                
+            //}
+            //body += "<tr>";
+            //body += "<td style=width:30%;>Name : </td>";
+            //body += "<td>"+obj.morgname+"</td>";
+            //body += "</tr>";
+            //body += "<tr>";
+            //body += "<td style=width:30%;>Email address : </td>";
+            //body += "<td>" + obj.museridemail + "</td>";
+            //body += "</tr>";
+            //body += "<tr>";
+            //body += "<td style=width:30%;>Interested category / Product : </td>";
+            //body += "<td>" + obj.searchproduct + "</td>";
+            //body += "</tr>";
+            //body += "<tr>";
+            //body += "<td style=width:30%;>Interested to see the product range : </td>";
+            //body += "<td>" + (obj.interested==true?"Yes":"No") + "</td>";
+            //body += "</tr>";
+            
+            //if (obj.specificproduct!=null && obj.specificproduct != "")
+            //{
+            //    body += "<tr>";
+            //    body += "<td style=width:30%;>Specific products : </td>";
+            //    body += "<td>" + obj.specificproduct + "</td>";
+            //    body += "</tr>";
 
-            //Column 3 Start
-            body += "<div class='mainbox col-md-3'></div>";
-            //Column 3 End           
+            //}
+            //body += "</table>";
 
-            body += "</body>";
-            body += "</html>";
+            //body += "</div>";
+            //body += "</div>";
+            ////Section 1 End          
+
+            //body += "</div>";
+            ////Column 2 End
+
+            ////Column 3 Start
+            //body += "<div class='mainbox col-md-3'></div>";
+            ////Column 3 End           
+
+            //body += "</body>";
+            //body += "</html>";
             byte[] b = { };
-            if (MailDao.MailSend("A Product Request", body, "shahpalakh@gmail.com", b) == "done")
+            if (MailDao.MailSend("A Product Request", body, "info@equipyourschool.co.uk", b) == "done")
             {
                 return true;
             }

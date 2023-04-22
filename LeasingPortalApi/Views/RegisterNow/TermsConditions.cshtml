@@ -1,0 +1,624 @@
+﻿@{
+    var ngpattern = @"/^(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z/\d$@$!%*#?&]{8,20}$/";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title> EYS - UK's No. 1 Education and School Leasing Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="~/frontpage//img/fv.png" type="image/x-icon" />
+    <!-- <link rel="icon" href="~/frontpage//img/fv.png" type="image/x-icon" /> -->
+
+    <link rel="stylesheet" href="~/frontpage//css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/frontpage//css/animate.css" />
+    <link rel="stylesheet" href="~/frontpage//css/newfont.css" />
+    <link rel="stylesheet" href="~/frontpage//css/owl.carousel.css" />
+    <link rel="stylesheet" href="~/frontpage//css/fontawesome-all.css" />
+    <link rel="stylesheet" href="~/frontpage//css/swiper.css" />
+    <link rel="stylesheet" href="~/frontpage//css/jquery.bxslider.min.css" />
+    <link rel="stylesheet" href="~/frontpage//css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" href="~/frontpage//css/odometer-theme-default.css" />
+    <link rel="stylesheet" href="~/frontpage//css/flaticon.css" />
+    <link rel="stylesheet" href="~/frontpage//css/style.css" />
+    <link rel="stylesheet" href="~/frontpage//css/custom.css?v=1.0.1" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;display=swap" rel="stylesheet">
+    <style>
+        #m_login {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            position: relative;
+            overflow: hidden;
+            width: 768px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .m-login.m-login--5.m-login--signin .m-login__forget-password {
+            display: none;
+        }
+
+        .m-login.m-login--5.m-login--forget-password .m-login__forget-password {
+            display: block;
+        }
+
+        .m-login.m-login--5.m-login--forget-password .m-login__signin {
+            display: none;
+        }
+
+        .m-login.m-login--5.m-login--signin .m-login__signin {
+            display: block;
+        }
+
+        .m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__form {
+            margin: 2em auto;
+        }
+
+        .m-login.m-login--5 .m-login__wrapper-2 .m-login__contanier .m-login__account {
+            text-align: center;
+        }
+
+        .m-login.m-login--2 .m-login__wrapper {
+            padding-top: 1%;
+        }
+
+            .m-login.m-login--2 .m-login__wrapper .m-login__container .m-login__logo {
+                margin-bottom: 2rem;
+            }
+
+        .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__head .m-login__title, .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__account .m-login__account-msg, .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__form .m-login__form-sub .m-link {
+            color: #fff;
+        }
+
+        .bordero {
+            border: 1px solid #333 !important;
+        }
+
+        .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__account .m-login__account-link {
+            color: #e4e4e4;
+        }
+
+            .m-login.m-login--2.m-login-2--skin-2 .m-login__container .m-login__account .m-login__account-link:hover {
+                color: #f4e439;
+            }
+
+
+        .m-login__wrapper-1-1 {
+            background-color: #fff;
+        }
+
+        .m-login__wrapper-1-1 {
+            background: #7e00ad;
+            /*background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+        background: linear-gradient(to right, #FF4B2B, #FF416C);*/
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 0 0;
+            color: #FFFFFF;
+        }
+
+        .m-login.m-login--5 .m-login__wrapper-2 .m-login__contanier .m-login__form .m-login__form-action {
+            margin: 1rem 0 1rem 0;
+            text-align: center;
+        }
+
+            .m-login.m-login--5 .m-login__wrapper-2 .m-login__contanier .m-login__form .m-login__form-action .btn {
+                display: inline-block;
+                text-align: center;
+                padding: 1.2rem 3rem;
+                margin-right: 2rem;
+            }
+
+        .btn-focus.m-btn--air, .btn-outline-focus.m-btn--air, .m-btn--gradient-from-focus.m-btn--air {
+            -webkit-box-shadow: 0 5px 10px 2px rgba(152,22,244,.19) !important;
+            box-shadow: 0 5px 10px 2px rgba(152,22,244,.19) !important;
+        }
+
+        .btn-focus {
+            color: #fff;
+            background-color: #9816f4;
+            border-color: #9816f4;
+        }
+
+        .bg-dark {
+            background-color: #343a40 !important;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            padding: .85rem 1.15rem;
+            font-size: 1rem;
+            line-height: 1.25;
+            border-radius: .25rem;
+            -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        }
+
+            .btn.btn-focus.active, .btn.btn-focus.focus, .btn.btn-focus:focus, .btn.btn-focus:hover:not(:disabled) {
+                color: #fff !important;
+            }
+
+        .m-link {
+            color: #716aca;
+        }
+
+        .m-link {
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .m-login.m-login--5 .m-login__wrapper-2 {
+            width: 100%;
+            display: block;
+        }
+
+        .m--align-right {
+            text-align: right;
+        }
+
+        .m-login.m-login--5 .m-login__wrapper-1 .m-login__wrapper-1-1, .m-login.m-login--5 .m-login__wrapper-2 .m-login__wrapper-1-2 {
+            display: block;
+            height: 100%;
+        }
+
+            .m-login.m-login--5 .m-login__wrapper-1 .m-login__wrapper-1-1 .m-login__contanier {
+                display: block;
+            }
+
+                .m-login.m-login--5 .m-login__wrapper-1 .m-login__wrapper-1-1 .m-login__contanier .m-login__content, .m-login.m-login--5 .m-login__wrapper-2 .m-login__wrapper-1-2 .m-login__contanier .m-login__content, .m-login.m-login--5 .m-login__wrapper-2 .m-login__contanier {
+                    width: 100%;
+                }
+
+
+        .m-login.m-login--5 .m-login__wrapper-2 {
+            padding-top: 0px;
+        }
+
+        input {
+            background-color: #eee !important;
+            border: none;
+            padding: 12px 15px !important;
+            margin: 8px 0 !important;
+        }
+
+        .m-header .m-header__top, .m-footer {
+            background: #4a0265;
+        }
+
+        .m-footer {
+            color: #fff;
+        }
+
+        .btn-outline-yellow {
+            background-color: #f4e439;
+            background-image: none;
+            border-color: #f4e439;
+            color: #000;
+            font-weight: 500;
+        }
+
+        @@media(max-width:900px) {
+            #m_login {
+                width: 100%;
+            }
+        }
+
+        .m-page-loader.m-page-loader--base {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1065;
+            display: none
+        }
+
+        .m-page--loading .m-page-loader.m-page-loader--base {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+
+        .m-page-loader.m-page-loader--base.m-page-loader--non-block {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            right: auto;
+            bottom: auto;
+            width: auto
+        }
+
+        .m-page--loading-non-block .m-page-loader.m-page-loader--base.m-page-loader--non-block {
+            display: inline-block
+        }
+
+        .m-page-loader.m-page-loader--base {
+            background: #fff;
+        }
+
+            .m-page-loader.m-page-loader--base.m-page-loader--non-block {
+                background: 0 0
+            }
+
+        .m-page-loader.m-page-loader--brand {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1052;
+            display: none
+        }
+
+        .m-page--loading .m-page-loader.m-page-loader--brand {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+
+        .m-page-loader.m-page-loader--brand.m-page-loader--non-block {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            right: auto;
+            bottom: auto;
+            width: auto
+        }
+
+        .m-page--loading-non-block .m-page-loader.m-page-loader--brand.m-page-loader--non-block {
+            display: inline-block
+        }
+
+        .m-page-loader.m-page-loader--brand {
+            background: #fff
+        }
+
+            .m-page-loader.m-page-loader--brand.m-page-loader--non-block {
+                background: 0 0
+            }
+
+        .m-blockui-hide {
+            background: transparent !important;
+            box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+        }
+
+        .m-blockui {
+            border-radius: 4px;
+            display: table;
+            table-layout: fixed
+        }
+
+            .m-blockui > span {
+                display: table-cell;
+                vertical-align: middle;
+                padding: 8px 15px;
+                font-size: 1rem;
+                font-weight: 400
+            }
+
+                .m-blockui > span > .m-loader,
+                .m-blockui > span > .m-spinner {
+                    margin-right: 10px
+                }
+
+        .m-blockui {
+            background: #fff;
+            -webkit-box-shadow: 0 1px 15px 1px rgba(69,65,78,.1);
+            box-shadow: 0 1px 15px 1px rgba(69,65,78,.1)
+        }
+
+            .m-blockui.m-blockui-no-shadow {
+                -webkit-box-shadow: none;
+                box-shadow: none
+            }
+
+            .m-blockui > span {
+                color: #6f727d
+            }
+
+            .m-blockui.m-blockui--skin-dark {
+                background: #2c2e3e;
+                -webkit-box-shadow: 0 1px 15px 1px rgba(69,65,78,.5);
+                box-shadow: 0 1px 15px 1px rgba(69,65,78,.5)
+            }
+
+                .m-blockui.m-blockui--skin-dark.m-blockui-no-shadow {
+                    -webkit-box-shadow: none;
+                    box-shadow: none
+                }
+
+                .m-blockui.m-blockui--skin-dark > span {
+                    color: #9093ac
+                }
+
+        .footer-social-icon.whatsapp li a {
+            background-color: #009900;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            padding: 7px 16px 7px 12px;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 100px;
+            z-index: 1;
+            color: white;
+            right: 35px;
+        }
+
+            .footer-social-icon.whatsapp li a .la {
+                font-size: 1.3em;
+            }
+
+        .m-input-icon {
+            position: relative;
+            padding: 0;
+            width: 100%;
+        }
+
+            .m-input-icon > .m-input-icon__icon.m-input-icon__icon--right {
+                right: 0;
+            }
+
+            .m-input-icon > .m-input-icon__icon {
+                position: absolute;
+                height: 100%;
+                display: inline-block;
+                text-align: center;
+                top: 0;
+                width: 3.2rem;
+            }
+
+        .dropdown-menu {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
+        }
+
+        .dropdown-menu {
+            border-radius: 0;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.28);
+            border-color: transparent;
+            min-width: 200px;
+            border-bottom-left-radius: 0.5em;
+            border-bottom-right-radius: 0.5em;
+        }
+
+            .dropdown-menu > li > a:hover, .mss .dropdown-menu > li.active > a {
+                background-color: #f8f9fa;
+            }
+
+            .dropdown-menu > li > a {
+                display: block;
+                width: 100%;
+                padding: 0.25rem 1.5rem;
+                clear: both;
+                font-weight: 400;
+                color: #212529;
+                text-align: inherit;
+                white-space: nowrap;
+                background-color: transparent;
+                border: 0;
+            }
+
+        .btn:disabled {
+            opacity: 0.65;
+            background: #b3b3b3;
+            color: #000;
+        }
+
+        .invalid-feedback {
+            display: block;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body ng-app="MyApp" class="app-eight-home" data-spy="scroll" data-target=".navigation-eight" data-offset="80">
+    <div class="m-page-loader m-page-loader--base">
+        <div class="m-blockui" style="top:50%;left:45%;">
+            <span id="loadtext">Synchronising with back office...</span>
+            <span><div class="m-loader m-loader--brand"></div></span>
+        </div>
+    </div>
+    <!-- Modal -->
+    <!-- preloader - start -->
+    <div class="se-pre-con" ng-show="loader">
+
+    </div>
+
+    <div id="preloader" class="ei-preloader"></div>
+    <div class="ei-up">
+        <a href="#" id="scrollup" class="ei-scrollup text-center"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <header id="header-eight" class="main-header-eight">
+        <div class="container">
+            <div class="appheader-content">
+                <div class="site-logo float-left">
+                    <a href="/RegisterNow/"><img src="/frontpage/img/app-landing/logo/logo1.png" alt="" /></a>
+                </div>
+                <nav class="navigation-eight ul-li saasio_one_click">
+
+                </nav>
+                <!-- <div class="sign-up-btn-eight text-center float-right clearfix signinbtn ">
+                    <a href="javascript:;" onclick="OpenLoginModal()">Sign In</a>
+                </div> -->
+            </div>
+        </div>
+
+    </header>
+    <section id="eight-banner" class="eight-banner-section position-relative" style="padding: 0px 0px 90px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                </div>
+            </div>
+        </div>
+      
+    </section>
+    <section id="feature-eight" class="feature-eight-section position-relative">
+        <div class="container">
+            <div class="eight-section-title appeight-headline pera-content text-center">
+                <span class="eg-title-tag">
+                    Terms & Conditions
+                </span>
+
+            </div>
+            <!-- /title -->
+
+
+            <div class="eight-feature-content" id="registrationdiv" ng-controller="TermsConditionsController">
+                <div class="row justify-content-md-center">
+                    <div class="col-lg-12 col-md-12 wow fadeFromUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div ng-repeat="d in Disclaimer | filter:{type:'!s'}">
+                            <p ng-bind-html="d.terms_conditions"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="ei-footer" class="ei-footer-section position-relative">
+
+        <div class="ei-footer-copyright">
+            <div class="container">
+                <div class="ei-footer-copyright-content">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="ei-copyright-text">
+                                <p>All Rights Reserved</p>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="ei-copyright-menu">
+                                <!--<a href="#">Help</a>-->
+                                <a href="~/RegisterNow/TermsConditions" class="m-nav__link" target="_blank">Terms & Conditions </a>
+                                <a href="~/RegisterNow/PrivacyPolicy" class="m-nav__link" target="_blank">Privacy </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Footer  section
+          ============================================= -->
+    <script src="~/frontpage//js/jquery.js"></script>
+    <script src="~/frontpage//js/popper.min.js"></script>
+    <script src="~/frontpage//js/bootstrap.min.js"></script>
+    <script src="~/frontpage//js/appear.js"></script>
+    <script src="~/frontpage//js/owl.js"></script>
+    <script src="~/frontpage//js/wow.min.js"></script>
+    <script src="~/frontpage//js/aos.js"></script>
+    <script src="~/frontpage//js/slick.js"></script>
+    <script src="~/frontpage//js/pagenav.js"></script>
+    <script src="~/frontpage//js/odometer.js"></script>
+    <script src="~/frontpage//js/bxslider.js"></script>
+    <script src="~/frontpage//js/jquery.barfiller.js"></script>
+    <script src="~/frontpage//js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/frontpage//js/parallax-scroll.js"></script>
+    <script src="~/frontpage//js/swiper.min.js"></script>
+    <script src="~/frontpage//js/typer-new.js"></script>
+    <script src="~/frontpage//js/script.js"></script>
+    <script src="~/Content/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+    <script src="~/Content/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Content/jquery.cookie.min.js"></script>
+    <script src="~/Content/angular.min.js"></script>
+    <script src="~/Content/angular-route.min.js"></script>
+    <script src="~/Content/angular-animate.min.js"></script>
+
+    <script src="~/Content/angular-sanitize.js"></script>
+    <script src="~/Content/angular-cookies.min.js"></script>
+    <script src="~/Content/underscore-min.js"></script>
+    <script src="~/Content/js/angular-filter.min.js"></script>
+    <script src="~/Content/angular-file-upload.js"></script>
+    <script src="~/Content/ng-infinite-scrolle.min.js"></script>
+    <script src="~/Content/lease-term.js?v=1.0.0"></script>
+    <script src="~/Content/js/jspdf.min.js"></script>
+    <script src="~/Content/js/html2canvas.js"></script>
+    <script data-require="angular-ui-bootstrap@0.3.0" data-semver="0.3.0" src="~/Content/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Script-->
+    <!--End of Tawk.to Script-->
+    <!--End of Tawk.to Script-->
+    <script>
+
+    </script>
+    <script type="text/javascript">
+        $(".register").click(function () {
+            $('html, body').animate({
+                scrollTop: $("#registrationdiv").offset().top - 50
+            }, 1000);
+        });
+        var app = angular.module('MyApp', ['ngSanitize', 'ngRoute', 'ngCookies', 'angular.filter', 'angularFileUpload', 'leasetermjs', 'infinite-scroll', 'ui.bootstrap']).run(['$anchorScroll', '$rootScope', function ($anchorScroll, $rootScope) {
+            $rootScope.loader = false;
+
+        }])
+        app.controller('TermsConditionsController', ['$scope', '$http', '$rootScope', '$location', '$sce', '$cookies', function ($scope, $http, $rootScope, $location, $sce, $cookies) {
+            $scope.loader = true;
+            $scope.Disclaimer = [];
+            $http.get('/api/ExtraPageApi/GetTermsConditions').success(function (data) {
+
+                $scope.Disclaimer = data;
+                $scope.loader = false;
+            });
+        }]);
+
+
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfJV9MkAAAAAPJvDFy18GmUo_5oipfGR4umPwHd"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LfJV9MkAAAAAPJvDFy18GmUo_5oipfGR4umPwHd', { action: 'submit' }).then(function (token) {
+                // Add your logic to submit to your backend server here.
+                $("textarea[name='Captcha_Response']").val(token);
+                //console.log(token);
+            });
+        });
+
+    </script>
+</body>
+
+
+
+
+</html>

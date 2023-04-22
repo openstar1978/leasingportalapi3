@@ -132,6 +132,7 @@ namespace LeasingPortalApi
         public virtual DbSet<GetAgreementView> GetAgreementViews { get; set; }
         public virtual DbSet<UKSchool> UKSchools { get; set; }
         public virtual DbSet<UKSchoolType> UKSchoolTypes { get; set; }
+        public virtual DbSet<campaign_user_registration> campaign_user_registration { get; set; }
     
         public virtual int GetAgreementsById(Nullable<int> getid)
         {
@@ -219,15 +220,6 @@ namespace LeasingPortalApi
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetSearchProductsInCategory_Result>("spGetSearchProductsInCategory", catidParameter, getidParameter, getproductParameter, getproductsParameter);
         }
     
-        public virtual ObjectResult<spGetFilters_Result> spGetFilters(Nullable<int> getid)
-        {
-            var getidParameter = getid.HasValue ?
-                new ObjectParameter("getid", getid) :
-                new ObjectParameter("getid", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetFilters_Result>("spGetFilters", getidParameter);
-        }
-    
         public virtual ObjectResult<spGetFiltersQuery_Result> spGetFiltersQuery(string getid)
         {
             var getidParameter = getid != null ?
@@ -235,6 +227,15 @@ namespace LeasingPortalApi
                 new ObjectParameter("getid", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetFiltersQuery_Result>("spGetFiltersQuery", getidParameter);
+        }
+    
+        public virtual ObjectResult<spGetFilters_Result> spGetFilters(Nullable<int> getid)
+        {
+            var getidParameter = getid.HasValue ?
+                new ObjectParameter("getid", getid) :
+                new ObjectParameter("getid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetFilters_Result>("spGetFilters", getidParameter);
         }
     }
 }
