@@ -207,7 +207,7 @@ namespace LeasingPortalApi.Controllers.Api
                                           range = false,
                                           rangevalues=k.Key,
                                           display=true,
-                                      }).OrderBy(x => PadNumbers(x.FilterValue)).ToList()
+                                      }).OrderBy(x => PadNumbers(x.FilterValue)).OrderByDescending(x=>x.FilterValue.ToLower().Contains("intel")).ToList()
                                   }) ;
                 filters.AddRange(attrfilter);
                 /*var getfiltercat = ctx.productcomparativefields.Where(x => x.Filter == "Y" && x.CategoryId == getid).ToList();
@@ -758,7 +758,7 @@ namespace LeasingPortalApi.Controllers.Api
                                           range = false,
                                           rangevalues=k.Key,
                                           display=true,
-                                      }).OrderBy(x => PadNumbers(x.FilterValue)).ToList()
+                                      }).OrderBy(x => PadNumbers(x.FilterValue)).OrderByDescending(x => x.FilterValue.ToLower().Contains("intel")).ToList()
                                   }) ;
                 filters.AddRange(attrfilter);
                     /*var getfiltercat = ctx.productcomparativefields.Where(x => x.Filter == "Y" && x.CategoryId == cattid).ToList();

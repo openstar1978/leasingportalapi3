@@ -1706,9 +1706,9 @@
                                                                     <ul id="progressbar" class="quoteprogress">
 
                                                                         <li class="active complete">Order Received</li>
-                                                                        <li class="active" ng-class="item.malloc=='a' || item.malloc=='sd' || item.malloc=='rd' || item.malloc=='di' || item.malloc=='de' || item.malloc=='c' || item.malloc=='pp'?'complete':''">Order allocated</li>
-                                                                        <li class="active" ng-class="item.malloc=='di' || item.malloc=='de' || item.malloc=='c'|| item.malloc=='pp' ?'complete':''">Order dispatched</li>
-                                                                        <li class="active" ng-class="item.malloc=='de' || item.malloc=='c' || item.malloc=='pp'?'complete':''">Order delivered</li>
+                                                                        <li class="active" ng-class="(item.malloc=='a' || item.malloc=='sd' || item.malloc=='rd' || item.malloc=='di' || item.malloc=='de' || item.malloc=='c' || item.malloc=='pp') && checkProdStatus(item.Product,'allocated')?'complete':''">Order allocated</li>
+                                                                        <li class="active" ng-class="(item.malloc=='di' || item.malloc=='de' || item.malloc=='c'|| item.malloc=='pp') && checkProdStatus(item.Product,'dispatched') ?'complete':''">Order dispatched</li>
+                                                                        <li class="active" ng-class="(item.malloc=='de' || item.malloc=='c' || item.malloc=='pp') && checkProdStatus(item.Product,'delivered')?'complete':''">Order delivered</li>
                                                                     </ul>
                                                                     <div class="popover__wrapper " style="display:none;">
                                                                         <a href="javascript:;" class="poplink" onclick="openpopover(this)">
@@ -2575,6 +2575,28 @@
                     };
                 }
             });
+                $scope.checkProdStatus = function (item2, status) {
+                    var flag = true;
+                    item2.forEach(function (o)
+                    {
+                        console.log(o.status);
+                        debugger;
+                        if (status == "allocated") {
+                            if (o.status != 'a' && o.status != 'rd' && o.status != 'sd' && o.status != 'di' && o.status != 'de') {
+                                flag = false;
+                            }
+                        } else if (status == "dispatched") {
+                            if (o.status != 'di' && o.status!='de') {
+                                flag = false;
+                            }
+                        } else if (status == "delivered") {
+                            if (o.status != 'de') {
+                                flag = false;
+                            }
+                        }
+                    });
+                    return flag;
+                }
             //$scope.item = {};
             $scope.toggleIcon = function ($event) {
                 console.log($event.target);
@@ -2946,7 +2968,7 @@
                 jQuery('#agreementmodal .modal').on('hidden.bs.modal', function () {
                     var iframe = document.getElementById('printf3');
                     iframe.src = "";
-                    jQuery("#agreementmodal .modal-body").html('');
+                    //jQuery("#agreementmodal .modal-body").html('');
                     $scope.DocUpload = false;
                     
                 });

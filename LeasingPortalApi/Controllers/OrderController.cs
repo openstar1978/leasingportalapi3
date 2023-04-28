@@ -1248,7 +1248,7 @@ namespace LeasingPortalApi.Controllers
                             total = total + ((ab.mprice.HasValue ? ab.mprice.Value : 0) * ab.quantity);
 
                         }
-                        pdfFormFields.SetField("equipdesc2", "Please check page no.3 for your ordered items");
+                        pdfFormFields.SetField("equipdesc2", "Item listed on page no.3");
                     }
                 }
                 pdfFormFields.SetField("printnames", contacperson + ", " + position);

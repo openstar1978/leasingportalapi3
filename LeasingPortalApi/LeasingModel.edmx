@@ -1830,10 +1830,10 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
           <FunctionImport Name="spGetFiltersQuery" ReturnType="Collection(LeasingDbModel.spGetFiltersQuery_Result)">
           <Parameter Name="getid" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="spGetFilters" ReturnType="Collection(LeasingDbModel.spGetFilters_Result)">
-          <Parameter Name="getid" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="campaign_user_registration" EntityType="LeasingDbModel.campaign_user_registration" />
+          <FunctionImport Name="spGetFilters" ReturnType="Collection(LeasingDbModel.spGetFilters_Result)">
+            <Parameter Name="getid" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="GetsUser_Result">
           <Property Type="Int32" Name="muid" Nullable="false" />
@@ -3532,13 +3532,6 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
           <Property Type="String" Name="mdetailvalue" Nullable="true" />
           <Property Type="Int32" Name="mdetailunit" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="spGetFilters_Result">
-          <Property Type="Int32" Name="mdetailheadid" Nullable="true" />
-          <Property Type="String" Name="mdetailvalue" Nullable="true" />
-          <Property Type="Int32" Name="mprodid" Nullable="true" />
-          <Property Type="String" Name="mdetailhead" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="munitname" Nullable="true" MaxLength="150" />
-        </ComplexType>
         <EntityType Name="campaign_user_registration">
           <Key>
             <PropertyRef Name="mcampaignuserid" />
@@ -3558,6 +3551,13 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
           <Property Name="mcreatedate" Type="DateTime" Precision="3" />
           <Property Name="mschoolid" Type="Int32" />
         </EntityType>
+        <ComplexType Name="spGetFilters_Result">
+          <Property Type="Int32" Name="mdetailheadid" Nullable="true" />
+          <Property Type="String" Name="mdetailvalue" Nullable="true" />
+          <Property Type="Int32" Name="mprodid" Nullable="true" />
+          <Property Type="String" Name="mdetailhead" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="munitname" Nullable="true" MaxLength="150" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5349,17 +5349,6 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spGetFilters" FunctionName="LeasingDbModel.Store.spGetFilters">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="LeasingDbModel.spGetFilters_Result">
-                <ScalarProperty Name="mdetailheadid" ColumnName="mdetailheadid" />
-                <ScalarProperty Name="mdetailvalue" ColumnName="mdetailvalue" />
-                <ScalarProperty Name="mprodid" ColumnName="mprodid" />
-                <ScalarProperty Name="mdetailhead" ColumnName="mdetailhead" />
-                <ScalarProperty Name="munitname" ColumnName="munitname" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="campaign_user_registration">
             <EntityTypeMapping TypeName="LeasingDbModel.campaign_user_registration">
               <MappingFragment StoreEntitySet="campaign_user_registration">
@@ -5380,6 +5369,17 @@ warning 6002: The table/view 'LeasingDb.dbo.GetAgreementView' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetFilters" FunctionName="LeasingDbModel.Store.spGetFilters">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LeasingDbModel.spGetFilters_Result">
+                <ScalarProperty Name="mdetailheadid" ColumnName="mdetailheadid" />
+                <ScalarProperty Name="mdetailvalue" ColumnName="mdetailvalue" />
+                <ScalarProperty Name="mprodid" ColumnName="mprodid" />
+                <ScalarProperty Name="mdetailhead" ColumnName="mdetailhead" />
+                <ScalarProperty Name="munitname" ColumnName="munitname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
